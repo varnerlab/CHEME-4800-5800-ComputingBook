@@ -169,7 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../unit-1-basics/basics-landing.html">Unit 1. Computing Basics</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/types.html">Expressions, Variables and Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/types.html">Expressions, Variables, and Types</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/functions.html">Functions, Control Statements, and Recursion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/programs.html">Programs and Modules</a></li>
@@ -1008,10 +1008,10 @@ python</label><div class="sd-tab-content docutils">
 <p>Let <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> be a full k-ary tree with height <span class="math notranslate nohighlight">\(h\)</span> where each node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> has <span class="math notranslate nohighlight">\(k\)</span> children. The height of the tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> will be defined as the maximum number of edges from the root node to a tree leaf. Further, let the root node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> have an index <span class="math notranslate nohighlight">\(0\)</span>.</p>
 <p>Then, the indicies of the children of node <span class="math notranslate nohighlight">\(i\)</span>, denoted by the set <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, are given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-children-node-i">
-<span class="eqno">(11)<a class="headerlink" href="#equation-eqn-children-node-i" title="Permalink to this equation">#</a></span>\[\mathcal{C}_{i}=\left\{k\cdot{i}+1,k\cdot{i}+2,\dots,k\cdot{i}+k\right\}\]</div>
+<span class="eqno">(6)<a class="headerlink" href="#equation-eqn-children-node-i" title="Permalink to this equation">#</a></span>\[\mathcal{C}_{i}=\left\{k\cdot{i}+1,k\cdot{i}+2,\dots,k\cdot{i}+k\right\}\]</div>
 <p>and the total number of nodes of tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> with branched height <span class="math notranslate nohighlight">\(h\)</span>, denoted by <span class="math notranslate nohighlight">\(N_{h}\)</span>, is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-number-of-nodes-kary">
-<span class="eqno">(12)<a class="headerlink" href="#equation-eqn-number-of-nodes-kary" title="Permalink to this equation">#</a></span>\[N_{h} = \sum_{j=0}^{h}k^j\]</div>
+<span class="eqno">(7)<a class="headerlink" href="#equation-eqn-number-of-nodes-kary" title="Permalink to this equation">#</a></span>\[N_{h} = \sum_{j=0}^{h}k^j\]</div>
 <p>where <span class="math notranslate nohighlight">\(N_{h}\)</span> includes the final layer of leaves.</p>
 </section>
 </div><section id="common-uses-for-trees">
@@ -1046,7 +1046,7 @@ python</label><div class="sd-tab-content docutils">
 <p>Let the current price of a commodity, e.g., a raw material required for a chemical process, be given by <span class="math notranslate nohighlight">\(P_{o}\)</span>. Assume that at each subsequent time-step in the future, the price can increase by <span class="math notranslate nohighlight">\(r_{+}\)</span> = 2%, stay the same <span class="math notranslate nohighlight">\(r_{0}\)</span> = 0%, or decrease by <span class="math notranslate nohighlight">\(r_{-}\)</span> = 1%.</p>
 <p><strong>Solution</strong>: The height of the tree <span class="math notranslate nohighlight">\(h\)</span> will be the number of future time-steps. Thus, from <a class="reference internal" href="#defn-children-and-node-k-ary">Definition 3</a> we know the total number of nodes in the tree (length of the storage array) is <span class="math notranslate nohighlight">\(N_{2} = 13\)</span>. Further, we know the relationship between the parent price <span class="math notranslate nohighlight">\(P_i\)</span> and children prices is given be:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-price-set-node-i">
-<span class="eqno">(13)<a class="headerlink" href="#equation-eqn-price-set-node-i" title="Permalink to this equation">#</a></span>\[\left\{P_{i}\left(1+r_{+}\right),P_{i},P_{i}\left(1-r_{-}\right)\right\}\]</div>
+<span class="eqno">(8)<a class="headerlink" href="#equation-eqn-price-set-node-i" title="Permalink to this equation">#</a></span>\[\left\{P_{i}\left(1+r_{+}\right),P_{i},P_{i}\left(1-r_{-}\right)\right\}\]</div>
 <p>We can now develop a <code class="docutils literal notranslate"><span class="pre">build</span></code> method that takes information about the tree and returns a list of the values of the commodity price at each node in the tree.</p>
 <p><strong>Preconditions</strong>: The <code class="docutils literal notranslate"><span class="pre">ArrayBasedTernaryCommodityPriceTree</span></code> mutable type has been defined outside of the <code class="docutils literal notranslate"><span class="pre">build</span></code> function.</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
@@ -1101,7 +1101,7 @@ python</label><div class="sd-tab-content docutils">
 </div>
 <p><strong>source</strong>: Source code can be found in the <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/trees">CHEME-1800/4800 tree examples repository</a></p>
 </section>
-</div><p>In an adjacency list representation, the list of children at index <span class="math notranslate nohighlight">\(i\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, is still given by Eqn. <a class="reference internal" href="#equation-eqn-children-node-i">(11)</a>. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary and the data stored in a seperate data structure.</p>
+</div><p>In an adjacency list representation, the list of children at index <span class="math notranslate nohighlight">\(i\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, is still given by Eqn. <a class="reference internal" href="#equation-eqn-children-node-i">(6)</a>. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary and the data stored in a seperate data structure.</p>
 <p>Let’s reimagine the terneray commodity price model in the Adjacency list format (<a class="reference internal" href="#example-ternary-price-model-adj-list">Example 18</a>):</p>
 <div class="proof example dropdown admonition" id="example-ternary-price-model-adj-list">
 <p class="admonition-title"><span class="caption-number">Example 18 </span> (Ternary commodity price tree adjacency list)</p>

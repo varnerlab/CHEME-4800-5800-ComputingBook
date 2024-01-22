@@ -168,7 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../unit-1-basics/basics-landing.html">Unit 1. Computing Basics</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/types.html">Expressions, Variables and Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/types.html">Expressions, Variables, and Types</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/functions.html">Functions, Control Statements, and Recursion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/programs.html">Programs and Modules</a></li>
@@ -444,7 +444,7 @@ document.write(`
 <section class="definition-content" id="proof-content">
 <p>Arguably, the most commonly used vector norms belong to the family of <span class="math notranslate nohighlight">\(p\)</span>-norms (also called <span class="math notranslate nohighlight">\(l_{p}\)</span>-norms) which is defined as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-p-norm-defn">
-<span class="eqno">(55)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
+<span class="eqno">(50)<a class="headerlink" href="#equation-eqn-p-norm-defn" title="Permalink to this equation">#</a></span>\[||\mathbf{x}||_{p} = \left(\sum_{i=1}^{n}|x_{i}|^{p}\right)^{1/p}\]</div>
 <p>for any <span class="math notranslate nohighlight">\(p&gt;0\)</span>.</p>
 </section>
 </div><p>A matrix norm is any function <span class="math notranslate nohighlight">\(||\star||:\mathbb{R}^{m\times{n}}\rightarrow\mathbb{R}\)</span> such that following properties are true:</p>
@@ -458,11 +458,11 @@ document.write(`
 <section class="definition-content" id="proof-content">
 <p>A matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>consistent</em> with a vector norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> if:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-consistent-matrix-norm">
-<span class="eqno">(56)<a class="headerlink" href="#equation-eqn-consistent-matrix-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{x}||\leq||\mathbf{A}||\cdot||\mathbf{x}||\]</div>
+<span class="eqno">(51)<a class="headerlink" href="#equation-eqn-consistent-matrix-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{x}||\leq||\mathbf{A}||\cdot||\mathbf{x}||\]</div>
 <p>Further, a matrix norm <span class="math notranslate nohighlight">\(||\cdot||\)</span> is <em>sub-multiplicative</em> if <span class="math notranslate nohighlight">\(\forall\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> and
 <span class="math notranslate nohighlight">\(\forall\mathbf{B}\in\mathbb{R}^{n\times{q}}\)</span> the inequality holds:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-submul-norm">
-<span class="eqno">(57)<a class="headerlink" href="#equation-eqn-submul-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||\]</div>
+<span class="eqno">(52)<a class="headerlink" href="#equation-eqn-submul-norm" title="Permalink to this equation">#</a></span>\[||\mathbf{A}\mathbf{B}||\leq||\mathbf{A}||\cdot||\mathbf{B}||\]</div>
 </section>
 </div></section>
 <section id="similarity-functions">
@@ -473,7 +473,7 @@ document.write(`
 <section class="definition-content" id="proof-content">
 <p>A radial basis function (RBF) measures the similarity between two input vectors <span class="math notranslate nohighlight">\(\mathbf{x}_{p}\in\mathbb{R}^{m\times{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x_{q}}\in\mathbb{R}^{m\times{1}}\)</span>. The most common is the Gaussian radial basis function, defined by a bell-shaped curve:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-rbf-similarity-function">
-<span class="eqno">(58)<a class="headerlink" href="#equation-eqn-rbf-similarity-function" title="Permalink to this equation">#</a></span>\[k\left(\mathbf{x}_{p},\mathbf{x}_{q}\right) = \sigma_{f}^{2}\exp\left(-\frac{1}{2}\left(\mathbf{x}_{p} - \mathbf{x}_{q}\right)^{T}\mathbf{M}
+<span class="eqno">(53)<a class="headerlink" href="#equation-eqn-rbf-similarity-function" title="Permalink to this equation">#</a></span>\[k\left(\mathbf{x}_{p},\mathbf{x}_{q}\right) = \sigma_{f}^{2}\exp\left(-\frac{1}{2}\left(\mathbf{x}_{p} - \mathbf{x}_{q}\right)^{T}\mathbf{M}
 \left(\mathbf{x}_{p} - \mathbf{x}_{q}\right)\right) +\sigma_{n}^{2}\delta_{pq}\]</div>
 <p>where the matrix <span class="math notranslate nohighlight">\(\mathbf{M}\in\mathbb{R}^{m\times{m}}\)</span> can be any symmetric matrix, <span class="math notranslate nohighlight">\(\sigma_{f}^{2}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{n}^{2}\)</span> are constants and <span class="math notranslate nohighlight">\(\delta_{pq}\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Kronecker_delta">Kronecker delta</a>.</p>
 </section>
@@ -488,7 +488,7 @@ document.write(`
 <span id="content-eigenvalue-eigenvector-problems"></span><h3>Eigenvalue-eigenvector problems<a class="headerlink" href="#eigenvalue-eigenvector-problems" title="Permalink to this heading">#</a></h3>
 <p>Eigenvalue-eigenvector problems involve finding a set of scalar values <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvalue.html">eigenvalues</a> and a set of linearly independent vectors <span class="math notranslate nohighlight">\(\left\{\mathbf{v}_{1},\dots,\mathbf{v}_{m}\right\}\)</span> called <a class="reference external" href="https://mathworld.wolfram.com/Eigenvector.html">eigenvectors</a> such that:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-eigenvalue-eigenvector-problem">
-<span class="eqno">(59)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v}_{j} = \lambda_{j}\mathbf{v}_{j}\qquad{j=1,2,\dots,m}\]</div>
+<span class="eqno">(54)<a class="headerlink" href="#equation-eqn-eigenvalue-eigenvector-problem" title="Permalink to this equation">#</a></span>\[\mathbf{A}\mathbf{v}_{j} = \lambda_{j}\mathbf{v}_{j}\qquad{j=1,2,\dots,m}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{v}\in\mathbb{R}^{m\times{1}}\)</span>, and <span class="math notranslate nohighlight">\(\lambda\in\mathbb{R}\)</span> is a scalar. Eigenvalues and eigenvectors are used in many areas of mathematics, engineering, and physics, including dynamics, image compression and data reduction:</p>
 <ul class="simple">
 <li><p><strong>Solution of Differential Equations</strong>: Eigenvalues and eigenvectors are used to solve systems of differential equations. Eigenvectors form a set of linearly independent solutions, while eigenvalues determine the stability of these solutions.</p></li>
@@ -502,7 +502,7 @@ document.write(`
 <p>Eigenvalues can be used directly to calculate the determinant of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span>. Denote the set of
 eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span> as <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{m}\right\}\)</span>. Then, the <span class="math notranslate nohighlight">\(\det\left(\mathbf{A}\right)\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-det-a-eigenvalues">
-<span class="eqno">(60)<a class="headerlink" href="#equation-eqn-det-a-eigenvalues" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = \prod_{i=1}^{m}\lambda_{i}\]</div>
+<span class="eqno">(55)<a class="headerlink" href="#equation-eqn-det-a-eigenvalues" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}\right) = \prod_{i=1}^{m}\lambda_{i}\]</div>
 <p>A matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{m}}\)</span> is non-singular if <span class="math notranslate nohighlight">\(\text{abs}(\lambda_{i})&gt;0~\forall{i}\)</span>, otherwise it is singular.</p>
 </section>
 </div><section id="characteristic-polynomial">
@@ -513,21 +513,21 @@ eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf
 <section class="definition-content" id="proof-content">
 <p>The characteristic polynomial of a square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span> is a polynomial that is obtained by subtracting the scalar <span class="math notranslate nohighlight">\(\lambda\)</span> from the diagonal of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and computing its determinant:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-characteristic-polynomial">
-<span class="eqno">(61)<a class="headerlink" href="#equation-eqn-characteristic-polynomial" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}-\lambda\mathbf{I}\right) = 0\]</div>
+<span class="eqno">(56)<a class="headerlink" href="#equation-eqn-characteristic-polynomial" title="Permalink to this equation">#</a></span>\[\det\left(\mathbf{A}-\lambda\mathbf{I}\right) = 0\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> is the <span class="math notranslate nohighlight">\(n\times{n}\)</span> identity matrix, and <span class="math notranslate nohighlight">\(\lambda\)</span> is an eigenvalue of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. The characteristic polynomial is a polynomial of degree <span class="math notranslate nohighlight">\(n\)</span> with <span class="math notranslate nohighlight">\(\lambda\)</span> as the variable, and its roots are precisely the eigenvalues of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
 </section>
 </div><p>However, despite its theoretical importance, in applications, we will rarely explicitly solve in the characteristic polynomial for the eigenvalues of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. Instead, we’ll use one of several more accessible techniques, see <a class="reference internal" href="#content-compute-eigenvalues-eigenvectors"><span class="std std-ref">Methods to compute eigenvalues and eigenvectors</span></a>.</p>
 </section>
 <section id="eigenvectors">
 <h4>Eigenvectors<a class="headerlink" href="#eigenvectors" title="Permalink to this heading">#</a></h4>
-<p>To compute the eigenvectors of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span>, we first need the eigenvalues <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{n}\right\}\)</span>. Once we have the eigenvalues, we rearrange Eqn <a class="reference internal" href="#equation-eqn-eigenvalue-eigenvector-problem">(59)</a> for each eigenvalue <span class="math notranslate nohighlight">\(\lambda_{j}\)</span> to give a system of homogenous linear algebraic equations that can be solved for the associated eigenvector
+<p>To compute the eigenvectors of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span>, we first need the eigenvalues <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{n}\right\}\)</span>. Once we have the eigenvalues, we rearrange Eqn <a class="reference internal" href="#equation-eqn-eigenvalue-eigenvector-problem">(54)</a> for each eigenvalue <span class="math notranslate nohighlight">\(\lambda_{j}\)</span> to give a system of homogenous linear algebraic equations that can be solved for the associated eigenvector
 (<a class="reference internal" href="#defn-homogenous-eigenvector-system">Definition 30</a>):</p>
 <div class="proof definition admonition" id="defn-homogenous-eigenvector-system">
 <p class="admonition-title"><span class="caption-number">Definition 30 </span> (Eigenvector system)</p>
 <section class="definition-content" id="proof-content">
 <p>Let the eigenvalues of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span> be given by the set <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{n}\right\}\)</span>. Then for each eigenvalue <span class="math notranslate nohighlight">\(\lambda_{j}\)</span>, there exists an eigenvector <span class="math notranslate nohighlight">\(\mathbf{v}_{j}\)</span> that is a solution of the homogenous system of equations:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-homogenous-eigenvector-system">
-<span class="eqno">(62)<a class="headerlink" href="#equation-eqn-homogenous-eigenvector-system" title="Permalink to this equation">#</a></span>\[\left(\mathbf{A}-\lambda_{j}\mathbf{I}\right)\mathbf{v}_{j} = \mathbf{0}\]</div>
+<span class="eqno">(57)<a class="headerlink" href="#equation-eqn-homogenous-eigenvector-system" title="Permalink to this equation">#</a></span>\[\left(\mathbf{A}-\lambda_{j}\mathbf{I}\right)\mathbf{v}_{j} = \mathbf{0}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{I}\)</span> denotes the <span class="math notranslate nohighlight">\(n\times{n}\)</span> identity matrix. While eigenvectors are always linearly independent, they are not unique (in any case) and orthogonal only for a symmetric <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
 </section>
 </div></section>
@@ -603,7 +603,7 @@ eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf
 <p>The basic idea is to perform <a class="reference external" href="https://en.wikipedia.org/wiki/QR_decomposition">QR decomposition</a> repeatedly, writing the matrix as a product of an orthogonal matrix <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> and an upper triangular matrix <span class="math notranslate nohighlight">\(\mathbf{R}\)</span>, multiply the factors in the reverse order, and iterate.</p>
 <p><strong>Phase 1: Eigenvalues</strong>. Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{n}}\)</span>. Then, at the kth step of the procedure (starting with <span class="math notranslate nohighlight">\(k = 0\)</span>), we compute the <a class="reference external" href="https://en.wikipedia.org/wiki/QR_decomposition">QR decomposition</a> of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-qr-iteration">
-<span class="eqno">(63)<a class="headerlink" href="#equation-eqn-qr-iteration" title="Permalink to this equation">#</a></span>\[\mathbf{A}_{k+1}=\mathbf{Q}_{k}\mathbf{R}_{k} = \mathbf{Q}_{k}^{T}\mathbf{A}_{k}\mathbf{Q}_{k}\qquad{k=0,1,\dots} \]</div>
+<span class="eqno">(58)<a class="headerlink" href="#equation-eqn-qr-iteration" title="Permalink to this equation">#</a></span>\[\mathbf{A}_{k+1}=\mathbf{Q}_{k}\mathbf{R}_{k} = \mathbf{Q}_{k}^{T}\mathbf{A}_{k}\mathbf{Q}_{k}\qquad{k=0,1,\dots} \]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{Q}_{k}\)</span> is an orthogonal matrix, i.e., <span class="math notranslate nohighlight">\(\mathbf{Q}^{T}_{k} = \mathbf{Q}^{−1}_{k}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{R}_{k}\)</span> is an upper triangular matrix. As <span class="math notranslate nohighlight">\(k\rightarrow\infty\)</span>, the matrix <span class="math notranslate nohighlight">\(\mathbf{A}_{k}\)</span> converge to a triangular matrix where eigenvalues are listed along the diagonal.</p>
 <p><strong>Phase 2: Eigenvectors</strong>. Once we’ve calculated the eigenvalues <span class="math notranslate nohighlight">\(\left\{\lambda_{1},\dots,\lambda_{n}\right\}\)</span>, we can compute the eigenvectors associated with each of the eigenvalues <span class="math notranslate nohighlight">\(\left\{\mathbf{v}_{1},\dots,\mathbf{v}_{n}\right\}\)</span>  by solving the homogenous system of equations:</p>
 <div class="math notranslate nohighlight">
@@ -654,7 +654,7 @@ eignenvalues for the matrix <span class="math notranslate nohighlight">\(\mathbf
 <section class="definition-content" id="proof-content">
 <p>Let the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span>. The singular value decomposition of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-math-svd">
-<span class="eqno">(64)<a class="headerlink" href="#equation-eqn-math-svd" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\]</div>
+<span class="eqno">(59)<a class="headerlink" href="#equation-eqn-math-svd" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{U}\in\mathbb{R}^{n\times{n}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{V}\in\mathbb{R}^{m\times{m}}\)</span> are orthogonal matrices and <span class="math notranslate nohighlight">\(\mathbf{\Sigma}\in\mathbb{R}^{n\times{m}}\)</span> is a diagonal matrix containing the singular values <span class="math notranslate nohighlight">\(\sigma_{i}=\Sigma_{ii}\)</span> along the main diagonal.</p>
 <p>The columns of <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> are called left-singular vectors, while the columns of <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> are called right-singular vectors.
 Singular vectors have a unique property: unlike eigenvectors, left- and right-singular vectors are linearly independent and orthogonal.</p>
@@ -675,7 +675,7 @@ Singular vectors have a unique property: unlike eigenvectors, left- and right-si
 Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> have the singular value decomposition <span class="math notranslate nohighlight">\(\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}\)</span>.</p>
 <p>Then, the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\times{n}}\)</span> can be re-written as:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-matrix-decomp">
-<span class="eqno">(65)<a class="headerlink" href="#equation-eqn-matrix-decomp" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \sum_{i=1}^{R_{\mathbf{A}}}\sigma_{i}\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\]</div>
+<span class="eqno">(60)<a class="headerlink" href="#equation-eqn-matrix-decomp" title="Permalink to this equation">#</a></span>\[\mathbf{A} = \sum_{i=1}^{R_{\mathbf{A}}}\sigma_{i}\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\]</div>
 <p>where <span class="math notranslate nohighlight">\(R_{\mathbf{A}}\)</span> is the rank of matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the vectors <span class="math notranslate nohighlight">\(\mathbf{u}_{i}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_{i}\)</span> are the ith left and right singular vectors, respectively, and <span class="math notranslate nohighlight">\(\sigma_{i}\)</span> are the ordered singular values.</p>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">outer-product</a> <span class="math notranslate nohighlight">\(\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)\)</span> is the separable component of the matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. For more details on computing the <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product">outer-product</a>, see <a class="reference internal" href="vectors-matricies-nla.html#content-vector-vector-operations"><span class="std std-ref">Vector-vector operations</span></a>.</p>
 </section>
@@ -698,7 +698,7 @@ Let <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{m\time
 <section class="definition-content" id="proof-content">
 <p>Suppose we have a collection of <span class="math notranslate nohighlight">\(n\)</span>-dimensional random vectors <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. Then, <span class="math notranslate nohighlight">\(\mathbf{K}_{XX}\)</span> is the <span class="math notranslate nohighlight">\(n\times{n}\)</span> covariance matrix:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-cov-matrix-1">
-<span class="eqno">(66)<a class="headerlink" href="#equation-eqn-cov-matrix-1" title="Permalink to this equation">#</a></span>\[\mathbf{K}_{XX} = \text{cov}(\mathbf{X},\mathbf{X}) = 
+<span class="eqno">(61)<a class="headerlink" href="#equation-eqn-cov-matrix-1" title="Permalink to this equation">#</a></span>\[\mathbf{K}_{XX} = \text{cov}(\mathbf{X},\mathbf{X}) = 
 \mathbb{E}\left[\left(\mathbf{X}-\mathbb{E}(\mathbf{X})\right)\cdot\left(\mathbf{X}-\mathbb{E}(\mathbf{X})\right)^{T}\right]\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbb{E}(\mathbf{X})\)</span> denotes the <a class="reference external" href="https://en.wikipedia.org/wiki/Expected_value">expected value</a>, e.g., the mean of the random vector <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. The entries of the <a class="reference external" href="https://en.wikipedia.org/wiki/Covariance_matrix">covariance matrix</a> <span class="math notranslate nohighlight">\(\mathbf{K}_{XX}\)</span> are given by:</p>
 <div class="math notranslate nohighlight">
