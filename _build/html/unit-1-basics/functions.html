@@ -529,9 +529,9 @@ C</label><div class="sd-tab-content docutils">
 </ul>
 <section id="arguments-pass-by-sharing">
 <h4>Arguments: Pass by sharing<a class="headerlink" href="#arguments-pass-by-sharing" title="Permalink to this heading">#</a></h4>
-<p><a class="reference external" href="https://docs.julialang.org">Julia</a> function arguments follow a convention called <code class="docutils literal notranslate"><span class="pre">pass-by-sharing</span></code>, i.e., values passed into functions as arguments are not copied. Instead, function arguments act as new variable bindings (new locations that can refer to values), but the underlying values they refer to are identical to the passed values (<a class="reference internal" href="#rem-modifications-args">Remark 1</a>):</p>
+<p><a class="reference external" href="https://docs.julialang.org">Julia</a> function arguments follow a convention called <code class="docutils literal notranslate"><span class="pre">pass-by-sharing</span></code>, i.e., values passed into functions as arguments are not copied. Instead, function arguments act as new variable bindings (new locations that can refer to values), but the underlying values they refer to are identical to the passed values (<a class="reference internal" href="#rem-modifications-args">Remark 2</a>):</p>
 <div class="proof remark admonition" id="rem-modifications-args">
-<p class="admonition-title"><span class="caption-number">Remark 1 </span> (Pass-by-sharing)</p>
+<p class="admonition-title"><span class="caption-number">Remark 2 </span> (Pass-by-sharing)</p>
 <section class="remark-content" id="proof-content">
 <p>The <code class="docutils literal notranslate"><span class="pre">pass-by-sharing</span></code> paradigm leads to interesting (and sometimes confusing) side effects: Modifications made to mutable values within the function body are visible to the caller (outside the function).</p>
 </section>

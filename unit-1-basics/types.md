@@ -12,32 +12,44 @@ kernelspec:
 
 # Expressions, Variables and Types
 
-## Introduction
-In this lecture, we introduce expressions, variables, and types. Expressions are combinations of variables and values that can be evaluated to a single value. Variables are symbols that represent values, which can be changed or assigned to different values. Types refer to the kind of value that a variable can hold, such as integers, floating-point numbers, or strings. 
+```{topic} Outline
+This week, we'll begin our discussion of technical computing by introducing expressions, variables, and types. Understanding expressions, variables, and types are fundamental to writing programs in any programming language.
 
-In many traditional programming languages, it is required to declare the variable type before using it so that the computer, i.e., the [compiler](https://en.wikipedia.org/wiki/Compiler) or [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)) that is processing your code, can check the correctness of the program and allocate the appropriate amount of memory to store the variable. While most modern languages can guess (or infer) the type, declaring types is still good practice because it helps with the readability of the compute code.  
+* [Expressions](content:references:expressions) are combinations of values, variables, and operators that produce a new value when evaluated.
+Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables.
+
+* [Numerical and logical data types](content:references:variables-numerical-types) are the starting points for most technical computing projects.
+Variables are named storage locations that can hold values and are used to store values that may change during the execution of a program. Types are categories of values, and every value belongs to a specific type. Programming languages have many different types, including primitive types (such as numbers and booleans) and composite types (such as arrays and user-defined objects).
+
+* [Character and String data types](content:references:variables-character-string-types) are used to represent text on the computer. 
+Traditionally, strings, e.g., `Julia rocks` were represented as arrays of characters, e.g., `['J','u','l','i','a',' ','r','o','c','k','s']`. Modern languages, such as [Julia](https://docs.julialang.org) or [Python](https://www.python.org), have sophisticated built-in `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character set.
+
+* [User defined types](content:references:variables-numerical-types) are the starting points for most technical computing projects.
+
+```
+Expressions are combinations of variables and values that can be evaluated to a single value. Variables are symbols that represent values, which can be changed or assigned to different values. Types refer to the kind of value that a variable can hold, such as integers, floating-point numbers, or strings. In many traditional programming languages, it is required to declare the variable type before using it so that the computer, i.e., the [compiler](https://en.wikipedia.org/wiki/Compiler) or [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)) that is processing your code, can check the correctness of the program and allocate the appropriate amount of memory to store the variable. While most modern languages can guess (or infer) the type, declaring types is still good practice because it helps with the readability of the compute code.  
 
 ---
 
 (content:references:expressions)=
-## Expressions
-Expressions are a combination of values, variables, and operators that _evaluate_ to a single value. Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables. Here are some common examples of expressions in the [Julia programming language](https://docs.julialang.org):
-
-* `2 + 3`: This expression evaluates to the value 5, an `integer`. 
-* `x * y`: This expression evaluates to the product of the variables x and y.
-* `x == y`: This expression evaluates to `true` if x and y are equal and `false` if they are not; `true` and `false` are Boolean types.
-* `x > y`: This expression evaluates to `true` if x is greater than y, and `false` if it is not; `true` and `false` are Boolean types.
-
-Expressions evaluate to a value that has a type. Expressions can be used independently or as part of a larger statement. For example, expressions can be arguments to a function or assigned to a variable using the assignment operator `=`. 
-
-## Variables and Types
-A _variable_ is like a box that holds a value, and that value has a _type_. For example, types can be numbers such as `3`, Boolean values like `true` or `false` or text like:
+## Expressions and Variables
+Expressions are a combination of values, variables, and operators that _evaluate_ to a single value. A _variable_ is like a box that holds a value, and that value has a _type_. For example, types can be numbers such as `3`, Boolean values like `true` or `false` or text like:
 
 >"Your computer is the only thing in the universe that unconditionally loves you, perhaps excluding your mother. Your computer will do anything you ask it to do with no pushback and no attitude. You just need to know how to talk to it!"
 
-However, computers and Humans don't speak the same language. Humans understand that `3` is an integer, and `Julia rocks` is text, but the computer doesn't see these values the same way we do. For a computer, everything is a [binary number](https://en.wikipedia.org/wiki/Binary_number), i.e., numbers written to the `base 2`. 
+However, computers and Humans don't speak the same language. Humans understand that `3` is an integer, i.e., `3`$\in\mathbb{Z}$, and `Julia rocks` is text, but the computer doesn't see these values the same way we do. Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables. Here are some common examples of expressions in the [Julia programming language](https://docs.julialang.org):
 
-From this perspective, integers are binary numbers, text is a set of binary numbers, Boolean values are binary numbers, etc. At the smallest scale, information is stored as bits and bytes in the computer ({numref}`fig-64-bit-byte-label-example`)
+* `2 + 3`: This expression evaluates to the value `5`, an `integer`. 
+* `x * y`: This expression evaluates to the product of the variables `x` and `y`, which are assumed to be numbers. However, `x` and `y` can be other types, e.g., text, and the `*` operator will perform a different operation, e.g., string concatenation.
+* `x == y`: This expression evaluates to `true` if `x` and `y` are equal and `false` if they are not; `true` and `false` are Boolean types, i.e., `true`$\in\mathbb{B}$ and `false`$\in\mathbb{B}$ where $\mathbb{B} = \left\{\text{true}, \text{false}\right\}$.
+* `x > y`: This expression evaluates to `true` if `x` is greater than `y`, and `false` if it is not; `true` and `false` are Boolean types. In this statement we are assuming `x` and `y` are numebers. Howwver, `x` and `y` can be other types. For example, if they are text, then the `>` operator will perform a different operation, e.g., lexicographic comparison.
+* `x = 3`: This expression assigns the value `3` to the variable `x`.
+
+Expressions evaluate to a value that has a type. For example, the expression `2 + 3` evaluates to the value `5`, which is an integer. The expression `x = 3` assigns the value `3` to the variable `x`, which is an integer. The expression `x == y` evaluates to `true` or `false`, which are Boolean values. The expression `x * y` evaluates to the product of the variables `x` and `y`, which are assumed to be numbers. However, `x` and `y` can be other types, e.g., text, and the `*` operator will perform a different operation, e.g., string concatenation.
+
+(content:references:variables-numerical-types)=
+## Numerical and Logical Data Types
+For a computer, everything is a [binary number](https://en.wikipedia.org/wiki/Binary_number), i.e., numbers written to the `base 2`.  From this perspective, integers are binary numbers, text is a set of binary numbers, Boolean values are binary numbers, etc. At the smallest scale, information is stored as bits and bytes in the computer ({numref}`fig-64-bit-byte-label-example`)
 
 ```{figure} ./figs/Fig-64-bit-byte-label-pattern.png
 ---
@@ -49,31 +61,37 @@ Schematic of bytes and bits used in computer storage. Each box contains a digit 
 
 A `bit` is the smallest unit of storage on a computer; a `bit` is a `0` or a `1`. However, a `bit` is too tiny for practical computing tasks. Instead, `bits` are grouped into `bytes`; a group of 8 bits equals  1 $\times$ `byte`. Different types of things, e.g., integers or text are then represented as different numbers of `bytes`.
 
-Types are an essential concept in programming, and they are used to ensure the correctness and efficiency of your code.
+````{prf:remark} Why do we need Types?
+Types are an essential concept in programming, and they are used to ensure the correctness and efficiency of your code. Modern languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org) have sophisticated type systems that include basic numerical, logical and text types, and they allow you to create your own types and define how they interact with other types. However, some languages such as [Python](https://www.python.org) hide the type system from the user, while other languages such as [Julia](https://docs.julialang.org) expose the type system to the user. 
+````
 
-### Numerical and logical types
-Integers, floating-point, and logical values are the basic building blocks of arithmetic and computation. Built-in representations of these values, i.e., the structure that the computer understands, are called `numeric primitives.` On the other hand, the models of numbers that humans understand, e.g., integers, floating-point numbers, etc., are called numeric literals, e.g., `1` is an integer literal, and `1.0` is a floating-point literal. Modern programming languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org) provide a broad range of primitive numeric types. Further, many standard mathematical operations are defined over them, e.g., addition and subtraction.
+Integers, floating-point, and logical values are the basic building blocks of arithmetic and computation. Built-in representations of these values, i.e., the structure that the computer understands, are called `numeric primitives.` On the other hand, the models of numbers that humans understand, e.g., integers, floating-point numbers, etc., are called numeric literals, e.g., `1` is an integer literal, and `1.0` is a floating-point literal. Modern programming languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org) provide a broad range of primitive numeric types. Further, many standard mathematical operations are defined over them, e.g., addition, subtraction and multiplication.
 
 Numeric primitives, which the computer understands, are binary numbers (numbers written to the `base 2`). However, there are other number systems that you may encounter, e.g., numbers written in the `base 8` (octal) or `base 16` (hexadecimal) system ({prf:ref}`defn-number-system`):
 
-````{prf:definition} Base $b$ numbers
+````{prf:definition} Base $\texttt{b}$ numbers
 :label: defn-number-system
 
-The base $b$ representation of a number is a way of writing numbers using the digit set:
+Let $k$ denote the $\texttt{word-size}$ of the computer, i.e., the number of bits in a \texttt{word}.
+The base $b$ representation of a number uses the digit set:
 
-```{math}
-:label: eqn-base-b-numbers-digits
-\mathcal{D}_{b} = \left\{0, 1, \dots, (b − 1)\right\}
-```
+$$
+\begin{equation}
+\mathcal{D}_{b} = \left\{0, 1, \dots, (b - 1)\right\}
+\end{equation}
+$$
 
-For any $n\geq{0}$ and $b\geq{2}$, there is a string of digits $\left(a_{k}a_{k-1},\dots,a_{2}a_{1}a_{0}\right)_{b}$ where $a_{k}\in\mathcal{D}_{b}$ for all $k$ such that the `base 10` value $n$ is given by:
+For any $n\geq{0}$ and $b\geq{2}$, there is a string of $k$-digits $\left(a_{k-1}\,a_{k-2},\dots,a_{2}\,a_{1}a_{0}\right)_{b}$ 
+where $a_{i}\in\mathcal{D}_{b}\,\forall{i}$ such that the \texttt{base-10} representation of the number $n$ is given by:
 
-```{math}
-:label: eqn-base-b-number
+$$
+\begin{equation}
 n = \sum_{j=0}^{k-1}a_{j}\cdot{b^{j}}
-```
+\end{equation}
+$$
 
-The quantity $a_{j}$ denotes the digit in position $j$, the quantity $b$ denotes the base, and $k$ denotes the number of bits.
+where $a_{j}$ denotes the digit in position $j$, the quantity $b$ denotes the base, 
+and $k$ denotes the number of bits in a $\texttt{word}$.
 ````
 
 Let's look at example of a `base 8` number ({prf:ref}`example-base-8-number`):
@@ -84,7 +102,7 @@ Let's look at example of a `base 8` number ({prf:ref}`example-base-8-number`):
 
 Write the octal number $\left(112\right)_{8}$ in `base 10`. 
 
-__Solution__: For a `base 8` (octal) number, $b=8$. The octal number $\left(112\right)_{8}$ can be expanded using Eqn. {eq}`eqn-base-b-number` as:
+__Solution__: For a `base 8` (octal) number, $b=8$. The octal number $\left(112\right)_{8}$ can be expanded using {prf:ref}`defn-number-system`:
 
 ```{math}
 :label: example-eqn-base-8-expansion
@@ -94,7 +112,7 @@ n = 2\times{8}^{0}+1\times{8}^{1}+1\times{8}^2
 or $n = 74$.
 ````
 
-#### Integers
+### Integers
 Signed integers, represented by the set $\mathbb{Z}$, are the positive and negative natural numbers along with zero:
 
 ```{math}
@@ -132,12 +150,10 @@ __Tip__: The [bitstring](https://docs.julialang.org/en/v1/base/numbers/#Base.bit
 
 ````
 
-##### Aside: What about negative integers?
 {prf:ref}`defn-number-system` shows the representation of numbers in different bases, e.g., integers written in `base 2` (binary numbers). However, the set $\mathbb{Z}$ also contains negative numbers; how can we represent negative integers in a `base 2` system? 
 
-Negative integers are created using [Two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), a method to represent negative integers in binary form. It allows for efficient arithmetic operations, such as addition and subtraction, to be performed on signed numbers.
-
-[Two's complement](https://en.wikipedia.org/wiki/Two%27s_complement) is executed by first inverting all bits, i.e., flipping `0` $\rightarrow$ `1` and vice-versa, and then adding (using binary addition) a `1` to the least significant digit (far right bit) of the result.
+Negative integers are created using [Two complement](https://en.wikipedia.org/wiki/Two%27s_complement), a method to represent negative integers in binary form. It allows for efficient arithmetic operations, such as addition and subtraction, to be performed on signed numbers. [Two's complement](https://en.wikipedia.org/wiki/Two%27s_complement) is executed by first inverting all bits, i.e., flipping `0` $\rightarrow$ `1` and vice-versa, and then adding (using binary addition) a `1` to the least significant digit (far right bit) of the result
+({prf:ref}`example-twos-complement`):
 
 ````{prf:example} Two's complement
 :class: dropdown
@@ -166,10 +182,10 @@ __Step 2__: Add a `1` to the least-significant bit (index 0), which gives:
 
 ````
 
-##### Boolean values
-Boolean values, e.g., values of `true` and `false` are represented in modern languages using a `Bool` type. For example, both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) have built-in Boolean types. However, foundational languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) do not have a dedicated Boolean type; instead, Boolean values in [C](https://en.wikipedia.org/wiki/C_(programming_language)) were represented by integers, i.e., `true = 1` and `false = 0`. Thus, it should not be surprising that in languages such as [Julia](https://docs.julialang.org), which is a distant relative of [C](https://en.wikipedia.org/wiki/C_(programming_language)), that `Bool` is implemented as a subtype of integer. 
+### Boolean values
+Boolean values, e.g., values of `true` and `false` are represented in modern languages using a `Bool` type. For example, both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) have built-in Boolean types. However, foundational languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) do not have a dedicated Boolean type; instead, Boolean values in [C](https://en.wikipedia.org/wiki/C_(programming_language)) were represented by integers, i.e., `true = 1` and `false = 0`. Thus, it should not be surprising that in languages such as [Julia](https://docs.julialang.org), which is a distant relative of [C](https://en.wikipedia.org/wiki/C_(programming_language)), that `Bool` is implemented as a subtype of integer (a special `8-bit` integer).
 
-In [Julia](https://docs.julialang.org) values of the `Bool` type are a kind of number: `false` is numerically equal to `0` while true is equivalent to `1`. However, unlike an `Int64`, only 1$\times$byte (8-bits) is required to store a `Bool` value in [Julia](https://docs.julialang.org); because a `Bool` can only assume one of two possible values the computer doesn't need extra storage:
+In [Julia](https://docs.julialang.org) values of the `Bool` type are a kind of number: `false` is numerically equal to `0` while true is equivalent to `1`. However, unlike an `Int64`, only 1$\times$byte (8-bits) is required to store a `Bool` value in [Julia](https://docs.julialang.org); because a `Bool` can only assume one of two possible values the computer doesn't need to use extra storage:
 
 ```{code-cell} julia
 # These are examples a expressions, that set a Bool value
@@ -200,8 +216,7 @@ int_value = 1
 bitstring(int_value)
 ```
 
-
-#### Floating point numbers
+### Floating point numbers
 
 ```{figure} ./figs/Fig-Float32-bit-pattern.png
 ---
@@ -211,59 +226,51 @@ name: fig-32bit-floating-point-schematic
 Schematic of the bit-pattern for a 4$\times$byte (32-bit) floating point number
 ```
 
-Scalar floating point numbers, i.e., decimal numbers in $\mathbb{R}$, are stored using 4$\times$bytes (32-bits; single-precision) or 8$\times$bytes (64-bits; double-precision) following the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754). Regardless of whether we use single or double-precision, unlike integer values, which can be represented precisely, floating-point numbers can only be _approximated_ by a computer system.
+Floating point numbers $x\in\mathbb{R}$ are stored using 4$\times$bytes (single-precision) or 8$\times$bytes (double-precision)
+following the [IEEE-754 standard](ttps://en.wikipedia.org/wiki/IEEE_754), where different components of the floating number are encoded in different segments of the 32- or 64-bits ({numref}`fig-32bit-floating-point-schematic`). For a $\texttt{64-bit}$ float $x\in\mathbb{R}$, the number is stored as:
 
-In the [IEEE-754 standard](https://en.wikipedia.org/wiki/IEEE_754) specification, the different components of the floating number are encoded in different segments of the 32- or 64-bits ({numref}`fig-32bit-floating-point-schematic`). In the computer, a floating point number $x\in\mathbb{R}$ is represented as:
-
-```{math}
-:label: eqn-floating-point-number
-x = -1^{S}\times{M}\times{2}^{(E-127)}
-```
+$$
+\begin{equation}
+x = -1^{S}\times{M}\times{2}^{(E-1023)}
+\end{equation}
+$$
 
 where $S$ denotes the sign bit, $M$ denotes the mantissa (fraction) and $E$ denotes the exponent. 
-* For a 32-bit floating point number, $S$ is bit 31 denoted by $b_{31}$, $M$ is encoded in bits $b_0\rightarrow{b_{22}}$ and $E$ is encoded by bits $b_{23}\rightarrow{b_{30}}$.
-* On the other hand, in a 64-bit floating point number, the sign bit $S$ is $b_{63}$, the mantissa $M$ is the number encoded by bits $b_0\rightarrow{b_{51}}$, and the exponent $E$ is encoded by bits $b_{52}\rightarrow{b_{62}}$.
+* For a $\texttt{32-bit}$ floating point number, $S$ is $b_{31}$, $M$ is encoded in bits $b_0\rightarrow{b_{22}}$ and $E$ is encoded by bits $b_{23}\rightarrow{b_{30}}$.
+* For a $\texttt{64-bit}$ floating point number, the sign bit $S$ is $b_{63}$, $M$ is encoded by bits $b_0\rightarrow{b_{51}}$, and $E$ is encoded by bits $b_{52}\rightarrow{b_{62}}$.
+where $b_{i}$ denotes the $i$-th bit in the word, and $M$ is defined as (for a $\texttt{64-bit}$ float):
 
-Thus, for a 32-bit floating point number, the sign bit is $b_{31}$, while the fraction $M$ is expressed as:
+$$
+\begin{equation}
+M = \left(1+\sum_{i=1}^{52}b_{52-i}2^{-i}\right)
+\end{equation}
+$$
+Let's consider the representation of a `Float64` value for $\pi$ ({prf:ref}`example-float64-representation`):
 
-```{math}
-:label: eqn-M-expression
-M = \left(1+\sum_{i=1}^{23}b_{23-i}2^{-i}\right)
-```
-
-and the exponent $E$ is given by:
-
-```{math}
-:label: eqn-E-expression
-E = \sum_{i=0}^{7}b_{23+i}2^{i}
-```
-
-Let's consider the representation of a `Float32` value for $\pi$ ({prf:ref}`example-float32-representation`):
-
-````{prf:example} Float32 representation in Julia
+````{prf:example} Float64 representation in Julia
 :class: dropdown
-:label: example-float32-representation
+:label: example-float64-representation
 
-Compute the $S, M$ and $E$ components of the 32-bit floating point number $x=3.14159$ in [Julia](https://docs.julialang.org).
+Compute the $S, M$ and $E$ components of the `64-bit` floating point number $x=3.14159$ in [Julia](https://docs.julialang.org).
 
 __Solution__: The bitstring representation of $x$ is given by:
 
 ```{math}
-:label: eqn-32bit-bitstring
-3.14159 = \left(01000000010010010000111111010000\right)_{2}
+:label: eqn-64bit-bitstring
+3.14159 = \left(0100000000001001001000011111100111110000000110111000011001101110\right)_{2}
 ```
+Note, in [Julia](https://docs.julialang.org), the default floating-point number (depending upon your hardware) is `Float64`. Thus, the bitstring in Eqn. {eq}`eqn-64bit-bitstring` is a `64-bit` floating point number. The sign bit in Eqn. {eq}`eqn-64bit-bitstring` is $S=0$, while the fraction $M = 1.570795$ and the exponent $E = 128$ which gives:
 
-Note, in [Julia](https://docs.julialang.org), the default floating-point number (depending upon your hardware) is `Float64`. However, we can convert a `Float64` to a `Float32` using the `convert(Float32,x)` command.  
-
+```{math}
 The sign bit in Eqn. {eq}`eqn-32bit-bitstring` is $S=0$, while the fraction $M = 1.570795$ and the exponent $E = 128$ which gives:
 
 ```{math}
 3.1459 = 1\times{1.570795}\times{2}
 ```
-
 ````
 
-### Character and string values
+(content:references:variables-character-string-types)=
+## Character and string values
 Textual data on a computer is represented as the `String` type. Strings are modeled as a sequence of characters, where each character is of type `Char`.
 
 #### Character values
