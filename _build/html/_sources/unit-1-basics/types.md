@@ -10,30 +10,31 @@ kernelspec:
   name: julia-1.10
 ---
 
-# Expressions, Variables and Types
+# Expressions, Variables, and Types
 
-```{topic} Outline
-This week, we'll begin our discussion of technical computing by introducing expressions, variables, and types. Understanding expressions, variables, and types are fundamental to writing programs in any programming language.
+```{topic} Overview
+We'll begin our discussion of technical computing by introducing expressions, variables, and types. Understanding expressions, variables, and types is fundamental to writing programs in any programming language.
 
 * [Expressions](content:references:expressions) are combinations of values, variables, and operators that produce a new value when evaluated.
 Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables.
 
 * [Numerical and logical data types](content:references:variables-numerical-types) are the starting points for most technical computing projects.
-Variables are named storage locations that can hold values and are used to store values that may change during the execution of a program. Types are categories of values, and every value belongs to a specific type. Programming languages have many different types, including primitive types (such as numbers and booleans) and composite types (such as arrays and user-defined objects).
+Variables are named storage locations that can hold values and are used to store values that may change during a program's execution. Types are categories of values, and every value belongs to a specific type. Programming languages have many types, including primitive types (such as numbers and booleans) and composite types (such as arrays and user-defined objects).
 
 * [Character and String data types](content:references:variables-character-string-types) are used to represent text on the computer. 
-Traditionally, strings, e.g., `Julia rocks` were represented as arrays of characters, e.g., `['J','u','l','i','a',' ','r','o','c','k','s']`. Modern languages, such as [Julia](https://docs.julialang.org) or [Python](https://www.python.org), have sophisticated built-in `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character set.
+Traditionally, strings, e.g., `Julia rocks` were represented as arrays of characters, e.g., `['J','u','l','i','a',' ','r','o','c','k','s'].` Modern languages, such as [Julia](https://docs.julialang.org) or [Python](https://www.python.org), have sophisticated built-in `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character set.
 
-* [User defined types](content:references:variables-numerical-types) are the starting points for most technical computing projects.
-
+* [User-defined composite types](content:references:variables-composite-types) are custom data types made up of one or more other types that users can define. 
+These types can be Immutable or Mutable. Immutable types are types whose fields cannot be changed after the type is created. Mutable types are types whose fields can be modified after they are created. For example, a `Student` type might have a `sid` and a `netid` data fields, where `sid` is an integer type and `netid` is a string type. User-defined composite types are a powerful tool for organizing and manipulating data.
 ```
-Expressions are combinations of variables and values that can be evaluated to a single value. Variables are symbols that represent values, which can be changed or assigned to different values. Types refer to the kind of value that a variable can hold, such as integers, floating-point numbers, or strings. In many traditional programming languages, it is required to declare the variable type before using it so that the computer, i.e., the [compiler](https://en.wikipedia.org/wiki/Compiler) or [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)) that is processing your code, can check the correctness of the program and allocate the appropriate amount of memory to store the variable. While most modern languages can guess (or infer) the type, declaring types is still good practice because it helps with the readability of the compute code.  
+
+<!-- Expressions are combinations of variables and values that can be evaluated to a single value. Variables are symbols that represent values, which can be changed or assigned to different values. Types refer to the kind of value that a variable can hold, such as integers, floating-point numbers, or strings. -->
 
 ---
 
 (content:references:expressions)=
 ## Expressions and Variables
-Expressions are a combination of values, variables, and operators that _evaluate_ to a single value. A _variable_ is like a box that holds a value, and that value has a _type_. For example, types can be numbers such as `3`, Boolean values like `true` or `false` or text like:
+Expressions are a combination of values, variables, and operators that _evaluate_ to a single value. A _variable_ is like a box that holds a value, and that value has a _type_. For example, types can be numbers such as `3`, Boolean values like `true` or `false`, or text like:
 
 >"Your computer is the only thing in the universe that unconditionally loves you, perhaps excluding your mother. Your computer will do anything you ask it to do with no pushback and no attitude. You just need to know how to talk to it!"
 
@@ -42,30 +43,32 @@ However, computers and Humans don't speak the same language. Humans understand t
 * `2 + 3`: This expression evaluates to the value `5`, an `integer`. 
 * `x * y`: This expression evaluates to the product of the variables `x` and `y`, which are assumed to be numbers. However, `x` and `y` can be other types, e.g., text, and the `*` operator will perform a different operation, e.g., string concatenation.
 * `x == y`: This expression evaluates to `true` if `x` and `y` are equal and `false` if they are not; `true` and `false` are Boolean types, i.e., `true`$\in\mathbb{B}$ and `false`$\in\mathbb{B}$ where $\mathbb{B} = \left\{\text{true}, \text{false}\right\}$.
-* `x > y`: This expression evaluates to `true` if `x` is greater than `y`, and `false` if it is not; `true` and `false` are Boolean types. In this statement we are assuming `x` and `y` are numebers. Howwver, `x` and `y` can be other types. For example, if they are text, then the `>` operator will perform a different operation, e.g., lexicographic comparison.
+* `x > y`: This expression evaluates to `true` if `x` is greater than `y` and `false` if it is not; `true` and `false` are Boolean types. This statement assumes `x` and `y` are numbers. However, `x` and `y` can be other types. For example, if they are text, the `>` operator will perform a different operation, e.g., lexicographic comparison.
 * `x = 3`: This expression assigns the value `3` to the variable `x`.
 
-Expressions evaluate to a value that has a type. For example, the expression `2 + 3` evaluates to the value `5`, which is an integer. The expression `x = 3` assigns the value `3` to the variable `x`, which is an integer. The expression `x == y` evaluates to `true` or `false`, which are Boolean values. The expression `x * y` evaluates to the product of the variables `x` and `y`, which are assumed to be numbers. However, `x` and `y` can be other types, e.g., text, and the `*` operator will perform a different operation, e.g., string concatenation.
+Expressions evaluate to a value that has a type. For example, the expression `2 + 3` evaluates to the value `5`, an integer. The expression `x = 3` assigns the value `3` to an integer variable `x.` The expression `x == y` evaluates to `true` or `false,` which are Boolean values. The expression `x * y` evaluates to the product of the variables `x` and `y`, which are assumed to be numbers. However, `x` and `y` can be other types, e.g., text, and the `*` operator will perform a different operation, e.g., string concatenation.
 
 (content:references:variables-numerical-types)=
 ## Numerical and Logical Data Types
-For a computer, everything is a [binary number](https://en.wikipedia.org/wiki/Binary_number), i.e., numbers written to the `base 2`.  From this perspective, integers are binary numbers, text is a set of binary numbers, Boolean values are binary numbers, etc. At the smallest scale, information is stored as bits and bytes in the computer ({numref}`fig-64-bit-byte-label-example`)
+For a computer, everything is a [binary number](https://en.wikipedia.org/wiki/Binary_number), i.e., numbers written to the `base 2`.  From this perspective, integers are binary numbers, text is a set of binary numbers, Boolean values are binary numbers, etc.  In many traditional programming languages, it is required to declare the variable type before using it so that the computer, i.e., the [compiler](https://en.wikipedia.org/wiki/Compiler) or [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)) that is processing your code, can check the correctness of the program and allocate the appropriate amount of memory to store the variable. While most modern languages can guess (or infer) the type, declaring types is still good practice because it helps with the readability of the compute code. 
+
+````{prf:remark} Why do we need Types?
+Types are an essential concept in programming, and they are used to ensure the correctness and efficiency of your code. Modern languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org) have sophisticated type systems that include basic numerical, logical, and text types, and they allow you to create your own types and define how they interact with other types. However, some languages, such as [Python](https://www.python.org), hide the type system from the user, while other languages, such as [Julia](https://docs.julialang.org), expose the type system to the user. 
+````
+
+But how are types represented on the computer? At the smallest scale, information is stored as bits and bytes in the computer ({numref}`fig-64-bit-byte-label-example`)
 
 ```{figure} ./figs/Fig-64-bit-byte-label-pattern.png
 ---
 height: 260px
 name: fig-64-bit-byte-label-example
 ---
-Schematic of bytes and bits used in computer storage. Each box contains a digit in the numbering system. In a binary system each box contains a `0` or `1`. 
+A schematic of bytes and bits used in computer storage. Each box contains a digit in the numbering system. In a binary system, each box contains a `0` or `1`. 
 ```
 
-A `bit` is the smallest unit of storage on a computer; a `bit` is a `0` or a `1`. However, a `bit` is too tiny for practical computing tasks. Instead, `bits` are grouped into `bytes`; a group of 8 bits equals  1 $\times$ `byte`. Different types of things, e.g., integers or text are then represented as different numbers of `bytes`.
+A `bit` is the smallest unit of storage on a computer; a `bit` is a `0` or a `1`. However, a `bit` is too tiny for practical computing tasks. Instead, `bits` are grouped into `bytes`; a group of 8 bits equals  1 $\times$ `byte.` Different types of things, e.g., integers or text, are then represented as different numbers of `bytes.`
 
-````{prf:remark} Why do we need Types?
-Types are an essential concept in programming, and they are used to ensure the correctness and efficiency of your code. Modern languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org) have sophisticated type systems that include basic numerical, logical and text types, and they allow you to create your own types and define how they interact with other types. However, some languages such as [Python](https://www.python.org) hide the type system from the user, while other languages such as [Julia](https://docs.julialang.org) expose the type system to the user. 
-````
-
-Integers, floating-point, and logical values are the basic building blocks of arithmetic and computation. Built-in representations of these values, i.e., the structure that the computer understands, are called `numeric primitives.` On the other hand, the models of numbers that humans understand, e.g., integers, floating-point numbers, etc., are called numeric literals, e.g., `1` is an integer literal, and `1.0` is a floating-point literal. Modern programming languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org) provide a broad range of primitive numeric types. Further, many standard mathematical operations are defined over them, e.g., addition, subtraction and multiplication.
+Integers, floating-points, and logical values are the basic building blocks of arithmetic and computation. Built-in representations of these values, i.e., the structure that the computer understands, are called `numeric primitives.` On the other hand, the models of numbers that humans understand, e.g., integers, floating-point numbers, etc., are called numeric literals, e.g., `1` is an integer literal, and `1.0` is a floating-point literal. Modern programming languages such as [Julia](https://docs.julialang.org) and [Python](https://www.python.org) provide a broad range of primitive numeric types. Further, many standard mathematical operations are defined over them, e.g., addition, subtraction, and multiplication.
 
 Numeric primitives, which the computer understands, are binary numbers (numbers written to the `base 2`). However, there are other number systems that you may encounter, e.g., numbers written in the `base 8` (octal) or `base 16` (hexadecimal) system ({prf:ref}`defn-number-system`):
 
@@ -251,7 +254,7 @@ Let's consider the representation of a `Float64` value for $\pi$ ({prf:ref}`exam
 :class: dropdown
 :label: example-float64-representation
 
-Compute the $S, M$ and $E$ components of the `64-bit`` floating point number $x=3.14159$ in [Julia](https://docs.julialang.org).
+Compute the $S, M$ and $E$ components of the `64-bit` floating point number $x=3.14159$ in [Julia](https://docs.julialang.org).
 
 __Solution__: The bitstring representation of $x$ is given by:
 
@@ -262,7 +265,7 @@ __Solution__: The bitstring representation of $x$ is given by:
 Note, in [Julia](https://docs.julialang.org), the default floating-point number (depending upon your hardware) is `Float64`. Thus, the bitstring in Eqn. {eq}`eqn-64bit-bitstring` is a `64-bit` floating point number. The sign bit in Eqn. {eq}`eqn-64bit-bitstring` is $S=0$, while the fraction $M = 1.570795$ and the exponent $E = 128$ which gives:
 
 ```{math}
-The sign bit in Eqn. {eq}`eqn-32bit-bitstring` is $S=0$, while the fraction $M = 1.570795$ and the exponent $E = 128$ which gives:
+The sign bit in Eqn. {eq}`eqn-32bit-bitstring` is $S=0$, while the fraction $M = 1.570795$ and the exponent $E = 1024$ which gives:
 
 ```{math}
 3.1459 = 1\times{1.570795}\times{2}
@@ -270,14 +273,11 @@ The sign bit in Eqn. {eq}`eqn-32bit-bitstring` is $S=0$, while the fraction $M =
 ````
 
 (content:references:variables-character-string-types)=
-## Character and string values
-Textual data on a computer is represented as the `String` type. Strings are modeled as a sequence of characters, where each character is of type `Char`.
+## Character and String Types
+Textual data on a computer is represented as the `String` data type. `Strings` in languages such as [C](https://en.wikipedia.org/wiki/C_(programming_language)) were modeled as a sequence of characters, where each character was type `Char`. Further, characters were represented via the [American Standard Code for Information Interchange (ASCII) system](https://en.wikipedia.org/wiki/ASCII), which was a set of `7-bit` teleprinter codes for the [AT&T](https://www.att.com) Teletypewriter exchange (TWX) network. For example, the character `A` in the ASCII system has index 65. Later, `8-bit` character mappings were developed, i.e., the so-called [extended ASCII systems](https://en.wikipedia.org/wiki/Extended_ASCII), which had $0,\dots,255$ possible character values. However, today some this remains and some things are very different. For example, modern languages have sophisticated built-in `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character set. 
+* The [Unicode](https://en.wikipedia.org/wiki/Unicode) standard, which encodes approximately 1.1 million possible characters, where the first 128 of these are the same as the original ASCII set. [Unicode](https://en.wikipedia.org/wiki/Unicode) characters, which use up to 4$\times$bytes (32-bits) of storage per character, are indexed using the `base 16` (hexadecimal) number systems.
 
-#### Character values
-Characters on the computer, e.g., the letter `A` are type `Char`. Traditionally, characters were represented via the [American Standard Code for Information Interchange (ASCII) system](https://en.wikipedia.org/wiki/ASCII), which was a set of 7-bit teleprinter codes for the [AT&T](https://www.att.com) Teletypewriter exchange (TWX) network. For example, the character `A` in the ASCII system has index 65. Later, 8-bit character mappings were developed, i.e., the so-called [extended ASCII systems](https://en.wikipedia.org/wiki/Extended_ASCII), which had $0,\dots,255$ possible character values.
-
-Modern computer systems use the [Unicode](https://en.wikipedia.org/wiki/Unicode) standard, which encodes approximately 1.1 million possible characters, where the first 128 of these are the same as the original ASCII set. [Unicode](https://en.wikipedia.org/wiki/Unicode) characters, which use up to 4 bytes (32-bits) of storage per character, are indexed using the `base 16` (hexadecimal) number systems.
-
+Let's consider the representation of the character `J` in the ASCII and [Unicode](https://en.wikipedia.org/wiki/Unicode) systems ({prf:ref}`example-unicode-J`):
 
 ````{prf:example} Unicode and Hexadecimal 
 :class: dropdown
@@ -307,8 +307,7 @@ Thus, the hexadecimal equivalent of 74 is 4A, and the [Unicode](https://en.wikip
 
 ````
 
-#### String values
-Languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) don't have a formal `String` type; instead, strings are encoded as arrays of characters. Modern languages, such as [Julia](https://docs.julialang.org) or [Python](https://www.python.org), have sophisticated built-in `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character set.  `Strings` can be created using double quotes in [Julia](https://docs.julialang.org) or single quotes in [Python](https://www.python.org):
+Modern languages, such as [Julia](https://docs.julialang.org) or [Python](https://www.python.org), have sophisticated built-in `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character set.  `Strings` can be created using double quotes in [Julia](https://docs.julialang.org) or single quotes in [Python](https://www.python.org):
 
 
 `````{tab-set}
@@ -362,10 +361,11 @@ array = collect(string)
 
 By default each character in a [Julia](https://docs.julialang.org) string requires 4$\times$bytes (32-bits) of storage. 
 
-### Composite types
-Composite types are custom data types made up of one or more other types. In [Julia](https://docs.julialang.org), there are two main composite types: [structs](https://docs.julialang.org/en/v1/manual/types/#Composite-Types) and [arrays](https://docs.julialang.org/en/v1/base/arrays/#lib-arrays).
+(content:references:variables-composite-types)=
+## Composite types
+Composite types are custom data types made up of one or more other types. Let's start with two simple composite types: [arrays](https://docs.julialang.org/en/v1/base/arrays/#lib-arrays) and [structs](https://docs.julialang.org/en/v1/manual/types/#Composite-Types).  Later, we'll consider some additional composite types, e.g., [tuples](https://docs.julialang.org/en/v1/manual/types/#Tuple-Types-1) and [dictionaries](https://docs.julialang.org/en/v1/manual/collections/#Dictionaries-1) which have special properties that make them useful for specific tasks. An `array` is a composite data type that allows theoretically any type of data to be stored in a sequence of elements. Arrays can be `read-only`, in the sense that they have a fixed size and cannot be modified after they are created, or `read-write`, in the sense that they can be modified after they are created. On the other hand, A `struct` is a composite data type that allows data to be stored in named fields. `Structs` can be `read-only`, i.e., Immutable, or `read-write`, i.e., Mutable. 
 
-A struct is a composite data type that allows data to be stored in named fields. You define a struct by using the `struct` keyword followed by a name for the struct and a list of field names and types. For example, let's define an immutable `Student` struct that has a `sid` and a `netid` field:
+You define a struct by using the `struct` keyword followed by a name for the struct and a list of field names and types. For example, let's define an immutable `Student` struct that has a `sid` and a `netid` field:
 
 ```julia
 struct Student
@@ -400,11 +400,7 @@ student.netid = "xyz123" # we add data using the "dot" notation
 
 The struct composite data type contains only data; in the examples above the `Student` datatype holds two values, `sid` is an integer type and `netid` is a string type. Except for the special case of the constructur on the mutable `Student` struct, composite types in [Julia](https://docs.julialang.org) do not have functions attached to them. 
 
-#### Aside: What is an object-oriented language?
-In other mainstream programming languages, e.g., [Python](https://www.python.org), [Java](https://www.oracle.com/java/), [C++](https://en.wikipedia.org/wiki/C%2B%2B) or [Ruby](https://www.ruby-lang.org/en/) composite types also have named functions associated with them, and the combination is called an `object`. In purer object-oriented languages, such as [Ruby](https://www.ruby-lang.org/en/) or [Smalltalk](https://en.wikipedia.org/wiki/Smalltalk), all values are objects whether they are composites or not. In less refined object-oriented languages, including [C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Java](https://www.oracle.com/java/), some values, such as integers and floating-point values, are not objects, while instances of user-defined composite types are true objects with associated methods. In [Julia](https://docs.julialang.org), all values are objects, but functions are not bundled with the objects they operate on. 
-
-<!-- and a single optional function called a constructor, which is called to build an instance of the struct. -->
-
+In other mainstream programming languages, e.g., [Python](https://www.python.org), [Java](https://www.oracle.com/java/), [C++](https://en.wikipedia.org/wiki/C%2B%2B), [Ruby](https://www.ruby-lang.org/en/), etc composite types also have named functions associated with them, and the combination is called an `object`. In purer object-oriented languages, such as [Ruby](https://www.ruby-lang.org/en/) or [Smalltalk](https://en.wikipedia.org/wiki/Smalltalk), all values are objects whether they are composites or not. In less refined object-oriented languages, including [C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Java](https://www.oracle.com/java/), some values, such as integers and floating-point values, are not objects, while instances of user-defined composite types are true objects with associated methods. In [Julia](https://docs.julialang.org), all values are objects, but functions are not bundled with the objects they operate on. 
 
 ---
 
