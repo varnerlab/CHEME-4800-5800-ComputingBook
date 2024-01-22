@@ -21,9 +21,7 @@ In many traditional programming languages, it is required to declare the variabl
 
 (content:references:expressions)=
 ## Expressions
-Expressions are a combination of values, variables, and operators that _evaluate_ to a single value. Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables.
-
-Here are some common examples of expressions in the [Julia programming language](https://docs.julialang.org):
+Expressions are a combination of values, variables, and operators that _evaluate_ to a single value. Expressions are a fundamental building block of most programming languages, and they are used to perform calculations, compare values, and assign values to variables. Here are some common examples of expressions in the [Julia programming language](https://docs.julialang.org):
 
 * `2 + 3`: This expression evaluates to the value 5, an `integer`. 
 * `x * y`: This expression evaluates to the product of the variables x and y.
@@ -41,7 +39,7 @@ However, computers and Humans don't speak the same language. Humans understand t
 
 From this perspective, integers are binary numbers, text is a set of binary numbers, Boolean values are binary numbers, etc. At the smallest scale, information is stored as bits and bytes in the computer ({numref}`fig-64-bit-byte-label-example`)
 
-```{figure} ./figs/Fig-64-bit-byte-label-pattern.pdf
+```{figure} ./figs/Fig-64-bit-byte-label-pattern.png
 ---
 height: 260px
 name: fig-64-bit-byte-label-example
@@ -205,7 +203,7 @@ bitstring(int_value)
 
 #### Floating point numbers
 
-```{figure} ./figs/Fig-Float32-bit-pattern.pdf
+```{figure} ./figs/Fig-Float32-bit-pattern.png
 ---
 height: 140px
 name: fig-32bit-floating-point-schematic
