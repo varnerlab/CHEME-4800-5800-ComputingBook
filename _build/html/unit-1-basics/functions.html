@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Functions, Control Statements, and Recursion &#8212; CHEME 4800/5800</title>
+    <title>Functions, Control Statements, Recursion and Testing &#8212; CHEME 4800/5800</title>
   
   
   
@@ -171,7 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="basics-landing.html">Unit 1. Computing Basics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="types.html">Expressions, Variables, and Types</a></li>
 
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Functions, Control Statements, and Recursion</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Functions, Control Statements, Recursion and Testing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="programs.html">Programs and Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data-file-io.html">Data Input and Output</a></li>
 </ul>
@@ -365,7 +365,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Functions, Control Statements, and Recursion</h1>
+    <h1>Functions, Control Statements, Recursion and Testing</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -375,7 +375,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-functions">Mathematical functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-on-the-computer">Functions on the computer</a><ul class="nav section-nav flex-column">
@@ -406,6 +405,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-catch-pattern">Try-catch pattern</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests">Unit Tests</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
             </nav>
@@ -418,31 +418,31 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="functions-control-statements-and-recursion">
-<h1>Functions, Control Statements, and Recursion<a class="headerlink" href="#functions-control-statements-and-recursion" title="Permalink to this heading">#</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>We introduce functions, control statements, the concept of recursion, and error-handling patterns in this lecture:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="functions-control-statements-recursion-and-testing">
+<h1>Functions, Control Statements, Recursion and Testing<a class="headerlink" href="#functions-control-statements-recursion-and-testing" title="Permalink to this heading">#</a></h1>
+<aside class="topic">
+<p class="topic-title">Overview</p>
+<p>In this lecture, we some basic tools of programming that will allow us to write more complex programs. We will
+introduce functions, control statements, the concept of recursion, error-handling patterns and unit testing.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-functions"><span class="std std-ref">Functions</span></a> are blocks of code that perform specifics task and may return a value.</p></li>
 <li><p><a class="reference internal" href="#content-references-control-statements"><span class="std std-ref">Control statements</span></a> are programming constructs that allow you to control the flow of execution of your code; further, they will enable you to create loops that repeat a block of code until a particular condition is met.</p></li>
 <li><p><a class="reference internal" href="#content-references-recursion-functions"><span class="std std-ref">Recursion</span></a> is a programming technique where a function calls itself with a simplified version of the original problem until the problem is small enough to be solved directly. Recursion is an essential concept in programming. It solves many problems, including search and sorting problems and problems involving recursive data structures such as trees and linked lists.</p></li>
 <li><p><a class="reference internal" href="#content-references-error-handling"><span class="std std-ref">Error handling</span></a> allows functions to respond to the unexpected. When an unexpected condition occurs, a function may be unable to return a reasonable value to its caller. However, error-handling patterns allow functions to respond gracefully.</p></li>
+<li><p><a class="reference internal" href="#content-references-unit-tests"><span class="std std-ref">Unit tests</span></a> are a way to test your code to ensure that it works as expected. Unit tests are a critical part of the development process because they allow you to test your code as you write it, which can help you catch bugs early on and avoid wasting time debugging later. They also can be used to test your code after you have made changes to it, which can help you catch bugs that may have been introduced by your changes.</p></li>
 </ul>
+</aside>
 <hr class="docutils" />
-</section>
 <section id="functions">
 <span id="content-references-functions"></span><h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
-<p>In programming, a function is a block of code that performs a specific task and may return a value. Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units.</p>
-<p>Functions allow you to write code that can be called from multiple places in your program, making your code more organized, modular, and easier to read and maintain. Functions can also accept input in the form of arguments, which are values passed to the function when it is called, and they can return a value to the caller using the return statement.</p>
-<p>Functions can be defined and called from anywhere in your program, and they can be called multiple times with different arguments. Thus, they are an essential tool for organizing and modularizing code in any programming project.</p>
+<p>In programming, a function is a block of code that performs a specific task and may return a value. Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units. Functions allow you to write code that can be called from multiple places in your program, making your code more organized, modular, and easier to read and maintain. Functions can also accept input in the form of arguments, which are values passed to the function when it is called, and they can return a value to the caller using the return statement. Functions can be defined and called from anywhere in your program, and they can be called multiple times with different arguments. Thus, they are an essential tool for organizing and modularizing code in any programming project.</p>
 <section id="mathematical-functions">
 <h3>Mathematical functions<a class="headerlink" href="#mathematical-functions" title="Permalink to this heading">#</a></h3>
 <p>Most of us are familiar with the idea of a function from mathematics (<a class="reference internal" href="#fig-mathematical-function"><span class="std std-numref">Fig. 3</span></a>). A mathematical function takes input from a domain (the set of possible inputs) and converts this input to an output that lives in the codomain. The codomain is the set of all possible output values, while the range (which is a subset of the codomain) is the set of values we actually observe.</p>
 <figure class="align-default" id="fig-mathematical-function">
-<a class="reference internal image-reference" href="../_images/Fig-Mathematical-Function.pdf"><img alt="../_images/Fig-Mathematical-Function.pdf" src="../_images/Fig-Mathematical-Function.pdf" style="height: 240px;" /></a>
+<a class="reference internal image-reference" href="../_images/Fig-Mathematical-Function.png"><img alt="../_images/Fig-Mathematical-Function.png" src="../_images/Fig-Mathematical-Function.png" style="height: 240px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Schematic of a function from mathematics.</span><a class="headerlink" href="#fig-mathematical-function" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Schematic of a function from mathematics. A function takes a tuple of inputs and maps them to a tuple of outputs. The function <span class="math notranslate nohighlight">\(f\)</span> maps the input <span class="math notranslate nohighlight">\(x\)</span> to the output <span class="math notranslate nohighlight">\(y\)</span>.</span><a class="headerlink" href="#fig-mathematical-function" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Formally a mathematical function is defined as (<a class="reference internal" href="#defn-mathematical-function">Definition 2</a>):</p>
@@ -558,8 +558,7 @@ C</label><div class="sd-tab-content docutils">
 <span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">linear</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">)</span><span class="w"> </span><span class="c"># this should return 6</span>
 </pre></div>
 </div>
-<p>Some functions need a large number of arguments or have a large number of behaviors. Remembering how to call such functions can take time and effort. Keyword arguments make these complex interfaces easier to use and extend by allowing arguments to be identified by name instead of by position.</p>
-<p>For example, consider the <code class="docutils literal notranslate"><span class="pre">linear</span></code> function written with keyword arguments:</p>
+<p>Some functions need a large number of arguments or have a large number of behaviors. Remembering how to call such functions can take time and effort. Keyword arguments make these complex interfaces easier to use and extend by allowing arguments to be identified by name instead of by position. For example, consider the <code class="docutils literal notranslate"><span class="pre">linear</span></code> function written with keyword arguments:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">    linear(x::Number; slope::Number = 0.0, intercept::Number = 0.0) -&gt; Number</span>
 
@@ -597,8 +596,8 @@ C</label><div class="sd-tab-content docutils">
 </section>
 <section id="control-statements">
 <span id="content-references-control-statements"></span><h2>Control statements<a class="headerlink" href="#control-statements" title="Permalink to this heading">#</a></h2>
-<p>Control statements are an essential part of programming. Control statements allow you to create programs that make decisions and perform tasks based on certain conditions. Control statements are programming constructs that will enable you to control the flow of execution of your function. They allow you to specify conditions under which a particular block of code should be executed and will allow you to create loops that repeat a block of code until a specific condition is met.</p>
-<p>Let’s explore some common control statements that you will routinely use in your functions and programs:</p>
+<p>Control statements are an essential part of programming. Control statements allow you to create programs that make decisions and perform tasks based on certain conditions. Control statements are programming constructs that will enable you to control the flow of execution of your function. They allow you to specify conditions under which a particular block of code should be executed and will allow you to create loops that repeat a block of code until a specific condition is met.
+Let’s explore some common control statements that you will routinely use in your functions and programs:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-if-else-statements"><span class="std std-ref">If-else conditional statements</span></a> allows you to execute different logic branches based on a <code class="docutils literal notranslate"><span class="pre">Bool</span></code> condition.</p></li>
 <li><p><a class="reference internal" href="#content-references-iteration-patterns"><span class="std std-ref">Iteration</span></a> allows you to execute a code block many times.</p></li>
@@ -704,8 +703,8 @@ C</label><div class="sd-tab-content docutils">
 </section>
 <section id="iteration">
 <span id="content-references-iteration-patterns"></span><h3>Iteration<a class="headerlink" href="#iteration" title="Permalink to this heading">#</a></h3>
-<p>A typical programming operation is repetitively performing a task using a list of items. For example, finding the sum of a list of experimental values to estimate a mean value, translating words in an article from one language to another, etc. This type of operation is called <code class="docutils literal notranslate"><span class="pre">iteration</span></code>.</p>
-<p>There are two common approaches to performing <code class="docutils literal notranslate"><span class="pre">iteration</span></code> that are resident in almost all programming languages, <a class="reference internal" href="#content-references-iteration-for-loops"><span class="std std-ref">For-loops</span></a> and <a class="reference internal" href="#content-references-iteration-while-loops"><span class="std std-ref">While-loops</span></a>.</p>
+<p>A typical programming operation is repetitively performing a task using a list of items. For example, finding the sum of a list of experimental values to estimate a mean value, translating words in an article from one language to another, etc. This type of operation is called <code class="docutils literal notranslate"><span class="pre">iteration</span></code>.
+There are two common approaches to performing <code class="docutils literal notranslate"><span class="pre">iteration</span></code> that are resident in almost all programming languages, <a class="reference internal" href="#content-references-iteration-for-loops"><span class="std std-ref">For-loops</span></a> and <a class="reference internal" href="#content-references-iteration-while-loops"><span class="std std-ref">While-loops</span></a>.</p>
 <section id="for-loops">
 <span id="content-references-iteration-for-loops"></span><h4>For-loops<a class="headerlink" href="#for-loops" title="Permalink to this heading">#</a></h4>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/For_loop">For-loops</a>, which date back to the late 1950s and are key language constructs in all programming languages, execute a block of code a fixed number of times. <a class="reference external" href="https://en.wikipedia.org/wiki/For_loop">For-loops</a> have two parts: a header and a body:</p>
@@ -792,8 +791,7 @@ C</label><div class="sd-tab-content docutils">
 </div></section>
 <section id="iterators">
 <span id="content-references-iteration-for-loops-iterators"></span><h4>Iterators<a class="headerlink" href="#iterators" title="Permalink to this heading">#</a></h4>
-<p>In the discussion and examples above, <code class="docutils literal notranslate"><span class="pre">for-loops</span></code> used a loop counter to iterate through a list of items. However, many modern languages, e.g., <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a>, <a class="reference external" href="https://www.swift.org">Swift</a> or <a class="reference external" href="https://www.rust-lang.org">Rust</a> implement the <code class="docutils literal notranslate"><span class="pre">for-in</span></code> loop pattern. A <code class="docutils literal notranslate"><span class="pre">for-in</span></code> loop pattern directly iterates through the elements of a list <em>without</em> a loop counter.</p>
-<p>Let’s do an example. Imagine that we have a list of chemical names stored in a collection named <code class="docutils literal notranslate"><span class="pre">list_of_chemicals</span></code>. A <code class="docutils literal notranslate"><span class="pre">for-in</span></code> construct allows us to iterate through the list directly without using a loop counter:</p>
+<p>In the discussion and examples above, <code class="docutils literal notranslate"><span class="pre">for-loops</span></code> used a loop counter to iterate through a list of items. However, many modern languages, e.g., <a class="reference external" href="https://docs.julialang.org">Julia</a>, <a class="reference external" href="https://www.python.org">Python</a>, <a class="reference external" href="https://www.swift.org">Swift</a> or <a class="reference external" href="https://www.rust-lang.org">Rust</a> implement the <code class="docutils literal notranslate"><span class="pre">for-in</span></code> loop pattern. A <code class="docutils literal notranslate"><span class="pre">for-in</span></code> loop pattern directly iterates through the elements of a list <em>without</em> a loop counter. Let’s do an example. Imagine that we have a list of chemical names stored in a collection named <code class="docutils literal notranslate"><span class="pre">list_of_chemicals</span></code>. A <code class="docutils literal notranslate"><span class="pre">for-in</span></code> construct allows us to iterate through the list directly without using a loop counter:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-9" name="sd-tab-set-3" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-9">
@@ -941,8 +939,8 @@ C</label><div class="sd-tab-content docutils">
 </section>
 <section id="recursion">
 <span id="content-references-recursion-functions"></span><h2>Recursion<a class="headerlink" href="#recursion" title="Permalink to this heading">#</a></h2>
-<p>Recursion is a programming technique in which a function calls itself with a modified version of its own input. This allows the function to repeat a process on a smaller scale, and the results of these smaller-scale processes can be combined to solve the original problem.</p>
-<p>The body of a recursive function typically has two parts:</p>
+<p>Recursion is a programming technique in which a function calls itself with a modified version of its own input. This allows the function to repeat a process on a smaller scale, and the results of these smaller-scale processes can be combined to solve the original problem.
+The body of a recursive function typically has two parts:</p>
 <ul class="simple">
 <li><p><strong>Base case</strong>: This is the condition that stops the recursion. When the function reaches the base case, it returns a result without calling itself again. This is necessary to prevent the function from entering an infinite loop.</p></li>
 <li><p><strong>Recursive case</strong>: This is the part of the function that calls itself with a modified version of its input. The recursive case is responsible for breaking the problem down into smaller subproblems and solving them using the function itself.</p></li>
@@ -961,7 +959,7 @@ C</label><div class="sd-tab-content docutils">
 <span class="k">end</span>
 </pre></div>
 </div>
-<p>When the <code class="docutils literal notranslate"><span class="pre">factorial</span></code> function is called, it checks if the input <span class="math notranslate nohighlight">\(n\)</span> equals 0 or 1 (the base case). If yes, the function returns 1 without calling itself again. However, if <span class="math notranslate nohighlight">\(n\neq{0}\)</span>, the process enters the recursive case; the function calls itself with an input of <span class="math notranslate nohighlight">\(n-1\)</span> and returns the result of <span class="math notranslate nohighlight">\(n\)</span> multiplied by the result of the recursive call. This process continues until the base case is reached, the recursion stops, and the final result is returned.</p>
+<p>When the <code class="docutils literal notranslate"><span class="pre">factorial</span></code> function is called, it checks if the input <span class="math notranslate nohighlight">\(n\)</span> equals <code class="docutils literal notranslate"><span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">1</span></code> (the base case). If yes, the function returns 1 without calling itself again. However, if <span class="math notranslate nohighlight">\(n\neq{0}\)</span>, the process enters the recursive case; the function calls itself with an input of <span class="math notranslate nohighlight">\(n-1\)</span> and returns the result of <span class="math notranslate nohighlight">\(n\)</span> multiplied by the result of the recursive call. This process continues until the base case is reached, the recursion stops, and the final result is returned.</p>
 <p>Let’s reimagine the computation of the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a> using a recursive strategy (<a class="reference internal" href="#example-iteration-fibonacci-numbers-recursive">Example 8</a>):</p>
 <div class="proof example dropdown admonition" id="example-iteration-fibonacci-numbers-recursive">
 <p class="admonition-title"><span class="caption-number">Example 8 </span> (Recursive calculation of the Fibonacci numbers)</p>
@@ -1108,6 +1106,18 @@ Let’s revisit the <code class="docutils literal notranslate"><span class="pre"
 </div>
 </section>
 </section>
+<section id="unit-tests">
+<span id="content-references-unit-tests"></span><h2>Unit Tests<a class="headerlink" href="#unit-tests" title="Permalink to this heading">#</a></h2>
+<p>Finally, let’s disucss unit tests. Unit tests are a way to test your code to ensure that it works as expected. Unit tests are a critical part of the development process because they allow you to verify each part of your program as you develop it. Unit tests are also useful because they allow you to test your code after you make changes to ensure that you did not break anything.</p>
+<ul class="simple">
+<li><p>The basic idea of a unit test is to write a <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">function</span></code> that calls the function you want to test with a set of input arguments and checks that the output is what you expect. If the output is what you expect, the test passes; otherwise, the test fails. The <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">function</span></code> should return a <code class="docutils literal notranslate"><span class="pre">Bool</span></code> value indicating whether the test passed or failed.</p></li>
+</ul>
+<p>In <a class="reference external" href="https://julialang.org">Julia</a> unit tests are enabled by the <a class="reference external" href="https://github.com/JuliaLang/julia/blob/master/stdlib/Test/src/Test.jl">Tests.jl package</a> that is included directly in the <a class="reference external" href="https://github.com/JuliaLang/julia/tree/master/stdlib">Julia standard library</a>, i.e., is included
+with the base <a class="reference external" href="https://julialang.org">Julia</a> installation. The <a class="reference external" href="https://github.com/JuliaLang/julia/blob/master/stdlib/Test/src/Test.jl">Tests.jl package</a> provides a <code class="docutils literal notranslate"><span class="pre">&#64;test</span></code> macro that is used to define unit tests.</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">&#64;test</span></code> macro takes two arguments: a <code class="docutils literal notranslate"><span class="pre">Bool</span></code> expression and an optional string message. The <code class="docutils literal notranslate"><span class="pre">Bool</span></code> expression is the test condition, and the optional string message is a message that is printed if the test fails. The <code class="docutils literal notranslate"><span class="pre">&#64;test</span></code> macro is used to define unit tests in <a class="reference external" href="https://github.com/JuliaLang/julia/blob/master/stdlib/Test/src/Test.jl">Julia</a>.</p></li>
+</ul>
+</section>
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
@@ -1182,7 +1192,6 @@ Let’s revisit the <code class="docutils literal notranslate"><span class="pre"
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-functions">Mathematical functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-on-the-computer">Functions on the computer</a><ul class="nav section-nav flex-column">
@@ -1213,6 +1222,7 @@ Let’s revisit the <code class="docutils literal notranslate"><span class="pre"
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-catch-pattern">Try-catch pattern</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests">Unit Tests</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
   </nav></div>

@@ -10,36 +10,36 @@ kernelspec:
   name: julia-1.10
 ---
 
-# Functions, Control Statements, and Recursion
+# Functions, Control Statements, Recursion and Testing
 
-## Introduction 
+```{topic} Overview
 
-We introduce functions, control statements, the concept of recursion, and error-handling patterns in this lecture: 
+In this lecture, we some basic tools of programming that will allow us to write more complex programs. We will
+introduce functions, control statements, the concept of recursion, error-handling patterns and unit testing.
 
 * {ref}`content:references:functions` are blocks of code that perform specifics task and may return a value. 
 * {ref}`content:references:control-statements` are programming constructs that allow you to control the flow of execution of your code; further, they will enable you to create loops that repeat a block of code until a particular condition is met. 
 * {ref}`content:references:recursion-functions` is a programming technique where a function calls itself with a simplified version of the original problem until the problem is small enough to be solved directly. Recursion is an essential concept in programming. It solves many problems, including search and sorting problems and problems involving recursive data structures such as trees and linked lists.
 * {ref}`content:references:error-handling` allows functions to respond to the unexpected. When an unexpected condition occurs, a function may be unable to return a reasonable value to its caller. However, error-handling patterns allow functions to respond gracefully. 
+* [Unit tests](content:references:unit-tests) are a way to test your code to ensure that it works as expected. Unit tests are a critical part of the development process because they allow you to test your code as you write it, which can help you catch bugs early on and avoid wasting time debugging later. They also can be used to test your code after you have made changes to it, which can help you catch bugs that may have been introduced by your changes.
+
+```
 
 ---
 
 (content:references:functions)=
 ## Functions
-In programming, a function is a block of code that performs a specific task and may return a value. Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units.
-
-Functions allow you to write code that can be called from multiple places in your program, making your code more organized, modular, and easier to read and maintain. Functions can also accept input in the form of arguments, which are values passed to the function when it is called, and they can return a value to the caller using the return statement.
-
-Functions can be defined and called from anywhere in your program, and they can be called multiple times with different arguments. Thus, they are an essential tool for organizing and modularizing code in any programming project.
+In programming, a function is a block of code that performs a specific task and may return a value. Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units. Functions allow you to write code that can be called from multiple places in your program, making your code more organized, modular, and easier to read and maintain. Functions can also accept input in the form of arguments, which are values passed to the function when it is called, and they can return a value to the caller using the return statement. Functions can be defined and called from anywhere in your program, and they can be called multiple times with different arguments. Thus, they are an essential tool for organizing and modularizing code in any programming project.
 
 ### Mathematical functions
 Most of us are familiar with the idea of a function from mathematics ({numref}`fig-mathematical-function`). A mathematical function takes input from a domain (the set of possible inputs) and converts this input to an output that lives in the codomain. The codomain is the set of all possible output values, while the range (which is a subset of the codomain) is the set of values we actually observe. 
 
-```{figure} ./figs/Fig-Mathematical-Function.pdf
+```{figure} ./figs/Fig-Mathematical-Function.png
 ---
 height: 240px
 name: fig-mathematical-function
 ---
-Schematic of a function from mathematics. 
+Schematic of a function from mathematics. A function takes a tuple of inputs and maps them to a tuple of outputs. The function $f$ maps the input $x$ to the output $y$.
 ```
 
 Formally a mathematical function is defined as ({prf:ref}`defn-mathematical-function`):
@@ -160,9 +160,7 @@ end
 y = linear(2.0,3.0) # this should return 6
 ```
 
-Some functions need a large number of arguments or have a large number of behaviors. Remembering how to call such functions can take time and effort. Keyword arguments make these complex interfaces easier to use and extend by allowing arguments to be identified by name instead of by position. 
-
-For example, consider the `linear` function written with keyword arguments:
+Some functions need a large number of arguments or have a large number of behaviors. Remembering how to call such functions can take time and effort. Keyword arguments make these complex interfaces easier to use and extend by allowing arguments to be identified by name instead of by position. For example, consider the `linear` function written with keyword arguments:
 
 ```julia
 """
@@ -199,7 +197,6 @@ A function can also be considered a contract between a developer and a user. The
 (content:references:control-statements)=
 ## Control statements
 Control statements are an essential part of programming. Control statements allow you to create programs that make decisions and perform tasks based on certain conditions. Control statements are programming constructs that will enable you to control the flow of execution of your function. They allow you to specify conditions under which a particular block of code should be executed and will allow you to create loops that repeat a block of code until a specific condition is met.
-
 Let's explore some common control statements that you will routinely use in your functions and programs:
 * {ref}`content:references:if-else-statements` allows you to execute different logic branches based on a `Bool` condition. 
 * {ref}`content:references:iteration-patterns` allows you to execute a code block many times.
@@ -290,7 +287,6 @@ end
 (content:references:iteration-patterns)=
 ### Iteration
 A typical programming operation is repetitively performing a task using a list of items. For example, finding the sum of a list of experimental values to estimate a mean value, translating words in an article from one language to another, etc. This type of operation is called `iteration`. 
-
 There are two common approaches to performing `iteration` that are resident in almost all programming languages, {ref}`content:references:iteration-for-loops` and {ref}`content:references:iteration-while-loops`.
 
 (content:references:iteration-for-loops)=
@@ -382,9 +378,7 @@ end
 
 (content:references:iteration-for-loops-iterators)=
 #### Iterators
-In the discussion and examples above, `for-loops` used a loop counter to iterate through a list of items. However, many modern languages, e.g., [Julia](https://docs.julialang.org), [Python](https://www.python.org), [Swift](https://www.swift.org) or [Rust](https://www.rust-lang.org) implement the `for-in` loop pattern. A `for-in` loop pattern directly iterates through the elements of a list _without_ a loop counter.
-
-Let's do an example. Imagine that we have a list of chemical names stored in a collection named `list_of_chemicals`. A `for-in` construct allows us to iterate through the list directly without using a loop counter:
+In the discussion and examples above, `for-loops` used a loop counter to iterate through a list of items. However, many modern languages, e.g., [Julia](https://docs.julialang.org), [Python](https://www.python.org), [Swift](https://www.swift.org) or [Rust](https://www.rust-lang.org) implement the `for-in` loop pattern. A `for-in` loop pattern directly iterates through the elements of a list _without_ a loop counter. Let's do an example. Imagine that we have a list of chemical names stored in a collection named `list_of_chemicals`. A `for-in` construct allows us to iterate through the list directly without using a loop counter:
 
 `````{tab-set}
 ````{tab-item} julia
@@ -538,7 +532,6 @@ end
 (content:references:recursion-functions)=
 ## Recursion
 Recursion is a programming technique in which a function calls itself with a modified version of its own input. This allows the function to repeat a process on a smaller scale, and the results of these smaller-scale processes can be combined to solve the original problem.
-
 The body of a recursive function typically has two parts:
 
 * __Base case__: This is the condition that stops the recursion. When the function reaches the base case, it returns a result without calling itself again. This is necessary to prevent the function from entering an infinite loop.
@@ -561,7 +554,7 @@ function factorial(n::Int64)::Int64
 end
 ```
 
-When the `factorial` function is called, it checks if the input $n$ equals 0 or 1 (the base case). If yes, the function returns 1 without calling itself again. However, if $n\neq{0}$, the process enters the recursive case; the function calls itself with an input of $n-1$ and returns the result of $n$ multiplied by the result of the recursive call. This process continues until the base case is reached, the recursion stops, and the final result is returned.
+When the `factorial` function is called, it checks if the input $n$ equals `0` or `1` (the base case). If yes, the function returns 1 without calling itself again. However, if $n\neq{0}$, the process enters the recursive case; the function calls itself with an input of $n-1$ and returns the result of $n$ multiplied by the result of the recursive call. This process continues until the base case is reached, the recursion stops, and the final result is returned. 
 
 Let's reimagine the computation of the [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) using a recursive strategy ({prf:ref}`example-iteration-fibonacci-numbers-recursive`):
 
@@ -739,6 +732,15 @@ function mysqrt(x::Float64)::Float64
 end
 ```
 
+(content:references:unit-tests)=
+## Unit Tests
+Finally, let's disucss unit tests. Unit tests are a way to test your code to ensure that it works as expected. Unit tests are a critical part of the development process because they allow you to verify each part of your program as you develop it. Unit tests are also useful because they allow you to test your code after you make changes to ensure that you did not break anything.
+
+* The basic idea of a unit test is to write a `test function` that calls the function you want to test with a set of input arguments and checks that the output is what you expect. If the output is what you expect, the test passes; otherwise, the test fails. The `test function` should return a `Bool` value indicating whether the test passed or failed.
+
+In [Julia](https://julialang.org) unit tests are enabled by the [Tests.jl package](https://github.com/JuliaLang/julia/blob/master/stdlib/Test/src/Test.jl) that is included directly in the [Julia standard library](https://github.com/JuliaLang/julia/tree/master/stdlib), i.e., is included
+with the base [Julia](https://julialang.org) installation. The [Tests.jl package](https://github.com/JuliaLang/julia/blob/master/stdlib/Test/src/Test.jl) provides a `@test` macro that is used to define unit tests. 
+* The `@test` macro takes two arguments: a `Bool` expression and an optional string message. The `Bool` expression is the test condition, and the optional string message is a message that is printed if the test fails. The `@test` macro is used to define unit tests in [Julia](https://github.com/JuliaLang/julia/blob/master/stdlib/Test/src/Test.jl).
 
 
 ---
