@@ -262,10 +262,8 @@ __Solution__: The bitstring representation of $x$ is given by:
 :label: eqn-64bit-bitstring
 3.14159 = \left(0100000000001001001000011111100111110000000110111000011001101110\right)_{2}
 ```
-Note, in [Julia](https://docs.julialang.org), the default floating-point number (depending upon your hardware) is `Float64`. Thus, the bitstring in Eqn. {eq}`eqn-64bit-bitstring` is a `64-bit` floating point number. The sign bit in Eqn. {eq}`eqn-64bit-bitstring` is $S=0$, while the fraction $M = 1.570795$ and the exponent $E = 128$ which gives:
 
-```{math}
-The sign bit in Eqn. {eq}`eqn-32bit-bitstring` is $S=0$, while the fraction $M = 1.570795$ and the exponent $E = 1024$ which gives:
+Note, in [Julia](https://docs.julialang.org), the default floating-point number (depending upon your hardware) is `Float64`. Thus, the bitstring in Eqn. {eq}`eqn-64bit-bitstring` is a `64-bit` floating point number. The sign bit in Eqn. {eq}`eqn-64bit-bitstring` is $S=0$, while the fraction $M = 1.570795$ and the exponent $E = 128$ which gives:
 
 ```{math}
 3.1459 = 1\times{1.570795}\times{2}

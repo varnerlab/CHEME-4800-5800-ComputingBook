@@ -1121,7 +1121,14 @@ with the base <a class="reference external" href="https://julialang.org">Julia</
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
-<p>In this lecture, we introduced functions, control statements, recursion. Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units. On the other hand, control statements are programming constructs that allow you to control the flow of execution of your code; control statements allow you to specify conditions under which a particular block of code, e.g., a function or some other helpful logic, should be executed;</p>
+<p>In this lecture, we introduced functions, control statements, recursion and testing.</p>
+<ul class="simple">
+<li><p>Functions take a tuple of arguments as input and return a tuple of values as output (anything from a single value to a complex data structure).
+Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units. In Julia the function arguments follow a convention called <code class="docutils literal notranslate"><span class="pre">pass-by-sharing</span></code>, i.e., values passed into functions as arguments are not copied. Instead, function arguments act as new variable bindings (new locations that can refer to values), but the underlying values they refer to are identical to the passed values. As a side product, this means that modifications made to mutable values within the function body are visible to the caller (outside the function).</p></li>
+<li><p>Control statements are programming constructs that allow you to control the flow of execution of your code; control statements allow you to specify conditions under which a particular block of code, e.g., a function or some other helpful logic, should be executed. We introduved the <code class="docutils literal notranslate"><span class="pre">if-else</span></code>  control statement.</p></li>
+<li><p>Recursion is a programming technique in which a function calls itself with a modified version of its own input. This allows the function to repeat a process on a smaller scale, and the results of these smaller-scale processes can be combined to solve the original problem.</p></li>
+<li><p>Finally, we introduced error handling and unit tests. Error handling is a critical part of the development process because it allows you gracefully handle unexpected conditions that may arise during the execution of your code. Unit tests are a way to test your code to ensure that it works as expected.</p></li>
+</ul>
 </section>
 </section>
 
