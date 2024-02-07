@@ -14,14 +14,14 @@ kernelspec:
 
 ```{topic} Overview
 
-In this lecture, we some basic tools of programming that will allow us to write more complex programs. We will
-introduce functions, control statements, the concept of recursion, error-handling patterns and unit testing.
+This lecture will explore some essential programming tools that will allow us to write more complex programs. We will
+introduce functions, control statements, recursion, error-handling patterns, and unit testing.
 
-* {ref}`content:references:functions` are blocks of code that perform specifics task and may return a value. 
+* {ref}`content:references:functions` are blocks of code that perform specific tasks and may return a value. 
 * {ref}`content:references:control-statements` are programming constructs that allow you to control the flow of execution of your code; further, they will enable you to create loops that repeat a block of code until a particular condition is met. 
 * {ref}`content:references:recursion-functions` is a programming technique where a function calls itself with a simplified version of the original problem until the problem is small enough to be solved directly. Recursion is an essential concept in programming. It solves many problems, including search and sorting problems and problems involving recursive data structures such as trees and linked lists.
 * {ref}`content:references:error-handling` allows functions to respond to the unexpected. When an unexpected condition occurs, a function may be unable to return a reasonable value to its caller. However, error-handling patterns allow functions to respond gracefully. 
-* [Unit tests](content:references:unit-tests) are a way to test your code to ensure that it works as expected. Unit tests are a critical part of the development process because they allow you to test your code as you write it, which can help you catch bugs early on and avoid wasting time debugging later. They also can be used to test your code after you have made changes to it, which can help you catch bugs that may have been introduced by your changes.
+* [Unit tests](content:references:unit-tests) are a way to test your code to ensure it works as expected. Unit tests are a critical part of the development process because they allow you to test your code as you write it, which can help you catch bugs early on and avoid wasting time debugging later. They also can be used to test your code after you have made changes to it, which can help you catch bugs that your changes may have introduced.
 
 ```
 
@@ -29,10 +29,10 @@ introduce functions, control statements, the concept of recursion, error-handlin
 
 (content:references:functions)=
 ## Functions
-In programming, a function is a block of code that performs a specific task and may return a value. Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units. Functions allow you to write code that can be called from multiple places in your program, making your code more organized, modular, and easier to read and maintain. Functions can also accept input in the form of arguments, which are values passed to the function when it is called, and they can return a value to the caller using the return statement. Functions can be defined and called from anywhere in your program, and they can be called multiple times with different arguments. Thus, they are an essential tool for organizing and modularizing code in any programming project.
+In programming, a function is a block of code that performs a specific task and may return a value. Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units. Functions allow you to write code that can be called from multiple places in your program, making your code more organized, modular, and easier to read and maintain. Functions can also accept input in the form of arguments, which are values passed to the function when it is called, and they can return a value to the caller using the return statement. Functions can be defined and called from anywhere in your program and can be called multiple times with different arguments. Thus, they are essential for organizing and modularizing code in any programming project.
 
 ### Mathematical functions
-Most of us are familiar with the idea of a function from mathematics ({numref}`fig-mathematical-function`). A mathematical function takes input from a domain (the set of possible inputs) and converts this input to an output that lives in the codomain. The codomain is the set of all possible output values, while the range (which is a subset of the codomain) is the set of values we actually observe. 
+Most of us are familiar with the idea of a function from mathematics ({numref}`fig-mathematical-function`). A mathematical function takes input from a domain (the set of possible inputs) and converts this input to an output that lives in the codomain. The codomain is the set of all possible output values, while the range (a subset of the codomain) is the set of values we observe. 
 
 ```{figure} ./figs/Fig-Mathematical-Function.png
 ---
@@ -47,7 +47,7 @@ Formally a mathematical function is defined as ({prf:ref}`defn-mathematical-func
 ````{prf:definition} Mathematical function
 :label: defn-mathematical-function
 
-In mathematics, a function from a set $X$ to a set $Y$ assigns to each element of $X$ exactly one element of $Y$. The set $X$ is the domain of the function while the set $Y$ is called the codomain of the function. A function, its domain, and its codomain, are declared using the notation:
+In mathematics, a function from a set $X$ to a set $Y$ assigns to each element of $X$ exactly one element of $Y$. The set $X$ is the domain of the function, while the set $Y$ is called the codomain of the function. A function, its domain, and its codomain, are declared using the notation:
 
 ```{math}
 f:X\rightarrow{Y}
@@ -116,7 +116,7 @@ double linear(double x, double m, double b) {
 ````
 `````
 
-Let's compare and contrast the structure of a simple function named `linear` which computes a linear transformation written in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)). 
+Let's compare and contrast the structure of a simple function named `linear`, which computes a linear transformation written in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)). 
 
 The different implementations of the `linear` function share common features:
 * Each implementation has a `return y` statement at the end of the function body. A `return` statement tells the program (which is calling your function) that the work being done in the function is finished, and here is the finished value.
@@ -128,7 +128,7 @@ However, many features are different in the `linear` function implementation bet
 * [The C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) requires that variables be defined before they are used, while both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) do not require this step.
 
 #### Arguments: Pass by sharing
-[Julia](https://docs.julialang.org) function arguments follow a convention called `pass-by-sharing`, i.e., values passed into functions as arguments are not copied. Instead, function arguments act as new variable bindings (new locations that can refer to values), but the underlying values they refer to are identical to the passed values ({prf:ref}`rem-modifications-args`): 
+[Julia](https://docs.julialang.org) function arguments follow the' pass-by-sharing' convention, i.e., values passed into functions as arguments are not copied. Instead, function arguments act as new variable bindings (new locations that can refer to values), but the underlying values they refer to are identical to the passed values ({prf:ref}`rem-modifications-args`): 
 
 ````{prf:remark} Pass-by-sharing
 :label: rem-modifications-args
@@ -139,7 +139,7 @@ The `pass-by-sharing` paradigm leads to interesting (and sometimes confusing) si
 This behavior is found in many other languages such as [Scheme](https://www.scheme.org), [Lisp](https://lisp-lang.org), [Python](https://www.python.org), [Ruby](https://www.ruby-lang.org/en/), and [Perl](https://www.perl.org).
 
 #### Arguments: Default and keyword arguments
-It is often possible (and desirable) to provide sensible default values for function arguments. Providing default values saves users from passing every argument on every call. Let's re-write the `linear` function with default values for the function arguments:
+Providing sensible default values for function arguments is often possible (and desirable). Providing default values saves users from passing every argument on every call. Let's re-write the `linear` function with default values for the function arguments:
 
 ```julia
 """
@@ -160,7 +160,7 @@ end
 y = linear(2.0,3.0) # this should return 6
 ```
 
-Some functions need a large number of arguments or have a large number of behaviors. Remembering how to call such functions can take time and effort. Keyword arguments make these complex interfaces easier to use and extend by allowing arguments to be identified by name instead of by position. For example, consider the `linear` function written with keyword arguments:
+Some functions need a large number of arguments or have a large number of behaviors. Remembering how to call such functions can take time and effort. Keyword arguments make these complex interfaces more accessible and extend by allowing arguments to be identified by name instead of by position. For example, consider the `linear` function written with keyword arguments:
 
 ```julia
 """
@@ -189,9 +189,9 @@ y = linear(2.0; slope = 2.0, intercept=0.1) # this should return 4.1
 ### Functions as contracts
 A function can also be considered a contract between a developer and a user. The developer defines the function and specifies how it should behave, while the user relies on it to perform as described. The developer ensures that the function is written correctly and behaves as intended, while the user is responsible for providing the correct input and understanding the output. To facilitate this contract, consider a few items:
 
-* A well-defined function must have clear input and output specification documentation, making it easy for the user to understand. Clear and informative documentation is critical to promote efficient and effective communication between the developer and the user. It can make it easier for the user to trust the developer's work. 
-* Function naming is also critical because it helps to clearly and accurately communicate the purpose and behavior of the function.
-* Finally, good variable and constant names make your code more readable and understandable, making it easier for other developers (and even yourself) to understand what the variable or constant represents just by reading its name.
+* A well-defined function must have clear input and output specification documentation, making it easy for the user to understand. Clear and informative documentation is critical to promoting efficient and effective communication between the developer and the user and can help the user trust the developer's work. 
+* Function naming is also critical because it helps to communicate the function's purpose and behavior clearly and accurately.
+* Finally, good variable and constant names make your code more readable and understandable. They make it easier for other developers (and even you) to understand what the variable or constant represents just by reading its name.
 
 
 (content:references:control-statements)=
@@ -223,11 +223,11 @@ end
 ````{tab-item} python
 ```python
 if condition_1:
-    # code statememts executed if condition_1 == true
+    # code statements executed if condition_1 == true
 elif condition_2:
     # code statememts executed if condition_2 == true
 else: 
-    # code statememts executed if condition_1 == false AND condition_2 == false
+    # code statements executed if condition_1 == false AND condition_2 == false
 ````
 
 ````{tab-item} C
@@ -237,7 +237,7 @@ if (condition_1) {
 } else if (condition_2) {
   /* block of code to be executed if condition_2 is true */
 } else {
-  /* code statememts executed if condition_1 == false AND condition_2 == false */
+  /* code statements executed if condition_1 == false AND condition_2 == false */
 }
 ```
 ````
@@ -247,8 +247,8 @@ The conditions in the if-else pseudo code above are statements that evaluate to 
 
 To facilitate the compound chaining of logical statements, most programming languages, including [Julia](https://julialang.org), define [short-cut logical operators](https://docs.julialang.org/en/v1/manual/control-flow/#Short-Circuit-Evaluation):
 
-* The `&&` operator corresponds to the logical `AND` operator. The `&&` operator in [Julia](https://julialang.org) performs a logical `AND` operation between two operands. In a logical AND operation, if both operands are `true`, the result is `true`. If either operand is `false`, the result is `false`.
-* The `||` operator corresponds to the logical `OR` operator. The `||` operator in [Julia](https://julialang.org) performs a logical `OR` operation between two operands. In a logical `OR` operation, if either operand is `true`, the result is `true`. If both operands are `false`, the result is `false`.
+* The `&&` operator corresponds to the logical `AND` operator. The `&&` operator in [Julia](https://julialang.org) performs a logical `AND` operation between two operands. In a logical AND operation, if both operands are `true,` the result is `true.` If either operand is `false,` the result is `false.`
+* The `||` operator corresponds to the logical `OR` operator. The `||` operator in [Julia](https://julialang.org) performs a logical `OR` operation between two operands. In a logical `OR` operation, if either operand is `true,` the result is `true.` If both operands are `false,` the result is `false.`
 
 Let's see a few examples of `&&` and `||` operators:
 
@@ -286,16 +286,16 @@ end
 
 (content:references:iteration-patterns)=
 ### Iteration
-A typical programming operation is repetitively performing a task using a list of items. For example, finding the sum of a list of experimental values to estimate a mean value, translating words in an article from one language to another, etc. This type of operation is called `iteration`. 
-There are two common approaches to performing `iteration` that are resident in almost all programming languages, {ref}`content:references:iteration-for-loops` and {ref}`content:references:iteration-while-loops`.
+A typical programming operation is repetitively performing a task using a list of items. For example, finding the sum of a list of experimental values to estimate a mean value, translating words in an article from one language to another, etc. This type of operation is called `iteration.` 
+Two common approaches to performing `iteration` are resident in almost all programming languages, {ref}`content:references:iteration-for-loops` and {ref}`content:references:iteration-while-loops`.
 
 (content:references:iteration-for-loops)=
 #### For-loops
 [For-loops](https://en.wikipedia.org/wiki/For_loop), which date back to the late 1950s and are key language constructs in all programming languages, execute a block of code a fixed number of times. [For-loops](https://en.wikipedia.org/wiki/For_loop) have two parts: a header and a body:
 * The header of a `for-loop` defines the iteration count, i.e., the number of times the loop will be executed. In modern `for-loop` header implementations, {ref}`content:references:iteration-for-loops-iterators` provide direct access to the items in a list instead of the item’s index. 
-* The body holds the code that is executed once per iteration. The header of a `for-loop` typically declares an explicit loop counter or loop variable, which tells the body which iteration is being performed. Thus, `for-loops` are used when the number of iterations is known before entering the loop. 
+* The body holds the code that is executed once per iteration. A `for-loop` header typically declares an explicit loop counter or loop variable, which tells the body which iteration is being performed. Thus, `for-loops` are used when the number of iterations is known before entering the loop. 
 
-Let's look at the structure and syntax of a `for-loop` in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) where we are iterating over a fixed range of values:
+Let's look at the structure and syntax of a `for-loop` in [Julia](https://docs.julialang.org), [Python](https://www.python.org), and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) where we are iterating over a fixed range of values:
 
 `````{tab-set}
 ````{tab-item} julia
@@ -378,7 +378,7 @@ end
 
 (content:references:iteration-for-loops-iterators)=
 #### Iterators
-In the discussion and examples above, `for-loops` used a loop counter to iterate through a list of items. However, many modern languages, e.g., [Julia](https://docs.julialang.org), [Python](https://www.python.org), [Swift](https://www.swift.org) or [Rust](https://www.rust-lang.org) implement the `for-in` loop pattern. A `for-in` loop pattern directly iterates through the elements of a list _without_ a loop counter. Let's do an example. Imagine that we have a list of chemical names stored in a collection named `list_of_chemicals`. A `for-in` construct allows us to iterate through the list directly without using a loop counter:
+In the discussion and examples above, `for-loops` used a loop counter to iterate through a list of items. However, many modern languages, e.g., [Julia](https://docs.julialang.org), [Python](https://www.python.org), [Swift](https://www.swift.org) or [Rust](https://www.rust-lang.org) implement the `for-in` loop pattern. A `for-in` loop pattern directly iterates through the elements of a list _without_ a loop counter. Let's do an example. Imagine we have a list of chemical names stored in a collection named `list_of_chemicals.` A `for-in` construct allows us to iterate through the list directly without using a loop counter:
 
 `````{tab-set}
 ````{tab-item} julia
@@ -410,9 +410,9 @@ for chemical in list_of_chemicals:  # gives each chemical in the list
 #### While-loops
 A [while-loop](https://en.wikipedia.org/wiki/While_loop) is a control structure that repeats a block of code in the loop’s body as long as a particular condition, which is encoded in the loop's header, is true.
 
-The header of a `while-loop` evaluates a Boolean control expression which determines if the body is executed or the loop terminates; if the control expression evaluates to `true`, the code in the body is executed; otherwise, the loop terminates. Thus, unlike a `for-loop` that iterates over a specified range of values, a `while-loop` can repeat both for a fixed number of iterations or indefinitely, depending upon the result of the evaluation of the control condition in the header of the loop. 
+The header of a `while-loop` evaluates a Boolean control expression that determines whether the body is executed or the loop terminates. If the control expression evaluates to `true`, the code in the body is executed; otherwise, the loop terminates. Thus, unlike a `for-loop` that iterates over a specified range of values, a `while-loop` can repeat both for a fixed number of iterations or indefinitely, depending upon the result of evaluating the control condition in the loop's header. 
 
-Let's look at the structure and syntax of a `while-loop` in [Julia](https://docs.julialang.org), [Python](https://www.python.org) and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) where we are iterating over a fixed range of values:
+Let's look at the structure and syntax of a `while-loop` in [Julia](https://docs.julialang.org), [Python](https://www.python.org), and the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) where we are iterating over a fixed range of values:
 
 
 `````{tab-set}
@@ -534,7 +534,7 @@ end
 Recursion is a programming technique in which a function calls itself with a modified version of its own input. This allows the function to repeat a process on a smaller scale, and the results of these smaller-scale processes can be combined to solve the original problem.
 The body of a recursive function typically has two parts:
 
-* __Base case__: This is the condition that stops the recursion. When the function reaches the base case, it returns a result without calling itself again. This is necessary to prevent the function from entering an infinite loop.
+* __Base case__: This condition stops the recursion. When the function reaches the base case, it returns a result without calling itself again. This is necessary to prevent the function from entering an infinite loop.
 * __Recursive case__: This is the part of the function that calls itself with a modified version of its input. The recursive case is responsible for breaking the problem down into smaller subproblems and solving them using the function itself.
 
 Let's consider an example where we compute $n!$ using recursion in [Julia](https://docs.julialang.org):
@@ -562,7 +562,7 @@ Let's reimagine the computation of the [Fibonacci numbers](https://en.wikipedia.
 :class: dropdown
 :label: example-iteration-fibonacci-numbers-recursive
 
-Develop a recursive `fibonacci` function which takes an integer $n$ as an argument and returns the corresponding Fibonacci number.
+Develop a recursive `Fibonacci` function that takes an integer $n$ as an argument and returns the corresponding Fibonacci number.
 
 __Solution__: The Fibonacci numbers, denoted as $F_{n}$, form a sequence, the Fibonacci sequence, in which each number is the sum of the previous two numbers:
 
@@ -642,7 +642,9 @@ end
 ### Memoization
 Memoization is a technique for improving the performance of a computer program, especially for functions involving recursion, by storing the results of expensive function calls and returning the stored result when the same inputs occur again. Memoization is often used where a recursive function is called multiple times with the same arguments as it works through a problem. It can also be used in other programs to optimize the performance of expensive function calls.
 
-The critical idea of Memoization: don't do extra work! Instead, try to recycle your answers if possible. If we've already done the work to compute a value, or run a program, store these values in case you need them again.
+```{remark}
+The critical idea of Memorization is to avoid extra work! Instead, try to recycle your answers if possible. If we've already computed a value or run a program, store these values in case we need them again.
+```
 
 Let's develop one last version of the `fibonacci!()` function to recursively compute the Fibonacci sequence where we use memoization to limit the number of recursive function calls we make ({prf:ref}`example-iteration-fibonacci-series-recursive-memoization`):
 
@@ -651,8 +653,7 @@ Let's develop one last version of the `fibonacci!()` function to recursively com
 :class: dropdown
 :label: example-iteration-fibonacci-series-recursive-memoization
 
-Develop a recursive mutating `fibonacci` function which takes an integer $n$ as an argument and returns the Fibonacci sequence up to and including $n$.
-Implement a memoization scheme to recycle the work done by previous function calls.
+Develop a recursive mutating `fibonacci` function which takes an integer $n$ as an argument and returns the Fibonacci sequence up to and including $n$. Let's implement a memoization scheme to recycle the work done by previous function calls.
 
 __Solution__: The Fibonacci numbers, denoted as $F_{n}$, form a sequence, the Fibonacci sequence, in which each number is the sum of the previous two numbers:
 
@@ -690,9 +691,7 @@ end
 ## Error handling
 When an unexpected condition occurs, a function may be unable to return a reasonable value to its caller. Functions are so central to computational analysis that patterns have developed to address common problems, e.g., checking the validity of the arguments provided by the caller. 
 
-One common problem is passing the wrong arguments to functions. [Julia](https://docs.julialang.org) (and other strongly typed languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) check if the arguments passed to a function are the correct type. If the arguments are not the right type, an error will be thrown that interrupts the execution of your function; in [Julia](https://docs.julialang.org), this error is of type `MethodError`, which is one of the [built-in types of errors in Julia](https://docs.julialang.org/en/v1/manual/control-flow/#Built-in-Exceptions). 
-
-However, just because function arguments are the correct type does not mean they are right.   
+One common problem is passing the wrong arguments to functions. [Julia](https://docs.julialang.org) (and other strongly typed languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) check if the arguments passed to a function are the correct type. If the arguments are not the right type, an error will be thrown that interrupts the execution of your function; in [Julia](https://docs.julialang.org), this error is of type `MethodError,` which is one of the [built-in types of errors in Julia](https://docs.julialang.org/en/v1/manual/control-flow/#Built-in-Exceptions). However, just because function arguments are the correct type does not mean they are right.   
 
 ### Early return pattern
 Consider the `mysqrt` function. If we call `mysqrt` with an integer argument, i.e., `mysqrt(4)`, [Julia](https://docs.julialang.org) will complain since it doesn't understand this request; `mysqrt` was defined to take `Float64` arguments.
@@ -711,19 +710,19 @@ function mysqrt(x::Float64)::Float64
 end
 ```
 
-However, if we call the `mysqrt` function with a negative floating-point argument, i.e., `mysqrt(-4.0)`, then we should get an error. Errors (exceptions) can be created explicitly with the `throw` function. For example, the `mysqrt` function above is only defined for nonnegative numbers; if the caller passes in a negative number, we should get a `DomainError` returned from the function. 
+However, if we call the `mysqrt` function with a negative floating-point argument, i.e., `mysqrt(-4.0)`, we should get an error. Errors (exceptions) can be created explicitly with the `throw` function. For example, the `mysqrt` function above is only defined for nonnegative numbers; if the caller passes in a negative number, we should get a `DomainError` returned from the function. 
 
-In this approach, we check for argument errors _before_ any computation gets done. If there are errors of some sort, then the function returns early (throws an appropriate error type). This is called an early return pattern. One advantage of an early return pattern is that we check for issues before we do any potentially expensive calculations. However, the early return pattern requires we explicitly code the error conditions (which can be cumbersome for complicated functions).
+In this approach, we check for argument errors _before_ any computation gets done. If there are errors, the function returns early (throws an appropriate error type). This is called an early return pattern. One advantage of an early return pattern is that we check for issues before we do any potentially expensive calculations. However, the early return pattern requires we explicitly code the error conditions (which can be cumbersome for complicated functions).
 
 ### Try-catch pattern
-The try/catch statement allows for Exceptions to be tested for, and for the graceful handling of things that may ordinarily break your function.
+The try/catch statement allows for Exceptions to be tested for and for the graceful handling of things that may ordinarily break your function.
 Let's revisit the `mysqrt` function:
 
 ```julia
 function mysqrt(x::Float64)::Float64
 
     try
-        # compute the sqrt use the built-in function
+        # compute the sqrt using the built-in function
         return sqrt(x);
     catch error
         # error handling logic goes
@@ -734,21 +733,21 @@ end
 
 (content:references:unit-tests)=
 ## Unit Tests
-Finally, let's disucss unit tests. Unit tests are a way to test your code to ensure that it works as expected. Unit tests are a critical part of the development process because they allow you to verify each part of your program as you develop it. Unit tests are also useful because they allow you to test your code after you make changes to ensure that you did not break anything.
+Finally, let's discuss unit tests. Unit tests are a way to test your code to ensure it works as expected. Unit tests are critical to the development process because they allow you to verify each part of your program as you develop it. Unit tests are also helpful because they will enable you to test your code after you make changes to ensure that you did not break anything.
 
 * The basic idea of a unit test is to write a `test function` that calls the function you want to test with a set of input arguments and checks that the output is what you expect. If the output is what you expect, the test passes; otherwise, the test fails. The `test function` should return a `Bool` value indicating whether the test passed or failed.
 
 In [Julia](https://julialang.org) unit tests are enabled by the [Tests.jl package](https://github.com/JuliaLang/julia/blob/master/stdlib/Test/src/Test.jl) that is included directly in the [Julia standard library](https://github.com/JuliaLang/julia/tree/master/stdlib), i.e., is included
 with the base [Julia](https://julialang.org) installation. The [Tests.jl package](https://github.com/JuliaLang/julia/blob/master/stdlib/Test/src/Test.jl) provides a `@test` macro that is used to define unit tests. 
-* The `@test` macro takes two arguments: a `Bool` expression and an optional string message. The `Bool` expression is the test condition, and the optional string message is a message that is printed if the test fails. The `@test` macro is used to define unit tests in [Julia](https://github.com/JuliaLang/julia/blob/master/stdlib/Test/src/Test.jl).
+* The `@test` macro takes two arguments: a `Bool` expression and an optional string message. The `Bool` expression is the test condition, and the optional string message is a message that is printed if the test fails. The `@test` macro defines unit tests in [Julia](https://github.com/JuliaLang/julia/blob/master/stdlib/Test/src/Test.jl).
 
 
 ---
 
 ## Summary
-In this lecture, we introduced functions, control statements, recursion and testing. 
+In this lecture, we introduced functions, control statements, recursion, and testing. 
 * Functions take a tuple of arguments as input and return a tuple of values as output (anything from a single value to a complex data structure).
-Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units. In Julia the function arguments follow a convention called `pass-by-sharing`, i.e., values passed into functions as arguments are not copied. Instead, function arguments act as new variable bindings (new locations that can refer to values), but the underlying values they refer to are identical to the passed values. As a side product, this means that modifications made to mutable values within the function body are visible to the caller (outside the function).
-* Control statements are programming constructs that allow you to control the flow of execution of your code; control statements allow you to specify conditions under which a particular block of code, e.g., a function or some other helpful logic, should be executed. We introduved the `if-else`  control statement.
-* Recursion is a programming technique in which a function calls itself with a modified version of its own input. This allows the function to repeat a process on a smaller scale, and the results of these smaller-scale processes can be combined to solve the original problem.
-* Finally, we introduced error handling and unit tests. Error handling is a critical part of the development process because it allows you gracefully handle unexpected conditions that may arise during the execution of your code. Unit tests are a way to test your code to ensure that it works as expected.
+Functions are a fundamental building block of most programming languages, and they are used to modularize and organize code into reusable units. In Julia, the function arguments follow a convention called `pass-by-sharing,` i.e., values passed into functions as arguments are not copied. Instead, function arguments act as new variable bindings (new locations that can refer to values), but the underlying values they refer to are identical to the passed values. As a side product, modifications made to mutable values within the function body are visible to the caller (outside the function).
+* Control statements are programming constructs that allow you to control the flow of execution of your code; control statements will enable you to specify conditions under which a particular block of code, e.g., a function or some other helpful logic, should be executed. We introduced the `if-else`  control statement.
+* Recursion is a programming technique in which a function calls itself with a modified version of its input. This allows the function to repeat a process on a smaller scale, and the results of these smaller-scale processes can be combined to solve the original problem.
+* Finally, we introduced error handling and unit tests. Error handling is a critical part of the development process because it allows you to gracefully handle unexpected conditions that may arise during the execution of your code. Unit tests are a way to test your code to ensure it works as expected.

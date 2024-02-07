@@ -5,7 +5,7 @@ Various tools and approaches exist for reading and writing data files and access
 
 * [File Input and Output (File I/O)](content:references:file-io) operations allow you to read from and write to files on your computer's filesystem. For example, you might use File I/O to read data from a text file or save a program’s results to a file. We'll consider reading and writing data in standard formats such as comma-separated value (CSV) files, JavaScript Object Notation (JSON) files, TOML files, and YAML files in the context of the Julia programming language.
 
-* [Web services and APIs](content:references:web-services-apis) are used to access data from online resources. We'll consider how to make requests to web services and APIs and how to process the data returned from these requests. We'll also introduce the Hypertext Transfer Protocol (HTTP), the protocol to transfer data over the web.
+* [Web services and APIs] (content: references: web-services-apis) are used to access data from online resources. We'll consider how to make requests to web services and APIs and how to process the data returned from these requests. We'll also introduce the Hypertext Transfer Protocol (HTTP), the protocol to transfer data over the web.
 ```
 
 ---
@@ -281,8 +281,9 @@ A web service is a software system that enables machine-to-machine interaction o
 * Finally, APIs are often associated with a specific web service implementation, although the terms are used interchangeably. For example, a website may have a public API and various internal APIs to manage its components and features.
 
 ### RESTful APIs
-Here, we explore a particular type of API called a RESTful API, designed to be lightweight, flexible, and scalable. A RESTful API follows the Representational State Transfer (REST) architectural style, a widely used design pattern for web services:
+Here, we explore a particular type of API called a RESTful API. A RESTful API follows the Representational State Transfer (REST) architectural style, a widely used design pattern for web services.
 
+RESTful APIs are designed to be lightweight, flexible, and scalable. They are based on the REST principles:
 * __Client-server architecture__: In a RESTful API, the client, e.g., a web browser or a mobile application, and the server, e.g., a web server or a database in the cloud, are separated and communicate through a network, usually the Internet. This allows the client and the server to be developed and maintained independently, making the system more flexible and scalable.
 * __Statelessness__: In a RESTful API, the server does not maintain information about interactions with the client. This means that each client request must contain all the necessary information to understand and process the request; the server does not store any information about the client between requests. This makes the system easier to scale and maintain, as the server does not need to keep track of information about the client’s state.
 * __Cacheability__: RESTful APIs are designed to be cacheable, meaning that the server’s responses can be stored and reused by the client or a cache in the network. This increases the system’s efficiency; it reduces the need to make unnecessary requests to the server.

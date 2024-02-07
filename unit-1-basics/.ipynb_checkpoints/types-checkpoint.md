@@ -46,7 +46,7 @@ However, computers and Humans don't speak the same language. Humans understand t
 * `x > y`: This expression evaluates to `true` if `x` is greater than `y` and `false` if it is not; `true` and `false` are Boolean types. This statement assumes `x` and `y` are numbers. However, `x` and `y` can be other types. For example, if they are text, the `>` operator will perform a different operation, e.g., lexicographic comparison.
 * `x = 3`: This expression assigns the value `3` to the variable `x`.
 
-Expressions evaluate to a value that has a type. For example, the expression `2 + 3` evaluates to the value `5`, an integer. The expression `x = 3` assigns the value `3` to an integer variable `x.` The expression `x == y` evaluates to `true` or `false,` which are Boolean values. The expression `x * y` evaluates to the product of the variables `x` and `y`, which are assumed to be numbers. However, `x` and `y` can be other types, e.g., text, and the `*` operator will perform a different operation, e.g., string concatenation.
+Expressions are evaluated to a value that has a type. For example, the expression `2 + 3` evaluates to the value `5`, an integer. The expression `x = 3` assigns the value `3` to an integer variable `x.` The expression `x == y` evaluates to `true` or `false,` which are Boolean values. The expression `x * y` evaluates to the product of the variables `x` and `y`, which are assumed to be numbers. However, `x` and `y` can be other types, e.g., text, and the `*` operator will perform a different operation, e.g., string concatenation.
 
 (content:references:variables-numerical-types)=
 ## Numerical and Logical Data Types
@@ -97,7 +97,7 @@ where $a_{j}$ denotes the digit in position $j$, the quantity $b$ denotes the ba
 and $k$ denotes the number of bits in a $\texttt{word}$.
 ````
 
-Let's look at example of a `base 8` number ({prf:ref}`example-base-8-number`):
+Let's look at an example of a `base 8` number ({prf:ref}`example-base-8-number`):
 
 ````{prf:example} Base 8 representation
 :class: dropdown
@@ -155,7 +155,7 @@ __Tip__: The [bitstring](https://docs.julialang.org/en/v1/base/numbers/#Base.bit
 
 {prf:ref}`defn-number-system` shows the representation of numbers in different bases, e.g., integers written in `base 2` (binary numbers). However, the set $\mathbb{Z}$ also contains negative numbers; how can we represent negative integers in a `base 2` system? 
 
-Negative integers are created using [Two complement](https://en.wikipedia.org/wiki/Two%27s_complement), a method to represent negative integers in binary form. It allows for efficient arithmetic operations, such as addition and subtraction, to be performed on signed numbers. [Two's complement](https://en.wikipedia.org/wiki/Two%27s_complement) is executed by first inverting all bits, i.e., flipping `0` $\rightarrow$ `1` and vice-versa, and then adding (using binary addition) a `1` to the least significant digit (far right bit) of the result
+Negative integers are created using [Two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), a method to represent negative integers in binary form. It allows for efficient arithmetic operations, such as addition and subtraction, to be performed on signed numbers. [Two's complement](https://en.wikipedia.org/wiki/Two%27s_complement) is executed by first inverting all bits, i.e., flipping `0` $\rightarrow$ `1` and vice-versa, and then adding (using binary addition) a `1` to the least significant digit (far right bit) of the result
 ({prf:ref}`example-twos-complement`):
 
 ````{prf:example} Two's complement
@@ -186,12 +186,12 @@ __Step 2__: Add a `1` to the least-significant bit (index 0), which gives:
 ````
 
 ### Boolean values
-Boolean values, e.g., values of `true` and `false` are represented in modern languages using a `Bool` type. For example, both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) have built-in Boolean types. However, foundational languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) do not have a dedicated Boolean type; instead, Boolean values in [C](https://en.wikipedia.org/wiki/C_(programming_language)) were represented by integers, i.e., `true = 1` and `false = 0`. Thus, it should not be surprising that in languages such as [Julia](https://docs.julialang.org), which is a distant relative of [C](https://en.wikipedia.org/wiki/C_(programming_language)), that `Bool` is implemented as a subtype of integer (a special `8-bit` integer).
+Boolean values, e.g., values of `true` and `false` are represented in modern languages using a `Bool` type. For example, both [Julia](https://docs.julialang.org) and [Python](https://www.python.org) have built-in Boolean types. However, foundational languages such as the [C-programming language](https://en.wikipedia.org/wiki/C_(programming_language)) do not have a dedicated Boolean type; instead, Boolean values in [C](https://en.wikipedia.org/wiki/C_(programming_language)) were represented by integers, i.e., `true = 1` and `false = 0`. Thus, it should not be surprising that in languages such as [Julia](https://docs.julialang.org), which is a distant relative of [C](https://en.wikipedia.org/wiki/C_(programming_language)), `Bool` is implemented as a subtype of integer (a special `8-bit` integer).
 
-In [Julia](https://docs.julialang.org) values of the `Bool` type are a kind of number: `false` is numerically equal to `0` while true is equivalent to `1`. However, unlike an `Int64`, only 1$\times$byte (8-bits) is required to store a `Bool` value in [Julia](https://docs.julialang.org); because a `Bool` can only assume one of two possible values the computer doesn't need to use extra storage:
+In [Julia](https://docs.julialang.org), values of the `Bool` type are a kind of number: `false` is numerically equal to `0` while true is equivalent to `1`. However, unlike an `Int64`, only 1$\times$byte (8-bits) is required to store a `Bool` value in [Julia](https://docs.julialang.org); because a `Bool` can only assume one of two possible values the computer doesn't need to use extra storage:
 
 ```{code-cell} julia
-# These are examples a expressions, that set a Bool value
+# These are examples of expressions that set a Bool value
 value_true = true
 value_false = false
 
@@ -254,7 +254,7 @@ Let's consider the representation of a `Float64` value for $\pi$ ({prf:ref}`exam
 :class: dropdown
 :label: example-float64-representation
 
-Compute the $S, M$ and $E$ components of the `64-bit` floating point number $x=3.14159$ in [Julia](https://docs.julialang.org).
+Compute the $S, M$, and $E$ components of the `64-bit` floating-point number $x=3.14159$ in [Julia](https://docs.julialang.org).
 
 __Solution__: The bitstring representation of $x$ is given by:
 
@@ -262,10 +262,8 @@ __Solution__: The bitstring representation of $x$ is given by:
 :label: eqn-64bit-bitstring
 3.14159 = \left(0100000000001001001000011111100111110000000110111000011001101110\right)_{2}
 ```
-Note, in [Julia](https://docs.julialang.org), the default floating-point number (depending upon your hardware) is `Float64`. Thus, the bitstring in Eqn. {eq}`eqn-64bit-bitstring` is a `64-bit` floating point number. The sign bit in Eqn. {eq}`eqn-64bit-bitstring` is $S=0$, while the fraction $M = 1.570795$ and the exponent $E = 128$ which gives:
 
-```{math}
-The sign bit in Eqn. {eq}`eqn-32bit-bitstring` is $S=0$, while the fraction $M = 1.570795$ and the exponent $E = 1024$ which gives:
+Note, in [Julia](https://docs.julialang.org), the default floating-point number (depending upon your hardware) is `Float64`. Thus, the bitstring in Eqn. {eq}`eqn-64bit-bitstring` is a `64-bit` floating point number. The sign bit in Eqn. {eq}`eqn-64bit-bitstring` is $S=0$, while the fraction $M = 1.570795$ and the exponent $E = 128$ which gives:
 
 ```{math}
 3.1459 = 1\times{1.570795}\times{2}
@@ -274,8 +272,10 @@ The sign bit in Eqn. {eq}`eqn-32bit-bitstring` is $S=0$, while the fraction $M =
 
 (content:references:variables-character-string-types)=
 ## Character and String Types
-Textual data on a computer is represented as the `String` data type. `Strings` in languages such as [C](https://en.wikipedia.org/wiki/C_(programming_language)) were modeled as a sequence of characters, where each character was type `Char`. Further, characters were represented via the [American Standard Code for Information Interchange (ASCII) system](https://en.wikipedia.org/wiki/ASCII), which was a set of `7-bit` teleprinter codes for the [AT&T](https://www.att.com) Teletypewriter exchange (TWX) network. For example, the character `A` in the ASCII system has index 65. Later, `8-bit` character mappings were developed, i.e., the so-called [extended ASCII systems](https://en.wikipedia.org/wiki/Extended_ASCII), which had $0,\dots,255$ possible character values. However, today some this remains and some things are very different. For example, modern languages have sophisticated built-in `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character set. 
-* The [Unicode](https://en.wikipedia.org/wiki/Unicode) standard, which encodes approximately 1.1 million possible characters, where the first 128 of these are the same as the original ASCII set. [Unicode](https://en.wikipedia.org/wiki/Unicode) characters, which use up to 4$\times$bytes (32-bits) of storage per character, are indexed using the `base 16` (hexadecimal) number systems.
+Textual data on a computer is represented as the `String` data type. `Strings` in languages such as [C](https://en.wikipedia.org/wiki/C_(programming_language)) were modeled as a sequence of characters, where each character was type `Char`. Further, characters were represented via the [American Standard Code for Information Interchange (ASCII) system](https://en.wikipedia.org/wiki/ASCII), which was a set of `7-bit` teleprinter codes for the [AT&T](https://www.att.com) Teletypewriter exchange (TWX) network. For example, the character `A` in the ASCII system has an index of 65. Later, `8-bit` character mappings were developed, i.e., the so-called [extended ASCII systems](https://en.wikipedia.org/wiki/Extended_ASCII), which had $0,\dots,255$ possible character values. 
+
+However, modern languages use sophisticated built-in `String` types constructed using the [Unicode](https://en.wikipedia.org/wiki/Unicode) character set. 
+* The [Unicode](https://en.wikipedia.org/wiki/Unicode) standard encodes approximately 1.1 million possible characters; the first 128 of these are the same as the original ASCII set. [Unicode](https://en.wikipedia.org/wiki/Unicode) characters, which use up to 4$\times$bytes (32-bits) of storage per character, are indexed using the `base 16` (hexadecimal) number systems.
 
 Let's consider the representation of the character `J` in the ASCII and [Unicode](https://en.wikipedia.org/wiki/Unicode) systems ({prf:ref}`example-unicode-J`):
 
@@ -283,15 +283,15 @@ Let's consider the representation of the character `J` in the ASCII and [Unicode
 :class: dropdown
 :label: example-unicode-J
 
-Compute the [Unicode](https://en.wikipedia.org/wiki/Unicode) index for the character `J`. 
+Compute the [Unicode](https://en.wikipedia.org/wiki/Unicode) index for the character `J.` 
 
 __Solution__: The character `J` has index 74 in the ASCII table (which is included in the [Unicode](https://en.wikipedia.org/wiki/Unicode) system). Thus, first, we must convert 74 to a `base 16` (hexadecimal) number and then convert that to the [Unicode](https://en.wikipedia.org/wiki/Unicode) index format; [Unicode](https://en.wikipedia.org/wiki/Unicode) indexes left-pad the hexadecimal character value with zeros until a 4-digit code is generated, and then `U+` is appended to the four-digit code. 
 
-Hexadecimal numbers use decimal digits and six extra symbols; the decimal values $(0,1,\dots,9)$, and the letters A, B, C, D, E, and F where hexadecimal A = decimal 10, thru hexadecimal F = decimal 15 are used in the hexadecimal numbering system.
+Hexadecimal numbers use decimal digits and six extra symbols; the decimal values $(0,1,\dots,9)$, and the letters A, B, C, D, E, and F where hexadecimal A = decimal 10, through hexadecimal F = decimal 15 are used in the hexadecimal numbering system.
 
 __Approach__:
 * Step 1: Divide the given decimal number by 16 and write down the quotient and remainder
-* Step 2: Divide the previous quotient by 16 and write the down the quotient and remainder
+* Step 2: Divide the previous quotient by 16 and write down the quotient and remainder
 * Step 3: Repeat steps 1 and 2 until the quotient equals zero.
 * Step 4: Map all the remainder values to their corresponding hexadecimal equivalents 
 * Step 5: Starting with the last value and moving to the first, write each of the hexadecimal values
@@ -349,7 +349,7 @@ fragment = string[1:5]
 println("The fragment is type -> $(typeof(fragment))")
 ```
 
-If you want (or need) to work with the invidual characters in text, you can convert a `String` type into a `Array{Char,1}` type using the `collect` function in [Julia](https://docs.julialang.org):
+If you want (or need) to work with the individual characters in text, you can convert a `String` type into an `Array{Char,1}` type using the `collect` function in [Julia](https://docs.julialang.org):
 
 ```{code-cell} julia
 # This is an expression to create a string in Julia
@@ -359,11 +359,11 @@ string = "Julia rocks the house"
 array = collect(string)
 ```
 
-By default each character in a [Julia](https://docs.julialang.org) string requires 4$\times$bytes (32-bits) of storage. 
+By default, each character in a [Julia](https://docs.julialang.org) string requires 4$\times$bytes (32-bits) of storage. 
 
 (content:references:variables-composite-types)=
 ## Composite types
-Composite types are custom data types made up of one or more other types. Let's start with two simple composite types: [arrays](https://docs.julialang.org/en/v1/base/arrays/#lib-arrays) and [structs](https://docs.julialang.org/en/v1/manual/types/#Composite-Types).  Later, we'll consider some additional composite types, e.g., [tuples](https://docs.julialang.org/en/v1/manual/types/#Tuple-Types-1) and [dictionaries](https://docs.julialang.org/en/v1/manual/collections/#Dictionaries-1) which have special properties that make them useful for specific tasks. An `array` is a composite data type that allows theoretically any type of data to be stored in a sequence of elements. Arrays can be `read-only`, in the sense that they have a fixed size and cannot be modified after they are created, or `read-write`, in the sense that they can be modified after they are created. On the other hand, A `struct` is a composite data type that allows data to be stored in named fields. `Structs` can be `read-only`, i.e., Immutable, or `read-write`, i.e., Mutable. 
+Composite types are custom data types made up of one or more other types. Let's start with two simple composite types: [arrays](https://docs.julialang.org/en/v1/base/arrays/#lib-arrays) and [structs](https://docs.julialang.org/en/v1/manual/types/#Composite-Types).  Later, we'll consider some additional composite types, e.g., [tuples](https://docs.julialang.org/en/v1/manual/types/#Tuple-Types-1) and [dictionaries](https://docs.julialang.org/en/v1/manual/collections/#Dictionaries-1) which have unique properties that make them useful for specific tasks. An `array` is a composite data type that theoretically allows any data to be stored in a sequence of elements. Arrays can be `read-only` in that they have a fixed size and cannot be modified after they are created, or `read-write` in the sense that they can be changed after they are made. On the other hand, A `struct` is a composite data type that allows data to be stored in named fields. `Structs` can be `read-only,` i.e., Immutable, or `read-write,` i.e., Mutable. 
 
 You define a struct by using the `struct` keyword followed by a name for the struct and a list of field names and types. For example, let's define an immutable `Student` struct that has a `sid` and a `netid` field:
 
@@ -379,7 +379,7 @@ end
 student = Student(1,"xyz123"); # we pass the required data into the struct as args 
 ```
 
-A mutable struct is a struct whose fields can be modified after it is created. You can create a mutable struct by using the `mutable struct` keyword instead of struct and by adding a _constructor_ method:
+A mutable struct is a struct whose fields can be modified after creation. You can create a mutable struct by using the `mutable struct` keyword instead of struct and by adding a _constructor_ method:
 
 ```julia
 mutable struct Student
@@ -398,17 +398,17 @@ student.sid = 1
 student.netid = "xyz123" # we add data using the "dot" notation
 ```
 
-The struct composite data type contains only data; in the examples above the `Student` datatype holds two values, `sid` is an integer type and `netid` is a string type. Except for the special case of the constructur on the mutable `Student` struct, composite types in [Julia](https://docs.julialang.org) do not have functions attached to them. 
+The struct composite data type contains only data; in the examples above, the `Student` datatype holds two values, `sid` is an integer type, and `netid` is a string type. Except for the special case of the constructor on the mutable `Student` struct, composite types in [Julia](https://docs.julialang.org) do not have functions attached to them. 
 
 In other mainstream programming languages, e.g., [Python](https://www.python.org), [Java](https://www.oracle.com/java/), [C++](https://en.wikipedia.org/wiki/C%2B%2B), [Ruby](https://www.ruby-lang.org/en/), etc composite types also have named functions associated with them, and the combination is called an `object`. In purer object-oriented languages, such as [Ruby](https://www.ruby-lang.org/en/) or [Smalltalk](https://en.wikipedia.org/wiki/Smalltalk), all values are objects whether they are composites or not. In less refined object-oriented languages, including [C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Java](https://www.oracle.com/java/), some values, such as integers and floating-point values, are not objects, while instances of user-defined composite types are true objects with associated methods. In [Julia](https://docs.julialang.org), all values are objects, but functions are not bundled with the objects they operate on. 
 
 ---
 
 # Summary
-In this lecture, we introduced expressions, variables, and types. Understanding expressions, variables, and types are fundamental to writing programs in any programming language.
+In this lecture, we introduced expressions, variables, and types. Understanding these is fundamental to writing programs in any programming language.
 
 * Expressions are combinations of values, variables, and operators that produce a new value when evaluated. 
-* Variables are named storage locations that can hold values and are used to store values that may change during the execution of a program. 
+* Variables are named storage locations that can hold values. They are used to store values that may change during a program's execution. 
 * Types are categories of values, and every value belongs to a specific type. Programming languages have many different types, including primitive types (such as numbers and booleans) and composite types (such as arrays and objects). 
 
 Next, we build upon our introduction of expressions, variables, and types and consider some other technical computing build blocks and strategies, namely [Functions, Control Statements, and Recursion](./functions.md).
