@@ -1028,7 +1028,12 @@ The body of a recursive function typically has two parts:</p>
 <section id="memoization">
 <h3>Memoization<a class="headerlink" href="#memoization" title="Permalink to this heading">#</a></h3>
 <p>Memoization is a technique for improving the performance of a computer program, especially for functions involving recursion, by storing the results of expensive function calls and returning the stored result when the same inputs occur again. Memoization is often used where a recursive function is called multiple times with the same arguments as it works through a problem. It can also be used in other programs to optimize the performance of expensive function calls.</p>
-<p>Let’s develop one last version of the <code class="docutils literal notranslate"><span class="pre">fibonacci!()</span></code> function to recursively compute the Fibonacci sequence where we use memoization to limit the number of recursive function calls we make (<a class="reference internal" href="#example-iteration-fibonacci-series-recursive-memoization">Example 10</a>):</p>
+<div class="proof remark admonition" id="remark-6">
+<p class="admonition-title"><span class="caption-number">Remark 3 </span></p>
+<section class="remark-content" id="proof-content">
+<p>The critical idea of Memorization is to avoid extra work! Instead, try to recycle your answers if possible. If we’ve already computed a value or run a program, store these values in case we need them again.</p>
+</section>
+</div><p>Let’s develop one last version of the <code class="docutils literal notranslate"><span class="pre">fibonacci!()</span></code> function to recursively compute the Fibonacci sequence where we use memoization to limit the number of recursive function calls we make (<a class="reference internal" href="#example-iteration-fibonacci-series-recursive-memoization">Example 10</a>):</p>
 <div class="proof example dropdown admonition" id="example-iteration-fibonacci-series-recursive-memoization">
 <p class="admonition-title"><span class="caption-number">Example 10 </span> (Recursive mutating memoization Fibonacci sequence)</p>
 <section class="example-content" id="proof-content">

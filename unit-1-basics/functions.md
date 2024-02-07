@@ -642,7 +642,7 @@ end
 ### Memoization
 Memoization is a technique for improving the performance of a computer program, especially for functions involving recursion, by storing the results of expensive function calls and returning the stored result when the same inputs occur again. Memoization is often used where a recursive function is called multiple times with the same arguments as it works through a problem. It can also be used in other programs to optimize the performance of expensive function calls.
 
-```{remark}
+```{prf:remark}
 The critical idea of Memorization is to avoid extra work! Instead, try to recycle your answers if possible. If we've already computed a value or run a program, store these values in case we need them again.
 ```
 
