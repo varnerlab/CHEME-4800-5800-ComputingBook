@@ -180,7 +180,7 @@ if __name__ == '__main__':
 The if __name__ == '__main__': block at the bottom allows you to test the function by running the module as a script. For example, you could save the above code to a file named mymodule.py, then run it from the command line like this:
 
 ```python
-$ python mymodule.py
+python mymodule.py
 ```
 
 Of course, you can also import this module in another python script or program and use your implementation of the `multiply` function using the `import` keyword:
