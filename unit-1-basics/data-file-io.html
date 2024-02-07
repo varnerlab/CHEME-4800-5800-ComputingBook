@@ -373,7 +373,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-input-and-output-file-i-o">File Input and Output (File I/O)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-files">CSV files</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#program-read-and-write-a-csv-file">Program: Read and write a CSV file</a></li>
@@ -390,10 +389,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-http">What is HTTP?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional resources</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
             </nav>
         </div>
@@ -407,20 +403,23 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="data-input-and-output">
 <h1>Data Input and Output<a class="headerlink" href="#data-input-and-output" title="Permalink to this heading">#</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>Working with data is one of the most common tasks in any computational project. For example, loading data into a program, doing some calculations using that data, and then saving the results to a file (either locally or in the cloud) describes the majority of programs you will write in this course, and likely in your future career.</p>
-<p>There are various tools and approaches to reading and writing data files, and for accessing data from online resources. This lecture will introduce a few common patterns, and data types and introduce some patterns for working with data from online data sources.</p>
-</section>
+<aside class="topic">
+<p class="topic-title">Overview</p>
+<p>Various tools and approaches exist for reading and writing data files and accessing data from online resources. This lecture will introduce a few common patterns and data types for working with data from local and online sources.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-file-io"><span class="std std-ref">File Input and Output (File I/O)</span></a> operations allow you to read from and write to files on your computer’s filesystem. For example, you might use File I/O to read data from a text file or save a program’s results to a file. We’ll consider reading and writing data in standard formats such as comma-separated value (CSV) files, JavaScript Object Notation (JSON) files, TOML files, and YAML files in the context of the Julia programming language.</p></li>
+<li><p><a class="reference internal" href="#content-references-web-services-apis"><span class="std std-ref">Web services and APIs</span></a> are used to access data from online resources. We’ll consider how to make requests to web services and APIs and how to process the data returned from these requests. We’ll also introduce the Hypertext Transfer Protocol (HTTP), the protocol to transfer data over the web.</p></li>
+</ul>
+</aside>
 <hr class="docutils" />
 <section id="file-input-and-output-file-i-o">
-<h2>File Input and Output (File I/O)<a class="headerlink" href="#file-input-and-output-file-i-o" title="Permalink to this heading">#</a></h2>
+<span id="content-references-file-io"></span><h2>File Input and Output (File I/O)<a class="headerlink" href="#file-input-and-output-file-i-o" title="Permalink to this heading">#</a></h2>
 <p>File Input/Output (File I/O) are operations for reading and writing data to and from files on your computer system. File I/O is a common task in programming, as it allows you to store and retrieve data from persistent storage, such as a hard drive or a cloud service, e.g., <a class="reference external" href="https://en.wikipedia.org/wiki/Box_(company)">Box</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Google_Drive">Google Drive</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/OneDrive">One Drive</a>.</p>
 <p>In most programming languages, file I/O operations are encoded using a set of built-in functions or methods that allow you to open, read, write, and close files of standard types such as <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">comma separated value (CSV)</a> files, or modern file types such as the <a class="reference external" href="https://toml.io/en/">Tom’s Obvious Minimal Language (TOML) format</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/JSON">JavaScript Object Notation (JSON) format</a> or <a class="reference external" href="https://yaml.org">YAML files</a>, YAML is a human-friendly data serialization
 language for all programming languages.</p>
 <section id="csv-files">
 <h3>CSV files<a class="headerlink" href="#csv-files" title="Permalink to this heading">#</a></h3>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">Comma-separated value (CSV)</a> files are delimited text files that use a comma to separate values. A CSV file typically stores tabular data (numbers and text) in plain text, where each line has the same number of fields. Each line of the file is a record, and each record consists of one or more fields, separated by commas (or other characters such as a <code class="docutils literal notranslate"><span class="pre">tab</span></code> or <code class="docutils literal notranslate"><span class="pre">space</span></code> character).</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">Comma-separated value (CSV)</a> files are delimited text files that use a comma to separate values. A CSV file typically stores tabular data (numbers and text) in plain text, where each line has the same fields. Each line of the file is a record consisting of one or more fields, separated by commas (or other characters such as a <code class="docutils literal notranslate"><span class="pre">tab</span></code> or <code class="docutils literal notranslate"><span class="pre">space</span></code> character).</p>
 <p>In engineering or other quantitative applications, <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">comma-separated value files</a> are typically used to store, transmit and work with numerical data. Consider a comma-separated value file holding interest rate data for the last year:</p>
 <div class="highlight-CSV notranslate"><div class="highlight"><pre><span></span>Date,T=20-year-percentage,T=30-year-percentage
 2021-09-17,1.82,1.88
@@ -430,7 +429,7 @@ language for all programming languages.</p>
 ....
 </pre></div>
 </div>
-<p>This data file has a header row that contains column labels (which are text), while the other rows contain numerical data. Each row holds a data record, that is composed of fields that hold a type of data, e.g., the date or values for <a class="reference external" href="https://www.investopedia.com/terms/s/spot_rate.asp">the spot rate</a> for <a class="reference external" href="https://www.investopedia.com/ask/answers/033115/what-are-differences-between-treasury-bond-and-treasury-note-and-treasury-bill-tbill.asp">fixed income United States treasury debt securities</a>.</p>
+<p>This data file has a header row containing column labels (text), while the other rows contain numerical data. Each row holds a data record that is composed of fields that have a type of data, e.g., the date or values for <a class="reference external" href="https://www.investopedia.com/terms/s/spot_rate.asp">the spot rate</a> for <a class="reference external" href="https://www.investopedia.com/ask/answers/033115/what-are-differences-between-treasury-bond-and-treasury-note-and-treasury-bill-tbill.asp">fixed income United States treasury debt securities</a>.</p>
 <section id="program-read-and-write-a-csv-file">
 <h4>Program: Read and write a CSV file<a class="headerlink" href="#program-read-and-write-a-csv-file" title="Permalink to this heading">#</a></h4>
 <p>Let’s develop a <a class="reference external" href="https://docs.julialang.org">Julia</a> function that loads a <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">comma-separated value file</a> from the local filesystem; first, let’s use the <a class="reference external" href="https://github.com/JuliaData/CSV.jl">CSV.jl</a> package, which is a
@@ -448,16 +447,16 @@ specialized package to work with <a class="reference external" href="https://en.
 <span class="c"># set the path -</span>
 <span class="n">path_to_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Treasury-HistoricalData-09-09-22.csv&quot;</span><span class="p">;</span>
 
-<span class="c"># load csv file -</span>
+<span class="c"># load CSV file -</span>
 <span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loadcsvfile</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>This first example, which takes advantage of the <a class="reference external" href="https://github.com/JuliaData/CSV.jl">CSV.jl</a> package, returns a table-like data structure called a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> (which is implemented by the <a class="reference external" href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a> package). The <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> data structure (which we’ll explore later) offers several standard and advanced features for working with tabular data.</p>
+<p>This first example takes advantage of the <a class="reference external" href="https://github.com/JuliaData/CSV.jl">CSV.jl</a> package, returns a table-like data structure called a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> (which is implemented by the <a class="reference external" href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a> package). The <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> data structure (which we’ll explore later) offers several standard and advanced features for working with tabular data.</p>
 <p>One possible criticism of the first <code class="docutils literal notranslate"><span class="pre">loadcsvfile()</span></code> implementation is that all the details of what is going on are hidden in the <code class="docutils literal notranslate"><span class="pre">CSV.read()</span></code> call. However, there may be cases or applications where we may want more control when reading (or writing) <a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">comma-separated value files</a>.</p>
 </section>
 <section id="program-read-a-csv-file-refactored">
 <h4>Program: Read a CSV file refactored<a class="headerlink" href="#program-read-a-csv-file-refactored" title="Permalink to this heading">#</a></h4>
-<p>Let’s <a class="reference external" href="https://en.wikipedia.org/wiki/Code_refactoring">refactor</a> the previous <code class="docutils literal notranslate"><span class="pre">loadcsvfile()</span></code> function so that we have access to each record as it is beging loaded:</p>
+<p>Let’s <a class="reference external" href="https://en.wikipedia.org/wiki/Code_refactoring">refactor</a> the previous <code class="docutils literal notranslate"><span class="pre">loadcsvfile()</span></code> function so that we have access to each record as it is being loaded:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">loadcsvfile</span><span class="p">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="p">;</span><span class="w"> </span><span class="n">delim</span><span class="o">::</span><span class="kt">Char</span><span class="o">=</span><span class="sc">&#39;,&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">keyindex</span><span class="o">::</span><span class="kt">Int64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="o">::</span><span class="kt">Tuple</span><span class="p">{</span><span class="kt">Array</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span><span class="w"> </span><span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Number</span><span class="p">,</span><span class="mi">1</span><span class="p">}}}</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="c"># check: is the path arg legit?</span>
@@ -476,7 +475,7 @@ specialized package to work with <a class="reference external" href="https://en.
 <span class="w">            </span><span class="n">fields</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">split</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="n">delim</span><span class="p">);</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">counter</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
 <span class="w">                </span>
-<span class="w">                </span><span class="c"># package the hedaer -</span>
+<span class="w">                </span><span class="c"># package the header -</span>
 <span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">fields</span>
 <span class="w">                    </span><span class="n">push!</span><span class="p">(</span><span class="n">header</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
 <span class="w">                </span><span class="k">end</span>
@@ -513,7 +512,7 @@ specialized package to work with <a class="reference external" href="https://en.
 </section>
 <section id="toml-files">
 <h3>TOML files<a class="headerlink" href="#toml-files" title="Permalink to this heading">#</a></h3>
-<p>TOML (Tom’s Obvious, Minimal Language) is a configuration file format that is intended to be easy to read and write and is also easy to parse. It is used to store configuration data for applications. TOML files consist of key-value pairs, similar to a dictionary in Julia or Python, and can also include nested groups of keys. TOML files often have a <code class="docutils literal notranslate"><span class="pre">.toml</span></code> file extension.</p>
+<p><a class="reference external" href="https://toml.io/en/">TOML (Tom’s Obvious, Minimal Language)</a> is a configuration file format intended to be easy to read and write and easy to parse. It is used to store application configuration data. TOML files consist of key-value pairs, similar to a dictionary in Julia or Python, and can also include nested groups of keys. TOML files often have a <code class="docutils literal notranslate"><span class="pre">.toml</span></code> file extension.</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a TOML configuration file for a database</span>
 
 <span class="c1"># section: holds connection information</span>
@@ -532,7 +531,7 @@ specialized package to work with <a class="reference external" href="https://en.
 <span class="n">ssl_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;require&quot;</span><span class="w">    </span><span class="c1"># The preferred SSL mode to use</span>
 </pre></div>
 </div>
-<p>TOML files are widely used for storing configuration information. For example, in <a class="reference external" href="https://docs.julialang.org">Julia</a>, the <a class="reference external" href="https://pkgdocs.julialang.org/v1/">package manager Pkg.jl</a> stores information about the packages required for a project in a <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code> file (which is automatically created when a project is activated). Because of its central role in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <code class="docutils literal notranslate"><span class="pre">TOML.jl</span></code>, the package to read and write TOML files, is included in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/TOML/">Julia standard library</a>. Thus, we don’t need to install it and can access it by placing the <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">TOML</span></code> file at the start of our program.</p>
+<p>TOML files are widely used for storing configuration information. For example, in <a class="reference external" href="https://docs.julialang.org">Julia</a>, the <a class="reference external" href="https://pkgdocs.julialang.org/v1/">package manager Pkg.jl</a> holds information about the packages required for a project in a <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code> file (which is automatically created when a project is activated). Because of its central role in <a class="reference external" href="https://docs.julialang.org">Julia</a>, <code class="docutils literal notranslate"><span class="pre">TOML.jl,</span></code> the package to read and write TOML files, is included in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/TOML/">Julia standard library</a>. Thus, we don’t need to install it and can access it by placing the <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">TOML</span></code> file at the start of our program.</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load packages </span>
 <span class="k">using</span><span class="w"> </span><span class="n">TOML</span>
 
@@ -557,11 +556,11 @@ specialized package to work with <a class="reference external" href="https://en.
 <span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">readtomlfile</span><span class="p">(</span><span class="n">path_to_toml_file</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>For more information on TOML, see the <a class="reference external" href="https://toml.io/en/">TOML specification</a>, which describes the TOML format and the different types of data that can be stored in a TOML file.</p>
 </section>
 <section id="json-files">
 <h3>JSON files<a class="headerlink" href="#json-files" title="Permalink to this heading">#</a></h3>
-<p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JavaScript Object Notation (JSON)</a> is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write and easy for machines to parse and generate. JSON is based on a subset of the <a class="reference external" href="https://en.wikipedia.org/wiki/JavaScript">JavaScript programming language</a> and is used to represent simple data structures and associative arrays.</p>
-<p>JSON is composed of two data structures:</p>
+<p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JavaScript Object Notation (JSON)</a> is a lightweight, text-based, language-independent data interchange format that is easy for humans to read and write and easy for machines to parse and generate. JSON is based on a subset of the <a class="reference external" href="https://en.wikipedia.org/wiki/JavaScript">JavaScript programming language</a> and represents simple data structures and associative arrays. JSON is composed of two data structures:</p>
 <ul class="simple">
 <li><p>A collection of name/value pairs typically realized as a struct, dictionary, keyed list, or associative array.</p></li>
 <li><p>An ordered list of values. In most languages, this is realized as an array, vector, list, or sequence.</p></li>
@@ -583,7 +582,7 @@ specialized package to work with <a class="reference external" href="https://en.
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This JSON file defines an object with a single key, <code class="docutils literal notranslate"><span class="pre">people</span></code>; the <code class="docutils literal notranslate"><span class="pre">people</span></code> key has a value that is a list of objects, each representing a person. Each person object has three keys, the <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code>, and <code class="docutils literal notranslate"><span class="pre">phone</span></code> key. However, unlike TOML, the JSON format is not included in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/TOML/">Julia standard library</a>. Instead, there a variety of third-party packages available for reading and writing JSON files, e.g., the <a class="reference external" href="https://github.com/JuliaIO/JSON.jl">JSON.jl</a> package:</p>
+<p>This JSON file defines an object with a single key, <code class="docutils literal notranslate"><span class="pre">people</span></code>; the <code class="docutils literal notranslate"><span class="pre">people</span></code> key has a value that is a list of objects, each representing a person. Each person’s object has three keys: the <code class="docutils literal notranslate"><span class="pre">name,</span></code> <code class="docutils literal notranslate"><span class="pre">email,</span></code> and <code class="docutils literal notranslate"><span class="pre">phone</span></code> keys. However, unlike TOML, the JSON format is not included in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/TOML/">Julia standard library</a>. Instead, a variety of third-party packages are available for reading and writing JSON files, e.g., the <a class="reference external" href="https://github.com/JuliaIO/JSON.jl">JSON.jl</a> package:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load required packages</span>
 <span class="k">using</span><span class="w"> </span><span class="n">JSON</span>
 
@@ -608,10 +607,11 @@ specialized package to work with <a class="reference external" href="https://en.
 <span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">readjsonfile</span><span class="p">(</span><span class="n">path_to_json_file</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>For more information on JSON, see the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JSON specification</a>, which describes the JSON format and the different types of data that can be stored in a JSON file.</p>
 </section>
 <section id="yaml-files">
 <h3>YAML files<a class="headerlink" href="#yaml-files" title="Permalink to this heading">#</a></h3>
-<p><a class="reference external" href="https://yaml.org">YAML (YAML Ain’t Markup Language)</a> is a human-readable data serialization language that can be used to transmit data between systems. YAML is often a configuration file format for applications and is similar to TOML. YAML files use a simple syntax that consists of key-value pairs and can also include nested groups of keys. YAML uses indentation to denote structure, similar to <a class="reference external" href="https://www.python.org">Python</a>. YAML files often have a <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> or <code class="docutils literal notranslate"><span class="pre">.yml</span></code> file extension.</p>
+<p><a class="reference external" href="https://yaml.org">YAML (YAML Ain’t Markup Language)</a> is a human-readable data serialization language that can be used to transmit data between systems. YAML is often a configuration file format for applications, similar to TOML. YAML files use a simple syntax that consists of key-value pairs and can also include nested groups of keys. YAML uses indentation to denote structure, similar to <a class="reference external" href="https://www.python.org">Python</a>. YAML files often have a <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> or <code class="docutils literal notranslate"><span class="pre">.yml</span></code> file extension.</p>
 <p>Here is an example of a YAML file that could be used to store configuration data for an application:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a YAML configuration file for an application</span>
 
@@ -630,7 +630,7 @@ specialized package to work with <a class="reference external" href="https://en.
 <span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mypassword</span><span class="w">  </span><span class="c1"># The password for the user</span>
 </pre></div>
 </div>
-<p>Unlike TOML, the YAML format is not included in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/TOML/">Julia standard library</a>. Instead, there a variety of third-party packages available for working with YAML files, e.g., the <a class="reference external" href="https://github.com/JuliaData/YAML.jl">YAML.jl</a> package:</p>
+<p>Unlike TOML, the YAML format is not included in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/TOML/">Julia standard library</a>. Instead, various third-party packages are available for working with YAML files, e.g., the <a class="reference external" href="https://github.com/JuliaData/YAML.jl">YAML.jl</a> package:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load packages </span>
 <span class="k">using</span><span class="w"> </span><span class="n">YAML</span>
 
@@ -655,27 +655,27 @@ specialized package to work with <a class="reference external" href="https://en.
 <span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">readyamlfile</span><span class="p">(</span><span class="n">path_to_yaml_file</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>For more information on YAML, see the <a class="reference external" href="https://yaml.org">YAML specification</a> which describes the YAML format and the different types of data that can be stored in a YAML file.</p>
 </section>
 </section>
 <section id="web-services-and-apis">
-<h2>Web services and APIs<a class="headerlink" href="#web-services-and-apis" title="Permalink to this heading">#</a></h2>
-<p>A web service is a software system that enables machine-to-machine interaction over a network. Web services are often used to make the functionality of one application available to other applications or to provide data from one application to other. Web services can be accessed through a specified set of rules called an <a class="reference external" href="https://en.wikipedia.org/wiki/API">application programming interfaces (APIs)</a>.</p>
+<span id="content-references-web-services-apis"></span><h2>Web services and APIs<a class="headerlink" href="#web-services-and-apis" title="Permalink to this heading">#</a></h2>
+<p>A web service is a software system that enables machine-to-machine interaction over a network. Web services are often used to make the functionality of one application available to other applications or to provide data from one application to another. Web services can be accessed through a specified set of rules called <a class="reference external" href="https://en.wikipedia.org/wiki/API">application programming interfaces (APIs)</a>.</p>
 <ul class="simple">
-<li><p>An API is a set of programming instructions for accessing a web-based software application. It specifies how software components should interact and allows communication between different systems. Thus, an API defines how a developer writes a program that requests services, e.g., data over the internet.</p></li>
+<li><p>An API is a set of programming instructions for accessing a web-based software application. It specifies how software components should interact and allows communication between different systems. Thus, an API defines how a developer writes a program that requests services, such as data over the Internet.</p></li>
 <li><p>A web service is a specific type of API that uses the <a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP protocol</a> to exchange data over the internet. Web services can transfer data in various formats, such as JSON or CSV.</p></li>
-<li><p>Finally, APIs are often associated with a specific implementation of a web service, although the terms are used interchangeably. For example, a website may have a public API and various internal APIs to manage its different components and features.</p></li>
+<li><p>Finally, APIs are often associated with a specific web service implementation, although the terms are used interchangeably. For example, a website may have a public API and various internal APIs to manage its components and features.</p></li>
 </ul>
 <section id="restful-apis">
 <h3>RESTful APIs<a class="headerlink" href="#restful-apis" title="Permalink to this heading">#</a></h3>
-<p>Here we explore a particular type of API called a RESTful API. A RESTful API follows the Representational State Transfer (REST) architectural style, a widely used design pattern for web services.</p>
-<p>RESTful APIs are designed to be lightweight, flexible, and scalable. They are based on the REST principles:</p>
+<p>Here, we explore a particular type of API called a RESTful API, designed to be lightweight, flexible, and scalable. A RESTful API follows the Representational State Transfer (REST) architectural style, a widely used design pattern for web services:</p>
 <ul class="simple">
 <li><p><strong>Client-server architecture</strong>: In a RESTful API, the client, e.g., a web browser or a mobile application, and the server, e.g., a web server or a database in the cloud, are separated and communicate through a network, usually the Internet. This allows the client and the server to be developed and maintained independently, making the system more flexible and scalable.</p></li>
-<li><p><strong>Statelessness</strong>: In a RESTful API, the server does not maintain information about interactions with the client. This means that each request from the client must contain all the information required to understand and process the request; the server does not store any information about the client between requests. This makes the system easier to scale and maintain, as the server does not need to keep track of information about the client’s state.</p></li>
+<li><p><strong>Statelessness</strong>: In a RESTful API, the server does not maintain information about interactions with the client. This means that each client request must contain all the necessary information to understand and process the request; the server does not store any information about the client between requests. This makes the system easier to scale and maintain, as the server does not need to keep track of information about the client’s state.</p></li>
 <li><p><strong>Cacheability</strong>: RESTful APIs are designed to be cacheable, meaning that the server’s responses can be stored and reused by the client or a cache in the network. This increases the system’s efficiency; it reduces the need to make unnecessary requests to the server.</p></li>
-<li><p><strong>Layered system</strong>: A RESTful API can be used over a network of interconnected servers, where each server does a specific task. This makes the system scalable and maintainable, as it can be built and deployed modularly.</p></li>
+<li><p><strong>Layered system</strong>: A RESTful API can be used over a network of interconnected servers, each performing a specific task. This makes the system scalable and maintainable, as it can be built and deployed modularly.</p></li>
 </ul>
-<p>RESTful APIs are often used to expose the functionality of a web service or a database over the Internet, allowing clients to interact with the service using the <a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP request-response model</a>. RESTful APIs are widely used in web and mobile development and are essential tools for building modern applications.</p>
+<p>RESTful APIs are often used to expose the functionality of a web service or a database over the Internet, allowing clients to interact with the service using the <a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP request-response model</a>. RESTful APIs are widely used in web and mobile development and are essential for building modern applications.</p>
 </section>
 <section id="what-is-http">
 <h3>What is HTTP?<a class="headerlink" href="#what-is-http" title="Permalink to this heading">#</a></h3>
@@ -685,12 +685,12 @@ specialized package to work with <a class="reference external" href="https://en.
 <li><p><strong>Request</strong>: When you enter a URL into your web browser, the browser sends an <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods">HTTP request message</a> to the server hosting the website. Thus, an HTTP request message is a question to a server written in a particular format that the server understands.</p></li>
 <li><p><strong>Response</strong>: Upon receiving the request, a server responds with an <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">HTTP response message</a>, which includes the website’s content and information about how to display it in the browser.</p></li>
 </ul>
-<p>Requesting data from an application programming interface works similarly; we make an HTTP request to the server, and we get back an HTTP response object. However, in this case, the HTTP response object is not a webpage; instead, we get data, typically organized in some text format such as <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JavaScript Object Notation (JSON)</a> that we can read in our program. Alternatively, we get an error message indicating that something went wrong with our request.</p>
+<p>Requesting data from an application programming interface works similarly; we make an HTTP request to the server and get back an HTTP response object. However, in this case, the HTTP response object is not a webpage; instead, we get data, typically organized in some text format such as <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JavaScript Object Notation (JSON)</a> that we can read in our program. Alternatively, we get an error message indicating that something went wrong with our request.</p>
 <p>Let’s develop a function that makes a <code class="docutils literal notranslate"><span class="pre">GET</span></code> request from a <a class="reference external" href="http://dummy.restapiexample.com">dummy application programming interface</a> shown in <a class="reference internal" href="#example-get-API-example">Example 12</a>:</p>
 <div class="proof example dropdown admonition" id="example-get-API-example">
 <p class="admonition-title"><span class="caption-number">Example 12 </span> (GET Request)</p>
 <section class="example-content" id="proof-content">
-<p>Develop a function that calls an application programming interface (API) to retrive a list of employees.</p>
+<p>Develop a function that calls an application programming interface (API) to retrieve a list of employees.</p>
 <p><strong>Solution</strong>: The executable Julia script below makes an API call and transforms the JSON data returned from the server into a Julia dictionary. The <code class="docutils literal notranslate"><span class="pre">makeapicallget(url::String)::Dict{String,Any}</span></code> calls the server and transforms the data into the final format.</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># load external packages</span>
 <span class="k">using</span><span class="w"> </span><span class="n">HTTP</span>
@@ -698,12 +698,12 @@ specialized package to work with <a class="reference external" href="https://en.
 
 <span class="k">function</span><span class="w"> </span><span class="n">makeapicallget</span><span class="p">(</span><span class="n">url</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span><span class="o">::</span><span class="kt">Dict</span><span class="p">{</span><span class="kt">String</span><span class="p">,</span><span class="kt">Any</span><span class="p">}</span>
 
-<span class="w">    </span><span class="c"># ok, so we are going to make a HTTP GET call with the </span>
+<span class="w">    </span><span class="c"># ok, so we are going to make an HTTP GET call with the </span>
 <span class="w">    </span><span class="c"># URL that was passed in -</span>
 <span class="w">    </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HTTP</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">url</span><span class="p">;</span><span class="w"> </span><span class="n">status_exception</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span>
 
 <span class="w">    </span><span class="c"># let&#39;s get the data contained in the response </span>
-<span class="w">    </span><span class="c"># the data is conatined in body section of the response message</span>
+<span class="w">    </span><span class="c"># the data is contained in the  body section of the response message</span>
 <span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">String</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c"># convert the JSON response body to a dictionary -</span>
@@ -719,8 +719,8 @@ specialized package to work with <a class="reference external" href="https://en.
 <span class="c"># setup the url string -</span>
 <span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://dummy.restapiexample.com/api/v1/employees&quot;</span>
 
-<span class="c"># make the api call - data gets returned as JSON, </span>
-<span class="c"># we then turn JSON into a Dict{String,Any} type</span>
+<span class="c"># make the API call - data gets returned as JSON, </span>
+<span class="c"># We then turn JSON into a Dict{String, Any} type</span>
 <span class="n">response_dictionary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">makeapicallget</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -734,18 +734,11 @@ specialized package to work with <a class="reference external" href="https://en.
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
-<p>In this lecture we introduced topcs in data input and output.</p>
+<p>Working with data is a common task in any computational project. For example, loading data into a program, doing some calculations using that data, and then saving the results to a file (locally or in the cloud) describes most programs you will write in this course and likely in your future career. In this lecture, we introduced topics in data input and output to support these efforts:</p>
 <ul class="simple">
-<li><p>File I/O is an essential concept in programming, as it allows you to store and retrieve data that your programs can use. It is a fundamental building block of many applications and is used to create and manipulate files on the file system.</p></li>
+<li><p><a class="reference internal" href="#content-references-file-io"><span class="std std-ref">File Input and Output (File I/O)</span></a> operations allow you to read from and write to files on your computer’s filesystem. We explored reading and writing data in standard formats such as comma-separated value (CSV) files, JavaScript Object Notation (JSON) files, TOML files, and YAML files in the context of the Julia programming language.</p></li>
+<li><p>Then we introduced <a class="reference internal" href="#content-references-web-services-apis"><span class="std std-ref">Web services and APIs</span></a> and considered how to make requests to web services and APIs and process the data returned from these requests. We also introduced the Hypertext Transfer Protocol (HTTP), the protocol to transfer data over the web.</p></li>
 </ul>
-<section id="additional-resources">
-<h3>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>The <a class="reference external" href="https://toml.io/en/">TOML specification</a> describes the TOML format and the different types of data that can be stored in a TOML file.</p></li>
-<li><p>The <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JSON specification</a> describes the JSON format and the different types of data that can be stored in a JSON file.</p></li>
-<li><p>The <a class="reference external" href="https://yaml.org">YAML specification</a> describes the YAML format and the different types of data that can be stored in a YAML file.</p></li>
-</ul>
-</section>
 </section>
 </section>
 
@@ -816,7 +809,6 @@ specialized package to work with <a class="reference external" href="https://en.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-input-and-output-file-i-o">File Input and Output (File I/O)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-files">CSV files</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#program-read-and-write-a-csv-file">Program: Read and write a CSV file</a></li>
@@ -833,10 +825,7 @@ specialized package to work with <a class="reference external" href="https://en.
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-http">What is HTTP?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional resources</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
   </nav></div>
 
