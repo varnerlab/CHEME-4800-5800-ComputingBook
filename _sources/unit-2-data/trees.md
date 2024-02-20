@@ -14,7 +14,7 @@ kernelspec:
 
 ```{topic} Overview
 In this set of lectures, we'll introduce Data Structures and methods to access the data stored in data structures. Data structures are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently.
-We'll begin with a discussion of linear data structures, and then move on to non-linear data structures. 
+We'll begin with a discussion of linear data structures and then move on to non-linear data structures. 
 
 * [Linear data structures](content:references:linear-data-structures) store elements linearly, meaning that they are arranged in a sequence one after the other. We'll discuss arrays, stacks, queues, and linked lists as examples of linear data structures.
 
@@ -53,7 +53,7 @@ An array is a data structure that stores a collection of items of the same type 
 height: 90px
 name: fig-array-schematic
 ---
-Schematic of a 1-based array six element array with name a.
+Schematic of a 1-based array six-element array with name a.
 ```
 
 The items in an array are accessed using an index, an integer representing the item’s position in the collection. In most programming languages, arrays are zero-indexed, i.e., the first element in the array has an index of `0`, the second element has an index of `1`, and so on. However, arrays in [Julia](https://julialang.org) are one-based, i.e., the first element has an index `1`, the second element has an index `2`, etc. 
@@ -71,8 +71,8 @@ println("The third element of a = $(a[i])")
 
 However, array access uses parenthesis in niche systems, such as [Matlab/Octave](https://www.mathworks.com/products/matlab.html). Accessing individual elements or contiguous ranges of elements of an array is fast, but inserting or deleting elements from the middle of an array can be slow, as it requires shifting the elements to make room for the new element or closing the gap left by the deleted element.
 
-#### Types of arrays: Vectors, Matrices and d-dimensional arrays
-There are different sizes (types) of arrays, such as one-dimensional arrays (vectors), which store a linear sequence of elements, and multi-dimensional arrays, e.g., two-dimensional arrays (matricies) or arrays of arrays that store data in more complex structures.
+#### Types of arrays: Vectors, Matrices, and d-dimensional arrays
+There are different sizes (types) of arrays, such as one-dimensional arrays (vectors), which store a linear sequence of elements, and multi-dimensional arrays, e.g., two-dimensional arrays (matrices) or arrays of arrays that store data in more complex structures.
 
 In [Julia](https://julialang.org), the size of an array and the type of data that will be stored in the array are declared when you initialize the array. For example, a 1-dimensional array of indefinite length that holds integers is declared as: 
 
@@ -80,7 +80,7 @@ In [Julia](https://julialang.org), the size of an array and the type of data tha
 # Define an array arr
 arr = Array{Int64,1}() # the array is empty
 
-# When an array has undefined length, we use the push! operation to add values
+# When an array has an undefined length, we use the push! operation to add values
 push!(arr,1); # adds a 1 to index 1
 push!(arr,2); # adds a 2 to index 2
 push!(arr,4); # adds a 4 to index 3
@@ -95,7 +95,7 @@ Of course, if you know how many elements you need the array to store beforehand,
 # Define an array arr
 arr = Array{Int64,1}(undef, 10) # the array has 10 elements, each initialized to undefined
 
-# When an array has defined length, we use the = operation to add values
+# When an array has a defined length, we use the = operation to add values
 for i in 1:10
   arr[i] = 2^i # fills the array with powers of 2
 end
@@ -107,10 +107,10 @@ println("Elements of arr = $(arr)")
 Two-dimensional arrays follow a similar pattern when we declare the array; however, there is no direct equivalent to the `push!` operation for two- (or higher) dimensional arrays. Thus, when dealing with multi-dimensional arrays, we typically need to know the size of each dimension when we declare the array:
 
 ```{code-cell} julia
-# Define an 2-dimensional array A
+# Define a 2-dimensional array A
 A = Array{Int64, 2}(undef, 4, 4) # array of Int's has 4 rows, 4 cols, initialized to undefined
 
-# When an array has defined length, we use the = operation to add values
+# When an array has a defined length, we use the = operation to add values
 # This creates an upper-triangular matrix with powers 2
 for i in 1:4
   for j in 1:4
@@ -128,7 +128,7 @@ A
 
 (content:references:lda-stacks)=
 ### Stacks
-A `stack` data structure follows the [last-in, first-out (LIFO) principle](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), the last element added to a `stack` will be the first element removed ({numref}`fig-stack-schematic`). Unlike an array, you cannot access the elements of a stack by thier index. Instead, elements are added to the top of the stack (also known as `pushing`) and removed from the top of the stack (also known as `popping`). 
+A `stack` data structure follows the [last-in, first-out (LIFO) principle](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), the last element added to a `stack` will be the first element removed ({numref}`fig-stack-schematic`). Unlike an array, you cannot access the elements of a stack by their index. Instead, elements are added to the top of the stack (also known as `pushing`) and removed from the top of the stack (also known as `popping`). 
 
 
 ```{figure} ./figs/Fig-Stack-Schematic.png
@@ -174,7 +174,7 @@ The `queue` data structure follows the [first-in, first-out (FIFO) principle](ht
 height: 200px
 name: fig-queue-schematic
 ---
-Schematic of the `enqueue!` and `dequeue!` operations for a `queue q`. Quues follow the first-in, first-out paradigm. Thus, new elements are continually added to the bottom of the queue, while elements are drawn from the top (depicted with the dashed arrow).
+Schematic of the `enqueue!` and `dequeue!` operations for a `queue q`. Queues follow the first-in, first-out paradigm. Thus, new elements are continually added to the bottom of the queue, while elements are drawn from the top (depicted with the dashed arrow).
 ```
 
 Queues in [Julia](https://docs.julialang.org) are implemented by the [DataStructures.jl](https://github.com/JuliaCollections/DataStructures.jl) package:
@@ -205,13 +205,13 @@ In this example, the elements `1`, `2`, and `3` are added to the `queue q` in th
 * __Breadth-first search__: In graph theory, the breadth-first search algorithm explores a graph by visiting all the vertices at a given level before moving on to the next level. This can be implemented using a queue data structure, where the vertices at each level are added to the queue in order and processed in that exact order.
 * __Message passing__: Queues are often used to pass messages between different parts of a system, such as between a producer and a consumer in a messaging system. Messages are added to the back of the queue by the producer and consumed from the front of the queue by the consumer. This allows the producer and consumer to operate at different speeds without the risk of messages being lost or overwritten.
 
-In addition to the applications listed above, Queues are an ideal data structure for recursive parsing applications. Let's build a recursive string parser using a Queue ({prf:ref}`example-queue-recursive-string-parser`):
+In addition to the abovementioned applications, Queues are an ideal data structure for recursive parsing applications. Let's build a recursive string parser using a Queue ({prf:ref}`example-queue-recursive-string-parser`):
 
 ````{prf:example} Recursive descent string parser
 :class: dropdown
 :label: example-queue-recursive-string-parser
 
-Develop a recursive parser that returns the words in a sentence as a `Dict{Int64, String}`, where the keys are the index of the word in the sentence, and the value are the words.
+Develop a recursive parser that returns the words in a sentence as a `Dict{Int64, String}`, where the keys are the index of the word in the sentence, and the values are the words.
 
 Test input: "you've got mail works alot better than it deserves to . "
 
@@ -317,7 +317,7 @@ A linked list is a linear data structure where each element, called a node, is a
 height: 180px
 name: fig-LinkedList-schematic
 ---
-Schematic of a singly linked list. Each node in the list has data, in this case a queue data structure, and a reference (link) to the next node in the list. 
+Schematic of a singly linked list. Each node in the list has data, in this case, a queue data structure and a reference (link) to the next node in the list. 
 ```
 
 There are two main types of linked lists: singly linked lists and doubly linked lists. In a singly linked list, each node has a reference to the next node in the list but not the previous one. On the other hand, each node connects to the next and previous nodes in a doubly linked list.
@@ -473,7 +473,7 @@ Like dictionaries, both [Julia](https://docs.julialang.org) and [Python](https:/
 ````{tab-item} julia
 ```julia
 
-# Initialize and empty set that stores strings
+# Initialize an empty set that stores strings
 fruit = Set{String}()
 
 # add items to a set using push!
@@ -488,7 +488,7 @@ push!(fruit, "Mango")
 # Initialize an empty set
 fruit = set()
 
-# Add data to fruit set
+# Add data to the fruit set
 fruit.add("Apple")
 fruit.add("Pear")
 fruit.add("Mango")
@@ -503,7 +503,7 @@ The exciting thing about a dictionary implementation, e.g., the `Dict` type in [
 
 A [hash function](https://en.wikipedia.org/wiki/Hash_function) takes an input value, e.g., a string key, and returns a fixed-size string or number (hash value). The same key information will always produce the same index output, but even a small change to the input will have a very different result. In the case of a dictionary, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.
 
-Let's look at some psuedo code for a simple hash function ({prf:ref}`algo-hash-function-code`):
+Let's look at some pseudo code for a simple hash function ({prf:ref}`algo-hash-function-code`):
 
 ````{prf:algorithm} Simple Hash Function
 :label: algo-hash-function-code
@@ -556,20 +556,20 @@ function myhash(key::String; β::Int64 = 31, size::Int64 = 1000)::Int64
 end
 ```
 
-To call this `myhash` function with the key = `CHEME-1800`, we issue the commands in the [REPL](https://docs.julialang.org/en/v1/stdlib/REPL/):
+To call this `myhash` function with the key = `CHEME-4800`, we issue the commands in the [REPL](https://docs.julialang.org/en/v1/stdlib/REPL/):
 
 ```julia
-julia> key = "CHEME-1800"
+julia> key = "CHEME-4800"
 julia> hashvalue = myhash(key);
 ```
 
-The `myhash` implementation above should return a value of `780` for the key = `CHEME-1800`.
+The `myhash` implementation above should return a value of `153` for the key = `CHEME-4800`.
 
 ````
 
 (content:references:data-structure-tree)=
 ### Trees
-Trees are widely-used non-linear data structures that encode hierarchical structure in data that are composed of nodes and edges ({numref}`fig-tree-schematic`). 
+Trees are widely used non-linear data structures that encode hierarchical structures in data that are composed of nodes and edges ({numref}`fig-tree-schematic`). 
 
 ```{figure} ./figs/Fig-Tree-Schematic.png
 ---
@@ -584,9 +584,9 @@ Each node may have one or more child nodes, and each child node has one or more 
 ````{prf:definition} Children and nodes of a full k-ary tree
 :label: defn-children-and-node-k-ary
 
-Let $\mathcal{T}$ be a full k-ary tree with height $h$ where each node of $\mathcal{T}$ has $k$ children. The height of the tree $\mathcal{T}$ will be defined as the maximum number of edges from the root node to a tree leaf. Further, let the root node of $\mathcal{T}$ have an index $0$. 
+Let $\mathcal{T}$ be a full k-ary tree with height $h$ where each node of $\mathcal{T}$ has $k$ children. The tree's height $\mathcal{T}$ will be defined as the maximum number of edges from the root node to a tree leaf. Further, let the root node of $\mathcal{T}$ have an index $0$. 
 
-Then, the indicies of the children of node $i$, denoted by the set $\mathcal{C}_{i}$, are given by:
+Then, the indices of the children of node $i$, denoted by the set $\mathcal{C}_{i}$, are given by:
 
 ```{math}
 :label: eqn-children-node-i
@@ -607,7 +607,7 @@ where $N_{h}$ includes the final layer of leaves.
 #### Common uses for trees
 Trees are ubiquitous in computing; trees are used in a huge variety of applications:
 
-* __Organizing and searching data__: Trees are commonly used to store and organize hierarchical data, such as file systems, organizational charts, and website navigation menus. The hierarchical structure of a tree makes it easy to search for specific items and perform operations like adding, deleting, or updating elements.
+* __Organizing and searching data__: Trees commonly store and organize hierarchical data, such as file systems, organizational charts, and website navigation menus. The hierarchical structure of a tree makes it easy to search for specific items and perform operations like adding, deleting, or updating elements.
 * __Implementing algorithms__: Many algorithms in computer science are implemented using tree data structures. For example, binary search trees enable efficient searching for an item in a sorted list. In contrast, heaps and priority queues efficiently extract the maximum or minimum element from a collection.
 * __Modeling real-world phenomena__: Trees can be used to model many real-world phenomena, such as family trees, taxonomies, and decision trees. Decision trees are commonly used in machine learning to model decision-making processes and classify data based on binary decisions.
 
@@ -617,7 +617,7 @@ One interesting application of trees beyond what was listed above is to diagram 
 :label: example-recursive-fibonacci-memo
 :class: dropdown
 
-One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a [recursive implementation of the `Fibonacci` function](../unit-1-basics/functions.md) which computed the [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_number). The call tree for recursive `fibonacci(4)` is shown in ({numref}`fig-recursive-fib-4-call-tree`):
+One tool to diagram how a recursive function works is by developing a call tree. Previously, we constructed a [recursive implementation of the `Fibonacci` function](../unit-1-basics/functions.md), which computed the [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_number). The call tree for recursive `fibonacci(4)` is shown in ({numref}`fig-recursive-fib-4-call-tree`):
 
 ```{figure} ./figs/Fig-Fib-4-Recursive-Tree.png
 ---
@@ -642,7 +642,7 @@ Construct a ternary pricing tree that describes a two-time step projection of a 
 
 Let the current price of a commodity, e.g., a raw material required for a chemical process, be given by $P_{o}$. Assume that at each subsequent time-step in the future, the price can increase by $r_{+}$ = 2\%, stay the same $r_{0}$ = 0\%, or decrease by $r_{-}$ = 1\%.
 
-__Solution__: The height of the tree $h$ will be the number of future time-steps. Thus, from {prf:ref}`defn-children-and-node-k-ary` we know the total number of nodes in the tree (length of the storage array) is $N_{2} = 13$. Further, we know the relationship between the parent price $P_i$ and children prices is given be:
+__Solution__: The height of the tree $h$ will be the number of future time-steps. Thus, from {prf:ref}`defn-children-and-node-k-ary`, we know the total number of nodes in the tree (length of the storage array) is $N_{2} = 13$. Further, we know the relationship between the parent price $P_i$ and children prices is given by:
 
 ```{math}
 :label: eqn-price-set-node-i
@@ -662,7 +662,7 @@ function build(type::Type{ArrayBasedTernaryCommodityPriceTree};
     h::Int64 = 1, price::Float64 = 1.0, u::Float64 = 0.02, d::Float64 = 0.01)::ArrayBasedTernaryCommodityPriceTree
 
     # initialize -
-    model = ArrayBasedTernaryCommodityPriceTree(); # build an emprt tree model -
+    model = ArrayBasedTernaryCommodityPriceTree(); # build an empty tree model -
     Nₕ = sum([3^i for i ∈ 0:h]) # compute how many nodes we have in the tree
     P = Dict{Int64,Float64}() 
 
@@ -708,9 +708,9 @@ julia> m = build(ArrayBasedTernaryCommodityPriceTree; h = 2, price = Pₒ); # bu
 __source__: Source code can be found in the [CHEME-1800/4800 tree examples repository](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/trees)
 ````
 
-In an adjacency list representation, the list of children at index $i$, denoted by $\mathcal{C}_{i}$, is still given by Eqn. {eq}`eqn-children-node-i`. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary and the data stored in a seperate data structure. 
+In an adjacency list representation, the list of children at index $i$, denoted by $\mathcal{C}_{i}$, is still given by Eqn. {eq}`eqn-children-node-i`. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary, and the data is stored in a separate data structure. 
 
-Let's reimagine the terneray commodity price model in the Adjacency list format ({prf:ref}`example-ternary-price-model-adj-list`):
+Let's reimagine the ternary commodity price model in the Adjacency list format ({prf:ref}`example-ternary-price-model-adj-list`):
 
 ````{prf:example} Ternary commodity price tree adjacency list
 :label: example-ternary-price-model-adj-list
@@ -720,7 +720,7 @@ Construct a ternary pricing tree that describes a two-time step projection of a 
 
 Let the current price of a commodity, e.g., a raw material required for a chemical process, be given by $P_{o}$. Assume that at each subsequent time-step in the future, the price can increase by 2\%, stay the same, or decrease by 1\%.
 
-__Solution__: The height of the tree $h$ will be the number of future time-steps. Thus, from {prf:ref}`defn-children-and-node-k-ary` we know the total number of nodes in the tree (length of the storage array) is $N_{2} = 13$. Further, we know the relationship between the parent price $P_i$ and children prices will be the same as the array based representation.
+__Solution__: The height of the tree $h$ will be the number of future time-steps. Thus, from {prf:ref}`defn-children-and-node-k-ary` we know the total number of nodes in the tree (length of the storage array) is $N_{2} = 13$. Further, we know the relationship between the parent price $P_i$ and children's prices will be the same as the array-based representation.
 
 We can now develop a `build` method that takes information about the tree and returns a list of the values of the commodity price at each node in the tree, along with a data structure holding information about the tree connectivity.
 
@@ -925,7 +925,7 @@ Some of the most common uses of depth-first traversal are:
 #### How does breadth-first traversal work?
 In {prf:ref}`algo-breadth-first-traversal`, $\mathcal{G}$ is the graph (or tree) to be traversed, and `start` is the starting node for the traversal. The algorithm uses a queue `queue` to keep track of the nodes to be visited next. The set `visited` is used to keep track of the nodes that have already been visited (which avoids visiting the same node twice).
 
-{prf:ref}`algo-breadth-first-traversal` starts by adding the `start` node to the `visited` set and enqueuing it onto the `queue`. Then, while `queue` is not empty, it `dequeues` the next node, which we call `current`, processes it and adds its unvisited children to the `visited` set and enqueues them onto `queue`. {prf:ref}`algo-breadth-first-traversal` continues until the `queue` is empty and all nodes have been visited.
+{prf:ref}`algo-breadth-first-traversal` starts by adding the `start` node to the `visited` set and enqueuing it onto the `queue`. Then, while `queue` is not empty, it `dequeues` the next node, which we call `current,` processes it and adds its unvisited children to the `visited` set and enqueues them onto `queue.` {prf:ref}`algo-breadth-first-traversal` continues until the `queue` is empty and all nodes have been visited.
 
 Some of the most common uses of breadth-first traversal are:
 * __Shortest path__: Breadth-first traversal can be used to find the [shortest path between two nodes in an unweighted graph](https://en.wikipedia.org/wiki/Shortest_path_problem). Since it explores all the vertices at a given distance before moving to the next distance, it guarantees that the first time a node is visited, it is via the shortest path.
