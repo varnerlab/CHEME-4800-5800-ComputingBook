@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -405,7 +405,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-data-structures">Linear data structures</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">Arrays</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-arrays-vectors-matrices-and-d-dimensional-arrays">Types of arrays: Vectors, Matrices and d-dimensional arrays</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-arrays-vectors-matrices-and-d-dimensional-arrays">Types of arrays: Vectors, Matrices, and d-dimensional arrays</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stacks">Stacks</a><ul class="nav section-nav flex-column">
@@ -464,7 +464,7 @@ document.write(`
 <aside class="topic">
 <p class="topic-title">Overview</p>
 <p>In this set of lectures, we’ll introduce Data Structures and methods to access the data stored in data structures. Data structures are ways of organizing and storing data in a computer so that it can be accessed and modified efficiently.
-We’ll begin with a discussion of linear data structures, and then move on to non-linear data structures.</p>
+We’ll begin with a discussion of linear data structures and then move on to non-linear data structures.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#content-references-linear-data-structures"><span class="std std-ref">Linear data structures</span></a> store elements linearly, meaning that they are arranged in a sequence one after the other. We’ll discuss arrays, stacks, queues, and linked lists as examples of linear data structures.</p></li>
 <li><p><a class="reference internal" href="#content-references-non-linear-data-structures"><span class="std std-ref">Non-linear data structures</span></a> store and manage data in more complex ways, allowing for faster access and manipulation of data, especially data with hierarchical relationships. We’ll discuss dictionaries (hashmaps) and sets, trees, and graphs as examples of non-linear data structures.</p></li>
@@ -495,7 +495,7 @@ Finally, we'll also introduce approaches for data access in trees and graphs:
 <figure class="align-default" id="fig-array-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-Array-Schematic.png"><img alt="../_images/Fig-Array-Schematic.png" src="../_images/Fig-Array-Schematic.png" style="height: 90px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Schematic of a 1-based array six element array with name a.</span><a class="headerlink" href="#fig-array-schematic" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Schematic of a 1-based array six-element array with name a.</span><a class="headerlink" href="#fig-array-schematic" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The items in an array are accessed using an index, an integer representing the item’s position in the collection. In most programming languages, arrays are zero-indexed, i.e., the first element in the array has an index of <code class="docutils literal notranslate"><span class="pre">0</span></code>, the second element has an index of <code class="docutils literal notranslate"><span class="pre">1</span></code>, and so on. However, arrays in <a class="reference external" href="https://julialang.org">Julia</a> are one-based, i.e., the first element has an index <code class="docutils literal notranslate"><span class="pre">1</span></code>, the second element has an index <code class="docutils literal notranslate"><span class="pre">2</span></code>, etc.</p>
@@ -519,15 +519,15 @@ Finally, we'll also introduce approaches for data access in trees and graphs:
 </div>
 <p>However, array access uses parenthesis in niche systems, such as <a class="reference external" href="https://www.mathworks.com/products/matlab.html">Matlab/Octave</a>. Accessing individual elements or contiguous ranges of elements of an array is fast, but inserting or deleting elements from the middle of an array can be slow, as it requires shifting the elements to make room for the new element or closing the gap left by the deleted element.</p>
 <section id="types-of-arrays-vectors-matrices-and-d-dimensional-arrays">
-<h4>Types of arrays: Vectors, Matrices and d-dimensional arrays<a class="headerlink" href="#types-of-arrays-vectors-matrices-and-d-dimensional-arrays" title="Link to this heading">#</a></h4>
-<p>There are different sizes (types) of arrays, such as one-dimensional arrays (vectors), which store a linear sequence of elements, and multi-dimensional arrays, e.g., two-dimensional arrays (matricies) or arrays of arrays that store data in more complex structures.</p>
+<h4>Types of arrays: Vectors, Matrices, and d-dimensional arrays<a class="headerlink" href="#types-of-arrays-vectors-matrices-and-d-dimensional-arrays" title="Link to this heading">#</a></h4>
+<p>There are different sizes (types) of arrays, such as one-dimensional arrays (vectors), which store a linear sequence of elements, and multi-dimensional arrays, e.g., two-dimensional arrays (matrices) or arrays of arrays that store data in more complex structures.</p>
 <p>In <a class="reference external" href="https://julialang.org">Julia</a>, the size of an array and the type of data that will be stored in the array are declared when you initialize the array. For example, a 1-dimensional array of indefinite length that holds integers is declared as:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define an array arr</span>
 <span class="n">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">1</span><span class="p">}()</span><span class="w"> </span><span class="c"># the array is empty</span>
 
-<span class="c"># When an array has undefined length, we use the push! operation to add values</span>
+<span class="c"># When an array has an undefined length, we use the push! operation to add values</span>
 <span class="n">push!</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c"># adds a 1 to index 1</span>
 <span class="n">push!</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c"># adds a 2 to index 2</span>
 <span class="n">push!</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span><span class="w"> </span><span class="c"># adds a 4 to index 3</span>
@@ -549,7 +549,7 @@ Finally, we'll also introduce approaches for data access in trees and graphs:
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define an array arr</span>
 <span class="n">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">1</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="c"># the array has 10 elements, each initialized to undefined</span>
 
-<span class="c"># When an array has defined length, we use the = operation to add values</span>
+<span class="c"># When an array has a defined length, we use the = operation to add values</span>
 <span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span>
 <span class="w">  </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">^</span><span class="n">i</span><span class="w"> </span><span class="c"># fills the array with powers of 2</span>
 <span class="k">end</span>
@@ -568,10 +568,10 @@ Finally, we'll also introduce approaches for data access in trees and graphs:
 <p>Two-dimensional arrays follow a similar pattern when we declare the array; however, there is no direct equivalent to the <code class="docutils literal notranslate"><span class="pre">push!</span></code> operation for two- (or higher) dimensional arrays. Thus, when dealing with multi-dimensional arrays, we typically need to know the size of each dimension when we declare the array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define an 2-dimensional array A</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define a 2-dimensional array A</span>
 <span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">}(</span><span class="nb">undef</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="c"># array of Int&#39;s has 4 rows, 4 cols, initialized to undefined</span>
 
-<span class="c"># When an array has defined length, we use the = operation to add values</span>
+<span class="c"># When an array has a defined length, we use the = operation to add values</span>
 <span class="c"># This creates an upper-triangular matrix with powers 2</span>
 <span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">4</span>
 <span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">4</span>
@@ -602,7 +602,7 @@ Finally, we'll also introduce approaches for data access in trees and graphs:
 </section>
 <section id="stacks">
 <span id="content-references-lda-stacks"></span><h3>Stacks<a class="headerlink" href="#stacks" title="Link to this heading">#</a></h3>
-<p>A <code class="docutils literal notranslate"><span class="pre">stack</span></code> data structure follows the <a class="reference external" href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)">last-in, first-out (LIFO) principle</a>, the last element added to a <code class="docutils literal notranslate"><span class="pre">stack</span></code> will be the first element removed (<a class="reference internal" href="#fig-stack-schematic"><span class="std std-numref">Fig. 5</span></a>). Unlike an array, you cannot access the elements of a stack by thier index. Instead, elements are added to the top of the stack (also known as <code class="docutils literal notranslate"><span class="pre">pushing</span></code>) and removed from the top of the stack (also known as <code class="docutils literal notranslate"><span class="pre">popping</span></code>).</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">stack</span></code> data structure follows the <a class="reference external" href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)">last-in, first-out (LIFO) principle</a>, the last element added to a <code class="docutils literal notranslate"><span class="pre">stack</span></code> will be the first element removed (<a class="reference internal" href="#fig-stack-schematic"><span class="std std-numref">Fig. 5</span></a>). Unlike an array, you cannot access the elements of a stack by their index. Instead, elements are added to the top of the stack (also known as <code class="docutils literal notranslate"><span class="pre">pushing</span></code>) and removed from the top of the stack (also known as <code class="docutils literal notranslate"><span class="pre">popping</span></code>).</p>
 <figure class="align-default" id="fig-stack-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-Stack-Schematic.png"><img alt="../_images/Fig-Stack-Schematic.png" src="../_images/Fig-Stack-Schematic.png" style="height: 200px;" /></a>
 <figcaption>
@@ -643,7 +643,7 @@ Finally, we'll also introduce approaches for data access in trees and graphs:
 <figure class="align-default" id="fig-queue-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-Queue-Schematic.png"><img alt="../_images/Fig-Queue-Schematic.png" src="../_images/Fig-Queue-Schematic.png" style="height: 200px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Schematic of the <code class="docutils literal notranslate"><span class="pre">enqueue!</span></code> and <code class="docutils literal notranslate"><span class="pre">dequeue!</span></code> operations for a <code class="docutils literal notranslate"><span class="pre">queue</span> <span class="pre">q</span></code>. Quues follow the first-in, first-out paradigm. Thus, new elements are continually added to the bottom of the queue, while elements are drawn from the top (depicted with the dashed arrow).</span><a class="headerlink" href="#fig-queue-schematic" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Schematic of the <code class="docutils literal notranslate"><span class="pre">enqueue!</span></code> and <code class="docutils literal notranslate"><span class="pre">dequeue!</span></code> operations for a <code class="docutils literal notranslate"><span class="pre">queue</span> <span class="pre">q</span></code>. Queues follow the first-in, first-out paradigm. Thus, new elements are continually added to the bottom of the queue, while elements are drawn from the top (depicted with the dashed arrow).</span><a class="headerlink" href="#fig-queue-schematic" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Queues in <a class="reference external" href="https://docs.julialang.org">Julia</a> are implemented by the <a class="reference external" href="https://github.com/JuliaCollections/DataStructures.jl">DataStructures.jl</a> package:</p>
@@ -672,11 +672,11 @@ Finally, we'll also introduce approaches for data access in trees and graphs:
 <li><p><strong>Breadth-first search</strong>: In graph theory, the breadth-first search algorithm explores a graph by visiting all the vertices at a given level before moving on to the next level. This can be implemented using a queue data structure, where the vertices at each level are added to the queue in order and processed in that exact order.</p></li>
 <li><p><strong>Message passing</strong>: Queues are often used to pass messages between different parts of a system, such as between a producer and a consumer in a messaging system. Messages are added to the back of the queue by the producer and consumed from the front of the queue by the consumer. This allows the producer and consumer to operate at different speeds without the risk of messages being lost or overwritten.</p></li>
 </ul>
-<p>In addition to the applications listed above, Queues are an ideal data structure for recursive parsing applications. Let’s build a recursive string parser using a Queue (<a class="reference internal" href="#example-queue-recursive-string-parser">Example 13</a>):</p>
+<p>In addition to the abovementioned applications, Queues are an ideal data structure for recursive parsing applications. Let’s build a recursive string parser using a Queue (<a class="reference internal" href="#example-queue-recursive-string-parser">Example 13</a>):</p>
 <div class="proof example dropdown admonition" id="example-queue-recursive-string-parser">
 <p class="admonition-title"><span class="caption-number">Example 13 </span> (Recursive descent string parser)</p>
 <section class="example-content" id="proof-content">
-<p>Develop a recursive parser that returns the words in a sentence as a <code class="docutils literal notranslate"><span class="pre">Dict{Int64,</span> <span class="pre">String}</span></code>, where the keys are the index of the word in the sentence, and the value are the words.</p>
+<p>Develop a recursive parser that returns the words in a sentence as a <code class="docutils literal notranslate"><span class="pre">Dict{Int64,</span> <span class="pre">String}</span></code>, where the keys are the index of the word in the sentence, and the values are the words.</p>
 <p>Test input: “you’ve got mail works alot better than it deserves to . “</p>
 <p><strong>Solution</strong>: We’ll encode the string we need to parse in a queue data structure. We’ll process each character until the queue is empty (base case): i) if the character is not the delimiter, then we’ll store it; ii) if the character is the delimiter, we’ll assemble all the characters that we stored into a string add to the external array.</p>
 <p><strong>Assumptions</strong>: This code assumes that the <code class="docutils literal notranslate"><span class="pre">DataStructures.jl</span></code> package has been installed; the <code class="docutils literal notranslate"><span class="pre">DataStructures.jl</span></code> implements the <code class="docutils literal notranslate"><span class="pre">Queue</span></code> data structure.</p>
@@ -772,7 +772,7 @@ A linked list is a linear data structure where each element, called a node, is a
 <figure class="align-default" id="fig-linkedlist-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-LinkedList-Schematic.png"><img alt="../_images/Fig-LinkedList-Schematic.png" src="../_images/Fig-LinkedList-Schematic.png" style="height: 180px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Schematic of a singly linked list. Each node in the list has data, in this case a queue data structure, and a reference (link) to the next node in the list.</span><a class="headerlink" href="#fig-linkedlist-schematic" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Schematic of a singly linked list. Each node in the list has data, in this case, a queue data structure and a reference (link) to the next node in the list.</span><a class="headerlink" href="#fig-linkedlist-schematic" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>There are two main types of linked lists: singly linked lists and doubly linked lists. In a singly linked list, each node has a reference to the next node in the list but not the previous one. On the other hand, each node connects to the next and previous nodes in a doubly linked list.</p>
@@ -912,7 +912,7 @@ python</label><div class="sd-tab-content docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-2">
 julia</label><div class="sd-tab-content docutils">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize and empty set that stores strings</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Initialize an empty set that stores strings</span>
 <span class="n">fruit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Set</span><span class="p">{</span><span class="kt">String</span><span class="p">}()</span>
 
 <span class="c"># add items to a set using push!</span>
@@ -928,7 +928,7 @@ python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty set</span>
 <span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
-<span class="c1"># Add data to fruit set</span>
+<span class="c1"># Add data to the fruit set</span>
 <span class="n">fruit</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Apple&quot;</span><span class="p">)</span>
 <span class="n">fruit</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Pear&quot;</span><span class="p">)</span>
 <span class="n">fruit</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Mango&quot;</span><span class="p">)</span>
@@ -941,7 +941,7 @@ python</label><div class="sd-tab-content docutils">
 <h4>Hash functions<a class="headerlink" href="#hash-functions" title="Link to this heading">#</a></h4>
 <p>The exciting thing about a dictionary implementation, e.g., the <code class="docutils literal notranslate"><span class="pre">Dict</span></code> type in <a class="reference external" href="https://docs.julialang.org">Julia</a>, is the fast lookup enabled by mapping an arbitrary key to an array index. This mapping is enabled using a <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a>.</p>
 <p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">hash function</a> takes an input value, e.g., a string key, and returns a fixed-size string or number (hash value). The same key information will always produce the same index output, but even a small change to the input will have a very different result. In the case of a dictionary, when a key is passed to the hash function, it calculates a hash value, which is then used as the index at which the corresponding data value is stored in an array.</p>
-<p>Let’s look at some psuedo code for a simple hash function (<a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a>):</p>
+<p>Let’s look at some pseudo code for a simple hash function (<a class="reference internal" href="#algo-hash-function-code">Algorithm 1</a>):</p>
 <div class="proof algorithm dropdown admonition" id="algo-hash-function-code">
 <p class="admonition-title"><span class="caption-number">Algorithm 1 </span> (Simple Hash Function)</p>
 <section class="algorithm-content" id="proof-content">
@@ -989,18 +989,18 @@ python</label><div class="sd-tab-content docutils">
 <span class="k">end</span>
 </pre></div>
 </div>
-<p>To call this <code class="docutils literal notranslate"><span class="pre">myhash</span></code> function with the key = <code class="docutils literal notranslate"><span class="pre">CHEME-1800</span></code>, we issue the commands in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/REPL/">REPL</a>:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;CHEME-1800&quot;</span>
+<p>To call this <code class="docutils literal notranslate"><span class="pre">myhash</span></code> function with the key = <code class="docutils literal notranslate"><span class="pre">CHEME-4800</span></code>, we issue the commands in the <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/REPL/">REPL</a>:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;CHEME-4800&quot;</span>
 <span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hashvalue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myhash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">myhash</span></code> implementation above should return a value of <code class="docutils literal notranslate"><span class="pre">780</span></code> for the key = <code class="docutils literal notranslate"><span class="pre">CHEME-1800</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">myhash</span></code> implementation above should return a value of <code class="docutils literal notranslate"><span class="pre">153</span></code> for the key = <code class="docutils literal notranslate"><span class="pre">CHEME-4800</span></code>.</p>
 </section>
 </div></section>
 </section>
 <section id="trees">
 <span id="content-references-data-structure-tree"></span><h3>Trees<a class="headerlink" href="#trees" title="Link to this heading">#</a></h3>
-<p>Trees are widely-used non-linear data structures that encode hierarchical structure in data that are composed of nodes and edges (<a class="reference internal" href="#fig-tree-schematic"><span class="std std-numref">Fig. 8</span></a>).</p>
+<p>Trees are widely used non-linear data structures that encode hierarchical structures in data that are composed of nodes and edges (<a class="reference internal" href="#fig-tree-schematic"><span class="std std-numref">Fig. 8</span></a>).</p>
 <figure class="align-default" id="fig-tree-schematic">
 <a class="reference internal image-reference" href="../_images/Fig-Tree-Schematic.png"><img alt="../_images/Fig-Tree-Schematic.png" src="../_images/Fig-Tree-Schematic.png" style="height: 320px;" /></a>
 <figcaption>
@@ -1011,8 +1011,8 @@ python</label><div class="sd-tab-content docutils">
 <div class="proof definition admonition" id="defn-children-and-node-k-ary">
 <p class="admonition-title"><span class="caption-number">Definition 3 </span> (Children and nodes of a full k-ary tree)</p>
 <section class="definition-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> be a full k-ary tree with height <span class="math notranslate nohighlight">\(h\)</span> where each node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> has <span class="math notranslate nohighlight">\(k\)</span> children. The height of the tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> will be defined as the maximum number of edges from the root node to a tree leaf. Further, let the root node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> have an index <span class="math notranslate nohighlight">\(0\)</span>.</p>
-<p>Then, the indicies of the children of node <span class="math notranslate nohighlight">\(i\)</span>, denoted by the set <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, are given by:</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> be a full k-ary tree with height <span class="math notranslate nohighlight">\(h\)</span> where each node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> has <span class="math notranslate nohighlight">\(k\)</span> children. The tree’s height <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> will be defined as the maximum number of edges from the root node to a tree leaf. Further, let the root node of <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> have an index <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>Then, the indices of the children of node <span class="math notranslate nohighlight">\(i\)</span>, denoted by the set <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, are given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-children-node-i">
 <span class="eqno">(6)<a class="headerlink" href="#equation-eqn-children-node-i" title="Link to this equation">#</a></span>\[\mathcal{C}_{i}=\left\{k\cdot{i}+1,k\cdot{i}+2,\dots,k\cdot{i}+k\right\}\]</div>
 <p>and the total number of nodes of tree <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> with branched height <span class="math notranslate nohighlight">\(h\)</span>, denoted by <span class="math notranslate nohighlight">\(N_{h}\)</span>, is given by:</p>
@@ -1024,7 +1024,7 @@ python</label><div class="sd-tab-content docutils">
 <h4>Common uses for trees<a class="headerlink" href="#common-uses-for-trees" title="Link to this heading">#</a></h4>
 <p>Trees are ubiquitous in computing; trees are used in a huge variety of applications:</p>
 <ul class="simple">
-<li><p><strong>Organizing and searching data</strong>: Trees are commonly used to store and organize hierarchical data, such as file systems, organizational charts, and website navigation menus. The hierarchical structure of a tree makes it easy to search for specific items and perform operations like adding, deleting, or updating elements.</p></li>
+<li><p><strong>Organizing and searching data</strong>: Trees commonly store and organize hierarchical data, such as file systems, organizational charts, and website navigation menus. The hierarchical structure of a tree makes it easy to search for specific items and perform operations like adding, deleting, or updating elements.</p></li>
 <li><p><strong>Implementing algorithms</strong>: Many algorithms in computer science are implemented using tree data structures. For example, binary search trees enable efficient searching for an item in a sorted list. In contrast, heaps and priority queues efficiently extract the maximum or minimum element from a collection.</p></li>
 <li><p><strong>Modeling real-world phenomena</strong>: Trees can be used to model many real-world phenomena, such as family trees, taxonomies, and decision trees. Decision trees are commonly used in machine learning to model decision-making processes and classify data based on binary decisions.</p></li>
 </ul>
@@ -1032,7 +1032,7 @@ python</label><div class="sd-tab-content docutils">
 <div class="proof example dropdown admonition" id="example-recursive-fibonacci-memo">
 <p class="admonition-title"><span class="caption-number">Example 16 </span> (Recursive Fibonacci and Memoization)</p>
 <section class="example-content" id="proof-content">
-<p>One tool to diagram how a recursive function works is by develiping a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a> which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci sequence</a>. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 9</span></a>):</p>
+<p>One tool to diagram how a recursive function works is by developing a call tree. Previously, we constructed a <a class="reference internal" href="../unit-1-basics/functions.html"><span class="std std-doc">recursive implementation of the <code class="docutils literal notranslate"><span class="pre">Fibonacci</span></code> function</span></a>, which computed the <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci sequence</a>. The call tree for recursive <code class="docutils literal notranslate"><span class="pre">fibonacci(4)</span></code> is shown in (<a class="reference internal" href="#fig-recursive-fib-4-call-tree"><span class="std std-numref">Fig. 9</span></a>):</p>
 <figure class="align-default" id="fig-recursive-fib-4-call-tree">
 <a class="reference internal image-reference" href="../_images/Fig-Fib-4-Recursive-Tree.png"><img alt="../_images/Fig-Fib-4-Recursive-Tree.png" src="../_images/Fig-Fib-4-Recursive-Tree.png" style="height: 260px;" /></a>
 <figcaption>
@@ -1050,7 +1050,7 @@ python</label><div class="sd-tab-content docutils">
 <section class="example-content" id="proof-content">
 <p>Construct a ternary pricing tree that describes a two-time step projection of a commodity price using an array-based tree representation.</p>
 <p>Let the current price of a commodity, e.g., a raw material required for a chemical process, be given by <span class="math notranslate nohighlight">\(P_{o}\)</span>. Assume that at each subsequent time-step in the future, the price can increase by <span class="math notranslate nohighlight">\(r_{+}\)</span> = 2%, stay the same <span class="math notranslate nohighlight">\(r_{0}\)</span> = 0%, or decrease by <span class="math notranslate nohighlight">\(r_{-}\)</span> = 1%.</p>
-<p><strong>Solution</strong>: The height of the tree <span class="math notranslate nohighlight">\(h\)</span> will be the number of future time-steps. Thus, from <a class="reference internal" href="#defn-children-and-node-k-ary">Definition 3</a> we know the total number of nodes in the tree (length of the storage array) is <span class="math notranslate nohighlight">\(N_{2} = 13\)</span>. Further, we know the relationship between the parent price <span class="math notranslate nohighlight">\(P_i\)</span> and children prices is given be:</p>
+<p><strong>Solution</strong>: The height of the tree <span class="math notranslate nohighlight">\(h\)</span> will be the number of future time-steps. Thus, from <a class="reference internal" href="#defn-children-and-node-k-ary">Definition 3</a>, we know the total number of nodes in the tree (length of the storage array) is <span class="math notranslate nohighlight">\(N_{2} = 13\)</span>. Further, we know the relationship between the parent price <span class="math notranslate nohighlight">\(P_i\)</span> and children prices is given by:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-price-set-node-i">
 <span class="eqno">(8)<a class="headerlink" href="#equation-eqn-price-set-node-i" title="Link to this equation">#</a></span>\[\left\{P_{i}\left(1+r_{+}\right),P_{i},P_{i}\left(1-r_{-}\right)\right\}\]</div>
 <p>We can now develop a <code class="docutils literal notranslate"><span class="pre">build</span></code> method that takes information about the tree and returns a list of the values of the commodity price at each node in the tree.</p>
@@ -1063,7 +1063,7 @@ python</label><div class="sd-tab-content docutils">
 <span class="w">    </span><span class="n">h</span><span class="o">::</span><span class="kt">Int64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="o">::</span><span class="kt">Float64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="kt">Float64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.02</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="o">::</span><span class="kt">Float64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.01</span><span class="p">)</span><span class="o">::</span><span class="kt">ArrayBasedTernaryCommodityPriceTree</span>
 
 <span class="w">    </span><span class="c"># initialize -</span>
-<span class="w">    </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ArrayBasedTernaryCommodityPriceTree</span><span class="p">();</span><span class="w"> </span><span class="c"># build an emprt tree model -</span>
+<span class="w">    </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ArrayBasedTernaryCommodityPriceTree</span><span class="p">();</span><span class="w"> </span><span class="c"># build an empty tree model -</span>
 <span class="w">    </span><span class="n">Nₕ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">([</span><span class="mi">3</span><span class="o">^</span><span class="n">i</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">∈</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="n">h</span><span class="p">])</span><span class="w"> </span><span class="c"># compute how many nodes we have in the tree</span>
 <span class="w">    </span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Dict</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="kt">Float64</span><span class="p">}()</span><span class="w"> </span>
 
@@ -1107,14 +1107,14 @@ python</label><div class="sd-tab-content docutils">
 </div>
 <p><strong>source</strong>: Source code can be found in the <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-2-examples/trees">CHEME-1800/4800 tree examples repository</a></p>
 </section>
-</div><p>In an adjacency list representation, the list of children at index <span class="math notranslate nohighlight">\(i\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, is still given by Eqn. <a class="reference internal" href="#equation-eqn-children-node-i">(6)</a>. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary and the data stored in a seperate data structure.</p>
-<p>Let’s reimagine the terneray commodity price model in the Adjacency list format (<a class="reference internal" href="#example-ternary-price-model-adj-list">Example 18</a>):</p>
+</div><p>In an adjacency list representation, the list of children at index <span class="math notranslate nohighlight">\(i\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathcal{C}_{i}\)</span>, is still given by Eqn. <a class="reference internal" href="#equation-eqn-children-node-i">(6)</a>. However, instead of storing the edges and data in the same array, the edge connectivity is stored in an array or dictionary, and the data is stored in a separate data structure.</p>
+<p>Let’s reimagine the ternary commodity price model in the Adjacency list format (<a class="reference internal" href="#example-ternary-price-model-adj-list">Example 18</a>):</p>
 <div class="proof example dropdown admonition" id="example-ternary-price-model-adj-list">
 <p class="admonition-title"><span class="caption-number">Example 18 </span> (Ternary commodity price tree adjacency list)</p>
 <section class="example-content" id="proof-content">
 <p>Construct a ternary pricing tree that describes a two-time step projection of a commodity price using an adjacency list representation.</p>
 <p>Let the current price of a commodity, e.g., a raw material required for a chemical process, be given by <span class="math notranslate nohighlight">\(P_{o}\)</span>. Assume that at each subsequent time-step in the future, the price can increase by 2%, stay the same, or decrease by 1%.</p>
-<p><strong>Solution</strong>: The height of the tree <span class="math notranslate nohighlight">\(h\)</span> will be the number of future time-steps. Thus, from <a class="reference internal" href="#defn-children-and-node-k-ary">Definition 3</a> we know the total number of nodes in the tree (length of the storage array) is <span class="math notranslate nohighlight">\(N_{2} = 13\)</span>. Further, we know the relationship between the parent price <span class="math notranslate nohighlight">\(P_i\)</span> and children prices will be the same as the array based representation.</p>
+<p><strong>Solution</strong>: The height of the tree <span class="math notranslate nohighlight">\(h\)</span> will be the number of future time-steps. Thus, from <a class="reference internal" href="#defn-children-and-node-k-ary">Definition 3</a> we know the total number of nodes in the tree (length of the storage array) is <span class="math notranslate nohighlight">\(N_{2} = 13\)</span>. Further, we know the relationship between the parent price <span class="math notranslate nohighlight">\(P_i\)</span> and children’s prices will be the same as the array-based representation.</p>
 <p>We can now develop a <code class="docutils literal notranslate"><span class="pre">build</span></code> method that takes information about the tree and returns a list of the values of the commodity price at each node in the tree, along with a data structure holding information about the tree connectivity.</p>
 <p><strong>Preconditions</strong>:</p>
 <ul class="simple">
@@ -1330,7 +1330,7 @@ the ith entry points to the children indices of vertex <span class="math notrans
 </div><section id="how-does-breadth-first-traversal-work">
 <h4>How does breadth-first traversal work?<a class="headerlink" href="#how-does-breadth-first-traversal-work" title="Link to this heading">#</a></h4>
 <p>In <a class="reference internal" href="#algo-breadth-first-traversal">Algorithm 3</a>, <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> is the graph (or tree) to be traversed, and <code class="docutils literal notranslate"><span class="pre">start</span></code> is the starting node for the traversal. The algorithm uses a queue <code class="docutils literal notranslate"><span class="pre">queue</span></code> to keep track of the nodes to be visited next. The set <code class="docutils literal notranslate"><span class="pre">visited</span></code> is used to keep track of the nodes that have already been visited (which avoids visiting the same node twice).</p>
-<p><a class="reference internal" href="#algo-breadth-first-traversal">Algorithm 3</a> starts by adding the <code class="docutils literal notranslate"><span class="pre">start</span></code> node to the <code class="docutils literal notranslate"><span class="pre">visited</span></code> set and enqueuing it onto the <code class="docutils literal notranslate"><span class="pre">queue</span></code>. Then, while <code class="docutils literal notranslate"><span class="pre">queue</span></code> is not empty, it <code class="docutils literal notranslate"><span class="pre">dequeues</span></code> the next node, which we call <code class="docutils literal notranslate"><span class="pre">current</span></code>, processes it and adds its unvisited children to the <code class="docutils literal notranslate"><span class="pre">visited</span></code> set and enqueues them onto <code class="docutils literal notranslate"><span class="pre">queue</span></code>. <a class="reference internal" href="#algo-breadth-first-traversal">Algorithm 3</a> continues until the <code class="docutils literal notranslate"><span class="pre">queue</span></code> is empty and all nodes have been visited.</p>
+<p><a class="reference internal" href="#algo-breadth-first-traversal">Algorithm 3</a> starts by adding the <code class="docutils literal notranslate"><span class="pre">start</span></code> node to the <code class="docutils literal notranslate"><span class="pre">visited</span></code> set and enqueuing it onto the <code class="docutils literal notranslate"><span class="pre">queue</span></code>. Then, while <code class="docutils literal notranslate"><span class="pre">queue</span></code> is not empty, it <code class="docutils literal notranslate"><span class="pre">dequeues</span></code> the next node, which we call <code class="docutils literal notranslate"><span class="pre">current,</span></code> processes it and adds its unvisited children to the <code class="docutils literal notranslate"><span class="pre">visited</span></code> set and enqueues them onto <code class="docutils literal notranslate"><span class="pre">queue.</span></code> <a class="reference internal" href="#algo-breadth-first-traversal">Algorithm 3</a> continues until the <code class="docutils literal notranslate"><span class="pre">queue</span></code> is empty and all nodes have been visited.</p>
 <p>Some of the most common uses of breadth-first traversal are:</p>
 <ul class="simple">
 <li><p><strong>Shortest path</strong>: Breadth-first traversal can be used to find the <a class="reference external" href="https://en.wikipedia.org/wiki/Shortest_path_problem">shortest path between two nodes in an unweighted graph</a>. Since it explores all the vertices at a given distance before moving to the next distance, it guarantees that the first time a node is visited, it is via the shortest path.</p></li>
@@ -1419,7 +1419,7 @@ the ith entry points to the children indices of vertex <span class="math notrans
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-data-structures">Linear data structures</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">Arrays</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-arrays-vectors-matrices-and-d-dimensional-arrays">Types of arrays: Vectors, Matrices and d-dimensional arrays</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-arrays-vectors-matrices-and-d-dimensional-arrays">Types of arrays: Vectors, Matrices, and d-dimensional arrays</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stacks">Stacks</a><ul class="nav section-nav flex-column">
