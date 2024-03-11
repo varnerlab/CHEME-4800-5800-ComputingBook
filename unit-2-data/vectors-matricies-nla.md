@@ -1110,7 +1110,6 @@ Iterative methods work by improving an initial guess of the solution until a des
 {ref}`content:references:gauss-seidel-method`.
 
 * __At each iteration__: an iterative method uses the current estimate of the solution to generate a new estimate closer to the actual answer. This process continues until the solution converges to a desired accuracy level, typically measured by a tolerance parameter.
-
 The basic strategy of an iterative method is shown in {prf:ref}`obs-basic-iterative-method-outline`:
 
 <!-- 
