@@ -182,7 +182,7 @@ The notation $|\star|$ denotes the dimension (number of elements) of set $\star$
 
 <!-- Matrices and vectors are encoded in computer programs as {ref}`content:references:lda-arrays` -->
 
-Matrices and vectors naturally arise in simple chemical engineering systems like the one shown in {numref}`fig-chemical-reactor-schematic` Let's dig deeper into their definition, structure, and operations.
+Matrices and vectors naturally arise in simple chemical engineering systems like the one shown in {numref}`fig-chemical-reactor-schematic.` Let's dig deeper into their definition, structure, and operations.
 
 (content:references:matrix-vector)=
 ## Matrices and Vectors
@@ -897,7 +897,7 @@ __Step 2__: Perform row operations to reduce the augmented matrix $\bar{\mathbf{
 * _Scaling_:  If the first nonzero entry of row $R_{i}$ is $\lambda$, we can convert to $1$ through the operation: $R_{i}\leftarrow{1/\lambda}R_{i}$
 * _Addition and subtraction_: For any nonzero entry below the top one, use an elementary row operation to change it to zero. If two rows $R_{i}$ and $R_{j}$ have nonzero entries in column $k$, we can transform the (j,k) entry into a zero using $R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}$. 
 
-In Eqn {eq}`eqn-augmented-array-A`, the first row and column entry are non-zero, and interchanging rows does not improve our progress. However, the leading non-zero coefficient is not `1`; thus, let's use a scaling row operation:
+In Eqn {eq}`eqn-augmented-array-A,` the first row and column entry are non-zero, and interchanging rows does not improve our progress. However, the leading non-zero coefficient is not `1`; thus, let's use a scaling row operation:
 
 ```{math}
 :label: eqn-augmented-array-A-step3

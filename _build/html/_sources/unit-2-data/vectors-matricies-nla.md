@@ -12,30 +12,21 @@ kernelspec:
 
 # Vectors, Matrices and Linear Algebraic Equations
 
-## Introduction
 
-This lecture will introduce Vectors, Matrices, and operations defined on these objects. Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is essential. In chemical engineering, vectors and matrcies are used to represent physical laws such as the conservation of mass, moles or energy. 
-
-Thus, we begin our discussion of vectors, matrcies and their associated operations by quickly reviewing mass and mole balance equations:
+```{topic} Overview
+This lecture will introduce vectors, matrices, and operations defined on these objects. Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is essential. 
 
 * {ref}`content:references:matrix-vector-mass-mol-balances`. Chemical Engineers use balance equations to describe, design, and troubleshoot products and processes. Balance equations describe the amount of _stuff_ (e.g., mass, moles, energy, etc.) in a _system_ that interacts with its _surroundings_. Balance equations can be represented as a system of matrices and vectors.
 
-Next, we transition to defining the structure of matrices and vectors, and thier associated operations:
-
-* {ref}`content:references:matrix-vector` are abstract mathematical objects, typically arrays of numbers, in engineering applications. Vectors (one-dimensional arrays) often describe points in space or encode coefficients of linear equations. On the other hand, matrices (two- or more dimensional objects) typically represent data sets or a grid of numbers. However, matrices also describe linear transformations, such as rotations and scaling operations, and define systems of linear equations. 
-
-Finally, we consider a crucial application area, namely, the formulation and solution of systems of linear algebraic equations:
+* {ref}`content:references:matrix-vector` are abstract mathematical objects in engineering applications, typically arrays of numbers. Vectors (one-dimensional arrays) often describe points in space or encode coefficients of linear equations. On the other hand, matrices (two- or more dimensional objects) typically represent data sets or a grid of numbers. However, matrices also describe linear transformations, such as rotations and scaling operations, and define systems of linear equations. 
 
 * {ref}`content:references:soln-laes-start` arise in many different Engineering fields. In Chemical Engineering, these equations naturally arise from steady-state balance equations. We'll introduce two approaches to solving these systems of equations. 
-
+```
 ---
 
 (content:references:matrix-vector-mass-mol-balances)=
-## Review of balances
-Streams of _stuff_ (e.g., material, energy, money, information, etc.) enter (exit) a system from the surroundings; streams cross the system boundary, transporting _stuff_ into or from the system. A system is said to be _open_  if _material stuff_ can enter or exit the system; otherwise, a system is _closed_. For physical systems, streams can be pipes in which material flows into or from the system at some rate. In other cases, streams into (from) a system can carry other types of _stuff_ such as information (e.g., bits) or money (e.g., $\$$, $\def\euro{\unicode{x20AC}} \euro$, bitcoin, etc).
-
-Regardless if a system is open or closed and whatever _stuff_ is, within the system, 
-_stuff_ can accumulate and be generated, e.g., via a chemical reaction or by an interest process such as a savings account or treasury bond in the case of money. Whatever the system is, and whatever _stuff_ is, the time behavior of the system can always be described by these _four_ types of terms: inputs, outputs, generation, and accumulation. 
+## Review of balance equations
+Streams of _stuff_ (e.g., material, energy, money, information, etc.) enter (exit) a system from the surroundings; streams cross the system boundary, transporting _stuff_ into or from the system. A system is said to be _open_  if _material stuff_ can enter or exit the system; otherwise, a system is _closed_. For physical systems, streams can be pipes in which material flows into or from the system at some rate. In other cases, streams into (from) a system can carry different types of _stuff_ such as information (e.g., bits) or money (e.g., $\$$, $\def\euro{\unicode{x20AC}} \euro$, bitcoin, etc). Regardless of whether a system is open or closed and whatever _stuff_ is within the system, _stuff_ can accumulate and be generated, e.g., via a chemical reaction or by an interest-bearing process such as a savings account or treasury bond in the case of money. Whatever the system is, and whatever _stuff_ is, the time behavior of the system can always be described by these _four_ types of terms: inputs, outputs, generation, and accumulation. 
 
 ### Open species mass balances
 If we are interested in the mass of each chemical species, we can let _stuff_ equal the mass of each of the chemical components; this choice gives the _open species mass balance_ ({prf:ref}`defn-open-species-mass-balance`):
@@ -43,9 +34,7 @@ If we are interested in the mass of each chemical species, we can let _stuff_ eq
 ````{prf:definition} Open Species Mass Balance
 :label: defn-open-species-mass-balance
 
-Let $m_{i}$ denote the mass of chemical component $i$ in a system consisting of the species set $\mathcal{M}$ (units: mass, e.g., grams g). Further, represent the set of streams flowing into (or from) the system as $\mathcal{S}$. Each stream $s\in\mathcal{S}$ has a direction parameter $\nu_{s}\in\left[-1,1\right]$: If stream $s$ _enters_ the system $\nu_{s} = +1$, however, if stream $s$ _exits_ the system then $\nu_{s} = -1$.
-
-Then, the mass of chemical component $i$ in the system as a function of time (units: g) is described by an _open species mass balance equation_:
+Let $m_{i}$ denote the mass of chemical component $i$ in a system consisting of the species set $\mathcal{M}$ (units: mass, e.g., grams g). Further, represent the streams flowing into (or from) the system as $\mathcal{S}$. Each stream $s\in\mathcal{S}$ has a direction parameter $\nu_{s}\in\left[-1,1\right]$: If stream $s$ _enters_ the system $\nu_{s} = +1$, however, if stream $s$ _exits_ the system then $\nu_{s} = -1$. Then, the mass of chemical component $i$ in the system as a function of time (units: g) is described by an _open species mass balance equation_:
 
 ```{math}
 :label: eqn-species-mass-i-dynamic
@@ -73,9 +62,7 @@ __Steady state__: At steady state, the accumulation term vanishes; thus, the ste
 ````
 
 ### Open species mole balances
-The principles of mole-based balance equations are similar to their mass-based equivalents, i.e., we can write species mole balances or total mole balances, and the terms play an equivalent role as their mass-based equivalents. However, mass-based units are generally convenient for systems that do not involve chemical reactions, and it is often easier to use mole-based units when chemical reactions occur. 
-
-Before we define the open species mole balance, let's discuss the generation terms that appear in mole balances. Generation terms describe the impact of chemical reactions. For mole based systems we'll use the [open extent of reaction](https://en.wikipedia.org/wiki/Extent_of_reaction) to describe how far a chemical reaction has proceeded toward completion in an open system ({prf:ref}`defn-open-extent-of-rxn`):
+The principles of mole-based balance equations are similar to their mass-based equivalents, i.e., we can write species mole balances or total mole balances, and the terms play an equivalent role as their mass-based equivalents. However, mass-based units are generally convenient for systems that do not involve chemical reactions, and it is often easier to use mole-based units when chemical reactions occur. Before we define the open species mole balance, let's discuss the generation terms that appear in mole balances. Generation terms describe the impact of chemical reactions. For mole-based systems, we'll use the [open extent of reaction](https://en.wikipedia.org/wiki/Extent_of_reaction) to describe how far a chemical reaction has proceeded toward completion in an open system ({prf:ref}`defn-open-extent-of-rxn`):
 
 ````{prf:definition} Open Extent of Reaction
 :label: defn-open-extent-of-rxn
@@ -92,7 +79,7 @@ where $\dot{\epsilon}_{r}$ denotes the open extent of reaction $r$. The quantity
 * If $\sigma_{ir}=0$ then species $i$ is _not connected to_ reaction $r$
 * If $\sigma_{ir}<0$ then species $i$ is _consumed_ by reaction $r$, i.e., species $i$ is a reactant of reaction $r$.
 
-__Connection with kinetic rate__: In a concentration-based system, we often use concentration balances, and the kinetic rate laws, to describe the system. The open extent of reaction $r$ is related to kinetic rate law per unit volume $\hat{r}_{r}$ (units: mol V$^{-1}$ t$^{-1}$):
+__Connection with kinetic rate__: In a concentration-based system, we often use concentration balances and kinetic rate laws to describe the system. The open extent of reaction $r$ is related to kinetic rate law per unit volume $\hat{r}_{r}$ (units: mol V$^{-1}$ t$^{-1}$):
 
 ```{math}
 :label: eqn-open-extent-kinetics
@@ -109,9 +96,7 @@ Now that we understand how to describe the reaction terms, we can write the _ope
 :label: defn-open-species-mole-balance
 
 
-Let $n_{i}\in\mathcal{M}$ denote the number of moles of chemical species $i$ in a well-mixed system with species set $\mathcal{M}$ which participates in the chemical reaction set $\mathcal{R}$. Further, let $\mathcal{S}$ denote the streams flowing into (or from) the system. Each stream $s\in\mathcal{S}$ has a direction parameter $\nu_{s}\in\left[-1,1\right]$: If stream $s$ _enters_ the system $\nu_{s} = +1$, however, is stream $s$ _exits_ the system then $\nu_{s} = -1$.
-
-Then, the time evolution of $n_{i}\in\mathcal{M}$ is described by an _open species mole balance equation_ of the form:
+Let $n_{i}\in\mathcal{M}$ denote the number of moles of chemical species $i$ in a well-mixed system with species set $\mathcal{M}$ which participates in the chemical reaction set $\mathcal{R}$. Further, let $\mathcal{S}$ denote the streams flowing into (or from) the system. Each stream $s\in\mathcal{S}$ has a direction parameter $\nu_{s}\in\left[-1,1\right]$: If stream $s$ _enters_ the system $\nu_{s} = +1$, however, is stream $s$ _exits_ the system then $\nu_{s} = -1$. Then, the time evolution of $n_{i}\in\mathcal{M}$ is described by an _open species mole balance equation_ of the form:
 
 ```{math}
 :label: eqn-species-mol-balance
@@ -134,24 +119,20 @@ __Steady-state__: At steady state, all the accumulation terms vanish and the sys
 To motivate the study of matrices and vectors, let's rethink the open species mole balances given in 
 {prf:ref}`defn-open-species-mole-balance` in terms of a system of equations. Toward this, consider a simple reaction $A\longrightarrow{B}$ occurring in a well-mixed chemical reactor with single input and a single output ({numref}`fig-chemical-reactor-schematic`):
 
-
-```{figure} ./figs/Fig-Reactor-Schematic.pdf
+```{figure} ./figs/Fig-Reactor-Schematic.png
 ---
 height: 240px
 name: fig-chemical-reactor-schematic
 ---
-Schematic of an open well-mixed chemical reactor with a single input and output stream. 
+Schematic of an open, well-mixed chemical reactor with a single input and output stream. 
 ```
-
 The species set in this case is $\mathcal{M}=\left\{A,B\right\}$ and the stream set $\mathcal{S}=\left\{s_{1},s_{2}\right\}$, and there is a single chemical reaction; let $A$ be species `1` and $B$ be species `2`. {prf:ref}`defn-open-species-mole-balance` tells us that we'll have a system of equations of the form (at steady-state):
-
 $$
 \begin{eqnarray}
 \dot{n}_{A,1} - \dot{n}_{A,2} - \dot{\epsilon}_{1} & = & 0 \\
 \dot{n}_{B,1} - \dot{n}_{B,2} + \dot{\epsilon}_{1} & = & 0 \\
 \end{eqnarray}
 $$
-
 However, this system can be re-written in a much more compact (and general) form:
 
 ```{math}
@@ -201,11 +182,11 @@ The notation $|\star|$ denotes the dimension (number of elements) of set $\star$
 
 <!-- Matrices and vectors are encoded in computer programs as {ref}`content:references:lda-arrays` -->
 
-Matrices and vectors naturally arise in even simple chemical engineering systems like the one shown in {numref}`fig-chemical-reactor-schematic`. Let's dig deeper into their definition, structure, and operations.
+Matrices and vectors naturally arise in simple chemical engineering systems like the one shown in {numref}`fig-chemical-reactor-schematic` Let's dig deeper into their definition, structure, and operations.
 
 (content:references:matrix-vector)=
-## Matricies and Vectors
-Matrices are two- (or more) dimensional rectangular arrays of numbers, widgets, etc that consist of $m$ rows and $n$ columns:
+## Matrices and Vectors
+Matrices are two- (or more) dimensional rectangular arrays of numbers, widgets, etc. that consist of $m$ rows and $n$ columns:
 
 $$\mathbf{A} = 
 \begin{pmatrix}
@@ -226,7 +207,7 @@ Let the matrix $\mathbf{A}$ be an $m\times{n}$ array. Then, the matrix $\mathbf{
 * __Underdetermined__: If $m<n$, the matrix is called an _underdetermined_ matrix; underdetermined matrices have more columns than rows.
 ```
 
-Vectors are a specal type of matrix that is one-dimensional, where _elements_ are arranged as either a single row or single column. For example, a $m\times{1}$ _column_ vector $\mathbf{a}$ is given by:
+Vectors are a special type of one-dimensional matrix where _elements_ are arranged as a single row or column. For example, a $m\times{1}$ _column_ vector $\mathbf{a}$ is given by:
 
 $$\mathbf{a} = 
 \begin{pmatrix}
@@ -243,26 +224,24 @@ $$\mathbf{a} =
 a_{1} & a_{2} & \cdots & a_{n}
 \end{pmatrix}$$
 
-Just like numbers, vectors and matrices can participate in mathematical operations, such as addition, subtraction and multiplication, with some small differences. However, before we explore the mathematical operations of matrices and vectors, we'll discuss a few special matricies. 
+Just like numbers, vectors and matrices can participate in mathematical operations, such as addition, subtraction, and multiplication, with some small differences. However, before we explore the mathematical operations of matrices and vectors, we'll discuss a few special matrices. 
 
 ````{prf:remark} Restriction to real numbers
 :label: rem-real-values
-While the matrix $\mathbf{A}$ or vector $\mathbf{v}$ can theoretically hold any objects, e.g., strings, dictionaries, or trees, etc., in this section, we'll only consider numbers, and in particular real numbers. Thus, we'll assume all matrices are $\mathbf{A}\in\mathbb{R}^{n\times{m}}$ and vectors $\mathbf{v}\in\mathbb{R}^{n}$; no complex numbers will be considered.  
+While the matrix $\mathbf{A}$ or vector $\mathbf{v}$ can theoretically hold any objects, e.g., strings, dictionaries, or trees, etc., in this section, we'll only consider numbers and particular real numbers. Thus, we'll assume all matrices are $\mathbf{A}\in\mathbb{R}^{n\times{m}}$ and vectors $\mathbf{v}\in\mathbb{R}^{n}$; no complex numbers will be considered.  
 ````
 
 ### Special matrices and matrix properties
 Special matrices have specific properties or characteristics that make them useful in certain mathematical operations or applications. 
 Some examples of special matrices include: 
 
-* __Diagonal and identity matrices__: A diagonal matrix is a square matrix in which all entries outside the main diagonal are zero. The special diagonal matrix with `1` on the diagonal and `0` everywhere else is called the [Identity matrix](https://en.wikipedia.org/wiki/Identity_matrix), and is often denoted by the symbol $\mathbf{I}$.
+* __Diagonal and identity matrices__: A diagonal matrix is a square matrix in which all entries outside the main diagonal are zero. The unique diagonal matrix with `1` on the diagonal and `0` everywhere else is called the [Identity matrix](https://en.wikipedia.org/wiki/Identity_matrix) and is often denoted by the symbol $\mathbf{I}$.
 * __Triangular matrices__: [Triangular matrices](https://en.wikipedia.org/wiki/Triangular_matrix) are square arrays with zero entries below or above the main diagonal. A square matrix is called _lower triangular_ if all the entries above the main diagonal are zero. Similarly, a square matrix is called _upper triangular_ if all the entries below the main diagonal are zero.
 * __Orthogonal matrices__: [Orthogonal matrices](https://en.wikipedia.org/wiki/Orthogonal_matrix)  are square matrices whose rows and columns are mutually orthogonal and have unit lengths.
 
 (content:determinant-trace)=
-#### Trace, Determinant, LU decomposition and Rank
-
-##### Trace
-The trace of a square matrix is the sum of the diagonal elements ({prf:ref}`defn-trace-A`):
+### Trace, Determinant, LU decomposition, and Rank
+__Trace__. The trace of a square matrix is the sum of the diagonal elements ({prf:ref}`defn-trace-A`):
 
 ````{prf:definition} Trace
 :label: defn-trace-A
@@ -284,17 +263,14 @@ using LinearAlgebra
 # Define array
 A = [1 2 ; 3 4]; # the semicolon forces a newline 
 
-# compute the trace, store in the variable value
+# compute the trace store in the variable value
 value = tr(A);
 
 # What is the tr(A)
 println("The trace of the matrix tr(A) = $(value)")
 ```
 
-[NumPy also has a trace function](https://numpy.org/doc/stable/reference/generated/numpy.trace.html) if your are doing linear algebra calculations in [Python](https://www.python.org).
-
-##### Determinant
-The [determinant of a matrix](https://en.wikipedia.org/wiki/Determinant) is a scalar value that can be computed from a square matrix ({prf:ref}`defn-det-A`):
+[NumPy also has a trace function](https://numpy.org/doc/stable/reference/generated/numpy.trace.html) if you are doing linear algebra calculations in [Python](https://www.python.org). The [determinant of a matrix](https://en.wikipedia.org/wiki/Determinant) is a scalar value that can be computed from a square matrix ({prf:ref}`defn-det-A`):
 
 ````{prf:definition} Leibniz determinant formula
 :label: defn-det-A
@@ -309,13 +285,11 @@ Then, the determinant $\det\left(\mathbf{A}\right)$ is given by:
 \det\left(\mathbf{A}\right) = \sum_{\sigma\in{S_{n}}}\text{sign}\left(\sigma\right)\prod_{i=1}^{n}a_{i\sigma_{i}}
 ```
 
-where $S_{n}$ denotes the Symmtery group of dimension $n$, i.e., the set of all possible permutations of the set ${1,2,\dots,n}$,
+where $S_{n}$ denotes the Symmetry group of dimension $n$, i.e., the set of all possible permutations of the set ${1,2,\dots,n}$,
 the quantity $\text{sign}\left(\sigma\right)$ equals `+1` if the permutation can be obtained with an even number of exchanges; otherwise `-1`. Finally, $a_{i\sigma_{i}}$ denotes the entry of the matrix $\mathbf{A}$ on row $i$, and column $\sigma_{i}$.
 ````
 
-[Determinants](https://en.wikipedia.org/wiki/Determinant) can be used to determine whether a system of linear equations has a solution, but they also have other applications. However, the Leibniz determinant shown in {prf:ref}`defn-det-A` can be computationally expensive for large matrices since the number of permutations grows factorially with the matrix size. However, it provides a theoretical basis for understanding the determinant and can be helpful for small matrices or conceptual purposes.
-
-In [Julia](https://julialang.org), the [determinant function](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.det) is encoded in the [LinearAlgebra](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/) package included with the [Julia](https://julialang.org) distribution. However, the [LinearAlgebra](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/) package is not loaded by default (you'll need to issue the `using LinearAlgebra` command to access its functions):
+[Determinants](https://en.wikipedia.org/wiki/Determinant) can be used to determine whether a system of linear equations has a solution, but they also have other applications. However, the Leibniz determinant shown in {prf:ref}`defn-det-A` can be computationally expensive for large matrices since the number of permutations grows factorially with the matrix size. However, it provides a theoretical basis for understanding the determinant and can be helpful for small matrices or conceptual purposes. In [Julia](https://julialang.org), the [determinant function](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.det) is encoded in the [LinearAlgebra](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/) package included with the [Julia](https://julialang.org) distribution. However, the [LinearAlgebra](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/) package is not loaded by default (you'll need to issue the `using LinearAlgebra` command to access its functions):
 
 ```{code-cell} julia
 # load the LinearAlgebra package
@@ -324,7 +298,7 @@ using LinearAlgebra
 # Define array
 A = [1 2 ; 3 4]; # the semicolon forces a newline 
 
-# compute the determinant, store in the variable value
+# compute the determinant, and store in the variable value
 value = det(A);
 
 # What is the det(A)
@@ -352,17 +326,14 @@ using LinearAlgebra
 # Define array
 A = [1 0 ; 2 3]; # the semicolon forces a newline 
 
-# compute the determinant, store in the variable value
+# compute the determinant, and store in the variable value
 value = det(A);
 
 # What is the det(A)
 println("The determinant of the matrix det(A) = $(value)")
 ```
 
-##### LU decomposition
-LU decomposition, also known as LU factorization, is a method of decomposing a square matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ into the product of a permutation matrix $\mathbf{P}$, and lower and upper triangular matrices $\mathbf{L}$ and $\mathbf{U}$, respectively, such that $\mathbf{A} = \mathbf{P}\mathbf{L}\mathbf{U}$. 
-
-LU decomposition is a widely used numerical linear algebra technique with many applications. For example, the LU decomposition simplifies the computation of determinants ({prf:ref}`defn-LU-determinant`):
+__LU decomposition__. LU decomposition, also known as LU factorization, is a method of decomposing a square matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ into the product of a permutation matrix $\mathbf{P}$, and lower and upper triangular matrices $\mathbf{L}$ and $\mathbf{U}$, respectively, such that $\mathbf{A} = \mathbf{P}\mathbf{L}\mathbf{U}$. LU decomposition is a widely used numerical linear algebra technique with many applications. For example, the LU decomposition simplifies the computation of determinants ({prf:ref}`defn-LU-determinant`):
 
 ````{prf:definition} LU decomposition
 :label: defn-LU-determinant
@@ -385,7 +356,7 @@ using LinearAlgebra
 # Define array
 A = [1 2 ; 3 4]; # the semicolon forces a newline 
 
-# compute the determinant, store in the variable value
+# compute the determinant and store it in the variable value
 F = lu(A);
 L = F.L
 U = F.U
@@ -395,9 +366,7 @@ P = F.P
 AT = P*L*U
 ```
 
-
-##### Rank
-Finally, the [rank of a matrix](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) is a measure of the number of linearly independent rows or columns ({prf:ref}`defn-rank-A`): 
+__Rank__. Finally, the [rank of a matrix](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) is a measure of the number of linearly independent rows or columns ({prf:ref}`defn-rank-A`): 
 
 ````{prf:definition} Rank
 :label: defn-rank-A
@@ -430,14 +399,12 @@ println("The rank of the matrix rank(A) = $(value)")
 
 (content:matrix-vector-operations)=
 ## Mathematical matrix and vector operations
-Matrix and vector operations are mathematical procedures to add, subtract and multiple matrices and vectors.  Matrix and vector operations are similar in some wats to scalar numbers, with some crucial differences and one important caveat: _they must be compatible_.
+Matrix and vector operations are mathematical procedures for adding, subtracting, and multiplying matrices and vectors. They are similar in some ways to scalar numbers, but they have some crucial differences and one important caveat: they must be compatible. 
 
-Many (if not all) modern programming languages implement a version of the [Basic Linear Algebra Subprograms (BLAS)](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms) library. [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms) is a low-level library that efficiently implements basic linear algebra operations, such as vector and matrix multiplication, matrix-vector multiplication, and solving linear systems of equations. The library is designed to provide high-performance implementations of these routines that can be used as building blocks for more complex algorithms. 
-
-However, while you will not have to implement most matrix and vector operations on your own, it is still helpful to understand these operations and how broadly they work.  
+Many (if not all) modern programming languages implement a version of the [Basic Linear Algebra Subprograms (BLAS)](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms) library. [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms) is a low-level library that efficiently implements basic linear algebra operations, such as vector and matrix multiplication, matrix-vector multiplication, and solving linear systems of equations. The library is designed to provide high-performance implementations of these routines that can be used as building blocks for more complex algorithms. However, while you will not have to implement most matrix and vector operations on your own, it is still helpful to understand these operations and how broadly they work.  
 
 ### Addition and subtraction
-Compatible matrices and vectors can be added and subtracted just like scalar quantities. The addition (or subtraction) operations for matrices or vectors are done element-wise. Thus, if these objects don't have the same number of elements, then addition and subtraction operations don't make sense.  
+Compatible matrices and vectors can be added and subtracted just like scalar quantities. The addition (or subtraction) operations for matrices or vectors are done element-wise. Thus, if these objects have a different number of elements, then addition and subtraction operations don't make sense.  
 
 ````{prf:definition} Vector addition
 :label: obs-same-dimension
@@ -472,18 +439,13 @@ Vector addition is straightforward to implement ({prf:ref}`algo-vector-addition`
 **Return** sum vector $\mathbf{y}$
 ````
 
-#### Is the naive approach really the best?
-{prf:ref}`algo-vector-addition` may not be the _best_ way to implement vector (or matrix) addition or subtraction operations. Many modern programming languages and libraries, e.g., [the Numpy library in Python](https://numpy.org) or [Julia](https://julialang.org), support _vectorization_, i.e., special operators that encode element-wise addition, subtraction or other types of element-wise operations without the need to write `for` loops. 
+#### Is the naive approach the best?
+{prf:ref}`algo-vector-addition` may not be the _best_ way to implement vector (or matrix) addition or subtraction operations. Many modern programming languages and libraries, e.g., [the Numpy library in Python](https://numpy.org) or [Julia](https://julialang.org), support _vectorization_, i.e., special operators that encode element-wise addition, subtraction or other types of element-wise operations without the need to write `for` loops. In [Julia](https://julialang.org), you can use the vectorized `.+` operator for element-wise addition, while element-wise subtraction can be encoded with the `.-` operator. Vectorized code typically executes faster than naive implementations such as {prf:ref}`algo-vector-addition` because the _vectorization_ takes advantage of advanced techniques to improve performance. 
 
-In [Julia](https://julialang.org), you can use the vectorized `.+` operator for element-wise addition, while element-wise subtraction can be encoded with the `.-` operator. Vectorized code typically executes faster than naive implementations such as {prf:ref}`algo-vector-addition` because the _vectorization_ takes advantage of advanced techniques to improve performance. 
-
-##### Additional information on vectorization
 * [Vectorized operations in NumPy](https://www.geeksforgeeks.org/vectorized-operations-in-numpy/). [NumPy](https://numpy.org) is a Python scientific computing package. It is a Python library that provides multidimensional array objects and routines for fast operations on arrays.
 * [Vectorized operations in Julia](https://docs.julialang.org/en/v1/manual/functions/#man-vectorized) are included in the standard library. The standard library already defines common operators such as addition `.+`, subtraction `.-`, multiplication `.*`, and power `.^`. However, the [broadcasting](https://docs.julialang.org/en/v1/manual/arrays/#Broadcasting) paradigm allows you to write your own vectorized operations.
 
 ### Multiplication operations
-
-#### Scalar multiplication
 The most straightforward multiplication operation is between a scalar and a vector (or matrix). Multiplying a vector (or a matrix) by a scalar constant is done element-wise ({prf:ref}`defn-scalar-multiplication`):
 
 ````{prf:definition} Scalar multiplication of a matrix or vector
@@ -530,7 +492,7 @@ y = \sum_{i=1}^{m}a_{i}b_{i}
 __Compatibility__: This operation is possible if the vectors $\mathbf{a}$ and $\mathbf{b}$ have the same number of elements.
 ````
 
-__Outer product__: Suppose you have an $m\times{1}$ vector $\mathbf{a}$, and an $n\times{1}$ vector $\mathbf{b}$. The vectors $\mathbf{a}$ and $\mathbf{b}$ can be multipled together to form a $m\times{n}$ matrix through an [outer product operation](https://en.wikipedia.org/wiki/Outer_product) ({prf:ref}`defn-vector-vector-multiplication-op`):
+__Outer product__: Suppose you have an $m\times{1}$ vector $\mathbf{a}$, and an $n\times{1}$ vector $\mathbf{b}$. The vectors $\mathbf{a}$ and $\mathbf{b}$ can be multiplied together to form a $m\times{n}$ matrix through an [outer product operation](https://en.wikipedia.org/wiki/Outer_product) ({prf:ref}`defn-vector-vector-multiplication-op`):
 
 
 ````{prf:definition} Outer product
@@ -561,7 +523,7 @@ A common operation is _right matrix-vector multiplication_ of a matrix $\mathbf{
 ````{prf:definition} Right matrix-vector multiplication
 :label: defn-right-matrix-vector-multiplication
 
-Let $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and $\mathbf{x}\in\mathbb{R}^{n\times{1}}$. Then, the right matrix-vector product given by:
+Let $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and $\mathbf{x}\in\mathbb{R}^{n\times{1}}$. Then, the right matrix-vector product is given by:
 
 $$\mathbf{y} = \mathbf{A}\mathbf{x}$$
 
@@ -574,7 +536,7 @@ __Compatibility__: This operation is possible if the number of columns of the ma
 
 The right multiplication operation can be represented graphically as a series of scalar$\times$vector multiplication and vector-vector summation operations ({numref}`fig-right-multiplication-matrix-vector`):
 
-```{figure} ./figs/Fig-Ab-Multiplication.pdf
+```{figure} ./figs/Fig-Ab-Multiplication.png
 ---
 height: 140px
 name: fig-right-multiplication-matrix-vector
@@ -582,7 +544,7 @@ name: fig-right-multiplication-matrix-vector
 Schematic of the right matrix-vector product. The right product, which produces a column vector with the same number of rows as the matrix, can be modeled as a series of scalar$\times$vector multiplication and vector-vector summation operations. 
 ```
 
-A psuedo code implemetation of {prf:ref}`defn-right-matrix-vector-multiplication` is given in {prf:ref}`algo-right-multiplication-matrix-vector`:
+A pseudo code implementation of {prf:ref}`defn-right-matrix-vector-multiplication` is given in {prf:ref}`algo-right-multiplication-matrix-vector`:
 
 ```{prf:algorithm} Naive right multiplication of a matrix by a vector
 :label: algo-right-multiplication-matrix-vector
@@ -632,7 +594,7 @@ __Compatibility__: This operation is possible if the number of rows of the matri
 
 The _left multiplication operation_ can be represented graphically as a series of scalar$\times$vector multiplication and vector-vector summation operations ({numref}`fig-left-multiplication-matrix-vector`):
 
-```{figure} ./figs/Fig-bA-Left-Multiplication.pdf
+```{figure} ./figs/Fig-bA-Left-Multiplication.png
 ---
 height: 160px
 name: fig-left-multiplication-matrix-vector
@@ -680,15 +642,15 @@ __Compatibility__: The matrices $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ and $\mat
 
 The _matrix-matrix multiplication_ operation can be represented graphically as a series of right matrix-vector products ({numref}`fig-multiplication-matrix-matrix`):
 
-```{figure} ./figs/Fig-AB-Matrix-Matrix-Multiplication.pdf
+```{figure} ./figs/Fig-AB-Matrix-Matrix-Multiplication.png
 ---
 height: 380px
 name: fig-multiplication-matrix-matrix
 ---
-Schematic of matrix-matrix multiplication. This operation, which produces a matrix product, can be modeled as a series of right matrix-vector products. 
+Schematic of matrix-matrix multiplication. This operation produces a matrix product and can be modeled as a series of right matrix-vector products. 
 ```
 
-A psuedo code implemetation of {prf:ref}`defn-matrix-matrix-product` is given in {prf:ref}`algo-matrix-matrix-code`:
+A pseudo-code implementation of {prf:ref}`defn-matrix-matrix-product` is given in {prf:ref}`algo-matrix-matrix-code`:
 
 ````{prf:algorithm} Naive Matrix $\times$ Matrix multiplication
 :class: dropdown
@@ -713,8 +675,6 @@ A psuedo code implemetation of {prf:ref}`defn-matrix-matrix-product` is given in
 **Return** matrix $\mathbf{C}$
 ````
 
-
-
 Finally, matrix-matrix products have different properties compared with the product of two scalar numbers:
 * __Non-commutativity__: Matrix multiplication is typically _not_ commutative, e.g., $\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}$.
 * __Distributivity__: Matrix products are distributive, i.e., $\mathbf{A}\left(\mathbf{B}+\mathbf{C}\right) = \mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}$.
@@ -725,7 +685,7 @@ Finally, matrix-matrix products have different properties compared with the prod
 
 (content:references:soln-laes-start)=
 ## Linear algebraic equations
-Linear Algebraic Equations (LAEs) arise in many different engineering fields. In Chemical Engineering, these types of equations naturally arise from steady-state (or time-discretized) balances. Let's start by asking a simple question, when does a solution exist to the generic system of LAEs of the form:
+Linear Algebraic Equations (LAEs) arise in many different engineering fields. In Chemical Engineering, these equations naturally arise from steady-state (or time-discretized) balances. Let's start by asking a simple question: when does a solution exist to the generic system of LAEs of the form:
 
 ```{math}
 :label: eqn-general-system-laes
@@ -739,10 +699,7 @@ where $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ is the system matrix, $\mathbf{x}\i
 * __Non-homogeneous system__: A non-homogeneous system of linear algebraic equations is a system in which at least one entry of the right-hand side vector $\mathbf{b}$ is non-zero.
 
 ### Existence
-The existence of a solution to a system of linear equations depends on the righ-hand side vector, the number of equations and the number of variables in the system. 
-
-#### Homogeneous square systems
-For a homogeneous square system of linear equations, the trivial solution $\mathbf{x}=\mathbf{0}$ always exists. However, a homogeneous square system of linear algebraic equations with $n\times{n}$ system matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ and unknown vector $\mathbf{x}\in\mathbb{R}^{n\times{1}}$:
+The existence of a solution to a system of linear equations depends on the right-hand side vector, the number of equations, and the number of variables in the system. For a homogeneous square system of linear equations, the trivial solution $\mathbf{x}=\mathbf{0}$ always exists. However, a homogeneous square system of linear algebraic equations with $n\times{n}$ system matrix $\mathbf{A}\in\mathbb{R}^{n\times{n}}$ and unknown vector $\mathbf{x}\in\mathbb{R}^{n\times{1}}$:
 
 ```{math}
 :label: eqn-homogenous-laes
@@ -809,10 +766,7 @@ Several methods exist to find the solution of square systems of linear equations
 
 (content:references:gaussian-elimination)=
 #### Gaussian elimination 
-[Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations (rows) so that the coefficients of one variable are eliminated in subsequent equations. This allows us to solve the remaining variables one at a time until we have a solution for the entire system.
-
-Let's start exploring this approach by looking at solving a triangular system of equations.
-
+[Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is an efficient method for solving large square systems of linear algebraic equations. [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination) is based on "eliminating" variables by adding or subtracting equations (rows) so that the coefficients of one variable are eliminated in subsequent equations. This allows us to solve the remaining variables individually until we have a solution for the entire system. Let's start exploring this approach by looking at solving a triangular system of equations.
 
 ##### Triangular systems
 Let's consider a non-singular $3\times{3}$ lower triangular system of equations:
@@ -851,7 +805,7 @@ This idea, called _forward substitution_, can be extended to any $n\times{n}$ no
 ````{prf:definition} Forward substitution
 :label: defn-general-forward-sub
 
-Suppose we have an $n\times{n}$ system ($n\geq{2}$) of equations which is lower triangular, and non-singular of the form:
+Suppose we have an $n\times{n}$ system ($n\geq{2}$) of equations which is lower triangular and non-singular of the form:
 
 ```{math}
 :label: eqn-lower-triag-system
@@ -867,18 +821,17 @@ x_{i} & = & \frac{1}{l_{ii}}\left(b_{i} - \sum_{j=1}^{i-1}l_{ij}x_{j}\right)\qqu
 \end{eqnarray}
 $$
 
-where $l_{ii}\neq{0}$. The global operation count for this appraoch is $n^{2}$ floating point operations (flops).
+where $l_{ii}\neq{0}$. The global operation count for this approach is $n^{2}$ floating point operations (flops).
 
 ````
 
-Alternatively, we can take a similar apprach with an upper triangular system,  called _backward substituion_, to solve for 
+Alternatively, we can take a similar approach with an upper triangular system,  called _backward substitution_, to solve for 
 unknow solution vector $\mathbf{x}$ ({prf:ref}`defn-general-backward-sub`):
-
 
 ````{prf:definition} Backward substitution
 :label: defn-general-backward-sub
 
-Suppose we have an $n\times{n}$ system ($n\geq{2}$) of equations which is upper triangular, and non-singular of the form:
+Suppose we have an $n\times{n}$ system ($n\geq{2}$) of equations which is upper triangular and non-singular of the form:
 
 ```{math}
 :label: eqn-upper-triag-system
@@ -894,16 +847,16 @@ x_{i} & = & \frac{1}{u_{ii}}\left(b_{i} - \sum_{j=i+1}^{n}u_{ij}x_{j}\right)\qqu
 \end{eqnarray}
 $$
 
-where $u_{ii}\neq{0}$. The global operation count for this appraoch is $n^{2}$ floating point operations (flops).
+where $u_{ii}\neq{0}$. The global operation count for this approach is $n^{2}$ floating point operations (flops).
 
 ````
 
 <!-- Since we talking about [Gaussian elimination](https://en.wikipedia.org/wiki/Gaussian_elimination), which produces an upper triangular matrix $\mathbf{U}$, let's review a _backward substitution_ algorithm to estimate the unknown vector $\mathbf{x}$ given a non-singular upper triangular $\mathbf{U}$ and right-hand-side vector $\mathbf{b}$ based on {prf:ref}`defn-general-backward-sub`: -->
 
-Solving a lower or upper triangular system can quickly be done with a substitution approach. However, upper (or lower) triangular systems rarely arise naturally in applications. So why do we care about triangular systems? 
+A substitution approach quickly solves a lower or upper triangular system. However, upper (or lower) triangular systems rarely arise naturally in applications. So why do we care about triangular systems? 
 
 ##### Row reduction approaches
-Converting a matrix $\mathbf{A}$ to an upper triangular form involves performing a sequence of elementary row operations to transform the matrix into a form where all entries below the main diagonal are zero. This is typically done by row swapping, scaling, and adding rows. The goal is to create a matrix where each row’s leading coefficient (the first non-zero element) is `1`, and all the other entries in that column are `0`. This is achieved by using the leading coefficient of one row to eliminate the corresponding entries in the other rows.
+Converting a matrix $\mathbf{A}$ to an upper triangular form involves performing a sequence of elementary row operations to transform the matrix into a form where all entries below the main diagonal are zero. This is typically done by row swapping, scaling, and adding rows. The goal is to create a matrix where each row’s leading coefficient (the first non-zero element) is `1`, and all the other entries in that column are `0`. This is achieved by using the leading coefficient of one row to eliminate the corresponding entries in the different rows.
 
 Let's walk through a simple example to illustrate the steps involved with [row reduction](https://en.wikipedia.org/wiki/Row_echelon_form); consider the solution of the 3$\times$3 system:
 
@@ -927,7 +880,7 @@ x_{3}
 \end{pmatrix}
 ```
 
-__Step 1__: Form the augemented matrix $\bar{\mathbf{A}}$ which is defined as the matrix $\mathbf{A}$ with the righ-hand-side vector $\mathbf{b}$ appended as the last column:
+__Step 1__: Form the augmented matrix $\bar{\mathbf{A}}$ which is defined as the matrix $\mathbf{A}$ with the right-hand-side vector $\mathbf{b}$ appended as the last column:
 
 ```{math}
 :label: eqn-augmented-array-A
@@ -942,7 +895,7 @@ __Step 2__: Perform row operations to reduce the augmented matrix $\bar{\mathbf{
 
 * _Swapping_: We can interchange the order of the rows to get zeros below the main diagonal.
 * _Scaling_:  If the first nonzero entry of row $R_{i}$ is $\lambda$, we can convert to $1$ through the operation: $R_{i}\leftarrow{1/\lambda}R_{i}$
-* _Addition and subtraction_: For any nonzero entry below the top one, use an elementary row operation to change it to zero; If two rows $R_{i}$ and $R_{j}$ have nonzero entries in column $k$, we can transform the (j,k) entry into a zero using $R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}$. 
+* _Addition and subtraction_: For any nonzero entry below the top one, use an elementary row operation to change it to zero. If two rows $R_{i}$ and $R_{j}$ have nonzero entries in column $k$, we can transform the (j,k) entry into a zero using $R_{j}\leftarrow{R}_{j} - (a_{jk}/a_{ik})R_{i}$. 
 
 In Eqn {eq}`eqn-augmented-array-A`, the first row and column entry are non-zero, and interchanging rows does not improve our progress. However, the leading non-zero coefficient is not `1`; thus, let's use a scaling row operation:
 
@@ -977,9 +930,7 @@ We now eliminate the coefficient below the top row; in this case $i=1$, $j=1$ an
 \end{bmatrix}
 ```
 
-The leading coefficient of row 3 was already zero; thus, we have completed the row reduction operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then subtract from row 3, etc. 
-
-While the logic underlying the row reduction of the matrix $\mathbf{A}$ to the upper triangular row-echelon form $\mathbf{U}$ seems simple, the implementation of a general, efficient row reduction function can be complicated; let's develop a naive implementation of a row reduction procedure ({prf:ref}`algo-ge-basic`):
+The leading coefficient of row 3 was already zero; thus, we have completed the row reduction operations for row 1. Moving to row 2, the first non-zero coefficient is in column 2. Scale row 2, and then subtract from row 3, etc. While the logic underlying the row reduction of the matrix $\mathbf{A}$ to the upper triangular row-echelon form $\mathbf{U}$ seems simple, the implementation of a general, efficient row reduction function can be complicated; let's develop a naive implementation of a row reduction procedure ({prf:ref}`algo-ge-basic`):
 
 ````{prf:algorithm} Naive Row Reduction
 :class: dropdown
@@ -1052,13 +1003,13 @@ This system in Eqn. {eq}`eqn-back-sub-matrix-A` is in row reduced form; thus, it
 
 ````
 
-Now that we have row reduction and back substitution algorithms, let's look at a few examples. First,  consider the solution of a square system of equations that arise from mole balance with a single first-order decay reaction ({prf:ref}`example-time-discretized-decay`):
+Now that we have row reduction and back substitution algorithms let's look at a few examples. First,  consider the solution of a square system of equations that arise from mole balance with a single first-order decay reaction ({prf:ref}`example-time-discretized-decay`):
 
 ````{prf:example} First-order decay
 :label: example-time-discretized-decay
 :class: dropdown
 
-Setup a system of linear algebraic equations whose solution describes the concentration as a function of time for a compound $A$ that undergoes first-order decay in a well-mixed batch reactor. The concentration balance for compound $A$ is given by:
+Set up a system of linear algebraic equations whose solution describes the concentration as a function of time for a compound $A$ that undergoes first-order decay in a well-mixed batch reactor. The concentration balance for compound $A$ is given by:
 
 ```{math}
 :label: eqn-balance-concentration
@@ -1102,15 +1053,12 @@ C_{A,0}\left(1-h\kappa\right) \\
 
 ````
 
-
-
 (content:references:iterative-methods)=
 #### Iterative solution methods
 Iterative methods work by improving an initial guess of the solution until a desired level of accuracy is achieved. Commonly used iterative methods include {ref}`content:references:jacobi-iterative-method` and the 
 {ref}`content:references:gauss-seidel-method`.
 
 * __At each iteration__: an iterative method uses the current estimate of the solution to generate a new estimate closer to the actual answer. This process continues until the solution converges to a desired accuracy level, typically measured by a tolerance parameter.
-
 The basic strategy of an iterative method is shown in {prf:ref}`obs-basic-iterative-method-outline`:
 
 <!-- 
@@ -1144,7 +1092,6 @@ where $\sum_{j=1,i}^{n}$ does not include index $i$. What we do with the estimat
 
 Iterative solution methods are used to solve large systems of linear equations where direct methods (such as Gaussian elimination) are impractical due to their computational cost.
 
-
 (content:references:jacobi-iterative-method)=
 ##### Jacobi's method
 Jacobi's method __batch updates__ the estimate of $x_{i}$ at the _end_ of each iteration. Let the estimate of the value of $x_{i}$ at iteration k be $\hat{x}_{i,k}$. Then, the solution estimate at the next iteration $\hat{x}_{i,k+1}$ is given by:
@@ -1155,7 +1102,6 @@ Jacobi's method __batch updates__ the estimate of $x_{i}$ at the _end_ of each i
 ```
 
 In the Jacobi method, the estimate for all variables from the previous iteration is used, and we wait to update the solution until we have processed all $i=1,2,\cdots,n$ equations. We continue to iterate until the change in the estimated solution does not change, i.e., the _distance_ between the solution estimated at $k$ and $k+1$ is below some specified tolerance. 
-
 Let's look at the pseudo-code for Jacobi's method ({prf:ref}`algo-jacobi-iteration`):
 
 ````{prf:algorithm} Jacobi iteration
@@ -1198,9 +1144,7 @@ The Gauss-Seidel method __live updates__ the best estimate of $\hat{x}_{i}$ _dur
 \hat{x}_{i,k+1}=\frac{1}{a_{ii}}\bigl(b_{i}-\sum_{j=1}^{i-1}a_{ij}\hat{x}_{j,k+1}-\sum_{j=i+1}^{n}a_{ij}\hat{x}_{j,k}\bigr)\qquad{i=1,2,\cdots,n}
 ```
 
-We continue to iterate until the change in the estimated solution does not change, i.e., the _distance_ between the solution estimated at $k$ and $k+1$ is below some specified tolerance. 
-
-Let's look at a pseudo-code for the Gauss-Seidel method ({prf:ref}`algo-gauss-seidel-method`):
+We continue to iterate until the change in the estimated solution does not change, i.e., the _distance_ between the solution estimated at $k$ and $k+1$ is below some specified tolerance.  Let's look at a pseudo-code for the Gauss-Seidel method ({prf:ref}`algo-gauss-seidel-method`):
 
 ````{prf:algorithm} Gauss-Seidel method
 :class: dropdown
@@ -1231,15 +1175,15 @@ Matrix $\mathbf{A}$, the vector $\mathbf{b}$, guess $\mathbf{x}_{o}$, tolerance 
 1. return $\hat{\mathbf{x}}$, converged
 ````
 
-##### Successive Overrelaxation
+#### Successive Overrelaxation
 Successive Overrelaxation methods (SORMs) are modified versions of Gauss-Seidel, where the best estimate of $x_{i}$ is further modified
-before proceeding to the evaluation of the next equations. Suppose we define the best estimate
-for the value of $x_{i}$ at iteration k as $\hat{x}_{i,k}$. Then _before_ processing the next Gauss-Seidel type step we update the best guess for $x_{i}$ using the rule:
+before evaluating the next equations. Suppose we define the best estimate
+for the value of $x_{i}$ at iteration k as $\hat{x}_{i,k}$. Then _before_ processing the next Gauss-Seidel type step, we update the best guess for $x_{i}$ using the rule:
 
 $$\hat{x}_{i,k}=\lambda\hat{x}_{i,k}+\left(1-\lambda\right)\hat{x}_{i,k-1}\qquad{i=1,2,\cdots,n}$$
 
 where $\lambda$ is an adjustable parameter governed by $0<\lambda\leq{2}$. The value of $\lambda$ can dramatically speed-up *or*
-slow-down the convergence to the correct solution, so care should be taken when choosing it. 
+slow down the convergence to the correct solution, so care should be taken when choosing it. 
 The value of $\lambda$ can be in one of three regimes:
 
 * Underrelaxation $0<\lambda<1$: Can help solve systems that have problematic convergence
@@ -1267,19 +1211,13 @@ best solution and the actual solution) of an iterative method. Of course, this c
 
 ## Summary
 
-In this lecture, we introduced vectors, matrices, and operations defined on these objects. Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is essential. 
-
-We began our discussion of vectors, matrices, and their associated operations by quickly reviewing mass and mole balance equations:
+In this lecture, we introduced vectors, matrices, and operations defined on these objects. Vectors and matrices are widely used in computer science, engineering, and other fields where mathematical modeling is essential. We began our discussion of vectors, matrices, and their associated operations by quickly reviewing mass and mole balance equations:
 
 * {ref}`content:references:matrix-vector-mass-mol-balances`. Chemical Engineers use balance equations to describe, design, and troubleshoot products and processes. Balance equations describe the amount of _stuff_ (e.g., mass, moles, energy, etc.) in a _system_ that interacts with its _surroundings_. Balance equations can be represented as a system of matrices and vectors.
-
-We then transitioned to defining the structure of matrices and vectors and their associated operations:
-
-* {ref}`content:references:matrix-vector` are abstract mathematical objects, typically arrays of numbers, in engineering applications. Vectors (one-dimensional arrays) often describe points in space or encode coefficients of linear equations. On the other hand, matrices (two- or more dimensional objects) typically represent data sets or a grid of numbers. However, matrices also describe linear transformations, such as rotations and scaling operations, and define systems of linear equations. 
-
-Finally, we considered a crucial application area, namely, the solution of systems of linear algebraic equations:
+  
+* {ref}`content:references:matrix-vector` are abstract mathematical objects in engineering applications, typically arrays of numbers. Vectors (one-dimensional arrays) often describe points in space or encode coefficients of linear equations. On the other hand, matrices (two- or more dimensional objects) typically represent data sets or a grid of numbers. However, matrices also describe linear transformations, such as rotations and scaling operations, and define systems of linear equations. 
 
 * {ref}`content:references:soln-laes-start` arise in many different Engineering fields. In Chemical Engineering, these equations naturally arise from steady-state balance equations. We'll introduce two approaches to solving these systems of equations. 
 
 ## Additonal resources
-* The matrix vector and matrix $\times$ matrix product figures were inspired [Visualizing Matrix Multiplication as a Linear Combination, Eli Bendersky, Apr. 12, 15 · Big Data Zone](https://dzone.com/articles/visualizing-matrix)
+* The matrix-vector and matrix $\times$ matrix product figures were inspired [Visualizing Matrix Multiplication as a Linear Combination, Eli Bendersky, Apr. 12, 15 · Big Data Zone](https://dzone.com/articles/visualizing-matrix)
