@@ -96,21 +96,19 @@ Now that we understand how to describe the reaction terms, we can write the _ope
 :label: defn-open-species-mole-balance
 
 
-Let $n_{i}\in\mathcal{M}$ denote the number of moles of chemical species $i$ in a well-mixed system with species set $\mathcal{M}$ which participates in the chemical reaction set $\mathcal{R}$. Further, let $\mathcal{S}$ denote the streams flowing into (or from) the system. Each stream $s\in\mathcal{S}$ has a direction parameter $\nu_{s}\in\left[-1,1\right]$: If stream $s$ _enters_ the system $\nu_{s} = +1$, however, is stream $s$ _exits_ the system then $\nu_{s} = -1$. Then, the time evolution of $n_{i}\in\mathcal{M}$ is described by an _open species mole balance equation_ of the form:
+Let $n_{i}\in\mathcal{M}$ denote the number of moles of chemical species $i$ in a well-mixed system with species set $\mathcal{M}$ which participates in the chemical reaction set $\mathcal{R}$. Further, let $\mathcal{S}$ denote the streams flowing into (or from) the system. Each stream $s\in\mathcal{S}$ has a direction parameter $d_{s}\in\left[-1,1\right]$: If stream $s$ _enters_ the system $d_{s} = +1$, however, is stream $s$ _exits_ the system then $d_{s} = -1$. Then, the time evolution of $n_{i}\in\mathcal{M}$ is described by an _open species mole balance equation_ of the form:
 
 ```{math}
 :label: eqn-species-mol-balance
-\sum_{s\in\mathcal{S}}\nu_{s}\dot{n}_{i,s} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = \frac{dn_{i}}{dt}
+\sum_{s\in\mathcal{S}}d_{s}\dot{n}_{is} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = \frac{dn_{i}}{dt}
 \qquad\forall{i}\in\mathcal{M}
 ```
 
-The quantity $\dot{n}_{i,s}$ denotes the mole flow rate of component $i$ in stream $s$ (units: mol per time), the generation terms are written using the open extent (units: mol per time), and $dn_{i}/dt$ denotes the rate of accumulation of the number of moles of component $i$ in the system (units: mol per time). 
-
-__Steady-state__: At steady state, all the accumulation terms vanish and the system of balances becomes:
+The quantity $\dot{n}_{is}$ denotes the mole flow rate of component $i$ in stream $s$ (units: mol per time), the generation terms are written using the open extent (units: mol per time), and $dn_{i}/dt$ denotes the rate of accumulation of the number of moles of component $i$ in the system (units: mol per time). At steady state, all the accumulation terms vanish and the system of balances becomes:
 
 ```{math}
 :label: eqn-species-mol-balance-ss
-\sum_{s\in\mathcal{S}}\nu_{s}\dot{n}_{i,s} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = 0
+\sum_{s\in\mathcal{S}}d_{s}\dot{n}_{i,s} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = 0
 \qquad\forall{i}\in\mathcal{M}
 ```
 ````
@@ -126,27 +124,30 @@ name: fig-chemical-reactor-schematic
 ---
 Schematic of an open, well-mixed chemical reactor with a single input and output stream. 
 ```
+
 The species set in this case is $\mathcal{M}=\left\{A,B\right\}$ and the stream set $\mathcal{S}=\left\{s_{1},s_{2}\right\}$, and there is a single chemical reaction; let $A$ be species `1` and $B$ be species `2`. {prf:ref}`defn-open-species-mole-balance` tells us that we'll have a system of equations of the form (at steady-state):
+
 $$
 \begin{eqnarray}
 \dot{n}_{A,1} - \dot{n}_{A,2} - \dot{\epsilon}_{1} & = & 0 \\
 \dot{n}_{B,1} - \dot{n}_{B,2} + \dot{\epsilon}_{1} & = & 0 \\
 \end{eqnarray}
 $$
-However, this system can be re-written in a much more compact (and general) form:
+
+However, this steady-state system of mole balances can be rewritten in a more compact (and general) form:
 
 ```{math}
 :label: eqn-matrix-vector-system-mol-bal
-\mathbf{T}\dot{\mathbf{n}} + \mathbf{S}\dot{\mathbf{\epsilon}} = \mathbf{0}
+\mathbf{N}\cdot\mathbf{d} + \mathbf{S}\cdot\dot{\mathbf{\epsilon}} = \mathbf{0}
 ```
 
-The `boldface` capital letters denote matrices, while small letters denote vectors. In this particular case, $\mathbf{T}$ denotes the transport matrix:
+The `boldface` capital letters denote matrices, while small letters denote vectors. In this particular case, $\mathbf{N}$ denotes the species flow matrix:
 
 ```{math}
 :label: eqn-T-matrix-example
-\mathbf{T} = \begin{bmatrix}
-1 & -1 & 0 & 0\\
-0 & 0 & 1 & -1 \\
+\mathbf{N} = \begin{bmatrix}
+\dot{n}_{11} & \dot{n}_{12} \\
+\dot{n}_{21} & \dot{n}_{22} \\
 \end{bmatrix}
 ```
 
@@ -161,22 +162,29 @@ and $\mathbf{S}$ denotes the stoichiometric matrix:
 \end{bmatrix}
 ```
 
-while $\dot{\mathbf{n}} = \left(\dot{n}_{A,1}, \dot{n}_{A,2}, \dot{n}_{B,1}, \dot{n}_{B,2}\right)^{T}$ and 
-$\dot{\mathbf{\epsilon}} = \dot{\epsilon}_{1}$. The superscript $\star^{T}$ denotes the transpose operation (turns a row into a column, or vice-versa). As it turns out, Eqn. {eq}`eqn-matrix-vector-system-mol-bal` is a particular instance of a general system 
-({prf:ref}`defn-reaction-system-matrix-vector`):
+while $\mathbf{d} = \left(1, -1\right)^{T}$ and $\dot{\mathbf{\epsilon}} = \dot{\epsilon}_{1}$. The superscript $\star^{T}$ denotes the transpose operation (turns a row into a column, or vice-versa). As it turns out, Eqn. {eq}`eqn-matrix-vector-system-mol-bal` is a particular instance of a general system of equations that can be written in matrix-vector form ({prf:ref}`defn-reaction-system-matrix-vector`):
 
 ````{prf:definition} General open species mole balances
 :label: defn-reaction-system-matrix-vector
 
-The steady-state species mole balances for any well-mixed reacting system with a species set $\mathcal{M}$, a reaction set $\mathcal{R}$, and stream set $\mathcal{S}$ can be modeled by the matrix-vector system:
+The steady-state open species mole balances for a well-mixed system with species set $\mathcal{M}$, 
+reaction set $\mathcal{R}$, and stream set $\mathcal{S}$ is described by:
 
 ```{math}
-\mathbf{T}\dot{\mathbf{n}} + \mathbf{S}\dot{\mathbf{\epsilon}} = \mathbf{0}
+\dot{\mathbf{N}}\cdot{\mathbf{d}} + \mathbf{S}\cdot\dot{\mathbf{\epsilon}} = \mathbf{0}
 ```
 
-The matrix $\mathbf{T}$ is the $|\mathcal{M}| \times |\mathcal{M}||\mathcal{S}|$ _transport matrix_, the matrix $\mathbf{S}$ is the $|\mathcal{M}| \times |\mathcal{R}|$ _stoichiometric matrix_, $\dot{\mathbf{n}}$ denotes the $|\mathcal{M}||\mathcal{S}| \times {1}$ species flow vector and $\mathbf{\epsilon}$ denotes the $|\mathcal{R}| \times {1}$ reaction vector.
+The matrix $\dot{\mathbf{N}}\in\mathbb{R}^{\mathcal{M}\times\mathcal{S}}$ is the species flow matrix, 
+$\mathbf{d}\in\mathbb{R}^{\mathcal{S}\times{1}}$ is the stream direction vector,
+$\mathbf{S}\in\mathbb{R}^{\mathcal{M}\times\mathcal{R}}$ is the stoichiometric matrix, 
+and $\dot{\mathbf{\epsilon}}\in\mathbb{R}^{\mathcal{R}\times{1}}$ is the open reaction extent vector.
+The open species mole balances can also be written in index form as:
 
-The notation $|\star|$ denotes the dimension (number of elements) of set $\star$.
+```{math}
+\sum_{s\in\mathcal{S}}d_{s}\dot{n}_{is} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = 0\qquad{i=1,2,\dots,\mathcal{M}}
+```
+where $\dot{n}_{is}$ is the mole flow rate of species $i$ in stream $s$, 
+$d_{s}$ is the direction of stream $s$, $\sigma_{ir}$ is the stoichiometric coefficient for species $i$ in reaction $r$, and $\dot{\epsilon}_{r}$ is the open extent of reaction $r$.
 
 ````
 

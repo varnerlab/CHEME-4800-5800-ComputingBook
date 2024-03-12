@@ -525,14 +525,13 @@ document.write(`
 <div class="proof definition admonition" id="defn-open-species-mole-balance">
 <p class="admonition-title"><span class="caption-number">Definition 9 </span> (Open Species Mole Balance)</p>
 <section class="definition-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(n_{i}\in\mathcal{M}\)</span> denote the number of moles of chemical species <span class="math notranslate nohighlight">\(i\)</span> in a well-mixed system with species set <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> which participates in the chemical reaction set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>. Further, let <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> denote the streams flowing into (or from) the system. Each stream <span class="math notranslate nohighlight">\(s\in\mathcal{S}\)</span> has a direction parameter <span class="math notranslate nohighlight">\(\nu_{s}\in\left[-1,1\right]\)</span>: If stream <span class="math notranslate nohighlight">\(s\)</span> <em>enters</em> the system <span class="math notranslate nohighlight">\(\nu_{s} = +1\)</span>, however, is stream <span class="math notranslate nohighlight">\(s\)</span> <em>exits</em> the system then <span class="math notranslate nohighlight">\(\nu_{s} = -1\)</span>. Then, the time evolution of <span class="math notranslate nohighlight">\(n_{i}\in\mathcal{M}\)</span> is described by an <em>open species mole balance equation</em> of the form:</p>
+<p>Let <span class="math notranslate nohighlight">\(n_{i}\in\mathcal{M}\)</span> denote the number of moles of chemical species <span class="math notranslate nohighlight">\(i\)</span> in a well-mixed system with species set <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> which participates in the chemical reaction set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>. Further, let <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> denote the streams flowing into (or from) the system. Each stream <span class="math notranslate nohighlight">\(s\in\mathcal{S}\)</span> has a direction parameter <span class="math notranslate nohighlight">\(d_{s}\in\left[-1,1\right]\)</span>: If stream <span class="math notranslate nohighlight">\(s\)</span> <em>enters</em> the system <span class="math notranslate nohighlight">\(d_{s} = +1\)</span>, however, is stream <span class="math notranslate nohighlight">\(s\)</span> <em>exits</em> the system then <span class="math notranslate nohighlight">\(d_{s} = -1\)</span>. Then, the time evolution of <span class="math notranslate nohighlight">\(n_{i}\in\mathcal{M}\)</span> is described by an <em>open species mole balance equation</em> of the form:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-species-mol-balance">
-<span class="eqno">(13)<a class="headerlink" href="#equation-eqn-species-mol-balance" title="Link to this equation">#</a></span>\[\sum_{s\in\mathcal{S}}\nu_{s}\dot{n}_{i,s} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = \frac{dn_{i}}{dt}
+<span class="eqno">(13)<a class="headerlink" href="#equation-eqn-species-mol-balance" title="Link to this equation">#</a></span>\[\sum_{s\in\mathcal{S}}d_{s}\dot{n}_{is} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = \frac{dn_{i}}{dt}
 \qquad\forall{i}\in\mathcal{M}\]</div>
-<p>The quantity <span class="math notranslate nohighlight">\(\dot{n}_{i,s}\)</span> denotes the mole flow rate of component <span class="math notranslate nohighlight">\(i\)</span> in stream <span class="math notranslate nohighlight">\(s\)</span> (units: mol per time), the generation terms are written using the open extent (units: mol per time), and <span class="math notranslate nohighlight">\(dn_{i}/dt\)</span> denotes the rate of accumulation of the number of moles of component <span class="math notranslate nohighlight">\(i\)</span> in the system (units: mol per time).</p>
-<p><strong>Steady-state</strong>: At steady state, all the accumulation terms vanish and the system of balances becomes:</p>
+<p>The quantity <span class="math notranslate nohighlight">\(\dot{n}_{is}\)</span> denotes the mole flow rate of component <span class="math notranslate nohighlight">\(i\)</span> in stream <span class="math notranslate nohighlight">\(s\)</span> (units: mol per time), the generation terms are written using the open extent (units: mol per time), and <span class="math notranslate nohighlight">\(dn_{i}/dt\)</span> denotes the rate of accumulation of the number of moles of component <span class="math notranslate nohighlight">\(i\)</span> in the system (units: mol per time). At steady state, all the accumulation terms vanish and the system of balances becomes:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-species-mol-balance-ss">
-<span class="eqno">(14)<a class="headerlink" href="#equation-eqn-species-mol-balance-ss" title="Link to this equation">#</a></span>\[\sum_{s\in\mathcal{S}}\nu_{s}\dot{n}_{i,s} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = 0
+<span class="eqno">(14)<a class="headerlink" href="#equation-eqn-species-mol-balance-ss" title="Link to this equation">#</a></span>\[\sum_{s\in\mathcal{S}}d_{s}\dot{n}_{i,s} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = 0
 \qquad\forall{i}\in\mathcal{M}\]</div>
 </section>
 </div></section>
@@ -546,21 +545,22 @@ document.write(`
 <p><span class="caption-number">Fig. 11 </span><span class="caption-text">Schematic of an open, well-mixed chemical reactor with a single input and output stream.</span><a class="headerlink" href="#fig-chemical-reactor-schematic" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The species set in this case is <span class="math notranslate nohighlight">\(\mathcal{M}=\left\{A,B\right\}\)</span> and the stream set <span class="math notranslate nohighlight">\(\mathcal{S}=\left\{s_{1},s_{2}\right\}\)</span>, and there is a single chemical reaction; let <span class="math notranslate nohighlight">\(A\)</span> be species <code class="docutils literal notranslate"><span class="pre">1</span></code> and <span class="math notranslate nohighlight">\(B\)</span> be species <code class="docutils literal notranslate"><span class="pre">2</span></code>. <a class="reference internal" href="#defn-open-species-mole-balance">Definition 9</a> tells us that we’ll have a system of equations of the form (at steady-state):
-$<span class="math notranslate nohighlight">\(
+<p>The species set in this case is <span class="math notranslate nohighlight">\(\mathcal{M}=\left\{A,B\right\}\)</span> and the stream set <span class="math notranslate nohighlight">\(\mathcal{S}=\left\{s_{1},s_{2}\right\}\)</span>, and there is a single chemical reaction; let <span class="math notranslate nohighlight">\(A\)</span> be species <code class="docutils literal notranslate"><span class="pre">1</span></code> and <span class="math notranslate nohighlight">\(B\)</span> be species <code class="docutils literal notranslate"><span class="pre">2</span></code>. <a class="reference internal" href="#defn-open-species-mole-balance">Definition 9</a> tells us that we’ll have a system of equations of the form (at steady-state):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{eqnarray}
 \dot{n}_{A,1} - \dot{n}_{A,2} - \dot{\epsilon}_{1} &amp; = &amp; 0 \\
 \dot{n}_{B,1} - \dot{n}_{B,2} + \dot{\epsilon}_{1} &amp; = &amp; 0 \\
 \end{eqnarray}
-\)</span>$
-However, this system can be re-written in a much more compact (and general) form:</p>
+\end{split}\]</div>
+<p>However, this steady-state system of mole balances can be rewritten in a more compact (and general) form:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-matrix-vector-system-mol-bal">
-<span class="eqno">(15)<a class="headerlink" href="#equation-eqn-matrix-vector-system-mol-bal" title="Link to this equation">#</a></span>\[\mathbf{T}\dot{\mathbf{n}} + \mathbf{S}\dot{\mathbf{\epsilon}} = \mathbf{0}\]</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">boldface</span></code> capital letters denote matrices, while small letters denote vectors. In this particular case, <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> denotes the transport matrix:</p>
+<span class="eqno">(15)<a class="headerlink" href="#equation-eqn-matrix-vector-system-mol-bal" title="Link to this equation">#</a></span>\[\mathbf{N}\cdot\mathbf{d} + \mathbf{S}\cdot\dot{\mathbf{\epsilon}} = \mathbf{0}\]</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">boldface</span></code> capital letters denote matrices, while small letters denote vectors. In this particular case, <span class="math notranslate nohighlight">\(\mathbf{N}\)</span> denotes the species flow matrix:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-t-matrix-example">
-<span class="eqno">(16)<a class="headerlink" href="#equation-eqn-t-matrix-example" title="Link to this equation">#</a></span>\[\begin{split}\mathbf{T} = \begin{bmatrix}
-1 &amp; -1 &amp; 0 &amp; 0\\
-0 &amp; 0 &amp; 1 &amp; -1 \\
+<span class="eqno">(16)<a class="headerlink" href="#equation-eqn-t-matrix-example" title="Link to this equation">#</a></span>\[\begin{split}\mathbf{N} = \begin{bmatrix}
+\dot{n}_{11} &amp; \dot{n}_{12} \\
+\dot{n}_{21} &amp; \dot{n}_{22} \\
 \end{bmatrix}\end{split}\]</div>
 <p>and <span class="math notranslate nohighlight">\(\mathbf{S}\)</span> denotes the stoichiometric matrix:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-s-matrix-example">
@@ -568,17 +568,23 @@ However, this system can be re-written in a much more compact (and general) form
 -1 \\
 1 \\
 \end{bmatrix}\end{split}\]</div>
-<p>while <span class="math notranslate nohighlight">\(\dot{\mathbf{n}} = \left(\dot{n}_{A,1}, \dot{n}_{A,2}, \dot{n}_{B,1}, \dot{n}_{B,2}\right)^{T}\)</span> and
-<span class="math notranslate nohighlight">\(\dot{\mathbf{\epsilon}} = \dot{\epsilon}_{1}\)</span>. The superscript <span class="math notranslate nohighlight">\(\star^{T}\)</span> denotes the transpose operation (turns a row into a column, or vice-versa). As it turns out, Eqn. <a class="reference internal" href="#equation-eqn-matrix-vector-system-mol-bal">(15)</a> is a particular instance of a general system
-(<a class="reference internal" href="#defn-reaction-system-matrix-vector">Definition 10</a>):</p>
+<p>while <span class="math notranslate nohighlight">\(\mathbf{d} = \left(1, -1\right)^{T}\)</span> and <span class="math notranslate nohighlight">\(\dot{\mathbf{\epsilon}} = \dot{\epsilon}_{1}\)</span>. The superscript <span class="math notranslate nohighlight">\(\star^{T}\)</span> denotes the transpose operation (turns a row into a column, or vice-versa). As it turns out, Eqn. <a class="reference internal" href="#equation-eqn-matrix-vector-system-mol-bal">(15)</a> is a particular instance of a general system of equations that can be written in matrix-vector form (<a class="reference internal" href="#defn-reaction-system-matrix-vector">Definition 10</a>):</p>
 <div class="proof definition admonition" id="defn-reaction-system-matrix-vector">
 <p class="admonition-title"><span class="caption-number">Definition 10 </span> (General open species mole balances)</p>
 <section class="definition-content" id="proof-content">
-<p>The steady-state species mole balances for any well-mixed reacting system with a species set <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, a reaction set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>, and stream set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> can be modeled by the matrix-vector system:</p>
+<p>The steady-state open species mole balances for a well-mixed system with species set <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>,
+reaction set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>, and stream set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> is described by:</p>
 <div class="math notranslate nohighlight">
-\[\mathbf{T}\dot{\mathbf{n}} + \mathbf{S}\dot{\mathbf{\epsilon}} = \mathbf{0}\]</div>
-<p>The matrix <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> is the <span class="math notranslate nohighlight">\(|\mathcal{M}| \times |\mathcal{M}||\mathcal{S}|\)</span> <em>transport matrix</em>, the matrix <span class="math notranslate nohighlight">\(\mathbf{S}\)</span> is the <span class="math notranslate nohighlight">\(|\mathcal{M}| \times |\mathcal{R}|\)</span> <em>stoichiometric matrix</em>, <span class="math notranslate nohighlight">\(\dot{\mathbf{n}}\)</span> denotes the <span class="math notranslate nohighlight">\(|\mathcal{M}||\mathcal{S}| \times {1}\)</span> species flow vector and <span class="math notranslate nohighlight">\(\mathbf{\epsilon}\)</span> denotes the <span class="math notranslate nohighlight">\(|\mathcal{R}| \times {1}\)</span> reaction vector.</p>
-<p>The notation <span class="math notranslate nohighlight">\(|\star|\)</span> denotes the dimension (number of elements) of set <span class="math notranslate nohighlight">\(\star\)</span>.</p>
+\[\dot{\mathbf{N}}\cdot{\mathbf{d}} + \mathbf{S}\cdot\dot{\mathbf{\epsilon}} = \mathbf{0}\]</div>
+<p>The matrix <span class="math notranslate nohighlight">\(\dot{\mathbf{N}}\in\mathbb{R}^{\mathcal{M}\times\mathcal{S}}\)</span> is the species flow matrix,
+<span class="math notranslate nohighlight">\(\mathbf{d}\in\mathbb{R}^{\mathcal{S}\times{1}}\)</span> is the stream direction vector,
+<span class="math notranslate nohighlight">\(\mathbf{S}\in\mathbb{R}^{\mathcal{M}\times\mathcal{R}}\)</span> is the stoichiometric matrix,
+and <span class="math notranslate nohighlight">\(\dot{\mathbf{\epsilon}}\in\mathbb{R}^{\mathcal{R}\times{1}}\)</span> is the open reaction extent vector.
+The open species mole balances can also be written in index form as:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{s\in\mathcal{S}}d_{s}\dot{n}_{is} + \sum_{r\in\mathcal{R}}\sigma_{ir}\dot{\epsilon}_{r} = 0\qquad{i=1,2,\dots,\mathcal{M}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\dot{n}_{is}\)</span> is the mole flow rate of species <span class="math notranslate nohighlight">\(i\)</span> in stream <span class="math notranslate nohighlight">\(s\)</span>,
+<span class="math notranslate nohighlight">\(d_{s}\)</span> is the direction of stream <span class="math notranslate nohighlight">\(s\)</span>, <span class="math notranslate nohighlight">\(\sigma_{ir}\)</span> is the stoichiometric coefficient for species <span class="math notranslate nohighlight">\(i\)</span> in reaction <span class="math notranslate nohighlight">\(r\)</span>, and <span class="math notranslate nohighlight">\(\dot{\epsilon}_{r}\)</span> is the open extent of reaction <span class="math notranslate nohighlight">\(r\)</span>.</p>
 </section>
 </div><!-- Matrices and vectors are encoded in computer programs as {ref}`content:references:lda-arrays` -->
 <p>Matrices and vectors naturally arise in simple chemical engineering systems like the one shown in <a class="reference internal" href="#fig-chemical-reactor-schematic"><span class="std std-numref">Fig. 11</span></a> Let’s dig deeper into their definition, structure, and operations.</p>
