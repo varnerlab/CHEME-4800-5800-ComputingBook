@@ -96,7 +96,7 @@ We shall see that radial basis functions are used in various machine learning ap
 ## Dimensionality reduction
 Dimensionality reduction tools systematically reduce the number of variables in a dataset while preserving as much of the information in the data as possible. Dimensionality reduction simplifies data, removes noise, and makes patterns in the data more visible. It can also help visualize data, improve machine learning algorithms’ performance, and reduce the storage and computational requirements of working with large datasets. 
 
-There are many techniques for dimensionality reduction, including [principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis) and [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition), which are both related to {ref}`content:eigenvalue-eigenvector-problems`. Other approaches, such as clustering and [t-distributed stochastic neighbor embedding (t-SNE)](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding), are based upon minimizing a particular distance measure.  
+There are many techniques for dimensionality reduction, including [principal component analysis](https://en.wikipedia.org/wiki/Principal_component_analysis) and [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition), which are both related to {ref}`content:eigenvalue-eigenvector-problems.` Other approaches, such as clustering and [t-distributed stochastic neighbor embedding (t-SNE)](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding), are based upon minimizing a particular distance measure.  
 
 (content:eigenvalue-eigenvector-problems)=
 ### Eigenvalue-eigenvector problems
@@ -308,7 +308,7 @@ Let $\mathbf{A}\in\mathbb{R}^{m\times{n}}$ have the singular value decomposition
 \mathbf{A} = \sum_{i=1}^{r_{\mathbf{A}}}\sigma_{i}\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)
 ```
 
-where $r_{\mathbf{A}}$ is the rank of matrix $\mathbf{A}$, the vectors $\mathbf{u}_{i}$ and $\mathbf{v}_{i}$ are the ith left and right singular vectors, respectively, and $\sigma_{i}$ are the ordered singular values. The [outer-product](https://en.wikipedia.org/wiki/Outer_product) $\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)$ is the separable component of the matrix $\mathbf{A}$. For more details on computing the [outer-product](https://en.wikipedia.org/wiki/Outer_product).
+where $r_{\mathbf{A}}$ is the rank of matrix $\mathbf{A}$, the vectors $\mathbf{u}_{i}$ and $\mathbf{v}_{i}$ are the ith left and right singular vectors, respectively, and $\sigma_{i}$ are the ordered singular values. The [outer-product](https://en.wikipedia.org/wiki/Outer_product) $\left(\mathbf{u}_{i}\otimes\mathbf{v}_{i}\right)$ is the separable component of the matrix $\mathbf{A}$. For more details on computing the [outer-product](https://en.wikipedia.org/wiki/Outer_product), see {ref}`content:vector-vector-operations.`
 ````
 
 <!-- * The principal components obtained from PCA can be expressed as a linear combination of the columns of the matrix $\mathbf{U}$ obtained from SVD. Additionally, the singular values are proportional to the eigenvalues of the covariance matrix, which provide information about the variance each principal component explains.  -->
