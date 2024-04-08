@@ -337,6 +337,8 @@ First, we introduced the mathematical structure of linear programs, the dual pro
 * {ref}`content:references:dual-linear-problem` is a formulation derived from the primal linear program that provides an alternative perspective on the same problem by introducing a new set of variables and constraints. The objective of the dual program is to either maximize or minimize a linear function subject to a different set of constraints derived from the original primal program.
 
 * {ref}`content:references:flux-balance-analysis` is a versatile tool that can estimate flows through various types of networks and graphs. It can be applied to social graphs, communication networks, or any other problem that can be represented as a network of graphs. Flux balance analysis, a testament to the versatility of linear programming, can be implemented as a linear program.
+
+## Additional resources
 Background resources for biochemical network information and computational tools for working with flux balance analysis models:
 
 * [Kanehisa M, Goto S. KEGG: kyoto encyclopedia of genes and genomes. Nucleic Acids Res. 2000 Jan 1;28(1):27-30. doi: 10.1093/nar/28.1.27. PMID: 10592173; PMCID: PMC102409.](https://www.genome.jp/kegg/)
