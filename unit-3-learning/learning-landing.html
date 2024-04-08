@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Technical computing basics &#8212; CHEME 4800/5800</title>
+    <title>The Learning Problem: Models, Learning, and Optimization &#8212; CHEME 4800/5800</title>
   
   
   
@@ -71,12 +71,12 @@
                 gtag('config', 'G-VQRVBL1C02');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'unit-1-basics/basics-landing';</script>
-    <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-1-basics/basics-landing.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'unit-3-learning/learning-landing';</script>
+    <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-3-learning/learning-landing.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Expressions, Variables, and Types" href="types.html" />
-    <link rel="prev" title="Principles of Computational Thinking for Engineers" href="../landing.html" />
+    <link rel="next" title="Ordinary Least Squares Problems" href="penalty.html" />
+    <link rel="prev" title="Dimensionality Reduction, Eigenvalues, and Eigenvectors" href="../unit-2-data/reduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -192,12 +192,12 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Unit 1. Computing Basics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="types.html">Expressions, Variables, and Types</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unit-1-basics/basics-landing.html">Unit 1. Computing Basics</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/types.html">Expressions, Variables, and Types</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions, Control Statements, Recursion and Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="programs.html">Programs and Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data-file-io.html">Data Input and Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/functions.html">Functions, Control Statements, Recursion and Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/programs.html">Programs and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/data-file-io.html">Data Input and Output</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../unit-2-data/data-landing.html">Unit 2. Data Structures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -206,10 +206,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../unit-2-data/reduction.html">Dimensionality Reduction, Eigenvalues, and Eigenvectors</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../unit-3-learning/learning-landing.html">Unit 3. Learning and Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../unit-3-learning/penalty.html">Ordinary Least Squares Problems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../unit-3-learning/lp.html">Linear Programming</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../unit-3-learning/combitorial.html">Dynamic Progamming and Heuristic Optimization</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Unit 3. Learning and Optimization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="penalty.html">Ordinary Least Squares Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lp.html">Linear Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="combitorial.html">Dynamic Progamming and Heuristic Optimization</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../References.html">References</a></li>
@@ -284,7 +284,7 @@
       
       
       
-      <li><a href="https://github.com/varnerlab/CHEME-1800-Computing-Book/issues/new?title=Issue%20on%20page%20%2Funit-1-basics/basics-landing.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/varnerlab/CHEME-1800-Computing-Book/issues/new?title=Issue%20on%20page%20%2Funit-3-learning/learning-landing.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -314,7 +314,7 @@
       
       
       
-      <li><a href="../_sources/unit-1-basics/basics-landing.md" target="_blank"
+      <li><a href="../_sources/unit-3-learning/learning-landing.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -396,7 +396,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Technical computing basics</h1>
+    <h1>The Learning Problem: Models, Learning, and Optimization</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -410,14 +410,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="technical-computing-basics">
-<h1>Technical computing basics<a class="headerlink" href="#technical-computing-basics" title="Link to this heading">#</a></h1>
-<p>In this unit, we introduce basic technical computing concepts and tools:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="the-learning-problem-models-learning-and-optimization">
+<h1>The Learning Problem: Models, Learning, and Optimization<a class="headerlink" href="#the-learning-problem-models-learning-and-optimization" title="Link to this heading">#</a></h1>
+<p>The learning problem refers to training a physical or machine learning model to replicate features of a dataset. The model can then make predictions or decisions about new, unseen data. The learning problem can also refer to using a model combined with optimization approaches to reason about the world around us or solve specific problems of interest.</p>
+<p>Thus, we build upon our previous content in this unit and focus on models and optimization approaches to represent and solve engineering problems.</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="types.html"><span class="std std-doc">Variables, expressions, and types</span></a>: A variable is a named location in memory that stores a value. An expression is a combination of variables, literals, and operators that can be evaluated to a single value. For example, the expression “x + 2” would add the value stored in the variable x to 2. Types are categories that identify the kind of value an expression produces. For example, the expression “2 + 3” produces an integer value of the “int” type. Other types include “float” (for decimal values), “str” (for string values), and “bool” (for Boolean values).</p></li>
-<li><p><a class="reference internal" href="functions.html"><span class="std std-doc">Functions</span></a> are blocks of code that perform a specific task and can be called (invoked) by name. Functions can accept input arguments (parameters) and may return a value or result.</p></li>
-<li><p><a class="reference internal" href="programs.html"><span class="std std-doc">Programs and modules</span></a> are collections of computer code. A computer program is a set of instructions that a computer can execute to perform a specific task or solve a problem. On the other hand, a module is a file containing code that can be imported into a program or another module. Modules allow you to reuse code across multiple programs and projects.</p></li>
-<li><p><a class="reference internal" href="data-file-io.html"><span class="std std-doc">File and Data I/O</span></a> refers to input/output operations involving files or other data sources such as application programming interfaces. Simple File I/O operations allow you to read from and write to files on your computer’s filesystem. For example, you might use File I/O to read data from a text file or save a program’s results to a file.</p></li>
+<li><p><a class="reference internal" href="penalty.html"><span class="std std-doc">Ordinary least squares (OLS)</span></a> is a method for estimating the parameters of a linear regression model. It finds the values of the parameters that minimize the sum of the squares of the differences between the observed responses in the data and the responses predicted by the model. OLS is widely used in statistical analysis and has several desirable properties, such as being unbiased and having a minimum variance among all unbiased estimators.</p></li>
+<li><p><a class="reference internal" href="lp.html"><span class="std std-doc">Linear programming</span></a> is a mathematical technique for optimizing an objective function subject to constraints. It is used to find a linear objective function’s maximum or minimum value subject to linear equality or inequality constraints. Linear programming can model and solve many optimization problems in finance, manufacturing, engineering, and transportation.</p></li>
+<li><p><a class="reference internal" href="combitorial.html"><span class="std std-doc">Dynamic progamming and heuristic optimization</span></a> is a branch of computer science and mathematics that optimizes combinatorial objects, such as graphs, functions, and strings. It involves finding the best solution to a problem among a finite or countably infinite set of possible solutions. Combinatorial optimization has many applications in computer science, engineering, and other fields.</p></li>
 </ul>
 <div class="toctree-wrapper compound">
 </div>
@@ -436,7 +436,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./unit-1-basics"
+            path: "./unit-3-learning"
         },
         predefinedOutput: true
     }
@@ -454,20 +454,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../landing.html"
+       href="../unit-2-data/reduction.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Principles of Computational Thinking for Engineers</p>
+        <p class="prev-next-title">Dimensionality Reduction, Eigenvalues, and Eigenvectors</p>
       </div>
     </a>
     <a class="right-next"
-       href="types.html"
+       href="penalty.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Expressions, Variables, and Types</p>
+        <p class="prev-next-title">Ordinary Least Squares Problems</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

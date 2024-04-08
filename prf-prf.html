@@ -212,6 +212,13 @@
 <li class="toctree-l2"><a class="reference internal" href="unit-2-data/reduction.html">Dimensionality Reduction, Eigenvalues, and Eigenvectors</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="unit-3-learning/learning-landing.html">Unit 3. Learning and Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="unit-3-learning/penalty.html">Ordinary Least Squares Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit-3-learning/lp.html">Linear Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit-3-learning/combitorial.html">Dynamic Progamming and Heuristic Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="References.html">References</a></li>
 </ul>
 
     </div>
@@ -375,17 +382,22 @@ document.write(`
    <a href="#cap-algo-left-multiplication-matrix-vector"><strong>algo-left-multiplication-matrix-vector</strong></a> | 
    <a href="#cap-algo-matrix-matrix-code"><strong>algo-matrix-matrix-code</strong></a> | 
    <a href="#cap-algo-right-multiplication-matrix-vector"><strong>algo-right-multiplication-matrix-vector</strong></a> | 
+   <a href="#cap-algo-simulated-annealing"><strong>algo-simulated-annealing</strong></a> | 
+   <a href="#cap-algo-simulated-annealing-other-functions"><strong>algo-simulated-annealing-other-functions</strong></a> | 
    <a href="#cap-algo-vector-addition"><strong>algo-vector-addition</strong></a> | 
    <a href="#cap-defn-LU-determinant"><strong>defn-LU-determinant</strong></a> | 
    <a href="#cap-defn-adj-list-graphs"><strong>defn-adj-list-graphs</strong></a> | 
    <a href="#cap-defn-adj-matrix-graphs"><strong>defn-adj-matrix-graphs</strong></a> | 
+   <a href="#cap-defn-bellman-decision-eqn"><strong>defn-bellman-decision-eqn</strong></a> | 
    <a href="#cap-defn-characteristic-polynomial"><strong>defn-characteristic-polynomial</strong></a> | 
    <a href="#cap-defn-children-and-node-k-ary"><strong>defn-children-and-node-k-ary</strong></a> | 
    <a href="#cap-defn-compatible-matrix-vector-norm"><strong>defn-compatible-matrix-vector-norm</strong></a> | 
    <a href="#cap-defn-covariance matrix"><strong>defn-covariance matrix</strong></a> | 
    <a href="#cap-defn-det-A"><strong>defn-det-A</strong></a> | 
+   <a href="#cap-defn-dual-linear program"><strong>defn-dual-linear program</strong></a> | 
    <a href="#cap-defn-general-backward-sub"><strong>defn-general-backward-sub</strong></a> | 
    <a href="#cap-defn-general-forward-sub"><strong>defn-general-forward-sub</strong></a> | 
+   <a href="#cap-defn-general-resource-allocation-struct"><strong>defn-general-resource-allocation-struct</strong></a> | 
    <a href="#cap-defn-graphs"><strong>defn-graphs</strong></a> | 
    <a href="#cap-defn-homogenous-eigenvector-system"><strong>defn-homogenous-eigenvector-system</strong></a> | 
    <a href="#cap-defn-homogenous-soln-existence"><strong>defn-homogenous-soln-existence</strong></a> | 
@@ -393,22 +405,32 @@ document.write(`
    <a href="#cap-defn-mathematical-function"><strong>defn-mathematical-function</strong></a> | 
    <a href="#cap-defn-matrix-inverse"><strong>defn-matrix-inverse</strong></a> | 
    <a href="#cap-defn-matrix-matrix-product"><strong>defn-matrix-matrix-product</strong></a> | 
+   <a href="#cap-defn-method-l-multipliers"><strong>defn-method-l-multipliers</strong></a> | 
+   <a href="#cap-defn-min-flow-problem"><strong>defn-min-flow-problem</strong></a> | 
+   <a href="#cap-defn-mol-based-units"><strong>defn-mol-based-units</strong></a> | 
+   <a href="#cap-defn-normal-eqn-ols"><strong>defn-normal-eqn-ols</strong></a> | 
+   <a href="#cap-defn-normal-eqn-ols-ln"><strong>defn-normal-eqn-ols-ln</strong></a> | 
    <a href="#cap-defn-number-system"><strong>defn-number-system</strong></a> | 
+   <a href="#cap-defn-ols-introduction"><strong>defn-ols-introduction</strong></a> | 
    <a href="#cap-defn-open-extent-of-rxn"><strong>defn-open-extent-of-rxn</strong></a> | 
    <a href="#cap-defn-open-species-mass-balance"><strong>defn-open-species-mass-balance</strong></a> | 
    <a href="#cap-defn-open-species-mole-balance"><strong>defn-open-species-mole-balance</strong></a> | 
+   <a href="#cap-defn-primael-linear program"><strong>defn-primael-linear program</strong></a> | 
    <a href="#cap-defn-qr-iteration"><strong>defn-qr-iteration</strong></a> | 
    <a href="#cap-defn-rank-A"><strong>defn-rank-A</strong></a> | 
    <a href="#cap-defn-rbf-measure"><strong>defn-rbf-measure</strong></a> | 
    <a href="#cap-defn-reaction-system-matrix-vector"><strong>defn-reaction-system-matrix-vector</strong></a> | 
    <a href="#cap-defn-right-matrix-vector-multiplication"><strong>defn-right-matrix-vector-multiplication</strong></a> | 
    <a href="#cap-defn-scalar-multiplication"><strong>defn-scalar-multiplication</strong></a> | 
+   <a href="#cap-defn-sum-squared-error"><strong>defn-sum-squared-error</strong></a> | 
    <a href="#cap-defn-svd-real-matrix"><strong>defn-svd-real-matrix</strong></a> | 
+   <a href="#cap-defn-svd-soln-ud-ols"><strong>defn-svd-soln-ud-ols</strong></a> | 
    <a href="#cap-defn-trace-A"><strong>defn-trace-A</strong></a> | 
    <a href="#cap-defn-vector-p-norm"><strong>defn-vector-p-norm</strong></a> | 
    <a href="#cap-defn-vector-vector-multiplication"><strong>defn-vector-vector-multiplication</strong></a> | 
    <a href="#cap-defn-vector-vector-multiplication-op"><strong>defn-vector-vector-multiplication-op</strong></a> | 
    <a href="#cap-example-QR-iteration"><strong>example-QR-iteration</strong></a> | 
+   <a href="#cap-example-barrier-method"><strong>example-barrier-method</strong></a> | 
    <a href="#cap-example-base-8-number"><strong>example-base-8-number</strong></a> | 
    <a href="#cap-example-binary-1800"><strong>example-binary-1800</strong></a> | 
    <a href="#cap-example-exe-julia-script"><strong>example-exe-julia-script</strong></a> | 
@@ -420,24 +442,33 @@ document.write(`
    <a href="#cap-example-iteration-fibonacci-seq-while"><strong>example-iteration-fibonacci-seq-while</strong></a> | 
    <a href="#cap-example-iteration-fibonacci-series-recursive"><strong>example-iteration-fibonacci-series-recursive</strong></a> | 
    <a href="#cap-example-iteration-fibonacci-series-recursive-memoization"><strong>example-iteration-fibonacci-series-recursive-memoization</strong></a> | 
+   <a href="#cap-example-lagrange-multipliers-lns"><strong>example-lagrange-multipliers-lns</strong></a> | 
    <a href="#cap-example-linked-list-stack"><strong>example-linked-list-stack</strong></a> | 
+   <a href="#cap-example-quad-penalty-method"><strong>example-quad-penalty-method</strong></a> | 
    <a href="#cap-example-queue-recursive-string-parser"><strong>example-queue-recursive-string-parser</strong></a> | 
    <a href="#cap-example-recursive-fibonacci-memo"><strong>example-recursive-fibonacci-memo</strong></a> | 
+   <a href="#cap-example-resource-allocation-dual"><strong>example-resource-allocation-dual</strong></a> | 
+   <a href="#cap-example-resource-allocation-primal"><strong>example-resource-allocation-primal</strong></a> | 
+   <a href="#cap-example-sa-impl-spehere-function"><strong>example-sa-impl-spehere-function</strong></a> | 
    <a href="#cap-example-ternary-price-model-adj-list"><strong>example-ternary-price-model-adj-list</strong></a> | 
    <a href="#cap-example-ternary-price-model-array"><strong>example-ternary-price-model-array</strong></a> | 
    <a href="#cap-example-time-discretized-decay"><strong>example-time-discretized-decay</strong></a> | 
    <a href="#cap-example-twos-complement"><strong>example-twos-complement</strong></a> | 
    <a href="#cap-example-unicode-J"><strong>example-unicode-J</strong></a> | 
+   <a href="#cap-obs-barrier-method-lambda-policy"><strong>obs-barrier-method-lambda-policy</strong></a> | 
    <a href="#cap-obs-basic-iterative-method-outline"><strong>obs-basic-iterative-method-outline</strong></a> | 
+   <a href="#cap-obs-bellman-principle-of-optimality"><strong>obs-bellman-principle-of-optimality</strong></a> | 
    <a href="#cap-obs-determinant-triangular-matrix"><strong>obs-determinant-triangular-matrix</strong></a> | 
    <a href="#cap-obs-eigenvalues-determinants"><strong>obs-eigenvalues-determinants</strong></a> | 
+   <a href="#cap-obs-lambda-policy"><strong>obs-lambda-policy</strong></a> | 
    <a href="#cap-obs-matrix-shape"><strong>obs-matrix-shape</strong></a> | 
    <a href="#cap-obs-same-dimension"><strong>obs-same-dimension</strong></a> | 
    <a href="#cap-obs-svd-matrix-decomposition"><strong>obs-svd-matrix-decomposition</strong></a> | 
    <a href="#cap-rem-modifications-args"><strong>rem-modifications-args</strong></a> | 
    <a href="#cap-rem-real-values"><strong>rem-real-values</strong></a> | 
    <a href="#cap-remark-0"><strong>remark-0</strong></a> | 
-   <a href="#cap-remark-6"><strong>remark-6</strong></a>
+   <a href="#cap-remark-6"><strong>remark-6</strong></a> | 
+   <a href="#cap-remark-barrier-method"><strong>remark-barrier-method</strong></a>
    </div>
 
    <table class="indextable modindextable">
@@ -522,6 +553,22 @@ document.write(`
        <a href="unit-2-data/vectors-matricies-nla.html#algo-right-multiplication-matrix-vector"><code class="xref">algo-right-multiplication-matrix-vector</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>algorithm</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-algo-simulated-annealing"><td></td><td>
+       <strong>algo-simulated-annealing</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/combitorial.html#algo-simulated-annealing"><code class="xref">algo-simulated-annealing</code></a> <em>(unit-3-learning/combitorial)</em></td><td>
+       <em>algorithm</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-algo-simulated-annealing-other-functions"><td></td><td>
+       <strong>algo-simulated-annealing-other-functions</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/combitorial.html#algo-simulated-annealing-other-functions"><code class="xref">algo-simulated-annealing-other-functions</code></a> <em>(unit-3-learning/combitorial)</em></td><td>
+       <em>algorithm</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-algo-vector-addition"><td></td><td>
        <strong>algo-vector-addition</strong></td><td></td></tr>
      <tr>
@@ -552,6 +599,14 @@ document.write(`
        <td></td>
        <td>
        <a href="unit-2-data/trees.html#defn-adj-matrix-graphs"><code class="xref">defn-adj-matrix-graphs</code></a> <em>(unit-2-data/trees)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-bellman-decision-eqn"><td></td><td>
+       <strong>defn-bellman-decision-eqn</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/combitorial.html#defn-bellman-decision-eqn"><code class="xref">defn-bellman-decision-eqn</code></a> <em>(unit-3-learning/combitorial)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-characteristic-polynomial"><td></td><td>
@@ -594,6 +649,14 @@ document.write(`
        <a href="unit-2-data/vectors-matricies-nla.html#defn-det-A"><code class="xref">defn-det-A</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-dual-linear program"><td></td><td>
+       <strong>defn-dual-linear program</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/lp.html#defn-dual-linear program"><code class="xref">defn-dual-linear program</code></a> <em>(unit-3-learning/lp)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-general-backward-sub"><td></td><td>
        <strong>defn-general-backward-sub</strong></td><td></td></tr>
      <tr>
@@ -608,6 +671,14 @@ document.write(`
        <td></td>
        <td>
        <a href="unit-2-data/vectors-matricies-nla.html#defn-general-forward-sub"><code class="xref">defn-general-forward-sub</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-general-resource-allocation-struct"><td></td><td>
+       <strong>defn-general-resource-allocation-struct</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/lp.html#defn-general-resource-allocation-struct"><code class="xref">defn-general-resource-allocation-struct</code></a> <em>(unit-3-learning/lp)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-graphs"><td></td><td>
@@ -666,12 +737,60 @@ document.write(`
        <a href="unit-2-data/vectors-matricies-nla.html#defn-matrix-matrix-product"><code class="xref">defn-matrix-matrix-product</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-method-l-multipliers"><td></td><td>
+       <strong>defn-method-l-multipliers</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/penalty.html#defn-method-l-multipliers"><code class="xref">defn-method-l-multipliers</code></a> <em>(unit-3-learning/penalty)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-min-flow-problem"><td></td><td>
+       <strong>defn-min-flow-problem</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/lp.html#defn-min-flow-problem"><code class="xref">defn-min-flow-problem</code></a> <em>(unit-3-learning/lp)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-mol-based-units"><td></td><td>
+       <strong>defn-mol-based-units</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/lp.html#defn-mol-based-units"><code class="xref">defn-mol-based-units</code></a> <em>(unit-3-learning/lp)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-normal-eqn-ols"><td></td><td>
+       <strong>defn-normal-eqn-ols</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/penalty.html#defn-normal-eqn-ols"><code class="xref">defn-normal-eqn-ols</code></a> <em>(unit-3-learning/penalty)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-normal-eqn-ols-ln"><td></td><td>
+       <strong>defn-normal-eqn-ols-ln</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/penalty.html#defn-normal-eqn-ols-ln"><code class="xref">defn-normal-eqn-ols-ln</code></a> <em>(unit-3-learning/penalty)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-number-system"><td></td><td>
        <strong>defn-number-system</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
        <a href="unit-1-basics/types.html#defn-number-system"><code class="xref">defn-number-system</code></a> <em>(unit-1-basics/types)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-ols-introduction"><td></td><td>
+       <strong>defn-ols-introduction</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/penalty.html#defn-ols-introduction"><code class="xref">defn-ols-introduction</code></a> <em>(unit-3-learning/penalty)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-open-extent-of-rxn"><td></td><td>
@@ -696,6 +815,14 @@ document.write(`
        <td></td>
        <td>
        <a href="unit-2-data/vectors-matricies-nla.html#defn-open-species-mole-balance"><code class="xref">defn-open-species-mole-balance</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-primael-linear program"><td></td><td>
+       <strong>defn-primael-linear program</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/lp.html#defn-primael-linear program"><code class="xref">defn-primael-linear program</code></a> <em>(unit-3-learning/lp)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-qr-iteration"><td></td><td>
@@ -746,12 +873,28 @@ document.write(`
        <a href="unit-2-data/vectors-matricies-nla.html#defn-scalar-multiplication"><code class="xref">defn-scalar-multiplication</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-sum-squared-error"><td></td><td>
+       <strong>defn-sum-squared-error</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/penalty.html#defn-sum-squared-error"><code class="xref">defn-sum-squared-error</code></a> <em>(unit-3-learning/penalty)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-svd-real-matrix"><td></td><td>
        <strong>defn-svd-real-matrix</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
        <a href="unit-2-data/reduction.html#defn-svd-real-matrix"><code class="xref">defn-svd-real-matrix</code></a> <em>(unit-2-data/reduction)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-svd-soln-ud-ols"><td></td><td>
+       <strong>defn-svd-soln-ud-ols</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/penalty.html#defn-svd-soln-ud-ols"><code class="xref">defn-svd-soln-ud-ols</code></a> <em>(unit-3-learning/penalty)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-trace-A"><td></td><td>
@@ -792,6 +935,14 @@ document.write(`
        <td></td>
        <td>
        <a href="unit-2-data/reduction.html#example-QR-iteration"><code class="xref">example-QR-iteration</code></a> <em>(unit-2-data/reduction)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-barrier-method"><td></td><td>
+       <strong>example-barrier-method</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/penalty.html#example-barrier-method"><code class="xref">example-barrier-method</code></a> <em>(unit-3-learning/penalty)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-example-base-8-number"><td></td><td>
@@ -882,12 +1033,28 @@ document.write(`
        <a href="unit-1-basics/functions.html#example-iteration-fibonacci-series-recursive-memoization"><code class="xref">example-iteration-fibonacci-series-recursive-memoization</code></a> <em>(unit-1-basics/functions)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-lagrange-multipliers-lns"><td></td><td>
+       <strong>example-lagrange-multipliers-lns</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/penalty.html#example-lagrange-multipliers-lns"><code class="xref">example-lagrange-multipliers-lns</code></a> <em>(unit-3-learning/penalty)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-example-linked-list-stack"><td></td><td>
        <strong>example-linked-list-stack</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
        <a href="unit-2-data/trees.html#example-linked-list-stack"><code class="xref">example-linked-list-stack</code></a> <em>(unit-2-data/trees)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-quad-penalty-method"><td></td><td>
+       <strong>example-quad-penalty-method</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/penalty.html#example-quad-penalty-method"><code class="xref">example-quad-penalty-method</code></a> <em>(unit-3-learning/penalty)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-example-queue-recursive-string-parser"><td></td><td>
@@ -904,6 +1071,30 @@ document.write(`
        <td></td>
        <td>
        <a href="unit-2-data/trees.html#example-recursive-fibonacci-memo"><code class="xref">example-recursive-fibonacci-memo</code></a> <em>(unit-2-data/trees)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-resource-allocation-dual"><td></td><td>
+       <strong>example-resource-allocation-dual</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/lp.html#example-resource-allocation-dual"><code class="xref">example-resource-allocation-dual</code></a> <em>(unit-3-learning/lp)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-resource-allocation-primal"><td></td><td>
+       <strong>example-resource-allocation-primal</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/lp.html#example-resource-allocation-primal"><code class="xref">example-resource-allocation-primal</code></a> <em>(unit-3-learning/lp)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-sa-impl-spehere-function"><td></td><td>
+       <strong>example-sa-impl-spehere-function</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/combitorial.html#example-sa-impl-spehere-function"><code class="xref">example-sa-impl-spehere-function</code></a> <em>(unit-3-learning/combitorial)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-example-ternary-price-model-adj-list"><td></td><td>
@@ -946,12 +1137,28 @@ document.write(`
        <a href="unit-1-basics/types.html#example-unicode-J"><code class="xref">example-unicode-J</code></a> <em>(unit-1-basics/types)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-obs-barrier-method-lambda-policy"><td></td><td>
+       <strong>obs-barrier-method-lambda-policy</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/penalty.html#obs-barrier-method-lambda-policy"><code class="xref">obs-barrier-method-lambda-policy</code></a> <em>(unit-3-learning/penalty)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obs-basic-iterative-method-outline"><td></td><td>
        <strong>obs-basic-iterative-method-outline</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
        <a href="unit-2-data/vectors-matricies-nla.html#obs-basic-iterative-method-outline"><code class="xref">obs-basic-iterative-method-outline</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-obs-bellman-principle-of-optimality"><td></td><td>
+       <strong>obs-bellman-principle-of-optimality</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/combitorial.html#obs-bellman-principle-of-optimality"><code class="xref">obs-bellman-principle-of-optimality</code></a> <em>(unit-3-learning/combitorial)</em></td><td>
        <em>observation</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obs-determinant-triangular-matrix"><td></td><td>
@@ -968,6 +1175,14 @@ document.write(`
        <td></td>
        <td>
        <a href="unit-2-data/reduction.html#obs-eigenvalues-determinants"><code class="xref">obs-eigenvalues-determinants</code></a> <em>(unit-2-data/reduction)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-obs-lambda-policy"><td></td><td>
+       <strong>obs-lambda-policy</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/penalty.html#obs-lambda-policy"><code class="xref">obs-lambda-policy</code></a> <em>(unit-3-learning/penalty)</em></td><td>
        <em>observation</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obs-matrix-shape"><td></td><td>
@@ -1024,6 +1239,14 @@ document.write(`
        <td></td>
        <td>
        <a href="unit-1-basics/functions.html#remark-6"><code class="xref">remark-6</code></a> <em>(unit-1-basics/functions)</em></td><td>
+       <em>remark</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-remark-barrier-method"><td></td><td>
+       <strong>remark-barrier-method</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-3-learning/penalty.html#remark-barrier-method"><code class="xref">remark-barrier-method</code></a> <em>(unit-3-learning/penalty)</em></td><td>
        <em>remark</em></td></tr>
    </table>
 

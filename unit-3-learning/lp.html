@@ -1,0 +1,918 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Linear Programming &#8212; CHEME 4800/5800</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VQRVBL1C02"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VQRVBL1C02');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VQRVBL1C02');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'unit-3-learning/lp';</script>
+    <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-3-learning/lp.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dynamic Progamming and Heuristic Optimization" href="combitorial.html" />
+    <link rel="prev" title="Ordinary Least Squares Problems" href="penalty.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../landing.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cornell_seal_simple_black-164.svg" class="logo__image only-light" alt="CHEME 4800/5800 - Home"/>
+    <script>document.write(`<img src="../_static/cornell_seal_simple_black-164.svg" class="logo__image only-dark" alt="CHEME 4800/5800 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../landing.html">
+                    Principles of Computational Thinking for Engineers
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unit-1-basics/basics-landing.html">Unit 1. Computing Basics</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/types.html">Expressions, Variables, and Types</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/functions.html">Functions, Control Statements, Recursion and Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/programs.html">Programs and Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit-1-basics/data-file-io.html">Data Input and Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unit-2-data/data-landing.html">Unit 2. Data Structures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unit-2-data/trees.html">Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html">Vectors, Matrices and Linear Algebraic Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unit-2-data/reduction.html">Dimensionality Reduction, Eigenvalues, and Eigenvectors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="learning-landing.html">Unit 3. Learning and Optimization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="penalty.html">Ordinary Least Squares Problems</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Linear Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="combitorial.html">Dynamic Progamming and Heuristic Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../References.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/varnerlab/CHEME-1800-Computing-Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/varnerlab/CHEME-1800-Computing-Book/issues/new?title=Issue%20on%20page%20%2Funit-3-learning/lp.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/unit-3-learning/lp.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Linear Programming</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resource-allocation-problems">Resource allocation problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primal-linear-programs">Primal linear programs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplex-algorithm">Simplex algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-resource-allocation-problem">Example: Resource allocation problem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dual-linear-programs">Dual linear programs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duality-interpretation">Duality interpretation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimum-flow-problems">Minimum flow problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-balance-analysis">Flux balance analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-programming">
+<h1>Linear Programming<a class="headerlink" href="#linear-programming" title="Link to this heading">#</a></h1>
+<aside class="topic">
+<p class="topic-title">Overview</p>
+<p>Linear programming (LP) is a method to estimate the best outcome (such as maximum profit, lowest cost, or the best possible production rate) using a mathematical model composed of linear relationships subject to linear constraints.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-primal-linear-problem"><span class="std std-ref">Primal linear programs</span></a> is a linear programming problem aiming to maximize or minimize a linear objective function subject to linear constraints in the form of inequalities or equalities. The term primal refers to the original form of the linear programming problem instead of its dual form.</p></li>
+<li><p><a class="reference internal" href="#content-references-dual-linear-problem"><span class="std std-ref">Dual linear programs</span></a> program is a formulation derived from the primal linear program that provides an alternative perspective on the same problem by introducing a new set of variables and constraints. The objective of the dual program is to either maximize or minimize a linear function subject to a different set of constraints derived from the original primal program.</p></li>
+<li><p><a class="reference internal" href="#content-references-flux-balance-analysis"><span class="std std-ref">Flux balance analysis</span></a> is a versatile tool that can estimate flows through various types of networks and graphs. It can be applied to social graphs, communication networks, or any other problem that can be represented as a network of graphs.</p></li>
+</ul>
+<p>Linear programming, a practical and widely used tool, finds its applications in diverse fields such as business, economics, engineering, and more. It is instrumental in modeling and solving real-world problems, be it resource allocation, production planning, transportation, or other complex scenarios.</p>
+</aside>
+<hr class="docutils" />
+<section id="resource-allocation-problems">
+<span id="content-references-resource-allocation-linear-problem"></span><h2>Resource allocation problems<a class="headerlink" href="#resource-allocation-problems" title="Link to this heading">#</a></h2>
+<p>The classic application of linear programming, as shown in (<a class="reference internal" href="#example-resource-allocation-primal">Example 24</a>), is to solve optimal resource allocation problems. However, before we discuss the primal linear programming problem and more advanced concepts such as duality, which we’ll frame in economic terms, let’s look at a general resource allocation problem (<a class="reference internal" href="#defn-general-resource-allocation-struct">Definition 40</a>):</p>
+<div class="proof definition admonition" id="defn-general-resource-allocation-struct">
+<p class="admonition-title"><span class="caption-number">Definition 40 </span> (Maximum Utility Resource Allocation Problems)</p>
+<section class="definition-content" id="proof-content">
+<p>Suppose there exists <span class="math notranslate nohighlight">\(\texttt{objects}\)</span> <span class="math notranslate nohighlight">\(X = \left\{x_{i}\right\}_{i=1}^{n}\)</span>,
+a function <span class="math notranslate nohighlight">\(U: X\rightarrow\mathbb{R}\)</span> which assigns a utility score to collections of objects,
+and <span class="math notranslate nohighlight">\(I\)</span> resource units, e.g., money, time, etc, to allocate amongst the objects.
+Then, rational agents maximize utility subject to the budget:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray*}
+\text{maximize}~\mathcal{O}(\mathbf{x}) &amp;=&amp; U\left(x_{1},\dots,x_{n}\right) \\
+\text{subject to}~\sum_{i\in{1,\dotsc,n}}c_{i}\cdot{x}_{i} &amp; = &amp; I\\
+\text{and}~x_{i}&amp;\geq&amp;{0}\qquad{i=1,2,\dots,n}
+\end{eqnarray*}
+\end{split}\]</div>
+<p>The <span class="math notranslate nohighlight">\(c_{i}\geq{0}~\forall{i}\)</span> denotes the cost of object <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(x_{i}\geq{0}\)</span> represents
+the amount of object <span class="math notranslate nohighlight">\(i\)</span> purchased or consumed by the agent. If <span class="math notranslate nohighlight">\(U: X\rightarrow\mathbb{R}\)</span> is linear in <span class="math notranslate nohighlight">\(x_{i}\)</span>,
+then this problem is a <span class="math notranslate nohighlight">\(\texttt{linear programming}\)</span> problem; otherwise, it is a <span class="math notranslate nohighlight">\(\texttt{nonlinear programming}\)</span> problem.</p>
+</section>
+</div><p>The problem structure in (<a class="reference internal" href="#defn-general-resource-allocation-struct">Definition 40</a>) is highly adaptable and widely used for various applications. For example, there may be multiple types of constraints on the resources, e.g., time, money, etc., or the utility function may be non-linear, or the decision variables may be discrete, e.g., <span class="math notranslate nohighlight">\(x_{i}\in{0,1}\)</span>, etc.</p>
+<p>Let’s explore the primal and dual linear programming problems and then apply these concepts to a resource allocation problem. In the cases we explore, the decision variables are continuous, the constraints are linear, and the objective function is linear.</p>
+</section>
+<section id="primal-linear-programs">
+<span id="content-references-primal-linear-problem"></span><h2>Primal linear programs<a class="headerlink" href="#primal-linear-programs" title="Link to this heading">#</a></h2>
+<p>Linear programs maximize (or minimize) a <em>linear</em> objective function <span class="math notranslate nohighlight">\(\mathcal{O}(\mathbf{x})\)</span> subject to <em>linear</em> constraints and bounds on the decision variables <span class="math notranslate nohighlight">\(x\)</span>. Decision variables can be continuous values <span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span>, but they can also be integers, e.g., <span class="math notranslate nohighlight">\(x\in{0,1}\)</span>. We’ll start with the continuous problem (<a class="reference internal" href="#defn-primael-linear program">Definition 41</a>):</p>
+<div class="proof definition admonition" id="defn-primael-linear program">
+<p class="admonition-title"><span class="caption-number">Definition 41 </span> (Primal Linear Program)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{O}(\mathbf{x})\)</span> denote a linear function of the continuous non-negative decision variables <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{m}\)</span>
+whose values are constrained by a system of linear equations and bounded. Then, the optimal <span class="math notranslate nohighlight">\(\mathbf{x}^{\star}\)</span> is a solution of the linear program:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray*}
+\text{maximize}~\mathcal{O}(\mathbf{x}) &amp;=&amp; \sum_{i=1}^{m} c_{i}\cdot{x}_{i}\\
+\text{subject to}~\mathbf{A}\cdot\mathbf{x} &amp;\leq&amp;\mathbf{b}\\
+\text{and}~x_{i}&amp;\geq&amp;{0}\qquad{i=1,2,\dots,m}
+\end{eqnarray*}
+\end{split}\]</div>
+<p>The constants <span class="math notranslate nohighlight">\(c_{i}\)</span> are coefficients in the objective function, <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{m}}\)</span>
+is the constraint matrix and <span class="math notranslate nohighlight">\(\mathbf{b}\in\mathbb{R}^{n}\)</span> is a constant vector.
+Any linear program can be converted into this standard form.</p>
+</section>
+</div><p>The constraints of a linear program form a <a class="reference external" href="https://en.wikipedia.org/wiki/Polyhedron">polyhedron</a>, where the solution lies on <a class="reference external" href="https://en.wikipedia.org/wiki/Extreme_point">extreme points of the polyhedron</a>. The solution to a linear program is always at an extreme point of the feasible region, which is the region defined by the constraints. The solution can be at a vertex, edge, or face of the polyhedron.</p>
+<section id="simplex-algorithm">
+<h3>Simplex algorithm<a class="headerlink" href="#simplex-algorithm" title="Link to this heading">#</a></h3>
+<p>Linear programs, even those with thousands of decisions variables, can be efficently solved using simple off-the-shelf hardware, e.g., your laptop using the <a class="reference external" href="https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm">simplex algorithm</a>. The simplex algorithm is a widely-used algorithm to solve the Linear Programming (LP) optimization problems first developed by <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">George Dantzig</a>.</p>
+<p>The <a class="reference external" href="https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm">simplex algorithm</a> is an iterative procedure for solving linear programming problems. The basic idea behind the simplex algorithm is to start with an initial feasible solution (i.e., a point that satisfies all constraints) and then iteratively improve it by moving along the edges of the feasible region (i.e., the region defined by the constraints). At each iteration, the algorithm selects a non-basic variable (i.e., a variable not currently part of the solution). It determines whether increasing or decreasing it will improve the objective function. If such an improvement can be made, the algorithm swaps the non-basic variable into the solution and updates the values of the basic variables (i.e., the variables already part of the solution). The process is repeated until no further improvement can be made, at which point the algorithm terminates, and the current solution is deemed optimal.</p>
+<p>As an aside, the <a class="reference external" href="https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm">simplex algorithm</a> resulted from <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> showing up late to class. In 1939, near the beginning of a class, <a class="reference external" href="https://en.wikipedia.org/wiki/Jerzy_Neyman">Professor Neyman</a>, an instructor for a course that <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> was taking, wrote two problems on the blackboard. <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> arrived late and assumed they were homework problems. According to <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a>, the problem set seemed more complicated than usual, but a few days later, he handed in solutions for both problems, believing that his assignment was late. However, six weeks later, an excited <a class="reference external" href="https://en.wikipedia.org/wiki/Jerzy_Neyman">Professor Neyman</a> told <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> that the homework problems he had solved by mistake were two of the most famous unsolved problems in statistics. The rest is history; <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> got his Ph.D. in 1946 and then developed the simplex algorithm in 1947, and linear programming was born!</p>
+<!-- [The development of the simplex algorithm](https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm), an efficient approach for solving linear programs, has led to LPs being used to solve problems in many engineering applications and other diverse industries such as banking, education, forestry, energy, and logistics.  -->
+</section>
+<section id="example-resource-allocation-problem">
+<h3>Example: Resource allocation problem<a class="headerlink" href="#example-resource-allocation-problem" title="Link to this heading">#</a></h3>
+<p>Let’s explore linear programming by doing a classic problem, namely the optimal allocation of a scarce resource in a manufacturing context (<a class="reference internal" href="#example-resource-allocation-primal">Example 24</a>):</p>
+<div class="proof example dropdown admonition" id="example-resource-allocation-primal">
+<p class="admonition-title"><span class="caption-number">Example 24 </span> (Product mix primal problem)</p>
+<section class="example-content" id="proof-content">
+<p>Consider a manufacturing facility that produces a mixture of five different chemical products <span class="math notranslate nohighlight">\(C_{i}\)</span> using four processes <span class="math notranslate nohighlight">\(P_{j}\)</span> weekly. The process yeilds for each product, and the profit for each product, are shown in the table:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Process</p></th>
+<th class="head text-center"><p>Capacity</p></th>
+<th class="head"><p>C<span class="math notranslate nohighlight">\(_{1}\)</span></p></th>
+<th class="head"><p>C<span class="math notranslate nohighlight">\(_{2}\)</span></p></th>
+<th class="head"><p>C<span class="math notranslate nohighlight">\(_{3}\)</span></p></th>
+<th class="head"><p>C<span class="math notranslate nohighlight">\(_{4}\)</span></p></th>
+<th class="head"><p>C<span class="math notranslate nohighlight">\(_{5}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>P<span class="math notranslate nohighlight">\(_{1}\)</span></p></td>
+<td class="text-center"><p>160</p></td>
+<td><p>1.2</p></td>
+<td><p>1.3</p></td>
+<td><p>0.7</p></td>
+<td><p>0.0</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>P<span class="math notranslate nohighlight">\(_{2}\)</span></p></td>
+<td class="text-center"><p>200</p></td>
+<td><p>0.7</p></td>
+<td><p>2.2</p></td>
+<td><p>1.6</p></td>
+<td><p>0.5</p></td>
+<td><p>1.0</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>P<span class="math notranslate nohighlight">\(_{3}\)</span></p></td>
+<td class="text-center"><p>120</p></td>
+<td><p>0.9</p></td>
+<td><p>0.7</p></td>
+<td><p>1.3</p></td>
+<td><p>1.0</p></td>
+<td><p>0.8</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>P<span class="math notranslate nohighlight">\(_{4}\)</span></p></td>
+<td class="text-center"><p>280</p></td>
+<td><p>1.4</p></td>
+<td><p>2.8</p></td>
+<td><p>0.5</p></td>
+<td><p>1.2</p></td>
+<td><p>0.6</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Unit profit $</p></td>
+<td class="text-center"><p>–</p></td>
+<td><p>18</p></td>
+<td><p>25</p></td>
+<td><p>10</p></td>
+<td><p>12</p></td>
+<td><p>15</p></td>
+</tr>
+</tbody>
+</table>
+<p>Determine the optimum production quantities for the chemical products <span class="math notranslate nohighlight">\(C_{j}\)</span> to maximize the total profit.</p>
+<p><strong>Solution</strong>: Let’s define the decision variables, the objective function, and the problem constraints, then solve the problem in <a class="reference external" href="https://julialang.org">Julia</a> using the <a class="reference external" href="https://jump.dev/JuMP.jl/stable/">JuMP</a> package and the <a class="reference external" href="https://github.com/jump-dev/GLPK.jl">GLPK</a> linear programming solver.</p>
+<p>Let <span class="math notranslate nohighlight">\(x_{i}\geq{0}\)</span> denote the amount of compound <span class="math notranslate nohighlight">\(i\)</span> produced per week (decision variable). The objective function <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>, which is to maximize profit, is then given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{O} = 18x_{1} + 25x_{2} + 10x_{3} + 12x_{4} + 15x_{5} \]</div>
+<p>where the coefficients are the unit profit for each product. Each process is governed by feedstock constraints:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray}
+P_{1} &amp; : &amp; 1.2x_{1}+1.3x_{2}+0.7x_{3}+0.0x_{4} + 0.5x_{5} &amp; \leq &amp; 160 \\
+P_{2} &amp; : &amp; 0.7x_{1}+2.2x_{2}+1.6x_{3}+0.5x_{4} + 1.0x_{5} &amp; \leq &amp; 200 \\
+P_{3} &amp; : &amp; 0.9x_{1}+0.7x_{2}+1.3x_{3}+1.0x_{4} + 0.8x_{5} &amp; \leq &amp; 120 \\
+P_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &amp; 280 \\
+\end{eqnarray}\end{split}\]</div>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># include -</span>
+<span class="k">using</span><span class="w"> </span><span class="n">JuMP</span>
+<span class="k">using</span><span class="w"> </span><span class="n">GLPK</span>
+<span class="k">using</span><span class="w"> </span><span class="n">LinearAlgebra</span>
+
+<span class="c"># setup some constants -</span>
+<span class="n">number_of_products</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="n">number_of_processes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+
+<span class="c"># Setup the system A, b and c -</span>
+<span class="c"># Define the system matrix -</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="mf">1.2</span><span class="w"> </span><span class="mf">1.3</span><span class="w"> </span><span class="mf">0.7</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="p">;</span>
+<span class="w">    </span><span class="mf">0.7</span><span class="w"> </span><span class="mf">2.2</span><span class="w"> </span><span class="mf">1.6</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">;</span>
+<span class="w">    </span><span class="mf">0.9</span><span class="w"> </span><span class="mf">0.7</span><span class="w"> </span><span class="mf">1.3</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="mf">0.8</span><span class="w"> </span><span class="p">;</span>
+<span class="w">    </span><span class="mf">1.4</span><span class="w"> </span><span class="mf">2.8</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="mf">1.2</span><span class="w"> </span><span class="mf">0.6</span><span class="w"> </span><span class="p">;</span>
+<span class="p">];</span>
+
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">280</span><span class="p">];</span><span class="w"> </span><span class="c"># Setup the right hand side vector</span>
+<span class="n">c_vector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">18.0</span><span class="p">,</span><span class="mf">25.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">12.0</span><span class="p">,</span><span class="mf">15.0</span><span class="p">];</span><span class="w"> </span><span class="c"># profits for each product</span>
+
+<span class="c"># build a model -</span>
+<span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Model</span><span class="p">(</span><span class="n">GLPK</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">)</span>
+
+<span class="c"># add decision variables to the model -</span>
+<span class="nd">@variable</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">:</span><span class="n">number_of_products</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="c"># this sets up 5 variables</span>
+
+<span class="c"># Set the objective =&gt; maximize profit</span>
+<span class="nd">@objective</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">Max</span><span class="p">,</span><span class="w"> </span><span class="n">transpose</span><span class="p">(</span><span class="n">c_vector</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">);</span>
+
+<span class="c"># Setup the constraints - add them to the model </span>
+<span class="nd">@constraints</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="k">begin</span>
+<span class="w">        </span><span class="n">A</span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">.&lt;=</span><span class="w"> </span><span class="n">b</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="p">);</span>
+
+<span class="c"># solve the model</span>
+<span class="n">optimize!</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">solution_summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="c"># show the solution</span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">number_of_products</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;C</span><span class="si">$i</span><span class="s"> = &quot;</span><span class="p">,</span><span class="n">value</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span><span class="w"> </span><span class="s">&quot; units per week.&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># print objective value -</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Objective value for the primal is: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">objective_value</span><span class="p">(</span><span class="n">model</span><span class="p">),</span><span class="w"> </span><span class="s">&quot; </span><span class="se">\$</span><span class="s"> per week&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The maximum profit per week is $2988.72 per week.</p>
+<p><strong>Source</strong>: <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/resource_allocation_primal_lp">Unit 3 examples, CHEME-1800 GitHub repository</a>.</p>
+</section>
+</div></section>
+</section>
+<section id="dual-linear-programs">
+<span id="content-references-dual-linear-problem"></span><h2>Dual linear programs<a class="headerlink" href="#dual-linear-programs" title="Link to this heading">#</a></h2>
+<p>The dual linear program, derived from the primal program, is an alternative way of looking at the same problem (<a class="reference internal" href="#defn-dual-linear program">Definition 42</a>):</p>
+<div class="proof definition admonition" id="defn-dual-linear program">
+<p class="admonition-title"><span class="caption-number">Definition 42 </span> (Dual linear program)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{O}^{\prime}(\mathbf{y})\)</span> denote a linear function of the continuous decision variables <span class="math notranslate nohighlight">\(\mathbf{y}\in\mathbb{R}^{n}\)</span>
+whose values are constrained by a system of linear equations and bounded. Then, the optimal
+<span class="math notranslate nohighlight">\(\mathbf{y}^{\star}\)</span> of the dual problem is a solution of the linear program:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray*}
+\text{minimize}~\mathcal{O}^{\prime}(\mathbf{y}) &amp;=&amp; \sum_{i=1}^{n} b_{i}\cdot{y}_{i}\\
+\text{subject to}~\mathbf{A}^{T}\cdot\mathbf{y} &amp;\geq&amp;\mathbf{c}\\
+\text{and}~y_{i}&amp;\geq&amp;{0}\qquad{i=1,2,\dots,n}
+\end{eqnarray*}
+\end{split}\]</div>
+<p>Each variable in the primal linear program becomes a constraint in the dual linear program, each constraint in the primal linear program becomes a variable in the dual linear program, and the objective direction is inverted – the maximum in the primal becomes the minimum in the dual, and vice versa. Particular differences between the primal and dual linear programming problems:</p>
+<ul class="simple">
+<li><p>Min versus max and the vectors <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> switch places; the
+<span class="math notranslate nohighlight">\(c_{j}\)</span> coefficients become the right-hand side vector, while the <span class="math notranslate nohighlight">\(b_{i}\)</span> are now in the objective function.</p></li>
+<li><p>The primal <span class="math notranslate nohighlight">\(\leq\)</span> constraints become <span class="math notranslate nohighlight">\(\geq\)</span> constraints in the dual problem.</p></li>
+<li><p>The dual problem is an upper bound to the primal solution, i.e., <span class="math notranslate nohighlight">\(\mathcal{O}^{\prime}(\mathbf{y}^{\star})\geq\mathcal{O}(\mathbf{x}^{\star})\)</span> (weak duality).</p></li>
+</ul>
+</section>
+</div><section id="duality-interpretation">
+<h3>Duality interpretation<a class="headerlink" href="#duality-interpretation" title="Link to this heading">#</a></h3>
+<p>If we interpret the primal linear program as a classical resource allocation problem, its dual can be interpreted as a resource valuation problem. Thus, the duality theorem has an economic interpretation:</p>
+<ul class="simple">
+<li><p>The primal problem in <a class="reference internal" href="#example-resource-allocation-primal">Example 24</a> deals with physical quantities, i.e., with production capacity (inputs) available in limited quantities and with the amounts of products (outputs) that should be produced to maximize total revenue.</p></li>
+<li><p>On the other hand, the dual problem deals with economic values. With floor guarantees on all chemical product (output) unit prices and assuming the available quantity of all inputs (production capacity) is known, the dual problem computes the input unit pricing scheme that minimizes the total expenditure.</p></li>
+</ul>
+<p>To explore this interpretation, let’s formulate and solve the dual of the resource allocation problem above (<a class="reference internal" href="#example-resource-allocation-dual">Example 25</a>):</p>
+<div class="proof example dropdown admonition" id="example-resource-allocation-dual">
+<p class="admonition-title"><span class="caption-number">Example 25 </span> (Product mix dual problem)</p>
+<section class="example-content" id="proof-content">
+<p>Consider another facility with no chemical process manufacturing capacity that instead wishes to purchase the production capacity of the previous factory. The dual decision variables <span class="math notranslate nohighlight">\(y_{i}\)</span> are the offer prices per unit capacity.  For the offer to be accepted, <span class="math notranslate nohighlight">\(\mathbf{A}^{T}\mathbf{y}\geq\mathbf{c}\)</span>, i.e., facility one makes at least as much by selling the capacity as they do by manufacturing the chemical products.</p>
+<p>The dual of <a class="reference internal" href="#example-resource-allocation-primal">Example 24</a>, which computes the capacity prices <span class="math notranslate nohighlight">\(y_{i}\)</span>, can be solved as:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># include </span>
+<span class="k">using</span><span class="w"> </span><span class="n">JuMP</span>
+<span class="k">using</span><span class="w"> </span><span class="n">GLPK</span>
+<span class="k">using</span><span class="w"> </span><span class="n">LinearAlgebra</span>
+
+<span class="c"># setup some constants -</span>
+<span class="n">number_of_products</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="n">number_of_processes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+
+<span class="c"># Setuo system -</span>
+<span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">18.0</span><span class="p">,</span><span class="mf">25.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">12.0</span><span class="p">,</span><span class="mf">15.0</span><span class="p">];</span><span class="w"> </span><span class="c"># profits for each product</span>
+
+<span class="c"># System constraint matrix</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="mf">1.2</span><span class="w"> </span><span class="mf">1.3</span><span class="w"> </span><span class="mf">0.7</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="p">;</span>
+<span class="w">    </span><span class="mf">0.7</span><span class="w"> </span><span class="mf">2.2</span><span class="w"> </span><span class="mf">1.6</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">;</span>
+<span class="w">    </span><span class="mf">0.9</span><span class="w"> </span><span class="mf">0.7</span><span class="w"> </span><span class="mf">1.3</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="mf">0.8</span><span class="w"> </span><span class="p">;</span>
+<span class="w">    </span><span class="mf">1.4</span><span class="w"> </span><span class="mf">2.8</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="mf">1.2</span><span class="w"> </span><span class="mf">0.6</span><span class="w"> </span><span class="p">;</span>
+<span class="p">];</span>
+
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">280</span><span class="p">];</span><span class="w"> </span><span class="c"># Setup the right hand side vector</span>
+
+<span class="c"># build a model -</span>
+<span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Model</span><span class="p">(</span><span class="n">GLPK</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">)</span>
+
+<span class="c"># add decision variables to the model -</span>
+<span class="nd">@variable</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">:</span><span class="n">number_of_processes</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="c"># this sets up 5 variables</span>
+
+<span class="c"># Set the objective =&gt; maximize the profit -</span>
+<span class="nd">@objective</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">Min</span><span class="p">,</span><span class="w"> </span><span class="n">transpose</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">);</span>
+
+<span class="c"># Setup the constraints - add them to the model </span>
+<span class="nd">@constraints</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="k">begin</span>
+<span class="w">        </span><span class="n">transpose</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="w"> </span><span class="o">.&gt;=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="c"># what is the .&gt;= doing?</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="p">);</span>
+
+<span class="c"># solve the model</span>
+<span class="n">optimize!</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">solution_summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="c"># show the solution</span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">number_of_processes</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;y</span><span class="si">$i</span><span class="s"> = &quot;</span><span class="p">,</span><span class="n">value</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span><span class="w"> </span><span class="s">&quot; units per week.&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># print objective value -</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Objective value for the dual is: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">objective_value</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The objective value of the dual problem is $2988.72 per week</p>
+<p><strong>Source</strong>: <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/resource_allocation_primal_lp">Unit 3 examples, CHEME-1800 GitHub repository</a>.</p>
+</section>
+</div></section>
+</section>
+<section id="minimum-flow-problems">
+<span id="content-references-max-min-linear-problem"></span><h2>Minimum flow problems<a class="headerlink" href="#minimum-flow-problems" title="Link to this heading">#</a></h2>
+<p>One important application of linear programming is in the field of network flow problems. The network flow problem is a linear programming problem whose goal is to find the optimal flow of resources through a network of nodes and edges, subject to various constraints. One common type of network flow problem is the minimum flow problem, which seeks to find the minimum cost flow through a network that satisfies certain capacity constraints (<a class="reference internal" href="#defn-min-flow-problem">Definition 43</a>):</p>
+<div class="proof definition admonition" id="defn-min-flow-problem">
+<p class="admonition-title"><span class="caption-number">Definition 43 </span> (Minimum Flow Problem)</p>
+<section class="definition-content" id="proof-content">
+<p>Suppose we have a directed graph <span class="math notranslate nohighlight">\(G = (V, E)\)</span> with a source node <span class="math notranslate nohighlight">\(s\in{V}\)</span> and a sink node <span class="math notranslate nohighlight">\(t\in{V}\)</span>. Each edge <span class="math notranslate nohighlight">\((u,v)\in{E}\)</span> has a capacity <span class="math notranslate nohighlight">\(c(u,v)&gt;0\)</span>, flow <span class="math notranslate nohighlight">\(f(u,v)&gt;0\)</span>, and cost <span class="math notranslate nohighlight">\(a(u,v)&gt;0\)</span>. The goal is to find the minimum cost flow from the source <span class="math notranslate nohighlight">\(s\)</span> to the sink <span class="math notranslate nohighlight">\(t\)</span> that satisfies the capacity constraints. The minimum flow problem can be formulated as a linear program:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\text{minimize}~\mathcal{O}(E) &amp;=&amp; \sum_{(u,v)\in{E}} a(u,v)\cdot{f}(u,v)\\
+\text{subject to}~\sum_{w\in{E}}f(u,w) &amp;=&amp;0\quad{u}\neq{s,t}\\
+\text{and}~\sum_{w\in{E}}f(s,w) &amp;=&amp;d\\
+\text{and}~\sum_{w\in{E}}f(w,t) &amp;=&amp;d\\
+\text{and}~f(u,v)&amp;\leq&amp;c(u,v)\quad{(u,v)\in{E}}
+\end{eqnarray}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(d\)</span> is the demand at the source and sink nodes, the decision variables <span class="math notranslate nohighlight">\(f(u,v)\)</span> are the flow rates along the edges of the graph, and the objective function <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> is the total cost of the flow. Network flow problems are widely used in transportation, communication, and other fields to model and optimize the flow of resources through networks.</p>
+</section>
+</div><p>Modifications to the minimum flow problem described in <a class="reference internal" href="#defn-min-flow-problem">Definition 43</a>  can include adding additional constraints, such as upper and lower bounds on the flow rates, changing the objective function to minimize the total flow instead of the total cost, or having multiple sources and sinks in the network.</p>
+</section>
+<section id="flux-balance-analysis">
+<span id="content-references-flux-balance-analysis"></span><h2>Flux balance analysis<a class="headerlink" href="#flux-balance-analysis" title="Link to this heading">#</a></h2>
+<p>In chemical engineering, flux balance analysis is a minimum flow problem that estimates chemical reaction rates (called fluxes) in steady-state reaction networks. The standard flux balance analysis problem is written in concentration units, e.g., the reaction flux has units of mmol/volume-time. However, sometimes, it is more convenient to work in mole units instead. In either case, the flux balance analysis problem can be formulated as a linear program (<a class="reference internal" href="#defn-mol-based-units">Definition 44</a>):</p>
+<div class="proof definition admonition" id="defn-mol-based-units">
+<p class="admonition-title"><span class="caption-number">Definition 44 </span> (Flux balance analysis (mole-based units))</p>
+<section class="definition-content" id="proof-content">
+<p>Suppose we have an open well-mixed reactor system with species <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, streams <span class="math notranslate nohighlight">\(\mathcal{S}\)</span>, and reactions <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>. Further, we partition the stream set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> into streams entering the system <span class="math notranslate nohighlight">\(\mathcal{S}^{+}\)</span>, and streams leaving the system <span class="math notranslate nohighlight">\(\mathcal{S}^{-}\)</span>.  Then, the steady-state species mole balances are given by:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{s\in\mathcal{S}^{+}}\dot{n}_{is} - \sum_{k\in\mathcal{S}^{-}}\dot{n}_{ik} + \sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j} = 0\qquad\forall{i}\in\mathcal{M}\]</div>
+<p>The optimal (unknown) open extents <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> are the solution of a linear programming problem</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\text{minimize}~\mathcal{O}(\dot{\epsilon}) &amp; = &amp;  -\sum_{j\in\mathcal{R}}c_{j}\dot{\epsilon}_{j}\\
+\text{subject to}~\sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j}&amp;\geq&amp;{-\sum_{s\in\mathcal{S}^{+}}\dot{n}_{i,s}}\qquad\forall{i}\in\mathcal{M}\\
+\text{and}~\sum_{k\in\mathcal{S}^{-}}\dot{n}_{i,k}&amp;\geq&amp;{0}\qquad\forall{i}\in\mathcal{M}\\
+\text{and}~\mathcal{L}_{j}&amp;\leq\dot{\epsilon}_{j}\leq&amp;\mathcal{U}_{j}\qquad\forall{j}\in\mathcal{R}
+\end{eqnarray}
+\end{split}\]</div>
+</section>
+</div><p>If we don’t have <a class="reference external" href="https://en.wikipedia.org/wiki/Rate_equation">kinetic rate laws</a>, or we are not approaching this problem from the <a class="reference external" href="https://en.wikipedia.org/wiki/Chemical_equilibrium">equilibrium or energy perspective</a>, we can use flux balance analysis to estimate the open extent of reaction <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> in mole-based systems, or the reaction rate in concentration based systems.</p>
+</section>
+<hr class="docutils" />
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>In this lecture, we discussed linear programming (LP).  Linear programming is a method to estimate the best outcome (such as maximum profit, lowest cost, or the best possible production rate) using a mathematical model composed of linear relationships subject to linear constraints. Linear programming is widely used in business, economics, engineering, and other fields to model and solve real-world problems involving resource allocation, production planning, transportation, and more.</p>
+<p>First, we introduced the mathematical structure of linear programs, the dual problem, and then moved to an important application area within chemical Engineering, namely flux balance analysis:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#content-references-primal-linear-problem"><span class="std std-ref">Primal linear programs</span></a> is a linear programming problem aiming to maximize or minimize a linear objective function subject to linear constraints in the form of inequalities or equalities. The term primal refers to the original form of the linear programming problem instead of its dual form.</p></li>
+<li><p><a class="reference internal" href="#content-references-dual-linear-problem"><span class="std std-ref">Dual linear programs</span></a> is a formulation derived from the primal linear program that provides an alternative perspective on the same problem by introducing a new set of variables and constraints. The objective of the dual program is to either maximize or minimize a linear function subject to a different set of constraints derived from the original primal program.</p></li>
+<li><p><a class="reference internal" href="#content-references-flux-balance-analysis"><span class="std std-ref">Flux balance analysis</span></a> is a versatile tool that can estimate flows through various types of networks and graphs. It can be applied to social graphs, communication networks, or any other problem that can be represented as a network of graphs. Flux balance analysis, a testament to the versatility of linear programming, can be implemented as a linear program.
+Background resources for biochemical network information and computational tools for working with flux balance analysis models:</p></li>
+<li><p><a class="reference external" href="https://www.genome.jp/kegg/">Kanehisa M, Goto S. KEGG: kyoto encyclopedia of genes and genomes. Nucleic Acids Res. 2000 Jan 1;28(1):27-30. doi: 10.1093/nar/28.1.27. PMID: 10592173; PMCID: PMC102409.</a></p></li>
+<li><p><a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/29447345/">Karp, Peter D et al. “The BioCyc collection of microbial genomes and metabolic pathways.” Briefings in bioinformatics vol. 20,4 (2019): 1085-1093. doi:10.1093/bib/bbx085</a></p></li>
+<li><p><a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/26527724/">Gama-Castro, Socorro et al. “RegulonDB version 9.0: high-level integration of gene regulation, coexpression, motif clustering and beyond.” Nucleic acids research vol. 44,D1 (2016): D133-43. doi:10.1093/nar/gkv1156</a></p></li>
+<li><p><a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/30787451/">Heirendt, Laurent et al. “Creation and analysis of biochemical constraint-based models using the COBRA Toolbox v.3.0.” Nature protocols vol. 14,3 (2019): 639-702. doi:10.1038/s41596-018-0098-2</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./unit-3-learning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="penalty.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Ordinary Least Squares Problems</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="combitorial.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Dynamic Progamming and Heuristic Optimization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resource-allocation-problems">Resource allocation problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primal-linear-programs">Primal linear programs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplex-algorithm">Simplex algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-resource-allocation-problem">Example: Resource allocation problem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dual-linear-programs">Dual linear programs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duality-interpretation">Duality interpretation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimum-flow-problems">Minimum flow problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-balance-analysis">Flux balance analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Varner
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
