@@ -33,7 +33,6 @@ $$
 
 
 The components of $\mathbf{x}$ are the variables to be determined, $c_{i}$ are constant coefficients in the _linear_ objective function $\mathcal{O}$, $\mathbf{A}\in\mathbb{R}^{n\times{m}}$ is the constraint matrix and $\mathbf{b}\in\mathbb{R}^{n}$ is a constant vector. 
-
 Any linear program can be converted into this standard form.
 ````
 
