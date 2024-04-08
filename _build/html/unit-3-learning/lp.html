@@ -208,12 +208,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../unit-2-data/reduction.html">Dimensionality Reduction, Eigenvalues, and Eigenvectors</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="learning-landing.html">Unit 3. Learning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="learning-landing.html">Unit 3. Learning and Optimization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="penalty.html">Ordinary Least Squares Problems</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Linear Programming</a></li>
 <li class="toctree-l2"><a class="reference internal" href="combitorial.html">Dynamic Progamming and Heuristic Optimization</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../References.html">References</a></li>
 </ul>
 
     </div>
@@ -409,28 +410,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resource-allocation-problems">Resource allocation problems</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primal-linear-programs">Primal linear programs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplex-algorithm">Simplex algorithm</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-the-simplex-algorithm-work">How does the simplex algorithm work</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aside-showing-up-late-is-not-always-bad">Aside: Showing up late is not always bad</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-resource-allocation-problem-structure">General resource allocation problem structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplex-algorithm">Simplex algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-resource-allocation-problem">Example: Resource allocation problem</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dual-linear-programs">Dual linear programs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duality-interpretation">Duality interpretation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-balance-analysis">Flux balance analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-based-fba-formulation">Mole-based FBA formulation</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional resources</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimum-flow-problems">Minimum flow problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-balance-analysis">Flux balance analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional resources</a></li>
 </ul>
             </nav>
         </div>
@@ -444,49 +437,73 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linear-programming">
 <h1>Linear Programming<a class="headerlink" href="#linear-programming" title="Link to this heading">#</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>In this lecture, we’ll disucss linear programming.  Linear programming (LP) is a method to estimate the best outcome (such as maximum profit, lowest cost, or the best possible rate of production) using a mathematical model composed of linear relationships subject to linear constraints. Linear programming is widely used in business, economics, engineering, and other fields to model and solve real-world problems involving resource allocation, production planning, transportation, and more.</p>
-<p>First, we’ll introduce the mathematical structure of linear programs, and then move to an important application area within chemical Engineering, namely flux balance analysis:</p>
+<aside class="topic">
+<p class="topic-title">Overview</p>
+<p>Linear programming (LP) is a method to estimate the best outcome (such as maximum profit, lowest cost, or the best possible production rate) using a mathematical model composed of linear relationships subject to linear constraints.</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#content-references-primal-linear-problem"><span class="std std-ref">Primal linear programs</span></a> are a type of linear programming problem in which the goal is to maximize or minimize a linear objective function subject to a set of linear constraints in the form of inequalities or equalities. The term primal refers to the original form of the linear programming problem, as opposed to its dual form.</p></li>
-<li><p><a class="reference internal" href="#content-references-dual-linear-problem"><span class="std std-ref">Dual linear programs</span></a> are formulations derived from a primal linear program that provides an alternative way of looking at the same problem. The dual linear program is constructed by introducing a set of new variables and constraints that are related to the primal linear program. The objective of the dual program is to either maximize or minimize a function, subject to a different set of constraints, which are derived from the original primal program.</p></li>
-<li><p><a class="reference internal" href="#content-references-flux-balance-analysis"><span class="std std-ref">Flux balance analysis</span></a> is a general tool that can be used to estimate <em>flows</em> through many different types of networks and graphs, e.g., social graphs, communication networks, or other types of problems that can be represented as a network of graphs. Flux balance analysis can be implemented as a linear program.</p></li>
+<li><p><a class="reference internal" href="#content-references-primal-linear-problem"><span class="std std-ref">Primal linear programs</span></a> is a linear programming problem aiming to maximize or minimize a linear objective function subject to linear constraints in the form of inequalities or equalities. The term primal refers to the original form of the linear programming problem instead of its dual form.</p></li>
+<li><p><a class="reference internal" href="#content-references-dual-linear-problem"><span class="std std-ref">Dual linear programs</span></a> program is a formulation derived from the primal linear program that provides an alternative perspective on the same problem by introducing a new set of variables and constraints. The objective of the dual program is to either maximize or minimize a linear function subject to a different set of constraints derived from the original primal program.</p></li>
+<li><p><a class="reference internal" href="#content-references-flux-balance-analysis"><span class="std std-ref">Flux balance analysis</span></a> is a versatile tool that can estimate flows through various types of networks and graphs. It can be applied to social graphs, communication networks, or any other problem that can be represented as a network of graphs.</p></li>
 </ul>
+<p>Linear programming, a practical and widely used tool, finds its applications in diverse fields such as business, economics, engineering, and more. It is instrumental in modeling and solving real-world problems, be it resource allocation, production planning, transportation, or other complex scenarios.</p>
+</aside>
 <hr class="docutils" />
+<section id="resource-allocation-problems">
+<span id="content-references-resource-allocation-linear-problem"></span><h2>Resource allocation problems<a class="headerlink" href="#resource-allocation-problems" title="Link to this heading">#</a></h2>
+<p>The classic application of linear programming, as shown in (<a class="reference internal" href="#example-resource-allocation-primal">Example 24</a>), is to solve optimal resource allocation problems. However, before we discuss the primal linear programming problem and more advanced concepts such as duality, which we’ll frame in economic terms, let’s look at a general resource allocation problem (<a class="reference internal" href="#defn-general-resource-allocation-struct">Definition 40</a>):</p>
+<div class="proof definition admonition" id="defn-general-resource-allocation-struct">
+<p class="admonition-title"><span class="caption-number">Definition 40 </span> (Maximum Utility Resource Allocation Problems)</p>
+<section class="definition-content" id="proof-content">
+<p>Suppose there exists <span class="math notranslate nohighlight">\(\texttt{objects}\)</span> <span class="math notranslate nohighlight">\(X = \left\{x_{i}\right\}_{i=1}^{n}\)</span>,
+a function <span class="math notranslate nohighlight">\(U: X\rightarrow\mathbb{R}\)</span> which assigns a utility score to collections of objects,
+and <span class="math notranslate nohighlight">\(I\)</span> resource units, e.g., money, time, etc, to allocate amongst the objects.
+Then, rational agents maximize utility subject to the budget:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray*}
+\text{maximize}~\mathcal{O}(\mathbf{x}) &amp;=&amp; U\left(x_{1},\dots,x_{n}\right) \\
+\text{subject to}~\sum_{i\in{1,\dotsc,n}}c_{i}\cdot{x}_{i} &amp; = &amp; I\\
+\text{and}~x_{i}&amp;\geq&amp;{0}\qquad{i=1,2,\dots,n}
+\end{eqnarray*}
+\end{split}\]</div>
+<p>The <span class="math notranslate nohighlight">\(c_{i}\geq{0}~\forall{i}\)</span> denotes the cost of object <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(x_{i}\geq{0}\)</span> represents
+the amount of object <span class="math notranslate nohighlight">\(i\)</span> purchased or consumed by the agent. If <span class="math notranslate nohighlight">\(U: X\rightarrow\mathbb{R}\)</span> is linear in <span class="math notranslate nohighlight">\(x_{i}\)</span>,
+then this problem is a <span class="math notranslate nohighlight">\(\texttt{linear programming}\)</span> problem; otherwise, it is a <span class="math notranslate nohighlight">\(\texttt{nonlinear programming}\)</span> problem.</p>
+</section>
+</div><p>The problem structure in (<a class="reference internal" href="#defn-general-resource-allocation-struct">Definition 40</a>) is highly adaptable and widely used for various applications. For example, there may be multiple types of constraints on the resources, e.g., time, money, etc., or the utility function may be non-linear, or the decision variables may be discrete, e.g., <span class="math notranslate nohighlight">\(x_{i}\in{0,1}\)</span>, etc.</p>
+<p>Let’s explore the primal and dual linear programming problems and then apply these concepts to a resource allocation problem. In the cases we explore, the decision variables are continuous, the constraints are linear, and the objective function is linear.</p>
 </section>
 <section id="primal-linear-programs">
 <span id="content-references-primal-linear-problem"></span><h2>Primal linear programs<a class="headerlink" href="#primal-linear-programs" title="Link to this heading">#</a></h2>
-<p>Linear programs maximize (or minimize) a <em>linear</em> objective function <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> subject to <em>linear</em> constraints and bounds on the decision variables <span class="math notranslate nohighlight">\(x\)</span> we are searching over. Decision variables can be continuous values <span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span>, but they can also be integers, e.g., <span class="math notranslate nohighlight">\(x\in{0,1}\)</span>. We’ll start with the continuous problem (<a class="reference internal" href="#defn-primael-linear program">Definition 40</a>):</p>
+<p>Linear programs maximize (or minimize) a <em>linear</em> objective function <span class="math notranslate nohighlight">\(\mathcal{O}(\mathbf{x})\)</span> subject to <em>linear</em> constraints and bounds on the decision variables <span class="math notranslate nohighlight">\(x\)</span>. Decision variables can be continuous values <span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span>, but they can also be integers, e.g., <span class="math notranslate nohighlight">\(x\in{0,1}\)</span>. We’ll start with the continuous problem (<a class="reference internal" href="#defn-primael-linear program">Definition 41</a>):</p>
 <div class="proof definition admonition" id="defn-primael-linear program">
-<p class="admonition-title"><span class="caption-number">Definition 40 </span> (Primal Linear Program)</p>
+<p class="admonition-title"><span class="caption-number">Definition 41 </span> (Primal Linear Program)</p>
 <section class="definition-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> denote a linear function of continuous decision variables <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{m}\)</span> whose values are constrained by a system of linear equations with system matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{m}}\)</span>, and bounded. Then, we can estimate the <em>optimal</em> value for the variables <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> by solving the linear program (canonical form):</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{O}(\mathbf{x})\)</span> denote a linear function of the continuous non-negative decision variables <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^{m}\)</span>
+whose values are constrained by a system of linear equations and bounded. Then, the optimal <span class="math notranslate nohighlight">\(\mathbf{x}^{\star}\)</span> is a solution of the linear program:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{eqnarray}
-\text{maximize}~\mathcal{O} &amp;=&amp; \sum_{i=1}^{m} c_{i}x_{i}\\
-\text{subject to}~\mathbf{Ax} &amp;\leq&amp;\mathbf{b}\\
+\begin{eqnarray*}
+\text{maximize}~\mathcal{O}(\mathbf{x}) &amp;=&amp; \sum_{i=1}^{m} c_{i}\cdot{x}_{i}\\
+\text{subject to}~\mathbf{A}\cdot\mathbf{x} &amp;\leq&amp;\mathbf{b}\\
 \text{and}~x_{i}&amp;\geq&amp;{0}\qquad{i=1,2,\dots,m}
-\end{eqnarray}
+\end{eqnarray*}
 \end{split}\]</div>
-<p>The components of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> are the variables to be determined, <span class="math notranslate nohighlight">\(c_{i}\)</span> are constant coefficients in the <em>linear</em> objective function <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{m}}\)</span> is the constraint matrix and <span class="math notranslate nohighlight">\(\mathbf{b}\in\mathbb{R}^{n}\)</span> is a constant vector.</p>
-<p>Any linear program can be converted into this standard form.</p>
+<p>The constants <span class="math notranslate nohighlight">\(c_{i}\)</span> are coefficients in the objective function, <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{m}}\)</span>
+is the constraint matrix and <span class="math notranslate nohighlight">\(\mathbf{b}\in\mathbb{R}^{n}\)</span> is a constant vector.
+Any linear program can be converted into this standard form.</p>
 </section>
-</div><p>The feasible solutions of a linear program form a <a class="reference external" href="https://en.wikipedia.org/wiki/Polyhedron">polyhedron</a>, and the solution of the objective function lies on <a class="reference external" href="https://en.wikipedia.org/wiki/Extreme_point">extreme points of the polyhedron</a>. Because of its general structure, linear programming provides a powerful tool for optimizing complex decision-making problems in various industries, allowing for better resource utilization, efficiency, and increased profitability.</p>
+</div><p>The constraints of a linear program form a <a class="reference external" href="https://en.wikipedia.org/wiki/Polyhedron">polyhedron</a>, where the solution lies on <a class="reference external" href="https://en.wikipedia.org/wiki/Extreme_point">extreme points of the polyhedron</a>. The solution to a linear program is always at an extreme point of the feasible region, which is the region defined by the constraints. The solution can be at a vertex, edge, or face of the polyhedron.</p>
 <section id="simplex-algorithm">
 <h3>Simplex algorithm<a class="headerlink" href="#simplex-algorithm" title="Link to this heading">#</a></h3>
 <p>Linear programs, even those with thousands of decisions variables, can be efficently solved using simple off-the-shelf hardware, e.g., your laptop using the <a class="reference external" href="https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm">simplex algorithm</a>. The simplex algorithm is a widely-used algorithm to solve the Linear Programming (LP) optimization problems first developed by <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">George Dantzig</a>.</p>
-<section id="how-does-the-simplex-algorithm-work">
-<h4>How does the simplex algorithm work<a class="headerlink" href="#how-does-the-simplex-algorithm-work" title="Link to this heading">#</a></h4>
 <p>The <a class="reference external" href="https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm">simplex algorithm</a> is an iterative procedure for solving linear programming problems. The basic idea behind the simplex algorithm is to start with an initial feasible solution (i.e., a point that satisfies all constraints) and then iteratively improve it by moving along the edges of the feasible region (i.e., the region defined by the constraints). At each iteration, the algorithm selects a non-basic variable (i.e., a variable not currently part of the solution). It determines whether increasing or decreasing it will improve the objective function. If such an improvement can be made, the algorithm swaps the non-basic variable into the solution and updates the values of the basic variables (i.e., the variables already part of the solution). The process is repeated until no further improvement can be made, at which point the algorithm terminates, and the current solution is deemed optimal.</p>
-</section>
-<section id="aside-showing-up-late-is-not-always-bad">
-<h4>Aside: Showing up late is not always bad<a class="headerlink" href="#aside-showing-up-late-is-not-always-bad" title="Link to this heading">#</a></h4>
-<p>As an aside, the <a class="reference external" href="https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm">simplex algorithm</a> resulted from <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> showing up late to class. In 1939, near the beginning of a class, <a class="reference external" href="https://en.wikipedia.org/wiki/Jerzy_Neyman">Professor Neyman</a>, an instructor for a course that <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> was taking, wrote two problems on the blackboard. <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> arrived late and assumed they were homework problems. According to <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a>, the problem set seemed more complicated than usual, but a few days later, he handed in solutions for both problems, believing that his assignment was late.</p>
-<p>However, six weeks later, an excited <a class="reference external" href="https://en.wikipedia.org/wiki/Jerzy_Neyman">Professor Neyman</a> told <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> that the homework problems he had solved by mistake were two of the most famous unsolved problems in statistics. The rest is history; <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> got his Ph.D. in 1946 and then developed the simplex algorithm in 1947, and linear programming was born!</p>
+<p>As an aside, the <a class="reference external" href="https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm">simplex algorithm</a> resulted from <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> showing up late to class. In 1939, near the beginning of a class, <a class="reference external" href="https://en.wikipedia.org/wiki/Jerzy_Neyman">Professor Neyman</a>, an instructor for a course that <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> was taking, wrote two problems on the blackboard. <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> arrived late and assumed they were homework problems. According to <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a>, the problem set seemed more complicated than usual, but a few days later, he handed in solutions for both problems, believing that his assignment was late. However, six weeks later, an excited <a class="reference external" href="https://en.wikipedia.org/wiki/Jerzy_Neyman">Professor Neyman</a> told <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> that the homework problems he had solved by mistake were two of the most famous unsolved problems in statistics. The rest is history; <a class="reference external" href="https://en.wikipedia.org/wiki/George_Dantzig">Dantzig</a> got his Ph.D. in 1946 and then developed the simplex algorithm in 1947, and linear programming was born!</p>
 <!-- [The development of the simplex algorithm](https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm), an efficient approach for solving linear programs, has led to LPs being used to solve problems in many engineering applications and other diverse industries such as banking, education, forestry, energy, and logistics.  -->
-<p>Let’s explore linear programming by doing a classic linear programming problem, namely the optimal allocation of a scarce resource (<a class="reference internal" href="#example-resource-allocation-primal">Example 24</a>):</p>
+</section>
+<section id="example-resource-allocation-problem">
+<h3>Example: Resource allocation problem<a class="headerlink" href="#example-resource-allocation-problem" title="Link to this heading">#</a></h3>
+<p>Let’s explore linear programming by doing a classic problem, namely the optimal allocation of a scarce resource in a manufacturing context (<a class="reference internal" href="#example-resource-allocation-primal">Example 24</a>):</p>
 <div class="proof example dropdown admonition" id="example-resource-allocation-primal">
 <p class="admonition-title"><span class="caption-number">Example 24 </span> (Product mix primal problem)</p>
 <section class="example-content" id="proof-content">
@@ -608,34 +625,8 @@ P_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &a
 <span class="n">println</span><span class="p">(</span><span class="s">&quot;Objective value for the primal is: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">objective_value</span><span class="p">(</span><span class="n">model</span><span class="p">),</span><span class="w"> </span><span class="s">&quot; </span><span class="se">\$</span><span class="s"> per week&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The maximum profit per week: $2988.72 per week.</p>
+<p>The maximum profit per week is $2988.72 per week.</p>
 <p><strong>Source</strong>: <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/resource_allocation_primal_lp">Unit 3 examples, CHEME-1800 GitHub repository</a>.</p>
-</section>
-</div></section>
-</section>
-<section id="general-resource-allocation-problem-structure">
-<span id="content-references-resource-allocation-linear-problem"></span><h3>General resource allocation problem structure<a class="headerlink" href="#general-resource-allocation-problem-structure" title="Link to this heading">#</a></h3>
-<p>The classic application of linear programming, as shown in (<a class="reference internal" href="#example-resource-allocation-primal">Example 24</a>), is to solve optimal resource allocation problems. However, before we discuss duality, which was typically described in economic terms, let’s look at the general form of a resource allocation problem (<a class="reference internal" href="#defn-general-resource-allocation-struct">Definition 41</a>):</p>
-<div class="proof definition admonition" id="defn-general-resource-allocation-struct">
-<p class="admonition-title"><span class="caption-number">Definition 41 </span> (Resource allocation problem structure)</p>
-<section class="definition-content" id="proof-content">
-<p>In a general resource allocation problem, we optimally allocate <span class="math notranslate nohighlight">\(n\)</span> scarce resources, e.g., time, money, etc., to <span class="math notranslate nohighlight">\(m\)</span> competing activities. This type of problem can be posed and solved as a linear problem of the form:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{eqnarray}
-\text{maximize}~\mathcal{O} &amp;=&amp; \sum_{j=1}^{m} c_{j}x_{j}\\
-\text{subject to}~\sum_{j=1}^{m}a_{ij}x_{j} &amp;\leq &amp; {b}_{i}\qquad{i=1,2,\dots,n}\\
-\text{and}~x_{i}&amp;\geq&amp;{0}\qquad{i=1,2,\dots,m}
-\end{eqnarray}
-\end{split}\]</div>
-<p>where the components of the problem now have particular meanings:</p>
-<ul class="simple">
-<li><p>The decision variables <span class="math notranslate nohighlight">\(\left\{x_{i}\right\}_{i=1}^{m}\)</span> represent the amount of activity <span class="math notranslate nohighlight">\(i\)</span>, of <span class="math notranslate nohighlight">\(m\)</span> possible activities, that we allocate.</p></li>
-<li><p>Elements of the constraint matrix <span class="math notranslate nohighlight">\(\mathbf{A}\in\mathbb{R}^{n\times{m}}\)</span> describe the amount of resource <span class="math notranslate nohighlight">\(i\)</span>  consumed by a unit of activity <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
-<li><p>The right hand side elements <span class="math notranslate nohighlight">\(b_{i}\)</span> describe the amount of resource <span class="math notranslate nohighlight">\(i\)</span> that is available to be allocated.</p></li>
-<li><p>The terms <span class="math notranslate nohighlight">\(c_{j}\)</span> describe the payoff experienced by doing a unit of activity <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
-</ul>
-<p>This problem structure is highly adaptable and widely used for various applications.</p>
 </section>
 </div></section>
 </section>
@@ -645,35 +636,37 @@ P_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &a
 <div class="proof definition admonition" id="defn-dual-linear program">
 <p class="admonition-title"><span class="caption-number">Definition 42 </span> (Dual linear program)</p>
 <section class="definition-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(\mathcal{O}^{\prime}\)</span> denote a linear function of continuous decision variables <span class="math notranslate nohighlight">\(\mathbf{y}\in\mathbb{R}^{n}\)</span> whose values are constrained by a system of linear equations, and bounded. Then, we can estimate the <em>optimal</em> value for the variables <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> of the dual problem by solving the linear program:</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{O}^{\prime}(\mathbf{y})\)</span> denote a linear function of the continuous decision variables <span class="math notranslate nohighlight">\(\mathbf{y}\in\mathbb{R}^{n}\)</span>
+whose values are constrained by a system of linear equations and bounded. Then, the optimal
+<span class="math notranslate nohighlight">\(\mathbf{y}^{\star}\)</span> of the dual problem is a solution of the linear program:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{eqnarray}
-\text{minimize}~\mathcal{O}^{\prime} &amp;=&amp; \sum_{i=1}^{n} b_{i}y_{i}\\
-\text{subject to}~\mathbf{A}^{T}\mathbf{y} &amp;\geq&amp;\mathbf{c}\\
+\begin{eqnarray*}
+\text{minimize}~\mathcal{O}^{\prime}(\mathbf{y}) &amp;=&amp; \sum_{i=1}^{n} b_{i}\cdot{y}_{i}\\
+\text{subject to}~\mathbf{A}^{T}\cdot\mathbf{y} &amp;\geq&amp;\mathbf{c}\\
 \text{and}~y_{i}&amp;\geq&amp;{0}\qquad{i=1,2,\dots,n}
-\end{eqnarray}
+\end{eqnarray*}
 \end{split}\]</div>
-<p><strong>Differences between the primal and the dual problems</strong>: The vectors <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> switch places, where the
-<span class="math notranslate nohighlight">\(c_{j}\)</span> coefficients become the right-hand side vector in the dual, while the <span class="math notranslate nohighlight">\(b_{i}\)</span> are now in the objective function. Finally, the less than or equal to constraints in the primal problem become greater than or equal to constraints in the dual problem.</p>
-<p>Every primal linear programming problem can be converted into its dual problem, which provides an upper bound to the optimal value of the primal problem.</p>
-</section>
-</div><p>The dual linear program (LP) is derived from the original (the primal problem) using the scheme:</p>
+<p>Each variable in the primal linear program becomes a constraint in the dual linear program, each constraint in the primal linear program becomes a variable in the dual linear program, and the objective direction is inverted – the maximum in the primal becomes the minimum in the dual, and vice versa. Particular differences between the primal and dual linear programming problems:</p>
 <ul class="simple">
-<li><p>Each variable in the primal linear program becomes a constraint in the dual linear program, each constraint in the primal linear program becomes a variable in the dual linear program, and the objective direction is inverted – the maximum in the primal becomes the minimum in the dual, and vice versa.</p></li>
+<li><p>Min versus max and the vectors <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> switch places; the
+<span class="math notranslate nohighlight">\(c_{j}\)</span> coefficients become the right-hand side vector, while the <span class="math notranslate nohighlight">\(b_{i}\)</span> are now in the objective function.</p></li>
+<li><p>The primal <span class="math notranslate nohighlight">\(\leq\)</span> constraints become <span class="math notranslate nohighlight">\(\geq\)</span> constraints in the dual problem.</p></li>
+<li><p>The dual problem is an upper bound to the primal solution, i.e., <span class="math notranslate nohighlight">\(\mathcal{O}^{\prime}(\mathbf{y}^{\star})\geq\mathcal{O}(\mathbf{x}^{\star})\)</span> (weak duality).</p></li>
 </ul>
-<section id="duality-interpretation">
+</section>
+</div><section id="duality-interpretation">
 <h3>Duality interpretation<a class="headerlink" href="#duality-interpretation" title="Link to this heading">#</a></h3>
-<p>If we interpret the primal linear program as a classical resource allocation problem, then its dual can be interpreted as a resource valuation problem. Thus, the duality theorem has an economic interpretation:</p>
+<p>If we interpret the primal linear program as a classical resource allocation problem, its dual can be interpreted as a resource valuation problem. Thus, the duality theorem has an economic interpretation:</p>
 <ul class="simple">
-<li><p>The primal problem in <a class="reference internal" href="#example-resource-allocation-primal">Example 24</a> deals with physical quantities, i.e., with production capacity (inputs) available in limited quantities, and with the quantities of products (outputs) that should be produced to maximize total revenue.</p></li>
-<li><p>On the other hand, the dual problem deals with economic values. With floor guarantees on all chemical product (output) unit prices, and assuming the available quantity of all inputs (production capacity) is known, the dual problem computes the input unit pricing scheme that minimizes the total expenditure.</p></li>
+<li><p>The primal problem in <a class="reference internal" href="#example-resource-allocation-primal">Example 24</a> deals with physical quantities, i.e., with production capacity (inputs) available in limited quantities and with the amounts of products (outputs) that should be produced to maximize total revenue.</p></li>
+<li><p>On the other hand, the dual problem deals with economic values. With floor guarantees on all chemical product (output) unit prices and assuming the available quantity of all inputs (production capacity) is known, the dual problem computes the input unit pricing scheme that minimizes the total expenditure.</p></li>
 </ul>
 <p>To explore this interpretation, let’s formulate and solve the dual of the resource allocation problem above (<a class="reference internal" href="#example-resource-allocation-dual">Example 25</a>):</p>
 <div class="proof example dropdown admonition" id="example-resource-allocation-dual">
 <p class="admonition-title"><span class="caption-number">Example 25 </span> (Product mix dual problem)</p>
 <section class="example-content" id="proof-content">
-<p>Consider another facility with no chemical process manufacturing capacity that instead wishes to purchase the production capacity of the previous factory. In this case, the dual decision variables <span class="math notranslate nohighlight">\(y_{i}\)</span> are the offer prices per unit capacity.  For the offer to be accepted, <span class="math notranslate nohighlight">\(\mathbf{A}^{T}\mathbf{y}\geq\mathbf{c}\)</span>, i.e., facility one makes at least as much by selling the capacity as they do by manufacturing the chemical products.</p>
+<p>Consider another facility with no chemical process manufacturing capacity that instead wishes to purchase the production capacity of the previous factory. The dual decision variables <span class="math notranslate nohighlight">\(y_{i}\)</span> are the offer prices per unit capacity.  For the offer to be accepted, <span class="math notranslate nohighlight">\(\mathbf{A}^{T}\mathbf{y}\geq\mathbf{c}\)</span>, i.e., facility one makes at least as much by selling the capacity as they do by manufacturing the chemical products.</p>
 <p>The dual of <a class="reference internal" href="#example-resource-allocation-primal">Example 24</a>, which computes the capacity prices <span class="math notranslate nohighlight">\(y_{i}\)</span>, can be solved as:</p>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># include </span>
 <span class="k">using</span><span class="w"> </span><span class="n">JuMP</span>
@@ -726,77 +719,74 @@ P_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &a
 <span class="n">println</span><span class="p">(</span><span class="s">&quot;Objective value for the dual is: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">objective_value</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>The objective value of the dual problem is: $2988.72 per week</p>
+<p>The objective value of the dual problem is $2988.72 per week</p>
 <p><strong>Source</strong>: <a class="reference external" href="https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/resource_allocation_primal_lp">Unit 3 examples, CHEME-1800 GitHub repository</a>.</p>
 </section>
 </div></section>
 </section>
+<section id="minimum-flow-problems">
+<span id="content-references-max-min-linear-problem"></span><h2>Minimum flow problems<a class="headerlink" href="#minimum-flow-problems" title="Link to this heading">#</a></h2>
+<p>One important application of linear programming is in the field of network flow problems. The network flow problem is a linear programming problem whose goal is to find the optimal flow of resources through a network of nodes and edges, subject to various constraints. One common type of network flow problem is the minimum flow problem, which seeks to find the minimum cost flow through a network that satisfies certain capacity constraints (<a class="reference internal" href="#defn-min-flow-problem">Definition 43</a>):</p>
+<div class="proof definition admonition" id="defn-min-flow-problem">
+<p class="admonition-title"><span class="caption-number">Definition 43 </span> (Minimum Flow Problem)</p>
+<section class="definition-content" id="proof-content">
+<p>Suppose we have a directed graph <span class="math notranslate nohighlight">\(G = (V, E)\)</span> with a source node <span class="math notranslate nohighlight">\(s\in{V}\)</span> and a sink node <span class="math notranslate nohighlight">\(t\in{V}\)</span>. Each edge <span class="math notranslate nohighlight">\((u,v)\in{E}\)</span> has a capacity <span class="math notranslate nohighlight">\(c(u,v)&gt;0\)</span>, flow <span class="math notranslate nohighlight">\(f(u,v)&gt;0\)</span>, and cost <span class="math notranslate nohighlight">\(a(u,v)&gt;0\)</span>. The goal is to find the minimum cost flow from the source <span class="math notranslate nohighlight">\(s\)</span> to the sink <span class="math notranslate nohighlight">\(t\)</span> that satisfies the capacity constraints. The minimum flow problem can be formulated as a linear program:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\text{minimize}~\mathcal{O}(E) &amp;=&amp; \sum_{(u,v)\in{E}} a(u,v)\cdot{f}(u,v)\\
+\text{subject to}~\sum_{w\in{E}}f(u,w) &amp;=&amp;0\quad{u}\neq{s,t}\\
+\text{and}~\sum_{w\in{E}}f(s,w) &amp;=&amp;d\\
+\text{and}~\sum_{w\in{E}}f(w,t) &amp;=&amp;d\\
+\text{and}~f(u,v)&amp;\leq&amp;c(u,v)\quad{(u,v)\in{E}}
+\end{eqnarray}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(d\)</span> is the demand at the source and sink nodes, the decision variables <span class="math notranslate nohighlight">\(f(u,v)\)</span> are the flow rates along the edges of the graph, and the objective function <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> is the total cost of the flow. Network flow problems are widely used in transportation, communication, and other fields to model and optimize the flow of resources through networks.</p>
+</section>
+</div><p>Modifications to the minimum flow problem described in <a class="reference internal" href="#defn-min-flow-problem">Definition 43</a>  can include adding additional constraints, such as upper and lower bounds on the flow rates, changing the objective function to minimize the total flow instead of the total cost, or having multiple sources and sinks in the network.</p>
+</section>
 <section id="flux-balance-analysis">
 <span id="content-references-flux-balance-analysis"></span><h2>Flux balance analysis<a class="headerlink" href="#flux-balance-analysis" title="Link to this heading">#</a></h2>
-<p>Flux balance analysis (FBA) is an approach to estimate <em>flows</em> through <a class="reference internal" href="../unit-2-data/trees.html"><span class="std std-doc">trees and graphs</span></a>, e.g., social graphs, communication networks, or other structures that can be represented as a network. Flux balance analysis is a type of a <a class="reference external" href="https://en.wikipedia.org/wiki/Maximum_flow_problem">maximum flow problem</a>.</p>
-<section id="mole-based-fba-formulation">
-<h3>Mole-based FBA formulation<a class="headerlink" href="#mole-based-fba-formulation" title="Link to this heading">#</a></h3>
-<p>In chemical engineering, flux balance analysis estimates chemical reaction rates (called <em>fluxes</em>) operating in <em>steady-state</em> reaction networks. The standard flux balance analysis problem is written in concentration units, e.g., the reaction flux has units of mmol/volume-time. However, sometimes it is more convenient to work in mole units instead. We know from our <a class="reference internal" href="../unit-2-data/vectors-matricies-nla.html"><span class="std std-doc">earlier discussion of material balances</span></a> that the open species mole balance around component <span class="math notranslate nohighlight">\(i\)</span> in a steady-state system with species <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, streams <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> and reactions <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[\sum_{s\in\mathcal{S}}v_{s}\dot{n}_{is} + \sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j} = 0\qquad\forall{i}\in\mathcal{M}\]</div>
-<p>If we don’t have <a class="reference external" href="https://en.wikipedia.org/wiki/Rate_equation">kinetic rate laws</a>, or we are not approaching this problem from the <a class="reference external" href="https://en.wikipedia.org/wiki/Chemical_equilibrium">equilibrium or energy perspective</a>, then we need some other way to estimate the extent of reaction <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span>, consider <a class="reference internal" href="#obs-simple-mole-based case">Observation 8</a>:</p>
-<div class="proof observation admonition" id="obs-simple-mole-based case">
-<p class="admonition-title"><span class="caption-number">Observation 8 </span> (Mole based problem formulation)</p>
-<section class="observation-content" id="proof-content">
-<p>Suppose we have an open steady-state system with species <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, streams <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> and reactions <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>, but qith only a single stream entering (s = 1) and exiting (s = 2) the system. Further, suppose we want to maximize/minimize an objective of the form:</p>
-<div class="math notranslate nohighlight">
-\[\text{maximize/minimze}~\mathcal{O}=\sum_{i\in\mathcal{R}}c_{i}\dot{\epsilon}_{i}\]</div>
-<p>In other words, we want to estimate the open extent such that some <em>technological</em> objective is met, e.g., we maximize the production of a valuable product. For the case of a single input and output, the open mole balance becomes:</p>
-<div class="math notranslate nohighlight">
-\[\dot{n}_{i,2} = \dot{n}_{i,1} + \sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j}\qquad\forall{i}\in\mathcal{M}\]</div>
-<p>Of course, when searching for the optimal set of reaction extents <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> we have to select values that give physically realistic answers, e.g., we can’t have a negative mole flow rates: <span class="math notranslate nohighlight">\(\dot{n}_{i,j}\geq{0}\)</span> for all <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>. Thus, the species mole balances are linear constraints governing  the open extent:</p>
-<div class="math notranslate nohighlight">
-\[\dot{n}_{i,1} + \sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j}\geq{0}\qquad\forall{i}\in\mathcal{M}\]</div>
-<p>Next, the <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> terms must be bounded, i.e., we can’t have infinite values for the open reaction extent, nor can irreversible reactions be chosen to run backward. Thus, the extents are <em>bounded</em> from above and below:</p>
-<div class="math notranslate nohighlight">
-\[\mathcal{L}_{j}\leq\dot{\epsilon}_{j}\leq\mathcal{U}_{j}\qquad{j=1,2\dots,\mathcal{R}}\]</div>
-<p>The <span class="math notranslate nohighlight">\(\mathcal{L}_{j}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{U}_{j}\)</span> denote the lower and upper bounds that <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> can take. Open extents <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> are just reaction rates times the volume; the lower and upper bounds describe the permissible range we expect the rate <em>could</em> take.</p>
-</section>
-</div><p>Putting these ideas together for the general case of multiple input and output streams gives a general problem formulation to compute the flux through a reaction network using mole based units (<a class="reference internal" href="#defn-mol-based-units">Definition 43</a>):</p>
+<p>In chemical engineering, flux balance analysis is a minimum flow problem that estimates chemical reaction rates (called fluxes) in steady-state reaction networks. The standard flux balance analysis problem is written in concentration units, e.g., the reaction flux has units of mmol/volume-time. However, sometimes, it is more convenient to work in mole units instead. In either case, the flux balance analysis problem can be formulated as a linear program (<a class="reference internal" href="#defn-mol-based-units">Definition 44</a>):</p>
 <div class="proof definition admonition" id="defn-mol-based-units">
-<p class="admonition-title"><span class="caption-number">Definition 43 </span> (Mole based flux problem)</p>
+<p class="admonition-title"><span class="caption-number">Definition 44 </span> (Flux balance analysis (mole-based units))</p>
 <section class="definition-content" id="proof-content">
-<p>We have an open system with species <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, streams <span class="math notranslate nohighlight">\(\mathcal{S}\)</span>, and reactions <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>. Further, we partition the stream set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> into streams entering the system <span class="math notranslate nohighlight">\(\mathcal{S}^{+}\)</span>, and streams leaving the system <span class="math notranslate nohighlight">\(\mathcal{S}^{-}\)</span>.  Then, the steady-state species mole balances are given by:</p>
+<p>Suppose we have an open well-mixed reactor system with species <span class="math notranslate nohighlight">\(\mathcal{M}\)</span>, streams <span class="math notranslate nohighlight">\(\mathcal{S}\)</span>, and reactions <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>. Further, we partition the stream set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> into streams entering the system <span class="math notranslate nohighlight">\(\mathcal{S}^{+}\)</span>, and streams leaving the system <span class="math notranslate nohighlight">\(\mathcal{S}^{-}\)</span>.  Then, the steady-state species mole balances are given by:</p>
 <div class="math notranslate nohighlight">
 \[\sum_{s\in\mathcal{S}^{+}}\dot{n}_{is} - \sum_{k\in\mathcal{S}^{-}}\dot{n}_{ik} + \sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j} = 0\qquad\forall{i}\in\mathcal{M}\]</div>
-<p>Finally, <span class="math notranslate nohighlight">\(\dot{n}_{i,j}\geq{0}\)</span> for every <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>; species mole flows must be non-negative. Then, the (unknown) open extents <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> are the solution of a linear programming problem in which the linear objective <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>:</p>
+<p>The optimal (unknown) open extents <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> are the solution of a linear programming problem</p>
 <div class="math notranslate nohighlight">
-\[\text{maximize/minimize}~\mathcal{O} = \sum_{j\in\mathcal{R}}c_{j}\dot{\epsilon}_{j}\]</div>
-<p>is minimized (or maximized) subject to the linear constraints:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{eqnarray}
-\sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j}&amp;\geq&amp;{-\sum_{s\in\mathcal{S}^{+}}\dot{n}_{si}}\qquad\forall{i}\in\mathcal{M}\\
-\sum_{k\in\mathcal{S}^{-}}\dot{n}_{ki}&amp;\geq&amp;{0}\qquad\forall{i}\in\mathcal{M}\\
-\mathcal{L}_{j}&amp;\leq\dot{\epsilon}_{j}\leq&amp;\mathcal{U}_{j}\qquad\forall{j}\in\mathcal{R}
-\end{eqnarray}\end{split}\]</div>
+\[\begin{split}
+\begin{eqnarray}
+\text{minimize}~\mathcal{O}(\dot{\epsilon}) &amp; = &amp;  -\sum_{j\in\mathcal{R}}c_{j}\dot{\epsilon}_{j}\\
+\text{subject to}~\sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j}&amp;\geq&amp;{-\sum_{s\in\mathcal{S}^{+}}\dot{n}_{i,s}}\qquad\forall{i}\in\mathcal{M}\\
+\text{and}~\sum_{k\in\mathcal{S}^{-}}\dot{n}_{i,k}&amp;\geq&amp;{0}\qquad\forall{i}\in\mathcal{M}\\
+\text{and}~\mathcal{L}_{j}&amp;\leq\dot{\epsilon}_{j}\leq&amp;\mathcal{U}_{j}\qquad\forall{j}\in\mathcal{R}
+\end{eqnarray}
+\end{split}\]</div>
 </section>
-</div></section>
+</div><p>If we don’t have <a class="reference external" href="https://en.wikipedia.org/wiki/Rate_equation">kinetic rate laws</a>, or we are not approaching this problem from the <a class="reference external" href="https://en.wikipedia.org/wiki/Chemical_equilibrium">equilibrium or energy perspective</a>, we can use flux balance analysis to estimate the open extent of reaction <span class="math notranslate nohighlight">\(\dot{\epsilon}_{j}\)</span> in mole-based systems, or the reaction rate in concentration based systems.</p>
 </section>
 <hr class="docutils" />
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
-<p>In this lecture, we disucssed linear programming (LP).  Linear programming is a method to estimate the best outcome (such as maximum profit, lowest cost, or the best possible rate of production) using a mathematical model composed of linear relationships subject to linear constraints. Linear programming is widely used in business, economics, engineering, and other fields to model and solve real-world problems involving resource allocation, production planning, transportation, and more.</p>
+<p>In this lecture, we discussed linear programming (LP).  Linear programming is a method to estimate the best outcome (such as maximum profit, lowest cost, or the best possible production rate) using a mathematical model composed of linear relationships subject to linear constraints. Linear programming is widely used in business, economics, engineering, and other fields to model and solve real-world problems involving resource allocation, production planning, transportation, and more.</p>
 <p>First, we introduced the mathematical structure of linear programs, the dual problem, and then moved to an important application area within chemical Engineering, namely flux balance analysis:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#content-references-primal-linear-problem"><span class="std std-ref">Primal linear programs</span></a> are a type of linear programming problem in which the goal is to maximize or minimize a linear objective function subject to a set of linear constraints in the form of inequalities or equalities. The term primal refers to the original form of the linear programming problem, as opposed to its dual form.</p></li>
-<li><p><a class="reference internal" href="#content-references-dual-linear-problem"><span class="std std-ref">Dual linear programs</span></a> are formulations derived from a primal linear program that provides an alternative way of looking at the same problem. The dual linear program is constructed by introducing a set of new variables and constraints that are related to the primal linear program. The objective of the dual program is to either maximize or minimize a function, subject to a different set of constraints, which are derived from the original primal program.</p></li>
-<li><p><a class="reference internal" href="#content-references-flux-balance-analysis"><span class="std std-ref">Flux balance analysis</span></a> is a general tool that can be used to estimate <em>flows</em> through many different types of networks and graphs, e.g., social graphs, communication networks, or other types of problems that can be represented as a network of graphs. Flux balance analysis can be implemented as a linear program.</p></li>
+<li><p><a class="reference internal" href="#content-references-primal-linear-problem"><span class="std std-ref">Primal linear programs</span></a> is a linear programming problem aiming to maximize or minimize a linear objective function subject to linear constraints in the form of inequalities or equalities. The term primal refers to the original form of the linear programming problem instead of its dual form.</p></li>
+<li><p><a class="reference internal" href="#content-references-dual-linear-problem"><span class="std std-ref">Dual linear programs</span></a> is a formulation derived from the primal linear program that provides an alternative perspective on the same problem by introducing a new set of variables and constraints. The objective of the dual program is to either maximize or minimize a linear function subject to a different set of constraints derived from the original primal program.</p></li>
+<li><p><a class="reference internal" href="#content-references-flux-balance-analysis"><span class="std std-ref">Flux balance analysis</span></a> is a versatile tool that can estimate flows through various types of networks and graphs. It can be applied to social graphs, communication networks, or any other problem that can be represented as a network of graphs. Flux balance analysis, a testament to the versatility of linear programming, can be implemented as a linear program.</p></li>
 </ul>
+</section>
 <section id="additional-resources">
-<h3>Additional resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h3>
-<p>Background resources for biochemical network information, and computational tools for working with flux balance analysis models:</p>
+<h2>Additional resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<p>Background resources for biochemical network information and computational tools for working with flux balance analysis models:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.genome.jp/kegg/">Kanehisa M, Goto S. KEGG: kyoto encyclopedia of genes and genomes. Nucleic Acids Res. 2000 Jan 1;28(1):27-30. doi: 10.1093/nar/28.1.27. PMID: 10592173; PMCID: PMC102409.</a></p></li>
 <li><p><a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/29447345/">Karp, Peter D et al. “The BioCyc collection of microbial genomes and metabolic pathways.” Briefings in bioinformatics vol. 20,4 (2019): 1085-1093. doi:10.1093/bib/bbx085</a></p></li>
 <li><p><a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/26527724/">Gama-Castro, Socorro et al. “RegulonDB version 9.0: high-level integration of gene regulation, coexpression, motif clustering and beyond.” Nucleic acids research vol. 44,D1 (2016): D133-43. doi:10.1093/nar/gkv1156</a></p></li>
 <li><p><a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/30787451/">Heirendt, Laurent et al. “Creation and analysis of biochemical constraint-based models using the COBRA Toolbox v.3.0.” Nature protocols vol. 14,3 (2019): 639-702. doi:10.1038/s41596-018-0098-2</a></p></li>
 </ul>
-</section>
 </section>
 </section>
 
@@ -864,28 +854,20 @@ P_{4} &amp; : &amp; 1.4x_{1}+2.8x_{2}+0.5x_{3}+1.2x_{4} + 0.6x_{5} &amp; \leq &a
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resource-allocation-problems">Resource allocation problems</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primal-linear-programs">Primal linear programs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplex-algorithm">Simplex algorithm</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-the-simplex-algorithm-work">How does the simplex algorithm work</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aside-showing-up-late-is-not-always-bad">Aside: Showing up late is not always bad</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-resource-allocation-problem-structure">General resource allocation problem structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplex-algorithm">Simplex algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-resource-allocation-problem">Example: Resource allocation problem</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dual-linear-programs">Dual linear programs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duality-interpretation">Duality interpretation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-balance-analysis">Flux balance analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-based-fba-formulation">Mole-based FBA formulation</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional resources</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimum-flow-problems">Minimum flow problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-balance-analysis">Flux balance analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional resources</a></li>
 </ul>
   </nav></div>
 

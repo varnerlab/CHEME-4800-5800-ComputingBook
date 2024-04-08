@@ -18,11 +18,13 @@ chapters:
   - file: unit-2-data/vectors-matricies-nla
   - file: unit-2-data/reduction
 - file: unit-3-learning/learning-landing
-  title: Unit 3. Learning
+  title: Unit 3. Learning and Optimization
   sections:
   - file: unit-3-learning/penalty
   - file: unit-3-learning/lp
   - file: unit-3-learning/combitorial
+
+- file: References
 
 
 # format: jb-book

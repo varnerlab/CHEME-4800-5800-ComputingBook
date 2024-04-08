@@ -1,59 +1,85 @@
 # Linear Programming
 
-## Introduction
-In this lecture, we'll disucss linear programming.  Linear programming (LP) is a method to estimate the best outcome (such as maximum profit, lowest cost, or the best possible rate of production) using a mathematical model composed of linear relationships subject to linear constraints. Linear programming is widely used in business, economics, engineering, and other fields to model and solve real-world problems involving resource allocation, production planning, transportation, and more.
+```{topic} Overview
+Linear programming (LP) is a method to estimate the best outcome (such as maximum profit, lowest cost, or the best possible production rate) using a mathematical model composed of linear relationships subject to linear constraints. 
 
-First, we'll introduce the mathematical structure of linear programs, and then move to an important application area within chemical Engineering, namely flux balance analysis:
+* {ref}`content:references:primal-linear-problem` is a linear programming problem aiming to maximize or minimize a linear objective function subject to linear constraints in the form of inequalities or equalities. The term primal refers to the original form of the linear programming problem instead of its dual form.
 
-* {ref}`content:references:primal-linear-problem` are a type of linear programming problem in which the goal is to maximize or minimize a linear objective function subject to a set of linear constraints in the form of inequalities or equalities. The term primal refers to the original form of the linear programming problem, as opposed to its dual form.
+* {ref}`content:references:dual-linear-problem` program is a formulation derived from the primal linear program that provides an alternative perspective on the same problem by introducing a new set of variables and constraints. The objective of the dual program is to either maximize or minimize a linear function subject to a different set of constraints derived from the original primal program.
 
-* {ref}`content:references:dual-linear-problem` are formulations derived from a primal linear program that provides an alternative way of looking at the same problem. The dual linear program is constructed by introducing a set of new variables and constraints that are related to the primal linear program. The objective of the dual program is to either maximize or minimize a function, subject to a different set of constraints, which are derived from the original primal program.
+* {ref}`content:references:flux-balance-analysis` is a versatile tool that can estimate flows through various types of networks and graphs. It can be applied to social graphs, communication networks, or any other problem that can be represented as a network of graphs. 
 
-* {ref}`content:references:flux-balance-analysis` is a general tool that can be used to estimate _flows_ through many different types of networks and graphs, e.g., social graphs, communication networks, or other types of problems that can be represented as a network of graphs. Flux balance analysis can be implemented as a linear program.
-
+Linear programming, a practical and widely used tool, finds its applications in diverse fields such as business, economics, engineering, and more. It is instrumental in modeling and solving real-world problems, be it resource allocation, production planning, transportation, or other complex scenarios.
+```
 ---
+
+(content:references:resource-allocation-linear-problem)=
+## Resource allocation problems
+The classic application of linear programming, as shown in ({prf:ref}`example-resource-allocation-primal`), is to solve optimal resource allocation problems. However, before we discuss the primal linear programming problem and more advanced concepts such as duality, which we'll frame in economic terms, let's look at a general resource allocation problem ({prf:ref}`defn-general-resource-allocation-struct`):
+
+````{prf:definition} Maximum Utility Resource Allocation Problems
+:label: defn-general-resource-allocation-struct
+Suppose there exists $\texttt{objects}$ $X = \left\{x_{i}\right\}_{i=1}^{n}$, 
+a function $U: X\rightarrow\mathbb{R}$ which assigns a utility score to collections of objects, 
+and $I$ resource units, e.g., money, time, etc, to allocate amongst the objects.
+Then, rational agents maximize utility subject to the budget:
+
+$$
+\begin{eqnarray*}
+\text{maximize}~\mathcal{O}(\mathbf{x}) &=& U\left(x_{1},\dots,x_{n}\right) \\
+\text{subject to}~\sum_{i\in{1,\dotsc,n}}c_{i}\cdot{x}_{i} & = & I\\
+\text{and}~x_{i}&\geq&{0}\qquad{i=1,2,\dots,n}
+\end{eqnarray*}
+$$
+
+The $c_{i}\geq{0}~\forall{i}$ denotes the cost of object $i$, and $x_{i}\geq{0}$ represents 
+the amount of object $i$ purchased or consumed by the agent. If $U: X\rightarrow\mathbb{R}$ is linear in $x_{i}$, 
+then this problem is a $\texttt{linear programming}$ problem; otherwise, it is a $\texttt{nonlinear programming}$ problem.
+
+````
+
+The problem structure in ({prf:ref}`defn-general-resource-allocation-struct`) is highly adaptable and widely used for various applications. For example, there may be multiple types of constraints on the resources, e.g., time, money, etc., or the utility function may be non-linear, or the decision variables may be discrete, e.g., $x_{i}\in{0,1}$, etc. 
+
+Let's explore the primal and dual linear programming problems and then apply these concepts to a resource allocation problem. In the cases we explore, the decision variables are continuous, the constraints are linear, and the objective function is linear. 
 
 (content:references:primal-linear-problem)=
 ## Primal linear programs
-Linear programs maximize (or minimize) a _linear_ objective function $\mathcal{O}$ subject to _linear_ constraints and bounds on the decision variables $x$ we are searching over. Decision variables can be continuous values $x\in\mathbb{R}$, but they can also be integers, e.g., $x\in{0,1}$. We'll start with the continuous problem ({prf:ref}`defn-primael-linear program`):  
+Linear programs maximize (or minimize) a _linear_ objective function $\mathcal{O}(\mathbf{x})$ subject to _linear_ constraints and bounds on the decision variables $x$. Decision variables can be continuous values $x\in\mathbb{R}$, but they can also be integers, e.g., $x\in{0,1}$. We'll start with the continuous problem ({prf:ref}`defn-primael-linear program`):  
 
 
 ````{prf:definition} Primal Linear Program
 :label: defn-primael-linear program
 
-Let $\mathcal{O}$ denote a linear function of continuous decision variables $\mathbf{x}\in\mathbb{R}^{m}$ whose values are constrained by a system of linear equations with system matrix $\mathbf{A}\in\mathbb{R}^{n\times{m}}$, and bounded. Then, we can estimate the _optimal_ value for the variables $\mathbf{x}$ by solving the linear program (canonical form):
+Let $\mathcal{O}(\mathbf{x})$ denote a linear function of the continuous non-negative decision variables $\mathbf{x}\in\mathbb{R}^{m}$
+whose values are constrained by a system of linear equations and bounded. Then, the optimal $\mathbf{x}^{\star}$ is a solution of the linear program:
 
 $$
-\begin{eqnarray}
-\text{maximize}~\mathcal{O} &=& \sum_{i=1}^{m} c_{i}x_{i}\\
-\text{subject to}~\mathbf{Ax} &\leq&\mathbf{b}\\
+\begin{eqnarray*}
+\text{maximize}~\mathcal{O}(\mathbf{x}) &=& \sum_{i=1}^{m} c_{i}\cdot{x}_{i}\\
+\text{subject to}~\mathbf{A}\cdot\mathbf{x} &\leq&\mathbf{b}\\
 \text{and}~x_{i}&\geq&{0}\qquad{i=1,2,\dots,m}
-\end{eqnarray}
+\end{eqnarray*}
 $$
 
-
-The components of $\mathbf{x}$ are the variables to be determined, $c_{i}$ are constant coefficients in the _linear_ objective function $\mathcal{O}$, $\mathbf{A}\in\mathbb{R}^{n\times{m}}$ is the constraint matrix and $\mathbf{b}\in\mathbb{R}^{n}$ is a constant vector. 
-
+The constants $c_{i}$ are coefficients in the objective function, $\mathbf{A}\in\mathbb{R}^{n\times{m}}$ 
+is the constraint matrix and $\mathbf{b}\in\mathbb{R}^{n}$ is a constant vector. 
 Any linear program can be converted into this standard form.
 ````
 
-The feasible solutions of a linear program form a [polyhedron](https://en.wikipedia.org/wiki/Polyhedron), and the solution of the objective function lies on [extreme points of the polyhedron](https://en.wikipedia.org/wiki/Extreme_point). Because of its general structure, linear programming provides a powerful tool for optimizing complex decision-making problems in various industries, allowing for better resource utilization, efficiency, and increased profitability.  
+The constraints of a linear program form a [polyhedron](https://en.wikipedia.org/wiki/Polyhedron), where the solution lies on [extreme points of the polyhedron](https://en.wikipedia.org/wiki/Extreme_point). The solution to a linear program is always at an extreme point of the feasible region, which is the region defined by the constraints. The solution can be at a vertex, edge, or face of the polyhedron. 
 
 ### Simplex algorithm
 Linear programs, even those with thousands of decisions variables, can be efficently solved using simple off-the-shelf hardware, e.g., your laptop using the [simplex algorithm](https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm). The simplex algorithm is a widely-used algorithm to solve the Linear Programming (LP) optimization problems first developed by [George Dantzig](https://en.wikipedia.org/wiki/George_Dantzig).
 
-#### How does the simplex algorithm work
 The [simplex algorithm](https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm) is an iterative procedure for solving linear programming problems. The basic idea behind the simplex algorithm is to start with an initial feasible solution (i.e., a point that satisfies all constraints) and then iteratively improve it by moving along the edges of the feasible region (i.e., the region defined by the constraints). At each iteration, the algorithm selects a non-basic variable (i.e., a variable not currently part of the solution). It determines whether increasing or decreasing it will improve the objective function. If such an improvement can be made, the algorithm swaps the non-basic variable into the solution and updates the values of the basic variables (i.e., the variables already part of the solution). The process is repeated until no further improvement can be made, at which point the algorithm terminates, and the current solution is deemed optimal.
 
-#### Aside: Showing up late is not always bad
-As an aside, the [simplex algorithm](https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm) resulted from [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) showing up late to class. In 1939, near the beginning of a class, [Professor Neyman](https://en.wikipedia.org/wiki/Jerzy_Neyman), an instructor for a course that [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) was taking, wrote two problems on the blackboard. [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) arrived late and assumed they were homework problems. According to [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig), the problem set seemed more complicated than usual, but a few days later, he handed in solutions for both problems, believing that his assignment was late. 
-
-However, six weeks later, an excited [Professor Neyman](https://en.wikipedia.org/wiki/Jerzy_Neyman) told [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) that the homework problems he had solved by mistake were two of the most famous unsolved problems in statistics. The rest is history; [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) got his Ph.D. in 1946 and then developed the simplex algorithm in 1947, and linear programming was born!
+As an aside, the [simplex algorithm](https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm) resulted from [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) showing up late to class. In 1939, near the beginning of a class, [Professor Neyman](https://en.wikipedia.org/wiki/Jerzy_Neyman), an instructor for a course that [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) was taking, wrote two problems on the blackboard. [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) arrived late and assumed they were homework problems. According to [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig), the problem set seemed more complicated than usual, but a few days later, he handed in solutions for both problems, believing that his assignment was late. However, six weeks later, an excited [Professor Neyman](https://en.wikipedia.org/wiki/Jerzy_Neyman) told [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) that the homework problems he had solved by mistake were two of the most famous unsolved problems in statistics. The rest is history; [Dantzig](https://en.wikipedia.org/wiki/George_Dantzig) got his Ph.D. in 1946 and then developed the simplex algorithm in 1947, and linear programming was born!
 
 
 <!-- [The development of the simplex algorithm](https://optimization.cbe.cornell.edu/index.php?title=Simplex_algorithm), an efficient approach for solving linear programs, has led to LPs being used to solve problems in many engineering applications and other diverse industries such as banking, education, forestry, energy, and logistics.  -->
 
-Let's explore linear programming by doing a classic linear programming problem, namely the optimal allocation of a scarce resource ({prf:ref}`example-resource-allocation-primal`):
+### Example: Resource allocation problem
+Let's explore linear programming by doing a classic problem, namely the optimal allocation of a scarce resource in a manufacturing context ({prf:ref}`example-resource-allocation-primal`):
 
 ````{prf:example} Product mix primal problem
 :label: example-resource-allocation-primal
@@ -141,37 +167,9 @@ end
 println("Objective value for the primal is: ", objective_value(model), " \$ per week")
 ```
 
-The maximum profit per week: $2988.72 per week.
+The maximum profit per week is $2988.72 per week.
 
 __Source__: [Unit 3 examples, CHEME-1800 GitHub repository](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/resource_allocation_primal_lp).
-
-````
-
-(content:references:resource-allocation-linear-problem)=
-### General resource allocation problem structure
-The classic application of linear programming, as shown in ({prf:ref}`example-resource-allocation-primal`), is to solve optimal resource allocation problems. However, before we discuss duality, which was typically described in economic terms, let's look at the general form of a resource allocation problem ({prf:ref}`defn-general-resource-allocation-struct`):
-
-````{prf:definition} Resource allocation problem structure
-:label: defn-general-resource-allocation-struct
-
-In a general resource allocation problem, we optimally allocate $n$ scarce resources, e.g., time, money, etc., to $m$ competing activities. This type of problem can be posed and solved as a linear problem of the form:
-
-$$
-\begin{eqnarray}
-\text{maximize}~\mathcal{O} &=& \sum_{j=1}^{m} c_{j}x_{j}\\
-\text{subject to}~\sum_{j=1}^{m}a_{ij}x_{j} &\leq & {b}_{i}\qquad{i=1,2,\dots,n}\\
-\text{and}~x_{i}&\geq&{0}\qquad{i=1,2,\dots,m}
-\end{eqnarray}
-$$
-
-where the components of the problem now have particular meanings:
-
-* The decision variables $\left\{x_{i}\right\}_{i=1}^{m}$ represent the amount of activity $i$, of $m$ possible activities, that we allocate.
-* Elements of the constraint matrix $\mathbf{A}\in\mathbb{R}^{n\times{m}}$ describe the amount of resource $i$  consumed by a unit of activity $j$.
-* The right hand side elements $b_{i}$ describe the amount of resource $i$ that is available to be allocated.
-* The terms $c_{j}$ describe the payoff experienced by doing a unit of activity $j$.
-
-This problem structure is highly adaptable and widely used for various applications. 
 
 ````
 
@@ -182,32 +180,31 @@ The dual linear program, derived from the primal program, is an alternative way 
 ````{prf:definition} Dual linear program
 :label: defn-dual-linear program
 
-Let $\mathcal{O}^{\prime}$ denote a linear function of continuous decision variables $\mathbf{y}\in\mathbb{R}^{n}$ whose values are constrained by a system of linear equations, and bounded. Then, we can estimate the _optimal_ value for the variables $\mathbf{y}$ of the dual problem by solving the linear program:
+Let $\mathcal{O}^{\prime}(\mathbf{y})$ denote a linear function of the continuous decision variables $\mathbf{y}\in\mathbb{R}^{n}$ 
+whose values are constrained by a system of linear equations and bounded. Then, the optimal 
+$\mathbf{y}^{\star}$ of the dual problem is a solution of the linear program:
 
 $$
-\begin{eqnarray}
-\text{minimize}~\mathcal{O}^{\prime} &=& \sum_{i=1}^{n} b_{i}y_{i}\\
-\text{subject to}~\mathbf{A}^{T}\mathbf{y} &\geq&\mathbf{c}\\
+\begin{eqnarray*}
+\text{minimize}~\mathcal{O}^{\prime}(\mathbf{y}) &=& \sum_{i=1}^{n} b_{i}\cdot{y}_{i}\\
+\text{subject to}~\mathbf{A}^{T}\cdot\mathbf{y} &\geq&\mathbf{c}\\
 \text{and}~y_{i}&\geq&{0}\qquad{i=1,2,\dots,n}
-\end{eqnarray}
+\end{eqnarray*}
 $$
 
-__Differences between the primal and the dual problems__: The vectors $\mathbf{c}$ and $\mathbf{b}$ switch places, where the 
-$c_{j}$ coefficients become the right-hand side vector in the dual, while the $b_{i}$ are now in the objective function. Finally, the less than or equal to constraints in the primal problem become greater than or equal to constraints in the dual problem.
-
-Every primal linear programming problem can be converted into its dual problem, which provides an upper bound to the optimal value of the primal problem.
+Each variable in the primal linear program becomes a constraint in the dual linear program, each constraint in the primal linear program becomes a variable in the dual linear program, and the objective direction is inverted – the maximum in the primal becomes the minimum in the dual, and vice versa. Particular differences between the primal and dual linear programming problems:
+* Min versus max and the vectors $\mathbf{c}$ and $\mathbf{b}$ switch places; the 
+$c_{j}$ coefficients become the right-hand side vector, while the $b_{i}$ are now in the objective function.
+* The primal $\leq$ constraints become $\geq$ constraints in the dual problem.
+* The dual problem is an upper bound to the primal solution, i.e., $\mathcal{O}^{\prime}(\mathbf{y}^{\star})\geq\mathcal{O}(\mathbf{x}^{\star})$ (weak duality).
 ````
 
-The dual linear program (LP) is derived from the original (the primal problem) using the scheme:
-
-* Each variable in the primal linear program becomes a constraint in the dual linear program, each constraint in the primal linear program becomes a variable in the dual linear program, and the objective direction is inverted – the maximum in the primal becomes the minimum in the dual, and vice versa.
-
 ### Duality interpretation
-If we interpret the primal linear program as a classical resource allocation problem, then its dual can be interpreted as a resource valuation problem. Thus, the duality theorem has an economic interpretation:
+If we interpret the primal linear program as a classical resource allocation problem, its dual can be interpreted as a resource valuation problem. Thus, the duality theorem has an economic interpretation:
 
-* The primal problem in {prf:ref}`example-resource-allocation-primal` deals with physical quantities, i.e., with production capacity (inputs) available in limited quantities, and with the quantities of products (outputs) that should be produced to maximize total revenue. 
+* The primal problem in {prf:ref}`example-resource-allocation-primal` deals with physical quantities, i.e., with production capacity (inputs) available in limited quantities and with the amounts of products (outputs) that should be produced to maximize total revenue. 
 
-* On the other hand, the dual problem deals with economic values. With floor guarantees on all chemical product (output) unit prices, and assuming the available quantity of all inputs (production capacity) is known, the dual problem computes the input unit pricing scheme that minimizes the total expenditure.
+* On the other hand, the dual problem deals with economic values. With floor guarantees on all chemical product (output) unit prices and assuming the available quantity of all inputs (production capacity) is known, the dual problem computes the input unit pricing scheme that minimizes the total expenditure.
 
 To explore this interpretation, let's formulate and solve the dual of the resource allocation problem above ({prf:ref}`example-resource-allocation-dual`):
 
@@ -215,7 +212,7 @@ To explore this interpretation, let's formulate and solve the dual of the resour
 :label: example-resource-allocation-dual
 :class: dropdown
 
-Consider another facility with no chemical process manufacturing capacity that instead wishes to purchase the production capacity of the previous factory. In this case, the dual decision variables $y_{i}$ are the offer prices per unit capacity.  For the offer to be accepted, $\mathbf{A}^{T}\mathbf{y}\geq\mathbf{c}$, i.e., facility one makes at least as much by selling the capacity as they do by manufacturing the chemical products.
+Consider another facility with no chemical process manufacturing capacity that instead wishes to purchase the production capacity of the previous factory. The dual decision variables $y_{i}$ are the offer prices per unit capacity.  For the offer to be accepted, $\mathbf{A}^{T}\mathbf{y}\geq\mathbf{c}$, i.e., facility one makes at least as much by selling the capacity as they do by manufacturing the chemical products.
 
 The dual of {prf:ref}`example-resource-allocation-primal`, which computes the capacity prices $y_{i}$, can be solved as:
 
@@ -271,87 +268,78 @@ end
 println("Objective value for the dual is: ", objective_value(model))
 ```
 
-The objective value of the dual problem is: $2988.72 per week
+The objective value of the dual problem is $2988.72 per week
 
 __Source__: [Unit 3 examples, CHEME-1800 GitHub repository](https://github.com/varnerlab/CHEME-1800-4800-Course-Repository-S23/tree/main/examples/unit-3-examples/resource_allocation_primal_lp).
 
 ````
 
+(content:references:max-min-linear-problem)=
+## Minimum flow problems
+One important application of linear programming is in the field of network flow problems. The network flow problem is a linear programming problem whose goal is to find the optimal flow of resources through a network of nodes and edges, subject to various constraints. One common type of network flow problem is the minimum flow problem, which seeks to find the minimum cost flow through a network that satisfies certain capacity constraints ({prf:ref}`defn-min-flow-problem`):
+
+````{prf:definition} Minimum Flow Problem
+:label: defn-min-flow-problem
+
+Suppose we have a directed graph $G = (V, E)$ with a source node $s\in{V}$ and a sink node $t\in{V}$. Each edge $(u,v)\in{E}$ has a capacity $c(u,v)>0$, flow $f(u,v)>0$, and cost $a(u,v)>0$. The goal is to find the minimum cost flow from the source $s$ to the sink $t$ that satisfies the capacity constraints. The minimum flow problem can be formulated as a linear program:
+
+$$
+\begin{eqnarray}
+\text{minimize}~\mathcal{O}(E) &=& \sum_{(u,v)\in{E}} a(u,v)\cdot{f}(u,v)\\
+\text{subject to}~\sum_{w\in{E}}f(u,w) &=&0\quad{u}\neq{s,t}\\
+\text{and}~\sum_{w\in{E}}f(s,w) &=&d\\
+\text{and}~\sum_{w\in{E}}f(w,t) &=&d\\
+\text{and}~f(u,v)&\leq&c(u,v)\quad{(u,v)\in{E}}
+\end{eqnarray}
+$$
+
+where $d$ is the demand at the source and sink nodes, the decision variables $f(u,v)$ are the flow rates along the edges of the graph, and the objective function $\mathcal{O}$ is the total cost of the flow. Network flow problems are widely used in transportation, communication, and other fields to model and optimize the flow of resources through networks.
+````
+
+Modifications to the minimum flow problem described in {prf:ref}`defn-min-flow-problem`  can include adding additional constraints, such as upper and lower bounds on the flow rates, changing the objective function to minimize the total flow instead of the total cost, or having multiple sources and sinks in the network.
 
 (content:references:flux-balance-analysis)=
 ## Flux balance analysis
-Flux balance analysis (FBA) is an approach to estimate _flows_ through [trees and graphs](../unit-2-data/trees.md), e.g., social graphs, communication networks, or other structures that can be represented as a network. Flux balance analysis is a type of a [maximum flow problem](https://en.wikipedia.org/wiki/Maximum_flow_problem). 
+In chemical engineering, flux balance analysis is a minimum flow problem that estimates chemical reaction rates (called fluxes) in steady-state reaction networks. The standard flux balance analysis problem is written in concentration units, e.g., the reaction flux has units of mmol/volume-time. However, sometimes, it is more convenient to work in mole units instead. In either case, the flux balance analysis problem can be formulated as a linear program ({prf:ref}`defn-mol-based-units`):
 
-### Mole-based FBA formulation
-In chemical engineering, flux balance analysis estimates chemical reaction rates (called _fluxes_) operating in _steady-state_ reaction networks. The standard flux balance analysis problem is written in concentration units, e.g., the reaction flux has units of mmol/volume-time. However, sometimes it is more convenient to work in mole units instead. We know from our [earlier discussion of material balances](../unit-2-data/vectors-matricies-nla.md) that the open species mole balance around component $i$ in a steady-state system with species $\mathcal{M}$, streams $\mathcal{S}$ and reactions $\mathcal{R}$ is given by:
-
-$$\sum_{s\in\mathcal{S}}v_{s}\dot{n}_{is} + \sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j} = 0\qquad\forall{i}\in\mathcal{M}$$
-
-If we don't have [kinetic rate laws](https://en.wikipedia.org/wiki/Rate_equation), or we are not approaching this problem from the [equilibrium or energy perspective](https://en.wikipedia.org/wiki/Chemical_equilibrium), then we need some other way to estimate the extent of reaction $\dot{\epsilon}_{j}$, consider {prf:ref}`obs-simple-mole-based case`:
-
-````{prf:observation} Mole based problem formulation
-:label: obs-simple-mole-based case
-
-Suppose we have an open steady-state system with species $\mathcal{M}$, streams $\mathcal{S}$ and reactions $\mathcal{R}$, but qith only a single stream entering (s = 1) and exiting (s = 2) the system. Further, suppose we want to maximize/minimize an objective of the form:
-
-```{math}
-\text{maximize/minimze}~\mathcal{O}=\sum_{i\in\mathcal{R}}c_{i}\dot{\epsilon}_{i}
-```
-In other words, we want to estimate the open extent such that some _technological_ objective is met, e.g., we maximize the production of a valuable product. For the case of a single input and output, the open mole balance becomes:
-
-$$\dot{n}_{i,2} = \dot{n}_{i,1} + \sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j}\qquad\forall{i}\in\mathcal{M}$$
-
-Of course, when searching for the optimal set of reaction extents $\dot{\epsilon}_{j}$ we have to select values that give physically realistic answers, e.g., we can't have a negative mole flow rates: $\dot{n}_{i,j}\geq{0}$ for all $i$ and $j$. Thus, the species mole balances are linear constraints governing  the open extent: 
-
-$$\dot{n}_{i,1} + \sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j}\geq{0}\qquad\forall{i}\in\mathcal{M}$$
-
-Next, the $\dot{\epsilon}_{j}$ terms must be bounded, i.e., we can't have infinite values for the open reaction extent, nor can irreversible reactions be chosen to run backward. Thus, the extents are _bounded_ from above and below:
-
-$$\mathcal{L}_{j}\leq\dot{\epsilon}_{j}\leq\mathcal{U}_{j}\qquad{j=1,2\dots,\mathcal{R}}$$
-
-The $\mathcal{L}_{j}$ and $\mathcal{U}_{j}$ denote the lower and upper bounds that $\dot{\epsilon}_{j}$ can take. Open extents $\dot{\epsilon}_{j}$ are just reaction rates times the volume; the lower and upper bounds describe the permissible range we expect the rate _could_ take.
-
-````
-
-Putting these ideas together for the general case of multiple input and output streams gives a general problem formulation to compute the flux through a reaction network using mole based units ({prf:ref}`defn-mol-based-units`):
-
-````{prf:definition} Mole based flux problem
+````{prf:definition} Flux balance analysis (mole-based units)
 :label: defn-mol-based-units
 
-We have an open system with species $\mathcal{M}$, streams $\mathcal{S}$, and reactions $\mathcal{R}$. Further, we partition the stream set $\mathcal{S}$ into streams entering the system $\mathcal{S}^{+}$, and streams leaving the system $\mathcal{S}^{-}$.  Then, the steady-state species mole balances are given by:
+Suppose we have an open well-mixed reactor system with species $\mathcal{M}$, streams $\mathcal{S}$, and reactions $\mathcal{R}$. Further, we partition the stream set $\mathcal{S}$ into streams entering the system $\mathcal{S}^{+}$, and streams leaving the system $\mathcal{S}^{-}$.  Then, the steady-state species mole balances are given by:
 
 ```{math}
 \sum_{s\in\mathcal{S}^{+}}\dot{n}_{is} - \sum_{k\in\mathcal{S}^{-}}\dot{n}_{ik} + \sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j} = 0\qquad\forall{i}\in\mathcal{M}
 ```
 
-Finally, $\dot{n}_{i,j}\geq{0}$ for every $i$ and $j$; species mole flows must be non-negative. Then, the (unknown) open extents $\dot{\epsilon}_{j}$ are the solution of a linear programming problem in which the linear objective $\mathcal{O}$:
+The optimal (unknown) open extents $\dot{\epsilon}_{j}$ are the solution of a linear programming problem 
 
-$$\text{maximize/minimize}~\mathcal{O} = \sum_{j\in\mathcal{R}}c_{j}\dot{\epsilon}_{j}$$
-
-is minimized (or maximized) subject to the linear constraints:
-
-$$\begin{eqnarray}
-\sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j}&\geq&{-\sum_{s\in\mathcal{S}^{+}}\dot{n}_{si}}\qquad\forall{i}\in\mathcal{M}\\
-\sum_{k\in\mathcal{S}^{-}}\dot{n}_{ki}&\geq&{0}\qquad\forall{i}\in\mathcal{M}\\
-\mathcal{L}_{j}&\leq\dot{\epsilon}_{j}\leq&\mathcal{U}_{j}\qquad\forall{j}\in\mathcal{R}
-\end{eqnarray}$$
+$$
+\begin{eqnarray}
+\text{minimize}~\mathcal{O}(\dot{\epsilon}) & = &  -\sum_{j\in\mathcal{R}}c_{j}\dot{\epsilon}_{j}\\
+\text{subject to}~\sum_{j\in\mathcal{R}}\sigma_{ij}\dot{\epsilon}_{j}&\geq&{-\sum_{s\in\mathcal{S}^{+}}\dot{n}_{i,s}}\qquad\forall{i}\in\mathcal{M}\\
+\text{and}~\sum_{k\in\mathcal{S}^{-}}\dot{n}_{i,k}&\geq&{0}\qquad\forall{i}\in\mathcal{M}\\
+\text{and}~\mathcal{L}_{j}&\leq\dot{\epsilon}_{j}\leq&\mathcal{U}_{j}\qquad\forall{j}\in\mathcal{R}
+\end{eqnarray}
+$$
 ````
+
+If we don't have [kinetic rate laws](https://en.wikipedia.org/wiki/Rate_equation), or we are not approaching this problem from the [equilibrium or energy perspective](https://en.wikipedia.org/wiki/Chemical_equilibrium), we can use flux balance analysis to estimate the open extent of reaction $\dot{\epsilon}_{j}$ in mole-based systems, or the reaction rate in concentration based systems. 
 
 ---
 
 ## Summary
-In this lecture, we disucssed linear programming (LP).  Linear programming is a method to estimate the best outcome (such as maximum profit, lowest cost, or the best possible rate of production) using a mathematical model composed of linear relationships subject to linear constraints. Linear programming is widely used in business, economics, engineering, and other fields to model and solve real-world problems involving resource allocation, production planning, transportation, and more.
+In this lecture, we discussed linear programming (LP).  Linear programming is a method to estimate the best outcome (such as maximum profit, lowest cost, or the best possible production rate) using a mathematical model composed of linear relationships subject to linear constraints. Linear programming is widely used in business, economics, engineering, and other fields to model and solve real-world problems involving resource allocation, production planning, transportation, and more.
 
 First, we introduced the mathematical structure of linear programs, the dual problem, and then moved to an important application area within chemical Engineering, namely flux balance analysis:
 
-* {ref}`content:references:primal-linear-problem` are a type of linear programming problem in which the goal is to maximize or minimize a linear objective function subject to a set of linear constraints in the form of inequalities or equalities. The term primal refers to the original form of the linear programming problem, as opposed to its dual form.
+* {ref}`content:references:primal-linear-problem` is a linear programming problem aiming to maximize or minimize a linear objective function subject to linear constraints in the form of inequalities or equalities. The term primal refers to the original form of the linear programming problem instead of its dual form.
 
-* {ref}`content:references:dual-linear-problem` are formulations derived from a primal linear program that provides an alternative way of looking at the same problem. The dual linear program is constructed by introducing a set of new variables and constraints that are related to the primal linear program. The objective of the dual program is to either maximize or minimize a function, subject to a different set of constraints, which are derived from the original primal program.
+* {ref}`content:references:dual-linear-problem` is a formulation derived from the primal linear program that provides an alternative perspective on the same problem by introducing a new set of variables and constraints. The objective of the dual program is to either maximize or minimize a linear function subject to a different set of constraints derived from the original primal program.
 
-* {ref}`content:references:flux-balance-analysis` is a general tool that can be used to estimate _flows_ through many different types of networks and graphs, e.g., social graphs, communication networks, or other types of problems that can be represented as a network of graphs. Flux balance analysis can be implemented as a linear program.
+* {ref}`content:references:flux-balance-analysis` is a versatile tool that can estimate flows through various types of networks and graphs. It can be applied to social graphs, communication networks, or any other problem that can be represented as a network of graphs. Flux balance analysis, a testament to the versatility of linear programming, can be implemented as a linear program.
 
-### Additional resources
-Background resources for biochemical network information, and computational tools for working with flux balance analysis models:
+## Additional resources
+Background resources for biochemical network information and computational tools for working with flux balance analysis models:
 
 * [Kanehisa M, Goto S. KEGG: kyoto encyclopedia of genes and genomes. Nucleic Acids Res. 2000 Jan 1;28(1):27-30. doi: 10.1093/nar/28.1.27. PMID: 10592173; PMCID: PMC102409.](https://www.genome.jp/kegg/)
 
