@@ -7,7 +7,7 @@ Linear programming (LP) is a method to estimate the best outcome (such as maximu
 
 * {ref}`content:references:dual-linear-problem` program is a formulation derived from the primal linear program that provides an alternative perspective on the same problem by introducing a new set of variables and constraints. The objective of the dual program is to either maximize or minimize a linear function subject to a different set of constraints derived from the original primal program.
 
-* {ref}`content:references:flux-balance-analysis` is a versatile tool that can estimate flows through various types of networks and graphs. It can be applied to social graphs, communication networks, or any other problem that can be represented as a network of graphs. 
+* {ref}`content:references:max-min-linear-problem` is a versatile tool that can estimate flows through various types of networks and graphs. It can be applied to social graphs, communication networks, or any other problem that can be represented as a network of graphs. 
 
 Linear programming, a practical and widely used tool, finds its applications in diverse fields such as business, economics, engineering, and more. It is instrumental in modeling and solving real-world problems, be it resource allocation, production planning, transportation, or other complex scenarios.
 ```
@@ -286,9 +286,9 @@ Suppose we have a directed graph $G = (V, E)$ with a source node $s\in{V}$ and a
 $$
 \begin{eqnarray}
 \text{minimize}~\mathcal{O}(E) &=& \sum_{(u,v)\in{E}} a(u,v)\cdot{f}(u,v)\\
-\text{subject to}~\sum_{w\in{E}}f(u,w) &=&0\quad{u}\neq{s,t}\\
-\text{and}~\sum_{w\in{E}}f(s,w) &=&d\\
-\text{and}~\sum_{w\in{E}}f(w,t) &=&d\\
+\text{subject to}~\sum_{w\in{V}}f(u,w) &=&0\quad{\forall\,u}\neq{s,t}\\
+\text{and}~\sum_{w\in{V}}f(s,w) &=&d\\
+\text{and}~\sum_{w\in{V}}f(w,t) &=&d\\
 \text{and}~f(u,v)&\leq&c(u,v)\quad{(u,v)\in{E}}
 \end{eqnarray}
 $$
@@ -297,6 +297,49 @@ where $d$ is the demand at the source and sink nodes, the decision variables $f(
 ````
 
 Modifications to the minimum flow problem described in {prf:ref}`defn-min-flow-problem`  can include adding additional constraints, such as upper and lower bounds on the flow rates, changing the objective function to minimize the total flow instead of the total cost, or having multiple sources and sinks in the network.
+
+### Assignment problem
+The assignment problem is a special minimum flow problem, where the goal is to assign a set of tasks to a set of workers so that the total cost of the assignments is minimized. The assignment problem can be visualized as a [Bipartite graph](https://en.wikipedia.org/wiki/Bipartite_graph), where the nodes are divided into two sets, the tasks and the workers, and the edges represent the possible assignments between the tasks and workers 
+({numref}`fig-bipartite-graph-schematic`).
+
+```{figure} ./figs/Fig-BipartateGraph-Schematic.svg
+---
+height: 280px
+name: fig-bipartite-graph-schematic
+---
+Schematic of a bipartite graph data structures. Nodes in a graph hold references (links or edges) to other nodes in the graph. Each edge between node $u$ and $v$ has a capacity and cost value representing how much flow can be assigned to this edge, as well as the cost of flow on this edge.    
+```
+
+In addition to workers and tasks, we add two nodes, a source node $s$ and a sink node $t$, to the bipartite graph. The source node $s$ is connected to each task node with an edge of capacity `1` and cost `0`, and the sink node $t$ is connected to each worker node with an edge of capacity `1` and cost `0`. The goal is to find the minimum cost flow from the source node $s$ to the sink node $t$ that assigns each task to at least one worker, and each worker has at least one task (although this constraint can be more or less restrictive, where each worker is assigned to a single unique task, or no tasks).
+
+The assignment problem can be formulated as a linear program, where the decision variables are the flow rates along the edges of the bipartite graph, and the objective function is the total cost of the assignments 
+({prf:ref}`defn-min-flow-assignment-problem`):
+
+````{prf:definition} Minimum Flow Assignment Problem
+:label: defn-min-flow-assignment-problem
+
+Suppose we have a bipartite graph $G = (V, E)$ with a source node $s\in{V}$ and a sink node $t\in{V}$. Each edge $(u,v)\in{E}$ has a capacity $c(u,v)>0$, flow $f(u,v)>0$, and cost $a(u,v)>0$. The nodes are divided into two sets: the tasks and the workers. 
+
+The goal is to find the minimum cost flow from the source $s$ to the sink $t$ that assigns each task to at least one worker, and each worker has at least one task. The assignment problem can be formulated as a linear program:
+
+$$
+\begin{eqnarray}
+\text{minimize}~\mathcal{O}(E) &=& \sum_{(u,v)\in{E}} a(u,v)\cdot{f}(u,v)\\
+\text{subject to}~\sum_{w\in{E}}f(u,w) &=&0\quad{\forall\,u}\neq{s,t}\\
+\text{and}~-\sum_{w\in{V}}f(s,w) &=&-n\\
+\text{and}~\sum_{w\in{V}}f(w,t) &=&n\\
+\text{and}~0\leq{f(u,v)}&\leq&c(u,v)\quad{\forall\,(u,v)\in{E}}
+\end{eqnarray}
+$$
+
+where $n$ is the number of tasks and workers, the decision variables $f(u,v)$ are the flow rates along the edges of the graph, and the objective function $\mathcal{O}(E)$ is the total cost of the assignments. The number of tasks and workers doesn't have to be equal.
+````
+
+The problem outlined in {prf:ref}`defn-min-flow-assignment-problem` can be solved using linear programming. However, we need to translate the bipartite graph into a linear program.
+* The objective function is the total cost of the assignments, i.e., the sum of the costs of the assignments between the tasks and workers. We need to represent the costs of the assignments as a linear function of the flow rates, i.e., 
+$\mathbf{a}^{T}\cdot\mathbf{f}$, where $\mathbf{a}$ is the vector of costs and $\mathbf{f}$ is the vector of flow rates.
+* The constraints ensure that each task is assigned to at least one worker and each worker is assigned to at least one task. We need to represent these constraints as a linear algebraic system of equations, i.e., $\mathbf{A}\cdot\mathbf{f} = \mathbf{b}$, where $\mathbf{A}$ is the constraint matrix and $\mathbf{b}$ is the right-hand side vector.
+* Finally, we need to represent the capacity constraints as linear inequalities, i.e., $\mathbf{0}\leq\mathbf{f}\leq\mathbf{c}$, where $\mathbf{c}$ is the vector of capacities.
 
 (content:references:flux-balance-analysis)=
 ## Flux balance analysis
@@ -336,7 +379,9 @@ First, we introduced the mathematical structure of linear programs, the dual pro
 
 * {ref}`content:references:dual-linear-problem` is a formulation derived from the primal linear program that provides an alternative perspective on the same problem by introducing a new set of variables and constraints. The objective of the dual program is to either maximize or minimize a linear function subject to a different set of constraints derived from the original primal program.
 
-* {ref}`content:references:flux-balance-analysis` is a versatile tool that can estimate flows through various types of networks and graphs. It can be applied to social graphs, communication networks, or any other problem that can be represented as a network of graphs. Flux balance analysis, a testament to the versatility of linear programming, can be implemented as a linear program.
+* {ref}`content:references:max-min-linear-problem` is a versatile tool that can estimate flows through various types of networks and graphs. It can be applied to social graphs, communication networks, or any other problem that can be represented as a network of graphs. Flux balance analysis, a testament to the versatility of linear programming, can be implemented as a linear program.
+
+## Additional resources
 Background resources for biochemical network information and computational tools for working with flux balance analysis models:
 
 * [Kanehisa M, Goto S. KEGG: kyoto encyclopedia of genes and genomes. Nucleic Acids Res. 2000 Jan 1;28(1):27-30. doi: 10.1093/nar/28.1.27. PMID: 10592173; PMCID: PMC102409.](https://www.genome.jp/kegg/)
