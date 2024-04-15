@@ -1,4 +1,4 @@
-# Markov Chains and Markov Decision Processes
+# Markov Models and Markov Decision Processes
 
 ```{topic} Outline
 
@@ -13,6 +13,7 @@ In this lecture, we introduce the Markov property, Markov chains and Hidden Mark
 
 (content:references:discrete-time-markov-chains)=
 ## Discrete-time Markov chains
+[Markov chains](https://en.wikipedia.org/wiki/Markov_chain),  introduced by [Andrey Markov (1856 - 1922)](https://en.wikipedia.org/wiki/Andrey_Markov), are stochastic models describing a sequence of possible events in which the probability of each event depends only on the state attained in the previous event. Markov chains are used in many fields, including finance, biology, and physics, to model systems that evolve over time.
 
  ```{figure} ./figs/Fig-Discrete-MarkovChain-Schematic.svg
 ---
@@ -22,16 +23,14 @@ name: fig-discrete-markov-model
 Schematic of a discrete two-state time-invariant Markov model; $p_{ij}$ denotes the time-invariant transition probability between state $i$ and $j$.
 ```
 
-Markov chains were introduced by [Andrey Markov (1856 - 1922)](https://en.wikipedia.org/wiki/Andrey_Markov) during the early 20th century. Markov chains are stochastic processes that model the probability of moving from one state to another in discrete time steps. The model assumes that the probability of transitioning from one state to another solely depends on the current state and not on any past events. 
-
-A discrete-time Markov chain is a sequence of random variables $X_{1}$, $X_{2}$, $X_{3}$, ..., $X_{n}$ that have the [Markov property](https://en.wikipedia.org/wiki/Markov_property), i.e., the probability of moving to the _next state_ depends only on the _present state_ and not on the _previous states_:
+A discrete-time Markov chain of length $n$ is a sequence of random variables $X_{1}$, $X_{2}$, $X_{3}$, ..., $X_{n}$ that have the [Markov property](https://en.wikipedia.org/wiki/Markov_property), i.e., the probability of moving to the _next state_ depends only on the _present state_ and not on the _previous states_:
 
 ```{math}
 :label: eqn-markov-property
 P(X_{n+1} = x | X_{1}=x_{1}, \dots, X_{n}=x_{n}) = P(X_{n+1} = x | X_{n}=y)
 ```
 
-where _states_ refer to a finite set of discrete values in which the system can exist.  If the state space is finite, the transition probability distribution, i.e., the probability of moving from the state(s) $i\rightarrow{j}$, can be encoded in the transition matrix $\mathbf{P}$. Elements of $\mathbf{P}$, denoted as $p_{ij}$, encode the probability of moving from state $i\rightarrow{j}$ during the next time step:
+where _states_ refer to a finite set of discrete values in which the system can exist.  If the state space is finite, the transition probability distribution, i.e., the probability of moving from the state(s) $i\rightarrow{j}$, can be encoded in the transition matrix $p_{ij}\in\mathbf{P}$, where the elements $p_{ij}$ encode the probability of moving from state $i\rightarrow{j}$ during the next time step:
 
 ```{math}
 :label: eqn-transition-prob-matrix
@@ -47,26 +46,26 @@ Putting these ideas together gives ({prf:ref}`defn-n-transition`):
 ````{prf:definition} Time-invariant state transition
 :label: defn-n-transition
 
-A Markov chain has finite state set $\mathcal{S}$ and the time-invariant state transition matrix $\mathbf{P}$. Let the state vector at time $j$ be given by $\mathbf{\pi}_{j}$, where $\pi_{s,j}\geq{0},\forall{s}\in\mathcal{S}$ and:
+A Markov chain has finite state set $\mathcal{S}$ and the time-invariant state transition matrix $\mathbf{P}$. Let the state vector (probability distribution over $\mathcal{S}$) at time $j$ be given by $\mathbf{\pi}_{j}$, where $\pi_{s,j}\geq{0},\forall{s}\in\mathcal{S}$ and:
 
 ```{math}
 \sum_{s\in\mathcal{S}}\pi_{s,j} = 1\qquad\forall{j}
 ```
 
-Then, the state of the Markov chain at time step $n+1$ is given by:
+Then, the state, i.e, the probability that the system is i  $s_{j}\in\mathcal{S}$, of the Markov chain at time step $n+1$ is given by:
 
 $$\mathbf{\pi}_{n+1} = \mathbf{\pi}_{n}\mathbf{P}^n$$
 
 where $\mathbf{\pi}_{n}$ denotes the system state vector at time step $n$. 
 ````
 
-Finally, suppose that a Markov chain is both time-invariant and non-periodic. Then, there exists a unique stationary distribution $\pi$ such that $\mathbf{P}^{k}$ converges to a rank-one matrix in which each row is the stationary distribution $\pi$:
+Finally, suppose that a Markov chain is both time-invariant and non-periodic. Then, there exists a unique stationary distribution $\bar{\pi}$ such that $\mathbf{P}^{k}$ converges to a rank-one matrix in which each row is the stationary distribution $\pi$:
 
 ```{math}
-\lim_{k\rightarrow\infty} \mathbf{P}^{k} = \mathbf{1}\pi
+\lim_{k\rightarrow\infty} \mathbf{P}^{k} = \mathbf{1}\otimes\pi
 ```
 
-where $\mathbf{1}$ is a column vector of all 1's. Let's consider an example to make these ideas less abstract ({prf:ref}`example-dicrete-mchain`): 
+where $\mathbf{1}$ is a column vector of all 1's. The stationary distribution is analogous to the long-term behavior of a dynamic system, i.e., it is the steady-state distribution of the system. Let's consider an example to make these ideas less abstract ({prf:ref}`example-dicrete-mchain`): 
 
 
 ````{prf:example} Discrete Markov chain stationary distribution

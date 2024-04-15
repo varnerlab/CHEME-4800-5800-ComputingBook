@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Markov Chains and Markov Decision Processes &#8212; CHEME 4800/5800</title>
+    <title>Markov Models and Markov Decision Processes &#8212; CHEME 4800/5800</title>
   
   
   
@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -215,7 +215,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="random-landing.html">Unit 4. Random Processes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Markov Chains and Markov Decision Processes</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Markov Models and Markov Decision Processes</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="bandits.html">Bandit Problems and Reinforcement Learning</a></li>
 
@@ -407,7 +407,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Markov Chains and Markov Decision Processes</h1>
+    <h1>Markov Models and Markov Decision Processes</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -417,7 +417,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Markov Chains and Markov Decision Processes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Markov Models and Markov Decision Processes</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-time-markov-chains">Discrete-time Markov chains</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-the-stationary-distribution">Sampling the stationary distribution</a></li>
 </ul>
@@ -444,8 +444,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="markov-chains-and-markov-decision-processes">
-<h1>Markov Chains and Markov Decision Processes<a class="headerlink" href="#markov-chains-and-markov-decision-processes" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="markov-models-and-markov-decision-processes">
+<h1>Markov Models and Markov Decision Processes<a class="headerlink" href="#markov-models-and-markov-decision-processes" title="Link to this heading">#</a></h1>
 <aside class="topic">
 <p class="topic-title">Outline</p>
 <p>In this lecture, we introduce the Markov property, Markov chains and Hidden Markov Models (HMM):</p>
@@ -457,17 +457,17 @@ document.write(`
 <hr class="docutils" />
 <section id="discrete-time-markov-chains">
 <span id="content-references-discrete-time-markov-chains"></span><h2>Discrete-time Markov chains<a class="headerlink" href="#discrete-time-markov-chains" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain">Markov chains</a>,  introduced by <a class="reference external" href="https://en.wikipedia.org/wiki/Andrey_Markov">Andrey Markov (1856 - 1922)</a>, are stochastic models describing a sequence of possible events in which the probability of each event depends only on the state attained in the previous event. Markov chains are used in many fields, including finance, biology, and physics, to model systems that evolve over time.</p>
 <figure class="align-default" id="fig-discrete-markov-model">
 <a class="reference internal image-reference" href="../_images/Fig-Discrete-MarkovChain-Schematic.svg"><img alt="../_images/Fig-Discrete-MarkovChain-Schematic.svg" height="120px" src="../_images/Fig-Discrete-MarkovChain-Schematic.svg" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 17 </span><span class="caption-text">Schematic of a discrete two-state time-invariant Markov model; <span class="math notranslate nohighlight">\(p_{ij}\)</span> denotes the time-invariant transition probability between state <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</span><a class="headerlink" href="#fig-discrete-markov-model" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Markov chains were introduced by <a class="reference external" href="https://en.wikipedia.org/wiki/Andrey_Markov">Andrey Markov (1856 - 1922)</a> during the early 20th century. Markov chains are stochastic processes that model the probability of moving from one state to another in discrete time steps. The model assumes that the probability of transitioning from one state to another solely depends on the current state and not on any past events.</p>
-<p>A discrete-time Markov chain is a sequence of random variables <span class="math notranslate nohighlight">\(X_{1}\)</span>, <span class="math notranslate nohighlight">\(X_{2}\)</span>, <span class="math notranslate nohighlight">\(X_{3}\)</span>, …, <span class="math notranslate nohighlight">\(X_{n}\)</span> that have the <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_property">Markov property</a>, i.e., the probability of moving to the <em>next state</em> depends only on the <em>present state</em> and not on the <em>previous states</em>:</p>
+<p>A discrete-time Markov chain of length <span class="math notranslate nohighlight">\(n\)</span> is a sequence of random variables <span class="math notranslate nohighlight">\(X_{1}\)</span>, <span class="math notranslate nohighlight">\(X_{2}\)</span>, <span class="math notranslate nohighlight">\(X_{3}\)</span>, …, <span class="math notranslate nohighlight">\(X_{n}\)</span> that have the <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_property">Markov property</a>, i.e., the probability of moving to the <em>next state</em> depends only on the <em>present state</em> and not on the <em>previous states</em>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-markov-property">
 <span class="eqno">(77)<a class="headerlink" href="#equation-eqn-markov-property" title="Link to this equation">#</a></span>\[P(X_{n+1} = x | X_{1}=x_{1}, \dots, X_{n}=x_{n}) = P(X_{n+1} = x | X_{n}=y)\]</div>
-<p>where <em>states</em> refer to a finite set of discrete values in which the system can exist.  If the state space is finite, the transition probability distribution, i.e., the probability of moving from the state(s) <span class="math notranslate nohighlight">\(i\rightarrow{j}\)</span>, can be encoded in the transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. Elements of <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>, denoted as <span class="math notranslate nohighlight">\(p_{ij}\)</span>, encode the probability of moving from state <span class="math notranslate nohighlight">\(i\rightarrow{j}\)</span> during the next time step:</p>
+<p>where <em>states</em> refer to a finite set of discrete values in which the system can exist.  If the state space is finite, the transition probability distribution, i.e., the probability of moving from the state(s) <span class="math notranslate nohighlight">\(i\rightarrow{j}\)</span>, can be encoded in the transition matrix <span class="math notranslate nohighlight">\(p_{ij}\in\mathbf{P}\)</span>, where the elements <span class="math notranslate nohighlight">\(p_{ij}\)</span> encode the probability of moving from state <span class="math notranslate nohighlight">\(i\rightarrow{j}\)</span> during the next time step:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-transition-prob-matrix">
 <span class="eqno">(78)<a class="headerlink" href="#equation-eqn-transition-prob-matrix" title="Link to this equation">#</a></span>\[p_{ij} = P(X_{n+1}~=~j~|~X_{n}~=~i)\]</div>
 <p>The transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> has interesting properties:</p>
@@ -479,18 +479,18 @@ document.write(`
 <div class="proof definition admonition" id="defn-n-transition">
 <p class="admonition-title"><span class="caption-number">Definition 48 </span> (Time-invariant state transition)</p>
 <section class="definition-content" id="proof-content">
-<p>A Markov chain has finite state set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> and the time-invariant state transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. Let the state vector at time <span class="math notranslate nohighlight">\(j\)</span> be given by <span class="math notranslate nohighlight">\(\mathbf{\pi}_{j}\)</span>, where <span class="math notranslate nohighlight">\(\pi_{s,j}\geq{0},\forall{s}\in\mathcal{S}\)</span> and:</p>
+<p>A Markov chain has finite state set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> and the time-invariant state transition matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. Let the state vector (probability distribution over <span class="math notranslate nohighlight">\(\mathcal{S}\)</span>) at time <span class="math notranslate nohighlight">\(j\)</span> be given by <span class="math notranslate nohighlight">\(\mathbf{\pi}_{j}\)</span>, where <span class="math notranslate nohighlight">\(\pi_{s,j}\geq{0},\forall{s}\in\mathcal{S}\)</span> and:</p>
 <div class="math notranslate nohighlight">
 \[\sum_{s\in\mathcal{S}}\pi_{s,j} = 1\qquad\forall{j}\]</div>
-<p>Then, the state of the Markov chain at time step <span class="math notranslate nohighlight">\(n+1\)</span> is given by:</p>
+<p>Then, the state, i.e, the probability that the system is i  <span class="math notranslate nohighlight">\(s_{j}\in\mathcal{S}\)</span>, of the Markov chain at time step <span class="math notranslate nohighlight">\(n+1\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{\pi}_{n+1} = \mathbf{\pi}_{n}\mathbf{P}^n\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{\pi}_{n}\)</span> denotes the system state vector at time step <span class="math notranslate nohighlight">\(n\)</span>.</p>
 </section>
-</div><p>Finally, suppose that a Markov chain is both time-invariant and non-periodic. Then, there exists a unique stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span> such that <span class="math notranslate nohighlight">\(\mathbf{P}^{k}\)</span> converges to a rank-one matrix in which each row is the stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span>:</p>
+</div><p>Finally, suppose that a Markov chain is both time-invariant and non-periodic. Then, there exists a unique stationary distribution <span class="math notranslate nohighlight">\(\bar{\pi}\)</span> such that <span class="math notranslate nohighlight">\(\mathbf{P}^{k}\)</span> converges to a rank-one matrix in which each row is the stationary distribution <span class="math notranslate nohighlight">\(\pi\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\lim_{k\rightarrow\infty} \mathbf{P}^{k} = \mathbf{1}\pi\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{1}\)</span> is a column vector of all 1’s. Let’s consider an example to make these ideas less abstract (<a class="reference internal" href="#example-dicrete-mchain">Example 27</a>):</p>
+\[\lim_{k\rightarrow\infty} \mathbf{P}^{k} = \mathbf{1}\otimes\pi\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{1}\)</span> is a column vector of all 1’s. The stationary distribution is analogous to the long-term behavior of a dynamic system, i.e., it is the steady-state distribution of the system. Let’s consider an example to make these ideas less abstract (<a class="reference internal" href="#example-dicrete-mchain">Example 27</a>):</p>
 <div class="proof example dropdown admonition" id="example-dicrete-mchain">
 <p class="admonition-title"><span class="caption-number">Example 27 </span> (Discrete Markov chain stationary distribution)</p>
 <section class="example-content" id="proof-content">
@@ -838,7 +838,7 @@ Given a utility <span class="math notranslate nohighlight">\(U\)</span>, we can 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Markov Chains and Markov Decision Processes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Markov Models and Markov Decision Processes</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-time-markov-chains">Discrete-time Markov chains</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-the-stationary-distribution">Sampling the stationary distribution</a></li>
 </ul>
