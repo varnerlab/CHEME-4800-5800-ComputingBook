@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -77,7 +77,7 @@
     <link rel="canonical" href="https://varnerlab.github.io/CHEME-1800-Computing-Book/landing.html/unit-4-random/markov.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Multiarm Bandit Problems" href="bandits.html" />
+    <link rel="next" title="Bandit Problems and Reinforcement Learning" href="bandits.html" />
     <link rel="prev" title="Sequential Planning Methods and Random Processes" href="random-landing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -208,18 +208,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../unit-2-data/reduction.html">Dimensionality Reduction, Eigenvalues, and Eigenvectors</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../unit-3-learning/learning-landing.html">Unit 3. Learning and Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unit-3-learning/learning-landing.html">Unit 3. Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../unit-3-learning/penalty.html">Ordinary Least Squares Problems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unit-3-learning/lp.html">Linear Programming</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unit-3-learning/combitorial.html">Dynamic programming and Heuristic Optimization</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="random-landing.html">Unit 4. Random Processes and Learning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="random-landing.html">Unit 4. Random Processes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Markov Chains and Markov Decision Processes</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="bandits.html">Multiarm Bandit Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bandits.html">Bandit Problems and Reinforcement Learning</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="rl.html">Reinforcement Learning</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../References.html">References</a></li>
@@ -464,7 +463,7 @@ document.write(`
 <p><span class="caption-number">Fig. 17 </span><span class="caption-text">Schematic of a discrete two-state time-invariant Markov model; <span class="math notranslate nohighlight">\(p_{ij}\)</span> denotes the time-invariant transition probability between state <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</span><a class="headerlink" href="#fig-discrete-markov-model" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Markov chains were introduced by <a class="reference external" href="https://en.wikipedia.org/wiki/Andrey_Markov">Andrey Markov (1856 - 1922)</a> during the early 20th century. These mathematical models have been extensively used in diverse fields such as finance, physics, biology, engineering, and computer science. Markov chains are stochastic processes that model the probability of moving from one state to another in discrete time steps. The model assumes that the probability of transitioning from one state to another solely depends on the current state and not on any past events. Markov chains are especially valuable for modeling complex systems that involve uncertainty and randomness.</p>
+<p>Markov chains were introduced by <a class="reference external" href="https://en.wikipedia.org/wiki/Andrey_Markov">Andrey Markov (1856 - 1922)</a> during the early 20th century. Markov chains are stochastic processes that model the probability of moving from one state to another in discrete time steps. The model assumes that the probability of transitioning from one state to another solely depends on the current state and not on any past events.</p>
 <p>A discrete-time Markov chain is a sequence of random variables <span class="math notranslate nohighlight">\(X_{1}\)</span>, <span class="math notranslate nohighlight">\(X_{2}\)</span>, <span class="math notranslate nohighlight">\(X_{3}\)</span>, …, <span class="math notranslate nohighlight">\(X_{n}\)</span> that have the <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_property">Markov property</a>, i.e., the probability of moving to the <em>next state</em> depends only on the <em>present state</em> and not on the <em>previous states</em>:</p>
 <div class="math notranslate nohighlight" id="equation-eqn-markov-property">
 <span class="eqno">(77)<a class="headerlink" href="#equation-eqn-markov-property" title="Link to this equation">#</a></span>\[P(X_{n+1} = x | X_{1}=x_{1}, \dots, X_{n}=x_{n}) = P(X_{n+1} = x | X_{n}=y)\]</div>
@@ -819,7 +818,7 @@ Given a utility <span class="math notranslate nohighlight">\(U\)</span>, we can 
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Multiarm Bandit Problems</p>
+        <p class="prev-next-title">Bandit Problems and Reinforcement Learning</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

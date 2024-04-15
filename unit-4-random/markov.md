@@ -22,7 +22,7 @@ name: fig-discrete-markov-model
 Schematic of a discrete two-state time-invariant Markov model; $p_{ij}$ denotes the time-invariant transition probability between state $i$ and $j$.
 ```
 
-Markov chains were introduced by [Andrey Markov (1856 - 1922)](https://en.wikipedia.org/wiki/Andrey_Markov) during the early 20th century. These mathematical models have been extensively used in diverse fields such as finance, physics, biology, engineering, and computer science. Markov chains are stochastic processes that model the probability of moving from one state to another in discrete time steps. The model assumes that the probability of transitioning from one state to another solely depends on the current state and not on any past events. Markov chains are especially valuable for modeling complex systems that involve uncertainty and randomness.
+Markov chains were introduced by [Andrey Markov (1856 - 1922)](https://en.wikipedia.org/wiki/Andrey_Markov) during the early 20th century. Markov chains are stochastic processes that model the probability of moving from one state to another in discrete time steps. The model assumes that the probability of transitioning from one state to another solely depends on the current state and not on any past events. 
 
 A discrete-time Markov chain is a sequence of random variables $X_{1}$, $X_{2}$, $X_{3}$, ..., $X_{n}$ that have the [Markov property](https://en.wikipedia.org/wiki/Markov_property), i.e., the probability of moving to the _next state_ depends only on the _present state_ and not on the _previous states_:
 
