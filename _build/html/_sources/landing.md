@@ -22,11 +22,10 @@ Lectures are organized into units, each having roughly four weeks of class time
 * [Unit 1: Technical computing basics](./unit-1-basics/basics-landing.md)
 * [Unit 2: Data, Algorithms, and Linear Algebra](./unit-2-data/data-landing.md)
 * [Unit 3: The Learning Problem: Models, Learning, and Optimization](./unit-3-learning/learning-landing.md)
-* [Unit 4: The Decision Problem: Probability, Random Process, and Decisions](./unit-4-decisions/decisions-landing.md)
+* [Unit 4: The Decision Problem: Probability, Random Process, and Decisions](./unit-4-random/random-landing.md)
 
 ### Schedule
 The lecture, lab and problem set schedule can be viewed at (requires Cornell login): [lecture, lab and problem set schedule](https://cornell.box.com/s/58lapg9usr25q6o4schzqolyiztgx5ol)
-)
 
 ## Grading
 We expect this course to draw from a spectrum of students, including “those less comfortable with computing,” “those more comfortable with computing,” and those in between. However, what ultimately matters is not where you end up relative to your classmates but where you are relative to yourself. 

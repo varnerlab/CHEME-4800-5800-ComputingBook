@@ -23,7 +23,12 @@ chapters:
   - file: unit-3-learning/penalty
   - file: unit-3-learning/lp
   - file: unit-3-learning/combitorial
-
+- file: unit-4-random/random-landing
+  title: Unit 4. Random Processes and Learning
+  sections:
+  - file: unit-4-random/markov
+  - file: unit-4-random/bandits
+  - file: unit-4-random/rl
 - file: References
 
 

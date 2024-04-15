@@ -218,6 +218,14 @@
 <li class="toctree-l2"><a class="reference internal" href="unit-3-learning/combitorial.html">Dynamic programming and Heuristic Optimization</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="unit-4-random/random-landing.html">Unit 4. Random Processes and Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="unit-4-random/markov.html">Markov Chains and Markov Decision Processes</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="unit-4-random/bandits.html">Multiarm Bandit Problems</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="unit-4-random/rl.html">Reinforcement Learning</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="References.html">References</a></li>
 </ul>
 
@@ -375,6 +383,8 @@ document.write(`
    <a href="#cap-algo-backward-substituion"><strong>algo-backward-substituion</strong></a> | 
    <a href="#cap-algo-breadth-first-traversal"><strong>algo-breadth-first-traversal</strong></a> | 
    <a href="#cap-algo-depth-first-traversal"><strong>algo-depth-first-traversal</strong></a> | 
+   <a href="#cap-algo-e-greedy"><strong>algo-e-greedy</strong></a> | 
+   <a href="#cap-algo-e-greedy-q-learning"><strong>algo-e-greedy-q-learning</strong></a> | 
    <a href="#cap-algo-gauss-seidel-method"><strong>algo-gauss-seidel-method</strong></a> | 
    <a href="#cap-algo-ge-basic"><strong>algo-ge-basic</strong></a> | 
    <a href="#cap-algo-hash-function-code"><strong>algo-hash-function-code</strong></a> | 
@@ -384,6 +394,7 @@ document.write(`
    <a href="#cap-algo-right-multiplication-matrix-vector"><strong>algo-right-multiplication-matrix-vector</strong></a> | 
    <a href="#cap-algo-simulated-annealing"><strong>algo-simulated-annealing</strong></a> | 
    <a href="#cap-algo-simulated-annealing-other-functions"><strong>algo-simulated-annealing-other-functions</strong></a> | 
+   <a href="#cap-algo-thompson-sampling"><strong>algo-thompson-sampling</strong></a> | 
    <a href="#cap-algo-vector-addition"><strong>algo-vector-addition</strong></a> | 
    <a href="#cap-defn-LU-determinant"><strong>defn-LU-determinant</strong></a> | 
    <a href="#cap-defn-adj-list-graphs"><strong>defn-adj-list-graphs</strong></a> | 
@@ -395,12 +406,14 @@ document.write(`
    <a href="#cap-defn-covariance matrix"><strong>defn-covariance matrix</strong></a> | 
    <a href="#cap-defn-det-A"><strong>defn-det-A</strong></a> | 
    <a href="#cap-defn-dual-linear program"><strong>defn-dual-linear program</strong></a> | 
+   <a href="#cap-defn-formal-mdp"><strong>defn-formal-mdp</strong></a> | 
    <a href="#cap-defn-general-backward-sub"><strong>defn-general-backward-sub</strong></a> | 
    <a href="#cap-defn-general-forward-sub"><strong>defn-general-forward-sub</strong></a> | 
    <a href="#cap-defn-general-resource-allocation-struct"><strong>defn-general-resource-allocation-struct</strong></a> | 
    <a href="#cap-defn-graphs"><strong>defn-graphs</strong></a> | 
    <a href="#cap-defn-homogenous-eigenvector-system"><strong>defn-homogenous-eigenvector-system</strong></a> | 
    <a href="#cap-defn-homogenous-soln-existence"><strong>defn-homogenous-soln-existence</strong></a> | 
+   <a href="#cap-defn-incremental-update-rule"><strong>defn-incremental-update-rule</strong></a> | 
    <a href="#cap-defn-left-multiply-matrix-vector"><strong>defn-left-multiply-matrix-vector</strong></a> | 
    <a href="#cap-defn-mathematical-function"><strong>defn-mathematical-function</strong></a> | 
    <a href="#cap-defn-matrix-inverse"><strong>defn-matrix-inverse</strong></a> | 
@@ -410,6 +423,8 @@ document.write(`
    <a href="#cap-defn-min-flow-assignment-problem"><strong>defn-min-flow-assignment-problem</strong></a> | 
    <a href="#cap-defn-min-flow-problem"><strong>defn-min-flow-problem</strong></a> | 
    <a href="#cap-defn-mol-based-units"><strong>defn-mol-based-units</strong></a> | 
+   <a href="#cap-defn-multi-arm-bernoulli-bandit-problem"><strong>defn-multi-arm-bernoulli-bandit-problem</strong></a> | 
+   <a href="#cap-defn-n-transition"><strong>defn-n-transition</strong></a> | 
    <a href="#cap-defn-normal-eqn-ols"><strong>defn-normal-eqn-ols</strong></a> | 
    <a href="#cap-defn-normal-eqn-ols-ln"><strong>defn-normal-eqn-ols-ln</strong></a> | 
    <a href="#cap-defn-number-system"><strong>defn-number-system</strong></a> | 
@@ -417,7 +432,9 @@ document.write(`
    <a href="#cap-defn-open-extent-of-rxn"><strong>defn-open-extent-of-rxn</strong></a> | 
    <a href="#cap-defn-open-species-mass-balance"><strong>defn-open-species-mass-balance</strong></a> | 
    <a href="#cap-defn-open-species-mole-balance"><strong>defn-open-species-mole-balance</strong></a> | 
+   <a href="#cap-defn-policy-evalution"><strong>defn-policy-evalution</strong></a> | 
    <a href="#cap-defn-primael-linear program"><strong>defn-primael-linear program</strong></a> | 
+   <a href="#cap-defn-q-learning-defn"><strong>defn-q-learning-defn</strong></a> | 
    <a href="#cap-defn-qr-iteration"><strong>defn-qr-iteration</strong></a> | 
    <a href="#cap-defn-rank-A"><strong>defn-rank-A</strong></a> | 
    <a href="#cap-defn-rbf-measure"><strong>defn-rbf-measure</strong></a> | 
@@ -435,6 +452,9 @@ document.write(`
    <a href="#cap-example-barrier-method"><strong>example-barrier-method</strong></a> | 
    <a href="#cap-example-base-8-number"><strong>example-base-8-number</strong></a> | 
    <a href="#cap-example-binary-1800"><strong>example-binary-1800</strong></a> | 
+   <a href="#cap-example-categorical-dist"><strong>example-categorical-dist</strong></a> | 
+   <a href="#cap-example-dicrete-mchain"><strong>example-dicrete-mchain</strong></a> | 
+   <a href="#cap-example-dicrete-mchain-hmm"><strong>example-dicrete-mchain-hmm</strong></a> | 
    <a href="#cap-example-exe-julia-script"><strong>example-exe-julia-script</strong></a> | 
    <a href="#cap-example-float64-representation"><strong>example-float64-representation</strong></a> | 
    <a href="#cap-example-get-API-example"><strong>example-get-API-example</strong></a> | 
@@ -497,6 +517,22 @@ document.write(`
        <td></td>
        <td>
        <a href="unit-2-data/trees.html#algo-depth-first-traversal"><code class="xref">algo-depth-first-traversal</code></a> <em>(unit-2-data/trees)</em></td><td>
+       <em>algorithm</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-algo-e-greedy"><td></td><td>
+       <strong>algo-e-greedy</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-random/bandits.html#algo-e-greedy"><code class="xref">algo-e-greedy</code></a> <em>(unit-4-random/bandits)</em></td><td>
+       <em>algorithm</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-algo-e-greedy-q-learning"><td></td><td>
+       <strong>algo-e-greedy-q-learning</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-random/rl.html#algo-e-greedy-q-learning"><code class="xref">algo-e-greedy-q-learning</code></a> <em>(unit-4-random/rl)</em></td><td>
        <em>algorithm</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-algo-gauss-seidel-method"><td></td><td>
@@ -569,6 +605,14 @@ document.write(`
        <td></td>
        <td>
        <a href="unit-3-learning/combitorial.html#algo-simulated-annealing-other-functions"><code class="xref">algo-simulated-annealing-other-functions</code></a> <em>(unit-3-learning/combitorial)</em></td><td>
+       <em>algorithm</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-algo-thompson-sampling"><td></td><td>
+       <strong>algo-thompson-sampling</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-random/bandits.html#algo-thompson-sampling"><code class="xref">algo-thompson-sampling</code></a> <em>(unit-4-random/bandits)</em></td><td>
        <em>algorithm</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-algo-vector-addition"><td></td><td>
@@ -659,6 +703,14 @@ document.write(`
        <a href="unit-3-learning/lp.html#defn-dual-linear program"><code class="xref">defn-dual-linear program</code></a> <em>(unit-3-learning/lp)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-formal-mdp"><td></td><td>
+       <strong>defn-formal-mdp</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-random/markov.html#defn-formal-mdp"><code class="xref">defn-formal-mdp</code></a> <em>(unit-4-random/markov)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-general-backward-sub"><td></td><td>
        <strong>defn-general-backward-sub</strong></td><td></td></tr>
      <tr>
@@ -705,6 +757,14 @@ document.write(`
        <td></td>
        <td>
        <a href="unit-2-data/vectors-matricies-nla.html#defn-homogenous-soln-existence"><code class="xref">defn-homogenous-soln-existence</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-incremental-update-rule"><td></td><td>
+       <strong>defn-incremental-update-rule</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-random/rl.html#defn-incremental-update-rule"><code class="xref">defn-incremental-update-rule</code></a> <em>(unit-4-random/rl)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-left-multiply-matrix-vector"><td></td><td>
@@ -779,6 +839,22 @@ document.write(`
        <a href="unit-3-learning/lp.html#defn-mol-based-units"><code class="xref">defn-mol-based-units</code></a> <em>(unit-3-learning/lp)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-multi-arm-bernoulli-bandit-problem"><td></td><td>
+       <strong>defn-multi-arm-bernoulli-bandit-problem</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-random/bandits.html#defn-multi-arm-bernoulli-bandit-problem"><code class="xref">defn-multi-arm-bernoulli-bandit-problem</code></a> <em>(unit-4-random/bandits)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-n-transition"><td></td><td>
+       <strong>defn-n-transition</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-random/markov.html#defn-n-transition"><code class="xref">defn-n-transition</code></a> <em>(unit-4-random/markov)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-normal-eqn-ols"><td></td><td>
        <strong>defn-normal-eqn-ols</strong></td><td></td></tr>
      <tr>
@@ -835,12 +911,28 @@ document.write(`
        <a href="unit-2-data/vectors-matricies-nla.html#defn-open-species-mole-balance"><code class="xref">defn-open-species-mole-balance</code></a> <em>(unit-2-data/vectors-matricies-nla)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-policy-evalution"><td></td><td>
+       <strong>defn-policy-evalution</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-random/markov.html#defn-policy-evalution"><code class="xref">defn-policy-evalution</code></a> <em>(unit-4-random/markov)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-primael-linear program"><td></td><td>
        <strong>defn-primael-linear program</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
        <a href="unit-3-learning/lp.html#defn-primael-linear program"><code class="xref">defn-primael-linear program</code></a> <em>(unit-3-learning/lp)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defn-q-learning-defn"><td></td><td>
+       <strong>defn-q-learning-defn</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-random/rl.html#defn-q-learning-defn"><code class="xref">defn-q-learning-defn</code></a> <em>(unit-4-random/rl)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defn-qr-iteration"><td></td><td>
@@ -977,6 +1069,30 @@ document.write(`
        <td></td>
        <td>
        <a href="unit-1-basics/types.html#example-binary-1800"><code class="xref">example-binary-1800</code></a> <em>(unit-1-basics/types)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-categorical-dist"><td></td><td>
+       <strong>example-categorical-dist</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-random/markov.html#example-categorical-dist"><code class="xref">example-categorical-dist</code></a> <em>(unit-4-random/markov)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-dicrete-mchain"><td></td><td>
+       <strong>example-dicrete-mchain</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-random/markov.html#example-dicrete-mchain"><code class="xref">example-dicrete-mchain</code></a> <em>(unit-4-random/markov)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-dicrete-mchain-hmm"><td></td><td>
+       <strong>example-dicrete-mchain-hmm</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="unit-4-random/markov.html#example-dicrete-mchain-hmm"><code class="xref">example-dicrete-mchain-hmm</code></a> <em>(unit-4-random/markov)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-example-exe-julia-script"><td></td><td>
